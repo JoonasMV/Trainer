@@ -5,13 +5,17 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="388294de-34c4-4452-85d2-d9ce5a72ad52" name="Changes" comment="main branch fixed">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/trainer/SecondActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_second.xml" afterDir="false" />
+    <list default="true" id="388294de-34c4-4452-85d2-d9ce5a72ad52" name="Changes" comment="Button functionality added">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/trainer/LoginPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login_page.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/trainer/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/trainer/MainActivity.java" afterDir="false" />
@@ -184,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673597203818</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Button functionality added">
+      <created>1673769622305</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1673769622306</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -202,6 +213,7 @@
     <MESSAGE value="fixing repo" />
     <MESSAGE value="merged branches" />
     <MESSAGE value="Front page started" />
-    <option name="LAST_COMMIT_MESSAGE" value="Front page started" />
+    <MESSAGE value="Button functionality added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Button functionality added" />
   </component>
 </project>
