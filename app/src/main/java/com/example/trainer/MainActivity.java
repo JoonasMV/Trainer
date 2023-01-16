@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         exercisesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SecondActivity.class));
+                startActivity(new Intent(MainActivity.this, ExerciseListActivity.class));
             }
         });
 

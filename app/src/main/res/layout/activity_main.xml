@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/button14"
+            android:id="@+id/exercisesBtn"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -26,12 +26,12 @@
             android:insetBottom="0dp"
             android:text="Exercises"
             android:textColor="@color/black"
-            app:layout_constraintBaseline_toBaselineOf="@+id/button15"
-            app:layout_constraintEnd_toStartOf="@+id/button15"
+            app:layout_constraintBaseline_toBaselineOf="@+id/workoutsBtn"
+            app:layout_constraintEnd_toStartOf="@+id/workoutsBtn"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button15"
+            android:id="@+id/workoutsBtn"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -40,12 +40,12 @@
             android:text="Workouts"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button16"
-            app:layout_constraintStart_toEndOf="@+id/button14"
+            app:layout_constraintEnd_toStartOf="@+id/progressBtn"
+            app:layout_constraintStart_toEndOf="@+id/exercisesBtn"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button16"
+            android:id="@+id/progressBtn"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -53,13 +53,13 @@
             android:insetBottom="0dp"
             android:text="Progress"
             android:textColor="@color/black"
-            app:layout_constraintBaseline_toBaselineOf="@+id/button15"
+            app:layout_constraintBaseline_toBaselineOf="@+id/workoutsBtn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/button15" />
+            app:layout_constraintStart_toEndOf="@+id/workoutsBtn" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/userGreetText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
