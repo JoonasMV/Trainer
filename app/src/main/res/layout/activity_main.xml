@@ -6,46 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="411dp"
-        android:layout_height="74dp"
-        android:orientation="horizontal"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/button14"
-            android:layout_width="139dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="Exercises"
-            style="?android:attr/borderlessButtonStyle"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            app:layout_constraintBaseline_toBaselineOf="@+id/button15"
+            app:layout_constraintEnd_toStartOf="@+id/button15"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/button15"
-            android:layout_width="155dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="Workouts"
-            style="?android:attr/borderlessButtonStyle"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button16"
+            app:layout_constraintStart_toEndOf="@+id/button14"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/button16"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="Progress"
-            style="?android:attr/borderlessButtonStyle"
-            android:textColor="@color/black"/>
-    </LinearLayout>
+            android:textColor="@color/black"
+            app:layout_constraintBaseline_toBaselineOf="@+id/button15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button15" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/textView"
