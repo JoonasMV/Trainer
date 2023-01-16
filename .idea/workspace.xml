@@ -2,7 +2,10 @@
 <project version="4">
   <component name="AndroidLayouts">
     <shared>
-      <config />
+      <config>
+        <device id="_device_class_phone" />
+        <device id="pixel_6" />
+      </config>
     </shared>
   </component>
   <component name="AutoImportSettings">
@@ -28,7 +31,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[2cc5299626017ece]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -94,6 +96,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="android.template.-666603563">
+      <recent name="com.example.trainer" />
+    </key>
     <key name="android.template.409154026">
       <recent name="com.example.trainer" />
     </key>
