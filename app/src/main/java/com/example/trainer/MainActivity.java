@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.trainer.database.DatabaseHelper;
 
 public class MainActivity extends AppCompatActivity {
     Button exercisesBtn;
@@ -31,6 +34,18 @@ public class MainActivity extends AppCompatActivity {
         exercisesBtn = findViewById(R.id.exercisesBtn);
         workoutsBtn = findViewById(R.id.workoutsBtn);
         progressBtn = findViewById(R.id.progressBtn);
+
+        Button testBtn = findViewById(R.id.testBtn);
+        testBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatabaseHelper dbHelper = new DatabaseHelper(MainActivity.this);
+
+                boolean b = dbHelper.addOne();
+                Toast.makeText(MainActivity.this, "Success= " + b, Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         exercisesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
