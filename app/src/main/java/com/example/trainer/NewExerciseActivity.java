@@ -17,7 +17,7 @@ public class NewExerciseActivity extends AppCompatActivity {
     }
 
     public void toExercises(View v){
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, ExerciseListActivity.class);
         startActivity(i);
     }
 

@@ -29,7 +29,7 @@ public class ExerciseListActivity extends Activity {
 
         Button addExercise = findViewById(R.id.addExercise);
         addExercise.setOnClickListener(view -> {
-            //next activity
+            startActivity(new Intent(ExerciseListActivity.this, NewExerciseActivity.class));
         });
 
 
