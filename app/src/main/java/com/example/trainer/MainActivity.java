@@ -47,26 +47,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        exercisesBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ExerciseListActivity.class));
-            }
-        });
+        exercisesBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ExerciseListActivity.class)));
 
-        workoutsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SecondActivity.class));
-            }
-        });
+        workoutsBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SecondActivity.class)));
 
-        progressBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SecondActivity.class));
-            }
-        });
+        progressBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SecondActivity.class)));
 
 
     }

@@ -1,6 +1,7 @@
 package com.example.trainer.database;
 
-public class ExerciseDbSchema {
+public class ExerciseDbHelper {
+
     public static final String TABLE_EXERCISE = "exercise";
     public static final String EXERCISE_ID = "exerciseId";
     public static final String SET_NUMBER = "setNumber";
@@ -15,5 +16,5 @@ public class ExerciseDbSchema {
                     WEIGHT + " REAL, " +
                     EXERCISE_NAME + " TEXT, " +
                     WORKOUT_ID + " INTEGER, " +
-                    "FOREIGN KEY(" + WORKOUT_ID + ") REFERENCES workout(workoutId));";
+                    "FOREIGN KEY(" + WORKOUT_ID + ") REFERENCES " + WorkoutDbHelper.TABLE_WORKOUT + "(" + WorkoutDbHelper.WORKOUT_ID+");";
 }
