@@ -6,15 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-
-import com.example.trainer.database.UserDAO;
 //import android.widget.Toast;
 
 
 public class LoginPage extends AppCompatActivity {
     EditText nameInput;
     Button startBtn;
-    UserDAO userDAO = new UserDAO(LoginPage.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +25,6 @@ public class LoginPage extends AppCompatActivity {
             String username = nameInput.getText().toString();
             Intent intent = new Intent(LoginPage.this, MainActivity.class);
             intent.putExtra("username", username);
-            userDAO.createUser(username);
             startActivity(intent);
         });
     }
