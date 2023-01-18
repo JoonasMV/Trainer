@@ -9,17 +9,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.trainer.database.DatabaseHelper;
+import com.example.trainer.database.UserHelper;
 
 public class MainActivity extends AppCompatActivity {
     String username = "";
-    DatabaseHelper dbHelper = new DatabaseHelper(MainActivity.this);
+    UserHelper db = new UserHelper(MainActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println("testing = " + dbHelper);
 
         Button exercisesBtn = findViewById(R.id.exercisesBtn);
         Button workoutsBtn = findViewById(R.id.workoutsBtn);
@@ -29,10 +28,8 @@ public class MainActivity extends AppCompatActivity {
         testBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseHelper dbHelper = new DatabaseHelper(MainActivity.this);
 
-                String b = dbHelper.getUser();
-                Toast.makeText(MainActivity.this, "Success= " + b, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Success= " + username, Toast.LENGTH_SHORT).show();
             }
         });
         exercisesBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ExerciseListActivity.class)));
@@ -44,8 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        username = dbHelper.getUser();
-
+        username = db.getUser();
         //username = getIntent().getStringExtra("username");
         TextView userGreetText = findViewById(R.id.userGreetText);
         userGreetText.setText("Welcome back " + username);
