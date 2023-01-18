@@ -9,11 +9,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.trainer.database.UserHelper;
+import com.example.trainer.database.UserDAO;
 
 public class MainActivity extends AppCompatActivity {
     String username = "";
-    UserHelper db = new UserHelper(MainActivity.this);
+    UserDAO db = new UserDAO(MainActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        username = db.getUser();
+        username = db.readUser();
         //username = getIntent().getStringExtra("username");
         TextView userGreetText = findViewById(R.id.userGreetText);
         userGreetText.setText("Welcome back " + username);
