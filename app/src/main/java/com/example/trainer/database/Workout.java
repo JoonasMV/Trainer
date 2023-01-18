@@ -1,6 +1,7 @@
 package com.example.trainer.database;
 
-public class WorkoutDbHelper {
+public class Workout {
+
     public static final String TABLE_WORKOUT = "workout";
     public static final String WORKOUT_ID = "workoutId";
     public static final String DATE = "date";

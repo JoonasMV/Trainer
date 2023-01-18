@@ -1,6 +1,6 @@
 package com.example.trainer.database;
 
-public class ExerciseDbHelper {
+public class Exercise {
 
     public static final String TABLE_EXERCISE = "exercise";
     public static final String EXERCISE_ID = "exerciseId";
@@ -9,6 +9,8 @@ public class ExerciseDbHelper {
     public static final String EXERCISE_NAME = "exerciseName";
     public static final String WORKOUT_ID = "workoutId";
 
+
+
     public static final String CREATE_TABLE_EXERCISE =
             "CREATE TABLE " + TABLE_EXERCISE + " (" +
                     EXERCISE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -16,5 +18,5 @@ public class ExerciseDbHelper {
                     WEIGHT + " REAL, " +
                     EXERCISE_NAME + " TEXT, " +
                     WORKOUT_ID + " INTEGER, " +
-                    "FOREIGN KEY(" + WORKOUT_ID + ") REFERENCES " + WorkoutDbHelper.TABLE_WORKOUT + "(" + WorkoutDbHelper.WORKOUT_ID+");";
+                    "FOREIGN KEY(" + WORKOUT_ID + ") REFERENCES " + Workout.TABLE_WORKOUT + "(" + Workout.WORKOUT_ID+");";
 }

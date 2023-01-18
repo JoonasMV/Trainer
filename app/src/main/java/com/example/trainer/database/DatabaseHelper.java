@@ -2,9 +2,9 @@ package com.example.trainer.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -12,7 +12,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "trainer.db";
     private static final int DATABASE_VERSION = 1;
 
-    //private Context context;
+    private SQLiteDatabase db;
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -21,9 +21,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //this.context = context;
-        db.execSQL(ExerciseDbHelper.CREATE_TABLE_EXERCISE);
-        db.execSQL(UserDbHelper.CREATE_USER_TABLE);
-        db.execSQL(WorkoutDbHelper.CREATE_TABLE_WORKOUT);
+        db.execSQL(Exercise.CREATE_TABLE_EXERCISE);
+        db.execSQL(User.CREATE_USER_TABLE);
+        db.execSQL(Workout.CREATE_TABLE_WORKOUT);
     }
 
     @Override
@@ -32,20 +32,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public boolean insertUserName(String username) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(UserDbHelper.USERNAME, username);
-        long success = db.insert(UserDbHelper.TABLE_USER, null, cv);
+        cv.put(User.USERNAME, username);
+        long success = db.insert(User.TABLE_USER, null, cv);
 
         if (success == -1) return false;
         return true;
     }
 
-    public boolean addOne() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
+    public String getUser() {
+        db = this.getReadableDatabase();
 
-        return false;
+        Cursor cursor = db.rawQuery("SELECT * FROM " + User.TABLE_USER +";", null);
+
+        //TODO: testausta varten, korjataan soon(tm)
+        try {
+            cursor.moveToFirst();
+            String usernameFromDb = cursor.getString(cursor.getColumnIndexOrThrow(User.USERNAME));
+            System.out.println(usernameFromDb);
+            cursor.close();
+            return usernameFromDb;
+        } catch (Exception e) {
+            cursor.close();
+            System.out.println("hello");
+            return null;
+        }
     }
 }
