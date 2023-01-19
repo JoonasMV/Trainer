@@ -11,11 +11,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trainer.database.DatabaseHelper;
+import com.example.trainer.database.IuserDao;
 
 public class MainActivity extends AppCompatActivity {
     private String username = "";
 
-    private DatabaseHelper dbHelper;
+    private IuserDao dbHelper;
 
 
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         dbHelper = DatabaseHelper.getInstance(this);
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
