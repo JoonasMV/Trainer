@@ -9,7 +9,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper implements IexerciseDao, IuserDao{
 
     private static final String DATABASE_NAME = "trainer.db";
     private static final int DATABASE_VERSION = 1;
@@ -83,4 +83,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] array = {"testi", "testi2", "testi3"};
         return array;
     }
+
+    @Override
+    public Exercise getExerciseById() {
+        return null;
+    }
+
+    @Override
+    public int addExercise() {
+        return 0;
+    }
+
+    @Override
+    public int addManyExercises() {
+        return 0;
+    }
+
+    @Override
+    public User addUser() {
+        return null;
+    }
+
+
 }

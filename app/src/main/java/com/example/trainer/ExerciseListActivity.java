@@ -10,13 +10,14 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.trainer.database.DatabaseHelper;
+import com.example.trainer.database.IexerciseDao;
 
 import java.util.ArrayList;
 
 public class ExerciseListActivity extends Activity {
 
 
-    private DatabaseHelper db;
+    private IexerciseDao db;
 
 
     @Override
