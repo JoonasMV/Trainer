@@ -13,10 +13,10 @@ public class Exercise {
 
     public static final String CREATE_TABLE_EXERCISE =
             "CREATE TABLE " + TABLE_EXERCISE + " (" +
-                    EXERCISE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    SET_NUMBER + " INTEGER, " +
-                    WEIGHT + " REAL, " +
-                    EXERCISE_NAME + " TEXT, " +
-                    WORKOUT_ID + " INTEGER, " +
+                    EXERCISE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    SET_NUMBER + " INTEGER," +
+                    WEIGHT + " REAL," +
+                    EXERCISE_NAME + " TEXT," +
+                    WORKOUT_ID + " INTEGER," +
                     "FOREIGN KEY(" + WORKOUT_ID + ") REFERENCES " + Workout.TABLE_WORKOUT + "(" + Workout.WORKOUT_ID+");";
 }

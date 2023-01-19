@@ -8,6 +8,6 @@ public class User {
 
     public static final String CREATE_USER_TABLE =
             "CREATE TABLE " + TABLE_USER + " ("+
-                    USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     USERNAME + " TEXT);";
 }

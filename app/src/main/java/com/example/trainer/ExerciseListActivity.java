@@ -3,28 +3,27 @@ package com.example.trainer;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.example.trainer.database.DatabaseHelper;
 
 import java.util.ArrayList;
 
 public class ExerciseListActivity extends Activity {
 
-    private ArrayList lista = new ArrayList<String>(); //testilista
 
+    private DatabaseHelper db;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        lista.add("yksi");
-        lista.add("kaksi");
-        lista.add("kome");
-
+        db = DatabaseHelper.getInstance(this);
+        String[] lista = db.getAllExercises();
         setContentView(R.layout.activity_exercise);
 
         Button addExercise = findViewById(R.id.addExercise);

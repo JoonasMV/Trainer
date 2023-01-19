@@ -10,9 +10,9 @@ public class Workout {
 
     public static final String CREATE_TABLE_WORKOUT =
             "CREATE TABLE " + TABLE_WORKOUT + " (" +
-                    WORKOUT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    DATE + " TEXT, " +
-                    WORKOUT_NAME + " TEXT, " +
-                    USER_ID + " INTEGER,  " +
+                    WORKOUT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    DATE + " TEXT," +
+                    WORKOUT_NAME + " TEXT," +
+                    USER_ID + " INTEGER," +
                     "FOREIGN KEY("+ USER_ID +") REFERENCES user(userId));";
 }

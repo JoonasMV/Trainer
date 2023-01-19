@@ -5,16 +5,27 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+
     private static final String DATABASE_NAME = "trainer.db";
     private static final int DATABASE_VERSION = 1;
 
     private SQLiteDatabase db;
 
-    public DatabaseHelper(@Nullable Context context) {
+    private static DatabaseHelper instance;
+
+    public static synchronized DatabaseHelper getInstance(Context context){
+        if(instance == null) {
+            instance = new DatabaseHelper(context.getApplicationContext());
+        }
+        return instance;
+    }
+
+    private DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -42,10 +53,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
+
     public String getUser() {
+        return "Mikko :)";
+    }
+        /*
         db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + User.TABLE_USER +";", null);
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + User.TABLE_USER + ";", null);
 
         //TODO: testausta varten, korjataan soon(tm)
         try {
@@ -59,5 +75,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             System.out.println("hello");
             return null;
         }
+
+
+    }*/
+
+    public String[] getAllExercises() {
+        String[] array = {"testi", "testi2", "testi3"};
+        return array;
     }
 }
