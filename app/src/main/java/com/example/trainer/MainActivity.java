@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.trainer.database.UserDAO;
+import com.example.trainer.database.dao.UserDAO;
 
 public class MainActivity extends AppCompatActivity {
     String username = "";

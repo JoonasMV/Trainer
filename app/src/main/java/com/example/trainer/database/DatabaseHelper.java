@@ -1,12 +1,14 @@
 package com.example.trainer.database;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import com.example.trainer.database.contracts.ExerciseContract;
+import com.example.trainer.database.contracts.UserContract;
+import com.example.trainer.database.contracts.WorkoutContract;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -58,4 +60,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
+
+
 }

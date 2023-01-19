@@ -1,9 +1,12 @@
-package com.example.trainer.database;
+package com.example.trainer.database.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.example.trainer.database.DatabaseHelper;
+import com.example.trainer.database.contracts.UserContract;
 
 public class UserDAO {
     DatabaseHelper dbConnection;

@@ -1,4 +1,4 @@
-package com.example.trainer.database;
+package com.example.trainer.database.contracts;
 
 import android.provider.BaseColumns;
 
