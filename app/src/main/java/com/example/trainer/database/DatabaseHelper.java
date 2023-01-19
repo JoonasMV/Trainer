@@ -1,59 +1,86 @@
 package com.example.trainer.database;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static String DATABASE_NAME = "trainer.db";
-    private static int DATABASE_VERSION = 1;
-    private static DatabaseHelper dbConnection;
-    private Context context;
 
-    public static DatabaseHelper getInstance(Context context) {
-        if (dbConnection == null) {
-            dbConnection = new DatabaseHelper(context);
+    private static final String DATABASE_NAME = "trainer.db";
+    private static final int DATABASE_VERSION = 1;
+
+    private SQLiteDatabase db;
+
+    private static DatabaseHelper instance;
+
+    public static synchronized DatabaseHelper getInstance(Context context){
+        if(instance == null) {
+            instance = new DatabaseHelper(context.getApplicationContext());
         }
-        return dbConnection;
+        return instance;
     }
 
-    private DatabaseHelper(@Nullable Context context) {
+    private DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(
-                "CREATE TABLE " + UserContract.UserEntry.TABLE_USER + " (" +
-                        UserContract.UserEntry.USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        UserContract.UserEntry.USERNAME + " TEXT);"
-        );
-
-        sqLiteDatabase.execSQL(
-                "CREATE TABLE " + ExerciseContract.ExerciseEntry.TABLE_EXERCISE + " (" +
-                        ExerciseContract.ExerciseEntry.EXERCISE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        ExerciseContract.ExerciseEntry.SET_NUMBER + " INTEGER, " +
-                        ExerciseContract.ExerciseEntry.WEIGHT + " REAL, " +
-                        ExerciseContract.ExerciseEntry.EXERCISE_NAME + " TEXT, " +
-                        ExerciseContract.ExerciseEntry.WORKOUT_ID + " INTEGER, " +
-                        "FOREIGN KEY(" + ExerciseContract.ExerciseEntry.WORKOUT_ID + ") REFERENCES " + WorkoutContract.WorkoutEntry.TABLE_WORKOUT + "(" + WorkoutContract.WorkoutEntry.WORKOUT_ID + "));"
-        );
-
-        sqLiteDatabase.execSQL(
-                "CREATE TABLE " + WorkoutContract.WorkoutEntry.TABLE_WORKOUT + " (" +
-                        WorkoutContract.WorkoutEntry.WORKOUT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        WorkoutContract.WorkoutEntry.DATE + " TEXT, " +
-                        WorkoutContract.WorkoutEntry.WORKOUT_NAME + " TEXT, " +
-                        UserContract.UserEntry.USER_ID + " INTEGER,  " +
-                        "FOREIGN KEY(" + UserContract.UserEntry.USER_ID + ") REFERENCES " + UserContract.UserEntry.TABLE_USER + "(" + UserContract.UserEntry.USER_ID + "));"
-        );
+    public void onCreate(SQLiteDatabase db) {
+        //this.context = context;
+        db.execSQL(Exercise.CREATE_TABLE_EXERCISE);
+        db.execSQL(User.CREATE_USER_TABLE);
+        db.execSQL(Workout.CREATE_TABLE_WORKOUT);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+    }
 
+
+    public boolean insertUserName(String username) {
+        db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(User.USERNAME, username);
+        long success = db.insert(User.TABLE_USER, null, cv);
+
+        if (success == -1) return false;
+        return true;
+    }
+
+
+    public String getUser() {
+        return "Mikko :)";
+    }
+        /*
+        db = this.getReadableDatabase();
+
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + User.TABLE_USER + ";", null);
+
+        //TODO: testausta varten, korjataan soon(tm)
+        try {
+            cursor.moveToFirst();
+            String usernameFromDb = cursor.getString(cursor.getColumnIndexOrThrow(User.USERNAME));
+            System.out.println(usernameFromDb);
+            cursor.close();
+            return usernameFromDb;
+        } catch (Exception e) {
+            cursor.close();
+            System.out.println("hello");
+            return null;
+        }
+
+
+    }*/
+
+    public String[] getAllExercises() {
+        String[] array = {"testi", "testi2", "testi3"};
+        return array;
     }
 }

@@ -4,21 +4,30 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.trainer.database.UserDAO;
+import com.example.trainer.database.DatabaseHelper;
 
 public class MainActivity extends AppCompatActivity {
-    String username = "";
-    UserDAO db = new UserDAO(MainActivity.this);
+    private String username = "";
+
+    private DatabaseHelper dbHelper;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        dbHelper = DatabaseHelper.getInstance(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        System.out.println("testing = " + dbHelper);
 
         Button exercisesBtn = findViewById(R.id.exercisesBtn);
         Button workoutsBtn = findViewById(R.id.workoutsBtn);
@@ -28,10 +37,11 @@ public class MainActivity extends AppCompatActivity {
         testBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Toast.makeText(MainActivity.this, "Success= " + username, Toast.LENGTH_SHORT).show();
+                String b = dbHelper.getUser();
+                Toast.makeText(MainActivity.this, "Success= " + b, Toast.LENGTH_SHORT).show();
             }
         });
+
         exercisesBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ExerciseListActivity.class)));
         workoutsBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SecondActivity.class)));
         progressBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SecondActivity.class)));
@@ -41,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        username = db.readUser();
+        username = dbHelper.getUser();
+
         //username = getIntent().getStringExtra("username");
         TextView userGreetText = findViewById(R.id.userGreetText);
         userGreetText.setText("Welcome back " + username);
