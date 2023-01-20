@@ -1,5 +1,13 @@
 package com.example.trainer.database;
 
+import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.EXERCISE_NAME;
+import static com.example.trainer.database.contracts.ExerciseSetContract.ExerciseSeEntry.AMOUNT;
+import static com.example.trainer.database.contracts.ExerciseSetContract.ExerciseSeEntry.EXERCISESET_ID;
+import static com.example.trainer.database.contracts.ExerciseSetContract.ExerciseSeEntry.EXERCISESET_NAME;
+import static com.example.trainer.database.contracts.ExerciseSetContract.ExerciseSeEntry.EXERCISE_ID;
+import static com.example.trainer.database.contracts.ExerciseSetContract.ExerciseSeEntry.TABLE_EXERCISESET;
+import static com.example.trainer.database.contracts.ExerciseSetContract.ExerciseSeEntry.WEIGHT;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -8,6 +16,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.example.trainer.database.contracts.ExerciseContract;
+import com.example.trainer.database.contracts.ExerciseSetContract;
 import com.example.trainer.database.contracts.UserContract;
 import com.example.trainer.database.contracts.WorkoutContract;
 
@@ -39,11 +48,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(
                 "CREATE TABLE " + ExerciseContract.ExerciseEntry.TABLE_EXERCISE + " (" +
                         ExerciseContract.ExerciseEntry.EXERCISE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        ExerciseContract.ExerciseEntry.SET_NUMBER + " INTEGER," +
-                        ExerciseContract.ExerciseEntry.WEIGHT + " REAL," +
-                        ExerciseContract.ExerciseEntry.EXERCISE_NAME + " TEXT," +
+                        EXERCISE_NAME + " TEXT," +
                         ExerciseContract.ExerciseEntry.WORKOUT_ID + " INTEGER," +
                         "FOREIGN KEY(" + ExerciseContract.ExerciseEntry.WORKOUT_ID + ") REFERENCES " + WorkoutContract.WorkoutEntry.TABLE_WORKOUT + "(" + WorkoutContract.WorkoutEntry.WORKOUT_ID + "));"
+        );
+
+        sqLiteDatabase.execSQL(
+                "CREATE TABLE " + TABLE_EXERCISESET + " (" +
+                        EXERCISESET_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        AMOUNT + " INTEGER," +
+                        WEIGHT + " DOUBLE," +
+                        EXERCISESET_NAME + " TEXT," +
+                        ExerciseSetContract.ExerciseSeEntry.EXERCISE_ID + " INTEGER," +
+                        "FOREIGN KEY(" + ExerciseSetContract.ExerciseSeEntry.EXERCISE_ID + ") REFERENCES " + ExerciseContract.ExerciseEntry.TABLE_EXERCISE + "(" + ExerciseContract.ExerciseEntry.EXERCISE_ID + "));"
         );
 
         sqLiteDatabase.execSQL(

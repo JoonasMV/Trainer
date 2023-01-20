@@ -12,8 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.schemas.Exercise;
+import com.example.trainer.database.schemas.ExerciseSet;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ExerciseListActivity extends AppCompatActivity {
 
@@ -30,6 +32,13 @@ public class ExerciseListActivity extends AppCompatActivity {
         db.addTestExercises();
         ArrayList<Exercise> list = db.getAllExercises();
         ArrayList<String> names = new ArrayList<>();
+
+        for(Exercise e : list){
+            List<ExerciseSet> sets = e.getSets();
+            for (ExerciseSet ex : sets){
+                Log.d("SET", ex.toString());
+            }
+        }
 
         ArrayList<Exercise> testiName = db.getExercisesByName("testi2");
         Log.d("m", testiName.get(0).getName());

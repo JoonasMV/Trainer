@@ -1,45 +1,40 @@
 package com.example.trainer.database.schemas;
 
+import java.util.List;
+
 public class Exercise {
 
-    private int setNumber;
-    private double weight;
     private String name;
+
+    private List<ExerciseSet> sets;
 
     private int id;
 
 
 
-    public Exercise (int set, double weight, String name) {
-        this.setNumber = set;
-        this.weight = weight;
+    public Exercise (String name) {
+        this.name = name;
+
+    }
+    public Exercise (String name, int id) {
+        this.id = id;
+        this.name = name;
+
+    }
+    public Exercise (String name, List<ExerciseSet> sets) {
+        this.sets = sets;
         this.name = name;
 
     }
 
-    public Exercise (int set, double weight, String name, int id) {
-        this.setNumber = set;
-        this.weight = weight;
+    public Exercise (String name, List<ExerciseSet> sets, int id) {
+        this.sets = sets;
         this.name = name;
         this.id = id;
 
     }
 
-    public int getSetNumber() {
-        return setNumber;
-    }
 
-    public void setSetNumber(int setNumber) {
-        this.setNumber = setNumber;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
 
     public String getName() {
         return name;
@@ -47,5 +42,21 @@ public class Exercise {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<ExerciseSet> getSets() {
+        return sets;
+    }
+
+    public void setSets(List<ExerciseSet> sets) {
+        this.sets = sets;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.trainer.database.dao;
 
 import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.TABLE_EXERCISE;
+import static com.example.trainer.database.contracts.ExerciseSetContract.ExerciseSeEntry.TABLE_EXERCISESET;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -12,9 +13,11 @@ import android.util.Log;
 import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.contracts.ExerciseContract;
 import com.example.trainer.database.schemas.Exercise;
+import com.example.trainer.database.schemas.ExerciseSet;
 
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ExerciseDAO implements IexerciseDao{
     DatabaseHelper dbConnection;
@@ -26,11 +29,15 @@ public class ExerciseDAO implements IexerciseDao{
     public ArrayList<Exercise> addTestExercises () {
 
         deleteAllExercises();
-        ArrayList<Exercise> testi = new ArrayList<>();
-        testi.add(new Exercise(1, 2, "testi"));
-        testi.add(new Exercise(1, 2, "testi2"));
-        testi.add(new Exercise(1, 2, "testi3"));
+        ArrayList<ExerciseSet> sets = new ArrayList<>();
+        sets.add(new ExerciseSet("penkki50kg", 1, 4));
+        sets.add(new ExerciseSet("penkki50kg", 4, 45));
+        sets.add(new ExerciseSet("penkki50kg", 45, 56));
 
+        ArrayList<Exercise> testi = new ArrayList<>();
+        testi.add(new Exercise("testi", sets));
+        testi.add(new Exercise("testi2", sets));
+        testi.add(new Exercise("testi3", sets));
 
         for (Exercise e : testi) {
             int num = addExercise(e);
@@ -53,6 +60,8 @@ public class ExerciseDAO implements IexerciseDao{
             if(cursor != null) {
                 while (cursor.moveToNext()) {
                     Exercise exercise = readExercise(cursor);
+                    List<ExerciseSet> sets = getSets(exercise.getId(), db);
+                    exercise.setSets(sets);
                     exercises.add(exercise);
                 }
             }
@@ -67,13 +76,28 @@ public class ExerciseDAO implements IexerciseDao{
 
     private Exercise readExercise(Cursor cursor) {
         int id = (int) cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
-        int set = cursor.getInt(cursor.getColumnIndexOrThrow("setNumber"));
-        int weight = cursor.getInt(cursor.getColumnIndexOrThrow("weight"));
         String name = cursor.getString(cursor.getColumnIndexOrThrow("exerciseName"));
-
-        Exercise exercise = new Exercise(set, weight, name, id);
+        Exercise exercise = new Exercise(name, id);
         return exercise;
     }
+
+    private List<ExerciseSet> getSets(int exId, SQLiteDatabase db) {
+        Cursor cursor = db.query(TABLE_EXERCISESET, null, "exerciseId LIKE ?", new String[]{Integer.toString(exId)}, null, null, null);
+        ArrayList<ExerciseSet> sets = new ArrayList<>();
+        if(cursor != null) {
+            while (cursor.moveToNext()) {
+                int id = (int) cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow("exerciseSetName"));
+                int amount = cursor.getInt(cursor.getColumnIndexOrThrow("amount"));
+                double weight = cursor.getDouble(cursor.getColumnIndexOrThrow("weight"));
+                ExerciseSet set = new ExerciseSet(name, weight, amount);
+                set.setId(id);
+                sets.add(set);
+            }
+        }
+        return sets;
+    }
+
 
     @Override
     public Exercise getExerciseById(int id) {
@@ -113,29 +137,55 @@ public class ExerciseDAO implements IexerciseDao{
         long id = -1;
         SQLiteDatabase db = dbConnection.getWritableDatabase();
 
+        List<ExerciseSet> sets = exercise.getSets();
+
 
         try {
 
-            String query = "INSERT INTO " + TABLE_EXERCISE + " (setNumber, weight, exerciseName) values (?, ?, ?)";
+            String query = "INSERT INTO " + TABLE_EXERCISE + " (exerciseName) values (?)";
             SQLiteStatement statement = db.compileStatement(query);
-            statement.bindLong(1, exercise.getSetNumber());
-            statement.bindDouble(2, exercise.getWeight());
-            statement.bindString(3, exercise.getName());;
+            statement.bindString(1, exercise.getName());;
             id = statement.executeInsert();
+
+
+            SQLiteDatabase read = dbConnection.getReadableDatabase();
+            Cursor cursor = read.query(TABLE_EXERCISE, null, null, null, null, null, null);
+
+            if(cursor != null) {
+                cursor.moveToLast();
+                id = (int) cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+            }
+
+            if(id == -1){
+                Log.d("error", "no id found");
+            }
+
+
+            if(!sets.isEmpty()){
+                SQLiteDatabase write = dbConnection.getWritableDatabase();
+                String setQuery = "INSERT INTO " + TABLE_EXERCISESET + " (exerciseSetName, amount, weight, exerciseId) values (?, ?, ?, ?)";
+                SQLiteStatement setStatement = write.compileStatement(setQuery);
+                for(ExerciseSet e : sets){
+                    setStatement.bindString(1, e.getName());
+                    setStatement.bindLong(2, e.getAmount());
+                    setStatement.bindDouble(3, e.getWeight());
+                    setStatement.bindLong(4, id);
+                    setStatement.executeInsert();
+                }
+
+            }
+
 
         }catch (SQLException e) {
             Log.w("error", e);
         }
-        finally {
 
-            db.close();
-        }
 
         return (int) id;
     }
 
     @Override
-    public int addManyExercises(ArrayList<Exercise> exercises) {
+    public int addManyExercises(List<Exercise> exercises) {
         return 0;
     }
 
