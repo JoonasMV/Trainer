@@ -7,20 +7,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.trainer.database.DatabaseHelper;
+import com.example.trainer.database.dao.UserDAO;
+import com.example.trainer.database.schemas.User;
 
 public class MainActivity extends AppCompatActivity {
-    Button exercisesBtn;
-    Button workoutsBtn;
-    Button progressBtn;
+    UserDAO userDAO;// = new UserDAO(MainActivity.this);
     TextView userGreetText;
-    String username = "";
+    String username = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        username = getIntent().getStringExtra("username");
+        userDAO = new UserDAO(this);
+        handleUserLogin();
+
         userGreetText = findViewById(R.id.userGreetText);
         userGreetText.setText("Welcome back " + username);
 
@@ -28,31 +33,32 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, LoginPage.class));
         }
 
-        exercisesBtn = findViewById(R.id.exercisesBtn);
-        workoutsBtn = findViewById(R.id.workoutsBtn);
-        progressBtn = findViewById(R.id.progressBtn);
+        Button exercisesBtn = findViewById(R.id.exercisesBtn);
+        Button workoutsBtn = findViewById(R.id.workoutsBtn);
+        Button progressBtn = findViewById(R.id.progressBtn);
 
-        exercisesBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ExerciseListActivity.class));
+        exercisesBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ExerciseListActivity.class)));
+
+        workoutsBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SecondActivity.class)));
+
+        progressBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SecondActivity.class)));
+
+    }
+
+    private void handleUserLogin() {
+        User user = userDAO.getUser();
+        if (user != null) username = user.getUsername();
+
+        if (username == null) {
+            username = getIntent().getStringExtra("username");
+            User newUser = new User(username);
+            try {
+                userDAO.createUser(newUser);
+                Toast.makeText(MainActivity.this, "Username added", Toast.LENGTH_LONG);
+            } catch (Exception e) {
+                Toast.makeText(MainActivity.this, "Error creating username", Toast.LENGTH_LONG).show();
+                System.out.println("Exception in handleUserLogin " + e.getMessage());
             }
-        });
-
-        workoutsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SecondActivity.class));
-            }
-        });
-
-        progressBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SecondActivity.class));
-            }
-        });
-
-
+        }
     }
 }
