@@ -31,11 +31,9 @@ public class ExerciseDAO implements IexerciseDao{
         testi.add(new Exercise(1, 2, "testi2"));
         testi.add(new Exercise(1, 2, "testi3"));
 
-        Log.d("d", "lista tehty");
 
         for (Exercise e : testi) {
             int num = addExercise(e);
-            Log.d("lisatty", e.getName() + num);
         }
         return testi;
     }
@@ -49,17 +47,11 @@ public class ExerciseDAO implements IexerciseDao{
 
         try {
             SQLiteDatabase db = dbConnection.getReadableDatabase();
-            Log.d("m", "luetaan");
             String query = "SELECT * FROM " + TABLE_EXERCISE + ";";
-            Log.d("d", query);
             Cursor cursor = db.rawQuery(query, null);
 
             if(cursor != null) {
-                Log.d("m", "cursori");
-                Log.d("m", Integer.toString(cursor.getColumnCount()));
-                Log.d("m", Integer.toString(cursor.getCount()));
                 while (cursor.moveToNext()) {
-                    Log.d("m", "luetaan cursor");
                     Exercise exercise = readExercise(cursor);
                     exercises.add(exercise);
                 }
@@ -74,17 +66,12 @@ public class ExerciseDAO implements IexerciseDao{
     }
 
     private Exercise readExercise(Cursor cursor) {
-        Log.d("m", "ollaan readEx");
         int id = (int) cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
         int set = cursor.getInt(cursor.getColumnIndexOrThrow("setNumber"));
         int weight = cursor.getInt(cursor.getColumnIndexOrThrow("weight"));
         String name = cursor.getString(cursor.getColumnIndexOrThrow("exerciseName"));
 
         Exercise exercise = new Exercise(set, weight, name, id);
-        Log.d("id", Integer.toString(id));
-        Log.d("set", Integer.toString(set));
-        Log.d("weight", Integer.toString(weight));
-        Log.d("name", name);
         return exercise;
     }
 
@@ -99,16 +86,11 @@ public class ExerciseDAO implements IexerciseDao{
 
         try {
             SQLiteDatabase db = dbConnection.getReadableDatabase();
-            Log.d("m", "luetaan");
 
             Cursor cursor = db.query(TABLE_EXERCISE, null, "exerciseName LIKE ?", args, null, null, null);
 
             if(cursor != null) {
-                Log.d("m", "cursori");
-                Log.d("m", Integer.toString(cursor.getColumnCount()));
-                Log.d("m", Integer.toString(cursor.getCount()));
                 while (cursor.moveToNext()) {
-                    Log.d("m", "luetaan cursor");
                     Exercise exercise = readExercise(cursor);
                     exercises.add(exercise);
                 }
@@ -136,12 +118,9 @@ public class ExerciseDAO implements IexerciseDao{
 
             String query = "INSERT INTO " + TABLE_EXERCISE + " (setNumber, weight, exerciseName) values (?, ?, ?)";
             SQLiteStatement statement = db.compileStatement(query);
-            Log.d("m", query);
             statement.bindLong(1, exercise.getSetNumber());
             statement.bindDouble(2, exercise.getWeight());
-            Log.d("m", "name " + exercise.getName());
-            statement.bindString(3, exercise.getName());
-            Log.d("m", statement.toString());
+            statement.bindString(3, exercise.getName());;
             id = statement.executeInsert();
 
         }catch (SQLException e) {

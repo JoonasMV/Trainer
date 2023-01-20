@@ -26,12 +26,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        Log.d("d", "nyt tehtiin db");
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        Log.d("Helper", "oncreate" );
         sqLiteDatabase.execSQL(
                 "CREATE TABLE " + UserContract.UserEntry.TABLE_USER + " (" +
                         UserContract.UserEntry.USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
