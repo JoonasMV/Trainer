@@ -9,11 +9,11 @@ public interface IexerciseDao {
 
     public ArrayList<Exercise> getAllExercises();
 
-    public Exercise getExerciseById();
+    public Exercise getExerciseById(int id);
 
-    public int addExercise();
+    public int addExercise(Exercise exercise);
 
-    public int addManyExercises();
+    public int addManyExercises(ArrayList<Exercise> exercises);
 
 
 }

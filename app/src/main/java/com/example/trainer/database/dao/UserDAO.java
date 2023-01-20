@@ -7,8 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.contracts.UserContract;
+import com.example.trainer.database.schemas.User;
 
-public class UserDAO {
+public class UserDAO implements IuserDao{
     DatabaseHelper dbConnection;
 
     public UserDAO(Context context) {
@@ -27,6 +28,7 @@ public class UserDAO {
         return true;
     }
 
+    /*
     public String readUser() {
         SQLiteDatabase db = dbConnection.getReadableDatabase();
 
@@ -46,5 +48,17 @@ public class UserDAO {
             System.out.println("Error in getUser()");
             return null;
         }
+    }
+
+     */
+
+    @Override
+    public int addUser(User user) {
+        return 0;
+    }
+
+    @Override
+    public User getUser(int id) {
+        return null;
     }
 }

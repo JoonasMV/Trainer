@@ -8,22 +8,32 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.schemas.Exercise;
 
 import java.util.ArrayList;
 
-public class ExerciseListActivity extends Activity {
+public class ExerciseListActivity extends AppCompatActivity {
 
 
-    private ExerciseDAO db = new ExerciseDAO(this);
+
+    private ExerciseDAO db;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        db = new ExerciseDAO(this);
+        db.addTestExercises();
         ArrayList<Exercise> list = db.getAllExercises();
         ArrayList<String> names = new ArrayList<>();
+
+        ArrayList<Exercise> testiName = db.getExercisesByName("testi2");
+        Log.d("m", testiName.get(0).getName());
+
 
         for(Exercise e : list) {
             names.add(e.getName());

@@ -4,8 +4,8 @@ import com.example.trainer.database.schemas.User;
 
 public interface IuserDao {
 
-    public User addUser();
+    public int addUser(User user);
 
-    public String getUser();
+    public User getUser(int id);
 
 }

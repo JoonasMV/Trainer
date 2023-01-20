@@ -12,12 +12,15 @@ import android.widget.Toast;
 import com.example.trainer.database.dao.UserDAO;
 
 public class MainActivity extends AppCompatActivity {
-    String username = "";
-    UserDAO db = new UserDAO(MainActivity.this);
+    private String username = "";
+    private UserDAO db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        db = new UserDAO(this);
+
         setContentView(R.layout.activity_main);
 
         Button exercisesBtn = findViewById(R.id.exercisesBtn);
@@ -41,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        username = db.readUser();
+        //username = db.readUser();
+        username = "mikko";
         //username = getIntent().getStringExtra("username");
         TextView userGreetText = findViewById(R.id.userGreetText);
         userGreetText.setText("Welcome back " + username);
