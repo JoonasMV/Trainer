@@ -26,11 +26,9 @@
             android:insetBottom="0dp"
             android:text="Exercises"
             android:textColor="@color/black"
-            tools:layout_editor_absoluteY="1dp"
             app:layout_constraintBaseline_toBaselineOf="@+id/workoutsBtn"
             app:layout_constraintEnd_toStartOf="@+id/workoutsBtn"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/workoutsBtn"
@@ -41,12 +39,10 @@
             android:insetBottom="0dp"
             android:text="Workouts"
             android:textColor="@color/black"
-            tools:layout_editor_absoluteX="134dp"
-            tools:layout_editor_absoluteY="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/progressBtn"
             app:layout_constraintStart_toEndOf="@+id/exercisesBtn"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/progressBtn"
@@ -72,15 +68,4 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/testBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
