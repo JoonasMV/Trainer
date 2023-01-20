@@ -4,12 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.dao.UserDAO;
 import com.example.trainer.database.schemas.User;
 
@@ -39,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
         exercisesBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ExerciseListActivity.class)));
 
-        workoutsBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SecondActivity.class)));
+        workoutsBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, WorkoutSelectionActivity.class)));
 
-        progressBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SecondActivity.class)));
+        progressBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, WorkoutSelectionActivity.class)));
 
     }
 
