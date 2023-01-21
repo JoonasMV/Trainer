@@ -24,30 +24,8 @@ public class ExerciseDAO implements IexerciseDao{
         dbConnection = DatabaseHelper.getInstance(context);
     }
 
-    public ArrayList<Exercise> addTestExercises () {
-
-        deleteAllExercises();
-        ArrayList<ExerciseSet> sets = new ArrayList<>();
-        sets.add(new ExerciseSet("penkki", 1, 4));
-        sets.add(new ExerciseSet("penkki", 4, 45));
-        sets.add(new ExerciseSet("penkki", 45, 56));
-
-//        ArrayList<Exercise> testi = new ArrayList<>();
-//        testi.add(new Exercise("bench",1));
-//        testi.add(new Exercise("squat",2));
-//        testi.add(new Exercise("deadlift",3));
-
-        String[] exTestList = {"bench", "squat", "deadlift"};
-
-        for (String name : exTestList) {
-            addExercise(name);
-        }
-        return null;
-    }
-
     @Override
     public void addExercise(String newExercise) {
-        //System.out.println("ADD EXERCISE");
         SQLiteDatabase db = dbConnection.getWritableDatabase();
         ContentValues cv = new ContentValues();
         try {
@@ -64,7 +42,6 @@ public class ExerciseDAO implements IexerciseDao{
         }
     }
 
-    //TODO: not fully implemented
     @Override
     public Exercise getExerciseById(int id) {
         String[] selectedColumns = {
@@ -73,25 +50,28 @@ public class ExerciseDAO implements IexerciseDao{
                 //ExerciseEntry.WORKOUT_ID
         };
 
-        String query =
-                "SELECT * FROM " + ExerciseEntry.TABLE_EXERCISE +
-                        " WHERE " + ExerciseEntry.EXERCISE_ID + " =?";
-
         SQLiteDatabase db = dbConnection.getWritableDatabase();
         try {
             Cursor cursor = db.query(
                     ExerciseEntry.TABLE_EXERCISE,
                     selectedColumns,
-                    query,
+                    ExerciseEntry.EXERCISE_ID + " = ?",
                     new String[] {String.valueOf(id)},
                     null,null,null);
-        } catch (Exception e) {
 
+            if (!cursor.moveToFirst()) return null;
+
+            int exerciseId = cursor.getInt(cursor.getColumnIndexOrThrow(ExerciseEntry.EXERCISE_ID));
+            String exerciseName = cursor.getString(cursor.getColumnIndexOrThrow(ExerciseEntry.EXERCISE_NAME));
+            return new Exercise(exerciseName, exerciseId);
+
+        } catch (SQLException e) {
+            System.out.println("getExerciseById()");
+            e.printStackTrace();
+            return null;
         } finally {
             db.close();
         }
-
-        return null;
     }
 
     @Override
