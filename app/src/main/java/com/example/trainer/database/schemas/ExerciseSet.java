@@ -5,15 +5,15 @@ public class ExerciseSet {
 
     private double weight;
 
-    private int amount;
+    private int reps;
 
     private int id;
 
 
 
-    public ExerciseSet (String name, double weight, int amount) {
+    public ExerciseSet (String name, double weight, int reps) {
         this.weight = weight;
-        this.amount = amount;
+        this.reps = reps;
         this.name = name;
 
     }
@@ -35,11 +35,11 @@ public class ExerciseSet {
     }
 
     public int getAmount() {
-        return amount;
+        return reps;
     }
 
     public void setAmount(int amount) {
-        this.amount = amount;
+        this.reps = amount;
     }
 
     public int getId() {
@@ -55,7 +55,7 @@ public class ExerciseSet {
         return "ExerciseSet{" +
                 "name='" + name + '\'' +
                 ", weight=" + weight +
-                ", amount=" + amount +
+                ", amount=" + reps +
                 ", id=" + id +
                 '}';
     }

@@ -10,9 +10,9 @@ public interface IexerciseDao {
 
     public List<Exercise> getAllExercises();
 
-    public Exercise getExerciseById(int id);
+    void addExercise(String newExercise);
 
-    public int addExercise(Exercise exercise);
+    public Exercise getExerciseById(int id);
 
     public int addManyExercises(List<Exercise> exercises);
 
