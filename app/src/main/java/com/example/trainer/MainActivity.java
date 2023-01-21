@@ -24,12 +24,12 @@ public class MainActivity extends AppCompatActivity {
         userDAO = new UserDAO(this);
         handleUserLogin();
 
-        userGreetText = findViewById(R.id.userGreetText);
-        userGreetText.setText("Welcome back " + username);
-
         if (username == null || username.length() == 0) {
             startActivity(new Intent(MainActivity.this, LoginPage.class));
         }
+
+        userGreetText = findViewById(R.id.userGreetText);
+        userGreetText.setText("Welcome back " + username);
 
         Button exercisesBtn = findViewById(R.id.exercisesBtn);
         Button workoutsBtn = findViewById(R.id.workoutsBtn);
@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (username == null) {
             username = getIntent().getStringExtra("username");
+            if (username == null) return;
+
             User newUser = new User(username);
             try {
                 userDAO.createUser(newUser);
