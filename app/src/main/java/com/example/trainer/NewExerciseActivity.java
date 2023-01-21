@@ -11,7 +11,9 @@ import android.widget.TextView;
 import com.example.trainer.database.dao.ExerciseDAO;
 
 public class NewExerciseActivity extends AppCompatActivity {
-    private ExerciseDAO exerciseDAO = new ExerciseDAO(this);
+    private final ExerciseDAO exerciseDAO = new ExerciseDAO(this);
+
+    //please älkää koskeko
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,20 +22,28 @@ public class NewExerciseActivity extends AppCompatActivity {
 
         Button newExerciseBtn = findViewById(R.id.newExerciseBtn);
         newExerciseBtn.setOnClickListener(view -> {
-            createNewExercise();
+            saveExercise();
             startActivity(new Intent(NewExerciseActivity.this, ExerciseListActivity.class));
         });
-    }
+        }
+
 
     public void toExercises(View v){
         Intent i = new Intent(this, ExerciseListActivity.class);
         startActivity(i);
     }
 
-    public void createNewExercise(){
-        TextView exerciseInput = findViewById(R.id.exerciseNameInput);
-        String exerciseName = exerciseInput.getText().toString();
-
-        exerciseDAO.addExercise(exerciseName);
+    public void saveExercise() {
+        // tietokantaa oltiin muokattu sen verran että en tiiä oikeen mitä haluttiin mutta tein
+        // nyt näin
+        TextView tv = findViewById(R.id.exerciseNameInput);
+        //TextView tv2 = findViewById(R.id.editTextNumberDecimal);
+        //TextView tv3 = findViewById(R.id.editTextNumber);
+        String name = tv.getText().toString();
+        //double weight = Double.parseDouble(tv2.getText().toString());
+        //int sets = Integer.parseInt(tv3.getText().toString());
+        exerciseDAO.addExercise(name);
     }
+
+
 }
