@@ -1,26 +1,32 @@
 package com.example.trainer.database.dao;
 
+import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.TABLE_EXERCISE;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
+
+import androidx.annotation.Nullable;
 
 import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.contracts.UserContract;
 import com.example.trainer.database.schemas.User;
+import com.example.trainer.database.contracts.UserContract.UserEntry;
 
-public class UserDAO implements IuserDao{
+public class UserDAO implements IuserDao {
     DatabaseHelper dbConnection;
 
     public UserDAO(Context context) {
-        dbConnection = DatabaseHelper.getInstance(context);
+        dbConnection = DatabaseHelper.getInstance(context.getApplicationContext());
     }
 
-    public boolean createUser(String username) {
+    public boolean createUser(User newUser) {
         SQLiteDatabase db = dbConnection.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(UserContract.UserEntry.USERNAME, username);
+        cv.put(UserContract.UserEntry.USERNAME, newUser.getUsername());
         long success = db.insert(UserContract.UserEntry.TABLE_USER, null, cv);
         db.close();
 
@@ -28,29 +34,31 @@ public class UserDAO implements IuserDao{
         return true;
     }
 
-    /*
-    public String readUser() {
+    public User getUser() {
         SQLiteDatabase db = dbConnection.getReadableDatabase();
+        Cursor cursor = db.query(UserEntry.TABLE_USER, null, null, null, null, null, null);
+        String usernameFromDb = null;
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + UserContract.UserEntry.TABLE_USER + ";", null);
-
-        //TODO: testausta varten, korjataan soon(tm)
         try {
-            cursor.moveToFirst();
-            String usernameFromDb = cursor.getString(cursor.getColumnIndexOrThrow(UserContract.UserEntry.USERNAME));
-
-            cursor.close();
-            db.close();
-            return usernameFromDb;
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
+                    usernameFromDb = cursor.getString(cursor.getColumnIndexOrThrow(UserEntry.USERNAME));
+                    if (usernameFromDb != null) return new User(usernameFromDb);
+                }
+            }
+            return null;
         } catch (Exception e) {
             cursor.close();
             db.close();
             System.out.println("Error in getUser()");
             return null;
+        } finally {
+            cursor.close();
+            db.close();
         }
     }
 
-     */
+
 
     @Override
     public int addUser(User user) {

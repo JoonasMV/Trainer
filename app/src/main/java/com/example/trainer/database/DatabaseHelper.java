@@ -11,6 +11,7 @@ import static com.example.trainer.database.contracts.ExerciseSetContract.Exercis
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.security.identity.EphemeralPublicKeyNotFoundException;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static String DATABASE_NAME = "trainer.db";
     private static int DATABASE_VERSION = 1;
     private static DatabaseHelper dbConnection;
+    private Context context;
 
     public static DatabaseHelper getInstance(Context context) {
         if (dbConnection == null) {
@@ -35,10 +37,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+
         sqLiteDatabase.execSQL(
                 "CREATE TABLE " + UserContract.UserEntry.TABLE_USER + " (" +
                         UserContract.UserEntry.USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -71,7 +75,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         WorkoutContract.WorkoutEntry.USER_ID + " INTEGER,  " +
                         "FOREIGN KEY(" + UserContract.UserEntry.USER_ID + ") REFERENCES " + UserContract.UserEntry.TABLE_USER + "(" + UserContract.UserEntry.USER_ID + "));"
         );
-
     }
 
     @Override
