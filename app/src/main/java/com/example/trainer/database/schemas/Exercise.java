@@ -14,6 +14,10 @@ public class Exercise {
         //this.workoutId = workoutId;
     }
 
+    public String toString() {
+        return exerciseId + " - " + exerciseName + " - " + workoutId;
+    }
+
     public int getExerciseId() {
         return exerciseId;
     }

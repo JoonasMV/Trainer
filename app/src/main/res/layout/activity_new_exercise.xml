@@ -21,11 +21,11 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/newExerciseBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
-        android:onClick="addExercise"
+        android:onClick="createNewExercise"
         android:text="Add Exercise"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,8 +39,8 @@
         android:layout_marginTop="112dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
+        android:hint="Exercise Name"
         android:inputType="textPersonName"
-        android:text="Exercise Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"

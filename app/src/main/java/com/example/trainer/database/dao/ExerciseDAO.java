@@ -52,6 +52,7 @@ public class ExerciseDAO implements IexerciseDao{
         ContentValues cv = new ContentValues();
         try {
             cv.put(ExerciseEntry.EXERCISE_NAME, newExercise);
+            System.out.println(cv);
             db.insert(ExerciseEntry.TABLE_EXERCISE, null, cv);
 
         } catch (Exception e) {

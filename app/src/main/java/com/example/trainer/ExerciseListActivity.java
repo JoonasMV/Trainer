@@ -23,38 +23,36 @@ public class ExerciseListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        db = new ExerciseDAO(this);
-        db.addTestExercises();
-
-        ArrayList<Exercise> list = db.getAllExercises();
-        System.out.println("EXERCISE LIST " + list);
-        ArrayList<String> names = new ArrayList<>();
-
-        for(Exercise e : list) {
-            names.add(e.getExerciseName());
-        }
         setContentView(R.layout.activity_exercise);
+        db = new ExerciseDAO(this);
+
+        handleExercisesToDisplay();
+
+
+//        lv.setOnItemClickListener((adapterView, view, i, l) -> {
+//            Log.d("tag","onclick");
+//            //put here next activity
+//        });
 
         Button addExercise = findViewById(R.id.addExercise);
         addExercise.setOnClickListener(view -> {
             startActivity(new Intent(ExerciseListActivity.this, NewExerciseActivity.class));
         });
+    }
+
+    private void handleExercisesToDisplay() {
+        ArrayList<Exercise> listOfExercises = db.getAllExercises();
+        ArrayList<String> exercisesToDisplay = new ArrayList<>();
+        for (Exercise exercise: listOfExercises) {
+            exercisesToDisplay.add(exercise.getExerciseName());
+        }
 
         ListView lv = findViewById(R.id.exerciseList);
-
         lv.setAdapter(new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,
-                names
+                exercisesToDisplay
         ));
-
-        lv.setOnItemClickListener((adapterView, view, i, l) -> {
-            Log.d("tag","onclick");
-            //put here next activity
-        });
     }
-
-
 
 }
