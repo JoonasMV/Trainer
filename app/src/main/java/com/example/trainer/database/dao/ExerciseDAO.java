@@ -1,8 +1,8 @@
 package com.example.trainer.database.dao;
 
-import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.TABLE_EXERCISE;
-import static com.example.trainer.database.contracts.ExerciseSetContract.ExerciseSeEntry.TABLE_EXERCISESET;
+import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -11,11 +11,9 @@ import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.database.contracts.ExerciseContract;
 import com.example.trainer.database.schemas.Exercise;
 import com.example.trainer.database.schemas.ExerciseSet;
 
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,159 +28,103 @@ public class ExerciseDAO implements IexerciseDao{
 
         deleteAllExercises();
         ArrayList<ExerciseSet> sets = new ArrayList<>();
-        sets.add(new ExerciseSet("penkki50kg", 1, 4));
-        sets.add(new ExerciseSet("penkki50kg", 4, 45));
-        sets.add(new ExerciseSet("penkki50kg", 45, 56));
+        sets.add(new ExerciseSet("penkki", 1, 4));
+        sets.add(new ExerciseSet("penkki", 4, 45));
+        sets.add(new ExerciseSet("penkki", 45, 56));
 
-        ArrayList<Exercise> testi = new ArrayList<>();
-        testi.add(new Exercise("testi", sets));
-        testi.add(new Exercise("testi2", sets));
-        testi.add(new Exercise("testi3", sets));
+//        ArrayList<Exercise> testi = new ArrayList<>();
+//        testi.add(new Exercise("bench",1));
+//        testi.add(new Exercise("squat",2));
+//        testi.add(new Exercise("deadlift",3));
 
-        for (Exercise e : testi) {
-            int num = addExercise(e);
+        String[] exTestList = {"bench", "squat", "deadlift"};
+
+        for (String name : exTestList) {
+            addExercise(name);
         }
-        return testi;
+        return null;
+    }
+
+    @Override
+    public void addExercise(String newExercise) {
+        //System.out.println("ADD EXERCISE");
+        SQLiteDatabase db = dbConnection.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        try {
+            cv.put(ExerciseEntry.EXERCISE_NAME, newExercise);
+            db.insert(ExerciseEntry.TABLE_EXERCISE, null, cv);
+
+        } catch (Exception e) {
+            System.out.println("addExercise()");
+            e.printStackTrace();
+        } finally {
+            db.close();
+            cv.clear();
+        }
+    }
+
+    //TODO: not fully implemented
+    @Override
+    public Exercise getExerciseById(int id) {
+        String[] selectedColumns = {
+                ExerciseEntry.EXERCISE_ID,
+                ExerciseEntry.EXERCISE_NAME,
+                //ExerciseEntry.WORKOUT_ID
+        };
+
+        String query =
+                "SELECT * FROM " + ExerciseEntry.TABLE_EXERCISE +
+                        " WHERE " + ExerciseEntry.EXERCISE_ID + " =?";
+
+        SQLiteDatabase db = dbConnection.getWritableDatabase();
+        try {
+            Cursor cursor = db.query(
+                    ExerciseEntry.TABLE_EXERCISE,
+                    selectedColumns,
+                    query,
+                    new String[] {String.valueOf(id)},
+                    null,null,null);
+        } catch (Exception e) {
+
+        } finally {
+            db.close();
+        }
+
+        return null;
     }
 
     @Override
     public ArrayList<Exercise> getAllExercises() {
-
-
-        ArrayList<Exercise> exercises = new ArrayList<>();
-
+        ArrayList<Exercise> exerciseList = new ArrayList<>();
+        SQLiteDatabase db = dbConnection.getReadableDatabase();
 
         try {
-            SQLiteDatabase db = dbConnection.getReadableDatabase();
-            String query = "SELECT * FROM " + TABLE_EXERCISE + ";";
-            Cursor cursor = db.rawQuery(query, null);
+            Cursor cursor = db.query(ExerciseEntry.TABLE_EXERCISE, null, null,null, null, null, null);
 
-            if(cursor != null) {
-                while (cursor.moveToNext()) {
-                    Exercise exercise = readExercise(cursor);
-                    List<ExerciseSet> sets = getSets(exercise.getId(), db);
-                    exercise.setSets(sets);
-                    exercises.add(exercise);
-                }
+            // get indexes for columns
+            int iId = cursor.getColumnIndexOrThrow(ExerciseEntry.EXERCISE_ID);
+            int iName = cursor.getColumnIndexOrThrow(ExerciseEntry.EXERCISE_NAME);
+
+            // loop trough cursor and add exercises to list
+            for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+                exerciseList.add(new Exercise(cursor.getString(iName), cursor.getInt(iId)));
             }
-
-
-        }catch (SQLException e) {
-            Log.w("error", e);
+        } catch (SQLException e) {
+            System.out.println("GetAllExercises()");
+            e.printStackTrace();
+            return null;
+        } finally {
+            db.close();
         }
-
-        return exercises;
-    }
-
-    private Exercise readExercise(Cursor cursor) {
-        int id = (int) cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
-        String name = cursor.getString(cursor.getColumnIndexOrThrow("exerciseName"));
-        Exercise exercise = new Exercise(name, id);
-        return exercise;
-    }
-
-    private List<ExerciseSet> getSets(int exId, SQLiteDatabase db) {
-        Cursor cursor = db.query(TABLE_EXERCISESET, null, "exerciseId LIKE ?", new String[]{Integer.toString(exId)}, null, null, null);
-        ArrayList<ExerciseSet> sets = new ArrayList<>();
-        if(cursor != null) {
-            while (cursor.moveToNext()) {
-                int id = (int) cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
-                String name = cursor.getString(cursor.getColumnIndexOrThrow("exerciseSetName"));
-                int amount = cursor.getInt(cursor.getColumnIndexOrThrow("amount"));
-                double weight = cursor.getDouble(cursor.getColumnIndexOrThrow("weight"));
-                ExerciseSet set = new ExerciseSet(name, weight, amount);
-                set.setId(id);
-                sets.add(set);
-            }
-        }
-        return sets;
+        return exerciseList;
     }
 
 
-    @Override
-    public Exercise getExerciseById(int id) {
+
+    public ArrayList<Exercise> getExercisesByName(String name) {
         return null;
     }
 
-    public ArrayList<Exercise> getExercisesByName(String name) {
-        ArrayList<Exercise> exercises = new ArrayList<>();
-        String[] args = new String[] {name};
-
-        try {
-            SQLiteDatabase db = dbConnection.getReadableDatabase();
-
-            Cursor cursor = db.query(TABLE_EXERCISE, null, "exerciseName LIKE ?", args, null, null, null);
-
-            if(cursor != null) {
-                while (cursor.moveToNext()) {
-                    Exercise exercise = readExercise(cursor);
-                    exercises.add(exercise);
-                }
-            }
-
-
-        }catch (SQLException e) {
-            Log.w("error", e);
-        }
-
-        return exercises;
-
-
-
-    }
-
-
-    @Override
-    public int addExercise(Exercise exercise) {
-        long id = -1;
-        SQLiteDatabase db = dbConnection.getWritableDatabase();
-
-        List<ExerciseSet> sets = exercise.getSets();
-
-
-        try {
-
-            String query = "INSERT INTO " + TABLE_EXERCISE + " (exerciseName) values (?)";
-            SQLiteStatement statement = db.compileStatement(query);
-            statement.bindString(1, exercise.getName());;
-            id = statement.executeInsert();
-
-
-            SQLiteDatabase read = dbConnection.getReadableDatabase();
-            Cursor cursor = read.query(TABLE_EXERCISE, null, null, null, null, null, null);
-
-            if(cursor != null) {
-                cursor.moveToLast();
-                id = (int) cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
-            }
-
-            if(id == -1){
-                Log.d("error", "no id found");
-            }
-
-
-            if(!sets.isEmpty()){
-                SQLiteDatabase write = dbConnection.getWritableDatabase();
-                String setQuery = "INSERT INTO " + TABLE_EXERCISESET + " (exerciseSetName, amount, weight, exerciseId) values (?, ?, ?, ?)";
-                SQLiteStatement setStatement = write.compileStatement(setQuery);
-                for(ExerciseSet e : sets){
-                    setStatement.bindString(1, e.getName());
-                    setStatement.bindLong(2, e.getAmount());
-                    setStatement.bindDouble(3, e.getWeight());
-                    setStatement.bindLong(4, id);
-                    setStatement.executeInsert();
-                }
-
-            }
-
-
-        }catch (SQLException e) {
-            Log.w("error", e);
-        }
-
-
-        return (int) id;
-    }
 
     @Override
     public int addManyExercises(List<Exercise> exercises) {

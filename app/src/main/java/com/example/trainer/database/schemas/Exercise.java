@@ -4,59 +4,25 @@ import java.util.List;
 
 public class Exercise {
 
-    private String name;
+    private int exerciseId;
+    private String exerciseName;
+    private int workoutId;
 
-    private List<ExerciseSet> sets;
-
-    private int id;
-
-
-
-    public Exercise (String name) {
-        this.name = name;
-
-    }
-    public Exercise (String name, int id) {
-        this.id = id;
-        this.name = name;
-
-    }
-    public Exercise (String name, List<ExerciseSet> sets) {
-        this.sets = sets;
-        this.name = name;
-
+    public Exercise(String exerciseName, int exerciseId) {
+        this.exerciseId = exerciseId;
+        this.exerciseName = exerciseName;
+        //this.workoutId = workoutId;
     }
 
-    public Exercise (String name, List<ExerciseSet> sets, int id) {
-        this.sets = sets;
-        this.name = name;
-        this.id = id;
-
+    public int getExerciseId() {
+        return exerciseId;
     }
 
-
-
-    public String getName() {
-        return name;
+    public String getExerciseName() {
+        return exerciseName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<ExerciseSet> getSets() {
-        return sets;
-    }
-
-    public void setSets(List<ExerciseSet> sets) {
-        this.sets = sets;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public int getWorkoutId() {
+        return workoutId;
     }
 }
