@@ -22,11 +22,12 @@ public class ExerciseListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_exerciselist);
         db = new ExerciseDAO(this);
 
+        db.addTestExercises();
         handleExercisesToDisplay();
 
         findViewById(R.id.tempTestBtn).setOnClickListener(view -> {
-            Exercise test = db.getExerciseById(845);
-            System.out.println("ID QUERY TEST " + test);
+            //Exercise test = db.getExerciseById(845);
+            //System.out.println("ID QUERY TEST " + test);
         });
 
 //        lv.setOnItemClickListener((adapterView, view, i, l) -> {
@@ -42,6 +43,7 @@ public class ExerciseListActivity extends AppCompatActivity {
 
     private void handleExercisesToDisplay() {
         ArrayList<Exercise> listOfExercises = db.getAllExercises();
+        if (listOfExercises.size() <= 0) return;
         ArrayList<String> exercisesToDisplay = new ArrayList<>();
         for (Exercise exercise: listOfExercises) {
             exercisesToDisplay.add(exercise.getExerciseName());

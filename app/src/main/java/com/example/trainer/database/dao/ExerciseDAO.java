@@ -24,6 +24,14 @@ public class ExerciseDAO implements IexerciseDao{
         dbConnection = DatabaseHelper.getInstance(context);
     }
 
+    public void addTestExercises() {
+        String[] testSet = {"bench", "squat", "deadlift"};
+
+        for (String ex: testSet) {
+            addExercise(ex);
+        }
+    }
+
     @Override
     public void addExercise(String newExercise) {
         SQLiteDatabase db = dbConnection.getWritableDatabase();
