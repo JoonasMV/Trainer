@@ -21,14 +21,20 @@ public class NewExerciseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_exercise);
 
         Button newExerciseBtn = findViewById(R.id.newExerciseBtn);
+        Button button = findViewById(R.id.button);
+
         newExerciseBtn.setOnClickListener(view -> {
             saveExercise();
-            startActivity(new Intent(NewExerciseActivity.this, ExerciseListActivity.class));
+            toExercises();
+        });
+
+        button.setOnClickListener(view -> {
+            toExercises();
         });
         }
 
 
-    public void toExercises(View v){
+    public void toExercises(){
         Intent i = new Intent(this, ExerciseListActivity.class);
         startActivity(i);
     }
@@ -36,7 +42,6 @@ public class NewExerciseActivity extends AppCompatActivity {
     public void saveExercise() {
         TextView tv = findViewById(R.id.exerciseNameInput);
         String name = tv.getText().toString();
-
         exerciseDAO.addExercise(name);
     }
 
