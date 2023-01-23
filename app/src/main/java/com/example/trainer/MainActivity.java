@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
         exercisesBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ExerciseListActivity.class)));
 
-        workoutsBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, WorkoutSelectionActivity.class)));
+        workoutsBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, WorkoutListActivity.class)));
 
-        progressBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, WorkoutSelectionActivity.class)));
+        progressBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, CurrentWorkout.class)));
 
     }
 

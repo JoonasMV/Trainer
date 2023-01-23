@@ -3,20 +3,14 @@ package com.example.trainer.database.schemas;
 import java.util.Date;
 
 public class Workout {
-    private Date date;
     private String name;
+    private Date workoutStarted;
+    private Date workoutEnded;
 
-    public Workout (Date datem, String name) {
-        this.date = date;
+    public Workout (String name, Date workoutStarted, Date workoutEnded) {
         this.name = name;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
+        this.workoutStarted = workoutStarted;
+        this.workoutEnded = workoutEnded;
     }
 
     public String getName() {

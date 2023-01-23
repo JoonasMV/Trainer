@@ -7,13 +7,14 @@
     android:orientation="horizontal">
 
     <LinearLayout
+        android:id="@+id/workoutParent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/exerciseField"

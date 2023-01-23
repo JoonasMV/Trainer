@@ -63,7 +63,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(
                 "CREATE TABLE " + WorkoutEntry.TABLE_WORKOUT + " (" +
                         WorkoutEntry.WORKOUT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        WorkoutEntry.WORKOUT_DATE + " TEXT, " +
                         WorkoutEntry.WORKOUT_NAME + " TEXT, " +
                         WorkoutEntry.WORKOUT_STARTED + " TEXT, " +
                         WorkoutEntry.WORKOUT_ENDED + " TEXT, " +
