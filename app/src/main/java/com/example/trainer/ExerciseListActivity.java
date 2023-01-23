@@ -44,12 +44,11 @@ public class ExerciseListActivity extends AppCompatActivity {
     private void handleExercisesToDisplay() {
         ArrayList<Exercise> listOfExercises = db.getAllExercises();
         if (listOfExercises.size() <= 0) return;
+
         ArrayList<String> exercisesToDisplay = new ArrayList<>();
         for (Exercise exercise: listOfExercises) {
             exercisesToDisplay.add(exercise.getExerciseName());
         }
-
-        System.out.println(listOfExercises.get(0));
 
         ListView lv = findViewById(R.id.exerciseList);
         lv.setAdapter(new ArrayAdapter<String>(

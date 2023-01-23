@@ -12,7 +12,7 @@ public interface IexerciseDao {
 
     public List<Exercise> getAllExercises();
 
-    void addExercise(String newExercise);
+    boolean addExercise(String newExercise);
 
     public int addManyExercises(List<Exercise> exercises);
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.trainer.database.dao.ExerciseDAO;
 
@@ -42,7 +43,9 @@ public class NewExerciseActivity extends AppCompatActivity {
     public void saveExercise() {
         TextView tv = findViewById(R.id.exerciseNameInput);
         String name = tv.getText().toString();
-        exerciseDAO.addExercise(name);
+        if (exerciseDAO.addExercise(name) == false) {
+            Toast.makeText(NewExerciseActivity.this, "This exercise is already added to the database", Toast.LENGTH_LONG).show();
+        };
     }
 
 

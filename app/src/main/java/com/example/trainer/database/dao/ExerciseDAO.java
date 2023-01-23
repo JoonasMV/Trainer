@@ -23,9 +23,14 @@ public class ExerciseDAO implements IexerciseDao{
     }
 
     @Override
-    public void addExercise(String newExercise) {
+    public boolean addExercise(String newExercise) {
         SQLiteDatabase db = dbConnection.getWritableDatabase();
         ContentValues cv = new ContentValues();
+
+        if (getExercise(newExercise) != null) {
+            return false;
+        }
+
         try {
             cv.put(ExerciseEntry.EXERCISE_NAME, newExercise);
             System.out.println(cv);
@@ -34,17 +39,18 @@ public class ExerciseDAO implements IexerciseDao{
         } catch (Exception e) {
             System.out.println("addExercise()");
             e.printStackTrace();
+            return false;
         } finally {
             db.close();
             cv.clear();
         }
+        return true;
     }
 
     @Override
     public Exercise getExercise(String exerciseToQuery) {
         String[] selectedColumns = {
                 ExerciseEntry.EXERCISE_NAME,
-                //ExerciseEntry.WORKOUT_ID
         };
 
         SQLiteDatabase db = dbConnection.getWritableDatabase();
