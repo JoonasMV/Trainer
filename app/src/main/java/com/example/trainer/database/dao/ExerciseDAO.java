@@ -24,6 +24,7 @@ public class ExerciseDAO implements IexerciseDao{
 
     @Override
     public boolean addExercise(String newExercise) {
+        newExercise = newExercise.toLowerCase();
         SQLiteDatabase db = dbConnection.getWritableDatabase();
         ContentValues cv = new ContentValues();
 

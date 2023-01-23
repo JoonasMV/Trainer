@@ -22,7 +22,6 @@ public class ExerciseListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_exerciselist);
         db = new ExerciseDAO(this);
 
-        //db.addTestExercises();
         handleExercisesToDisplay();
 
         findViewById(R.id.tempTestBtn).setOnClickListener(view -> {

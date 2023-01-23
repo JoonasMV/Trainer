@@ -20,6 +20,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static DatabaseHelper dbConnection;
     private Context context;
 
+    private String[] basicExercises = { "squat", "bench", "deadlift" };
+
     public static DatabaseHelper getInstance(Context context) {
         if (dbConnection == null) {
             dbConnection = new DatabaseHelper(context.getApplicationContext());
@@ -68,7 +70,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         WorkoutEntry.USER_ID + " INTEGER,  " +
                         "FOREIGN KEY(" + UserContract.UserEntry.USER_ID + ") REFERENCES " + UserContract.UserEntry.TABLE_USER + "(" + UserContract.UserEntry.USER_ID + "));"
         );
+
+        for (String exercise: basicExercises) {
+            sqLiteDatabase.execSQL("INSERT INTO " + ExerciseEntry.TABLE_EXERCISE + " (" + ExerciseEntry.EXERCISE_NAME + ") VALUES (\"" + exercise + "\");");
+        }
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
