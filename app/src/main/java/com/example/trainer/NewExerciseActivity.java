@@ -34,14 +34,9 @@ public class NewExerciseActivity extends AppCompatActivity {
     }
 
     public void saveExercise() {
-        // tietokantaa oltiin muokattu sen verran että en tiiä oikeen mitä haluttiin mutta tein
-        // nyt näin
         TextView tv = findViewById(R.id.exerciseNameInput);
-        //TextView tv2 = findViewById(R.id.editTextNumberDecimal);
-        //TextView tv3 = findViewById(R.id.editTextNumber);
         String name = tv.getText().toString();
-        //double weight = Double.parseDouble(tv2.getText().toString());
-        //int sets = Integer.parseInt(tv3.getText().toString());
+
         exerciseDAO.addExercise(name);
     }
 
