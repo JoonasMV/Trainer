@@ -7,12 +7,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.schemas.Exercise;
-import com.example.trainer.database.schemas.ExerciseSet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,14 +20,6 @@ public class ExerciseDAO implements IexerciseDao{
 
     public ExerciseDAO(Context context) {
         dbConnection = DatabaseHelper.getInstance(context);
-    }
-
-    public void addTestExercises() {
-        String[] testSet = {"bench", "squat", "deadlift"};
-
-        for (String ex: testSet) {
-            addExercise(ex);
-        }
     }
 
     @Override
@@ -51,9 +41,8 @@ public class ExerciseDAO implements IexerciseDao{
     }
 
     @Override
-    public Exercise getExerciseById(int id) {
+    public Exercise getExercise(String exerciseToQuery) {
         String[] selectedColumns = {
-                ExerciseEntry.EXERCISE_ID,
                 ExerciseEntry.EXERCISE_NAME,
                 //ExerciseEntry.WORKOUT_ID
         };
@@ -63,15 +52,14 @@ public class ExerciseDAO implements IexerciseDao{
             Cursor cursor = db.query(
                     ExerciseEntry.TABLE_EXERCISE,
                     selectedColumns,
-                    ExerciseEntry.EXERCISE_ID + " = ?",
-                    new String[] {String.valueOf(id)},
+                    ExerciseEntry.EXERCISE_NAME + " = ?",
+                    new String[] { exerciseToQuery },
                     null,null,null);
 
             if (!cursor.moveToFirst()) return null;
 
-            int exerciseId = cursor.getInt(cursor.getColumnIndexOrThrow(ExerciseEntry.EXERCISE_ID));
             String exerciseName = cursor.getString(cursor.getColumnIndexOrThrow(ExerciseEntry.EXERCISE_NAME));
-            return new Exercise(exerciseName, exerciseId);
+            return new Exercise(exerciseName);
 
         } catch (SQLException e) {
             System.out.println("getExerciseById()");
@@ -91,12 +79,11 @@ public class ExerciseDAO implements IexerciseDao{
             Cursor cursor = db.query(ExerciseEntry.TABLE_EXERCISE, null, null,null, null, null, null);
 
             // get indexes for columns
-            int iId = cursor.getColumnIndexOrThrow(ExerciseEntry.EXERCISE_ID);
             int iName = cursor.getColumnIndexOrThrow(ExerciseEntry.EXERCISE_NAME);
 
             // loop trough cursor and add exercises to list
             for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-                exerciseList.add(new Exercise(cursor.getString(iName), cursor.getInt(iId)));
+                exerciseList.add(new Exercise(cursor.getString(iName)));
             }
         } catch (SQLException e) {
             System.out.println("GetAllExercises()");
@@ -107,13 +94,6 @@ public class ExerciseDAO implements IexerciseDao{
         }
         return exerciseList;
     }
-
-
-
-    public ArrayList<Exercise> getExercisesByName(String name) {
-        return null;
-    }
-
 
     @Override
     public int addManyExercises(List<Exercise> exercises) {
@@ -127,6 +107,4 @@ public class ExerciseDAO implements IexerciseDao{
         Log.d("m", "deleted");
         db.close();
     }
-
-
 }

@@ -1,10 +1,9 @@
 package com.example.trainer.database;
 
-import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.EXERCISE_NAME;
-import static com.example.trainer.database.contracts.ExerciseSetContract.ExerciseSeEntry.EXERCISE_REPS;
-import static com.example.trainer.database.contracts.ExerciseSetContract.ExerciseSeEntry.EXERCISESET_ID;
-import static com.example.trainer.database.contracts.ExerciseSetContract.ExerciseSeEntry.TABLE_EXERCISESET;
-import static com.example.trainer.database.contracts.ExerciseSetContract.ExerciseSeEntry.EXERCISE_WEIGHT;
+import com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry;
+import com.example.trainer.database.contracts.SetContract.ExerciseSeEntry;
+import com.example.trainer.database.contracts.UserContract.UserEntry;
+import com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,10 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.trainer.database.contracts.ExerciseContract;
-import com.example.trainer.database.contracts.ExerciseSetContract;
 import com.example.trainer.database.contracts.UserContract;
-import com.example.trainer.database.contracts.WorkoutContract;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -42,35 +38,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
         sqLiteDatabase.execSQL(
-                "CREATE TABLE " + UserContract.UserEntry.TABLE_USER + " (" +
+                "CREATE TABLE " + UserEntry.TABLE_USER + " (" +
                         UserContract.UserEntry.USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         UserContract.UserEntry.USERNAME + " TEXT);"
         );
 
         sqLiteDatabase.execSQL(
-                "CREATE TABLE " + ExerciseContract.ExerciseEntry.TABLE_EXERCISE + " (" +
-                        ExerciseContract.ExerciseEntry.EXERCISE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        EXERCISE_NAME + " TEXT" + ");"
-                        //ExerciseContract.ExerciseEntry.WORKOUT_ID + " INTEGER," +
-                        //"FOREIGN KEY(" + ExerciseContract.ExerciseEntry.WORKOUT_ID + ") REFERENCES " + WorkoutContract.WorkoutEntry.TABLE_WORKOUT + "(" + WorkoutContract.WorkoutEntry.WORKOUT_ID + "));"
+                "CREATE TABLE " + ExerciseEntry.TABLE_EXERCISE + " (" +
+                        ExerciseEntry.EXERCISE_NAME + " TEXT PRIMARY KEY);"
         );
 
         sqLiteDatabase.execSQL(
-                "CREATE TABLE " + TABLE_EXERCISESET + " (" +
-                        EXERCISESET_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        EXERCISE_REPS + " INTEGER," +
-                        EXERCISE_WEIGHT + " DOUBLE," +
-                        //EXERCISESET_NAME + " TEXT," +
-                        ExerciseSetContract.ExerciseSeEntry.EXERCISE_ID + " INTEGER," +
-                        "FOREIGN KEY(" + ExerciseSetContract.ExerciseSeEntry.EXERCISE_ID + ") REFERENCES " + ExerciseContract.ExerciseEntry.TABLE_EXERCISE + "(" + ExerciseContract.ExerciseEntry.EXERCISE_ID + "));"
+                "CREATE TABLE " + ExerciseSeEntry.TABLE_SET + " (" +
+                        ExerciseSeEntry.SET_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        ExerciseSeEntry.SET_REPS + " INTEGER," +
+                        ExerciseSeEntry.SET_NUMBER + " INTEGER," +
+                        ExerciseSeEntry.SET_WEIGHT + " DOUBLE," +
+                        ExerciseSeEntry.SET_NAME + " INTEGER," +
+                        "FOREIGN KEY(" + ExerciseSeEntry.SET_NAME + ") REFERENCES " + ExerciseEntry.TABLE_EXERCISE + "(" + ExerciseEntry.EXERCISE_NAME + "));"
         );
 
         sqLiteDatabase.execSQL(
-                "CREATE TABLE " + WorkoutContract.WorkoutEntry.TABLE_WORKOUT + " (" +
-                        WorkoutContract.WorkoutEntry.WORKOUT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        WorkoutContract.WorkoutEntry.DATE + " TEXT, " +
-                        WorkoutContract.WorkoutEntry.WORKOUT_NAME + " TEXT, " +
-                        WorkoutContract.WorkoutEntry.USER_ID + " INTEGER,  " +
+                "CREATE TABLE " + WorkoutEntry.TABLE_WORKOUT + " (" +
+                        WorkoutEntry.WORKOUT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        WorkoutEntry.WORKOUT_DATE + " TEXT, " +
+                        WorkoutEntry.WORKOUT_NAME + " TEXT, " +
+                        WorkoutEntry.WORKOUT_STARTED + " TEXT, " +
+                        WorkoutEntry.WORKOUT_ENDED + " TEXT, " +
+                        WorkoutEntry.USER_ID + " INTEGER,  " +
                         "FOREIGN KEY(" + UserContract.UserEntry.USER_ID + ") REFERENCES " + UserContract.UserEntry.TABLE_USER + "(" + UserContract.UserEntry.USER_ID + "));"
         );
     }
