@@ -27,8 +27,9 @@ public class ExerciseDAO implements IexerciseDao{
         newExercise = newExercise.toLowerCase();
         SQLiteDatabase db = dbConnection.getWritableDatabase();
         ContentValues cv = new ContentValues();
+        System.out.println(db);
 
-        if (getExercise(newExercise) != null) {
+        if (getExercise(newExercise) != null || newExercise.length() == 0) {
             return false;
         }
 
@@ -42,7 +43,6 @@ public class ExerciseDAO implements IexerciseDao{
             e.printStackTrace();
             return false;
         } finally {
-            db.close();
             cv.clear();
         }
         return true;
@@ -72,8 +72,6 @@ public class ExerciseDAO implements IexerciseDao{
             System.out.println("getExerciseById()");
             e.printStackTrace();
             return null;
-        } finally {
-            db.close();
         }
     }
 

@@ -25,8 +25,6 @@ public class ExerciseListActivity extends AppCompatActivity {
         handleExercisesToDisplay();
 
         findViewById(R.id.tempTestBtn).setOnClickListener(view -> {
-            //Exercise test = db.getExerciseById(845);
-            //System.out.println("ID QUERY TEST " + test);
         });
 
 //        lv.setOnItemClickListener((adapterView, view, i, l) -> {
