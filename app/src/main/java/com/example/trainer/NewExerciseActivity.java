@@ -14,8 +14,6 @@ import com.example.trainer.database.dao.ExerciseDAO;
 public class NewExerciseActivity extends AppCompatActivity {
     private final ExerciseDAO exerciseDAO = new ExerciseDAO(this);
 
-    //please älkää koskeko
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

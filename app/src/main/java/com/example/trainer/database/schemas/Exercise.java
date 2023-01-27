@@ -1,5 +1,7 @@
 package com.example.trainer.database.schemas;
 
+import java.io.Serializable;
+
 public class Exercise {
 
     //private int exerciseId;

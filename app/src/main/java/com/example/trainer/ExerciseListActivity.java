@@ -2,9 +2,13 @@ package com.example.trainer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,11 +30,19 @@ public class ExerciseListActivity extends AppCompatActivity {
 
         findViewById(R.id.tempTestBtn).setOnClickListener(view -> {
         });
-
-//        lv.setOnItemClickListener((adapterView, view, i, l) -> {
-//            Log.d("tag","onclick");
-//            //put here next activity
-//        });
+        ListView lv = (ListView) findViewById(R.id.exerciseList);
+        lv.setOnItemClickListener((adapterView, view, i, l) -> {
+            //Log.d("tag","onclick");
+            ArrayList<Exercise> exercises = db.getAllExercises();
+            Exercise exercise = exercises.get(i);
+            String exerciseName = exercise.getExerciseName();
+            Toast.makeText(ExerciseListActivity.this, "Exercise "+exerciseName+" selected", Toast.LENGTH_LONG).show();
+            System.out.println(exerciseName);
+            Intent intent = new Intent(this, CurrentWorkout.class);
+            intent.putExtra("name", exerciseName);
+            startActivity(intent);
+           //put here next activity
+       });
 
         Button addExercise = findViewById(R.id.addExercise);
         addExercise.setOnClickListener(view -> {
@@ -53,6 +65,7 @@ public class ExerciseListActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 exercisesToDisplay
         ));
+
     }
 
 }
