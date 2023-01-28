@@ -2,7 +2,6 @@ package com.example.trainer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,9 +22,11 @@ public class LoginPage extends AppCompatActivity {
 
         startBtn.setOnClickListener(view -> {
             String username = nameInput.getText().toString();
-            Intent intent = new Intent(LoginPage.this, MainActivity.class);
-            intent.putExtra("username", username);
-            startActivity(intent);
+            Bundle bundle = new Bundle();
+            bundle.putString("username", username);
+
+            WelcomeScreen_fragment fragObj = new WelcomeScreen_fragment();
+            fragObj.setArguments(bundle);
         });
     }
 
