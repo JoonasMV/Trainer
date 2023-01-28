@@ -46,10 +46,19 @@ public class MainActivity extends AppCompatActivity {
         progressBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, CurrentWorkout.class)));
     }
 
+    @Override
+    public void onBackPressed() {
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            fragmentManager.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     private void fragmentHandler(Fragment fragment) {
         fragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainerView2, fragment.getClass(), null)
+                .addToBackStack(null)
                 .commit();
     }
-
 }
