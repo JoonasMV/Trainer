@@ -1,4 +1,4 @@
-package com.example.trainer;
+package com.example.trainer.workouts;
 
 import android.os.Bundle;
 import android.widget.LinearLayout;
@@ -7,10 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.trainer.R;
+import com.example.trainer.workouts.WorkoutListAdapter;
 import com.example.trainer.database.schemas.Workout;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 

@@ -1,14 +1,15 @@
-package com.example.trainer;
+package com.example.trainer.exercises;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.trainer.MainActivity;
+import com.example.trainer.R;
 import com.example.trainer.database.dao.ExerciseDAO;
 
 public class NewExerciseActivity extends AppCompatActivity {
@@ -34,7 +35,8 @@ public class NewExerciseActivity extends AppCompatActivity {
 
 
     public void toExercises(){
-        Intent i = new Intent(this, ExerciseListActivity.class);
+        Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("FromNewExActivity", true);
         startActivity(i);
     }
 
@@ -45,6 +47,4 @@ public class NewExerciseActivity extends AppCompatActivity {
             Toast.makeText(NewExerciseActivity.this, "This exercise is already added to the database", Toast.LENGTH_LONG).show();
         };
     }
-
-
 }

@@ -1,64 +1,64 @@
 package com.example.trainer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.trainer.database.dao.UserDAO;
-import com.example.trainer.database.schemas.User;
+import com.example.trainer.workouts.CurrentWorkout;
+import com.example.trainer.exercises.ListOfExercises_fragment;
+import com.example.trainer.workouts.ListOfWorkouts_fragment;
 
 public class MainActivity extends AppCompatActivity {
-    UserDAO userDAO;// = new UserDAO(MainActivity.this);
-    TextView userGreetText;
-    String username = null;
+    FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        userDAO = new UserDAO(this);
-        handleUserLogin();
-
-        if (username == null || username.length() == 0) {
-            startActivity(new Intent(MainActivity.this, LoginPage.class));
+        if (savedInstanceState == null) {
+            fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                .setReorderingAllowed(true)
+                .add(R.id.fragmentContainerView2, WelcomeScreen_fragment.class, null)
+                .addToBackStack(null)
+                .commit();
         }
 
-        userGreetText = findViewById(R.id.userGreetText);
-        userGreetText.setText("Welcome back " + username);
+        Intent i = getIntent();
+        if (i.hasExtra("FromNewExActivity") && i.getExtras().getBoolean("FromNewExActivity")) {
+            fragmentHandler(new ListOfExercises_fragment());
+        }
+
+        setContentView(R.layout.activity_main);
 
         Button exercisesBtn = findViewById(R.id.exercisesBtn);
         Button workoutsBtn = findViewById(R.id.workoutsBtn);
         Button progressBtn = findViewById(R.id.progressBtn);
+        Button homeBtn = findViewById(R.id.homeBtn);
 
-        exercisesBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ExerciseListActivity.class)));
-
-        workoutsBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, WorkoutListActivity.class)));
+        exercisesBtn.setOnClickListener(view -> fragmentHandler(new ListOfExercises_fragment()));
+        homeBtn.setOnClickListener(view -> fragmentHandler(new WelcomeScreen_fragment()));
+        workoutsBtn.setOnClickListener(view -> fragmentHandler(new ListOfWorkouts_fragment()));
 
         progressBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, CurrentWorkout.class)));
-
     }
 
-    private void handleUserLogin() {
-        User user = userDAO.getUser();
-        if (user != null) username = user.getUsername();
-
-        if (username == null) {
-            username = getIntent().getStringExtra("username");
-            if (username == null) return;
-
-            User newUser = new User(username);
-            try {
-                userDAO.createUser(newUser);
-                Toast.makeText(MainActivity.this, "Username added", Toast.LENGTH_LONG);
-            } catch (Exception e) {
-                Toast.makeText(MainActivity.this, "Error creating username", Toast.LENGTH_LONG).show();
-                System.out.println("Exception in handleUserLogin " + e.getMessage());
-            }
+    @Override
+    public void onBackPressed() {
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            fragmentManager.popBackStack();
+        } else {
+            super.onBackPressed();
         }
+    }
+
+    private void fragmentHandler(Fragment fragment) {
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView2, fragment.getClass(), null)
+                .addToBackStack(null)
+                .commit();
     }
 }

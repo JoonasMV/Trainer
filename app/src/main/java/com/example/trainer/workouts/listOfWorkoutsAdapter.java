@@ -1,4 +1,4 @@
-package com.example.trainer;
+package com.example.trainer.workouts;
 
 import static java.lang.Integer.valueOf;
 
@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.trainer.R;
 
 public class listOfWorkoutsAdapter extends RecyclerView.Adapter<listOfWorkoutsAdapter.ViewHolder> {
 

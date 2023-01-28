@@ -1,10 +1,12 @@
-package com.example.trainer;
+package com.example.trainer.workouts;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import com.example.trainer.R;
 
 public class CurrentWorkout extends AppCompatActivity {
 
