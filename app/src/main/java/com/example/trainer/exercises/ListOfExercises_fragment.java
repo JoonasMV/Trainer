@@ -11,10 +11,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.trainer.R;
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.schemas.Exercise;
+import com.example.trainer.workouts.CurrentWorkout;
 
 import java.util.ArrayList;
 
@@ -37,15 +39,21 @@ public class ListOfExercises_fragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         exerciseDAO = new ExerciseDAO(this.getContext());
 
-        handleExercisesToDisplay();
 
+
+        handleExercisesToDisplay();
+        ListView lv = getView().findViewById(R.id.exerciseList);
+
+        lv.setOnItemClickListener((adapterView, v, i, l) -> {
+            ArrayList<Exercise> exercises = exerciseDAO.getAllExercises();
+            Exercise exercise = exercises.get(i);
+            String exerciseName = exercise.getExerciseName();
+            System.out.println(exerciseName);
+        });
         getView().findViewById(R.id.tempTestBtn).setOnClickListener(v -> {
         });
 
-//        lv.setOnItemClickListener((adapterView, view, i, l) -> {
-//            Log.d("tag","onclick");
-//            //put here next activity
-//        });
+
 
         Button addExercise = getView().findViewById(R.id.addExercise);
         addExercise.setOnClickListener(v -> {
