@@ -16,6 +16,9 @@
             android:name=".workouts.CurrentWorkout"
             android:exported="false" />
         <activity
+            android:name=".exercises.SelectExerciseActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginPage"
             android:exported="false">
             <meta-data

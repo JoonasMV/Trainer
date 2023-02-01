@@ -36,7 +36,7 @@ public class NewExerciseActivity extends AppCompatActivity {
 
     public void toExercises(){
         Intent i = new Intent(this, MainActivity.class);
-        i.putExtra("FromNewExActivity", true);
+        //i.putExtra("FromNewExActivity", true);
         startActivity(i);
     }
 

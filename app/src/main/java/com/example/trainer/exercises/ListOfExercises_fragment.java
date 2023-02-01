@@ -45,10 +45,7 @@ public class ListOfExercises_fragment extends Fragment {
         ListView lv = getView().findViewById(R.id.exerciseList);
 
         lv.setOnItemClickListener((adapterView, v, i, l) -> {
-            ArrayList<Exercise> exercises = exerciseDAO.getAllExercises();
-            Exercise exercise = exercises.get(i);
-            String exerciseName = exercise.getExerciseName();
-            System.out.println(exerciseName);
+            //siirretty select exercise activityyn
         });
         getView().findViewById(R.id.tempTestBtn).setOnClickListener(v -> {
         });
