@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.trainer.R;
-import com.example.trainer.exercises.SelectExerciseActivity;
+import com.example.trainer.workouts.exercises.SelectExerciseActivity;
 
 public class CurrentWorkout extends AppCompatActivity {
 

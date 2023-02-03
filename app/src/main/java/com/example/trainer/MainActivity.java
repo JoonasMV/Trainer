@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.trainer.workouts.CurrentWorkout;
-import com.example.trainer.exercises.ListOfExercises_fragment;
+import com.example.trainer.workouts.exercises.ListOfExercises_fragment;
 import com.example.trainer.workouts.ListOfWorkouts_fragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
             fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                 .setReorderingAllowed(true)
-                .add(R.id.fragmentContainerView2, WelcomeScreen_fragment.class, null)
+                .add(R.id.fragmentContainerView2, WelcomeScreen_fragment.class, savedInstanceState)
                 .addToBackStack(null)
                 .commit();
         }
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         exercisesBtn.setOnClickListener(view -> fragmentHandler(new ListOfExercises_fragment()));
         homeBtn.setOnClickListener(view -> fragmentHandler(new WelcomeScreen_fragment()));
-        workoutsBtn.setOnClickListener(view -> fragmentHandler(new ListOfWorkouts_fragment()));
+        workoutsBtn.setOnClickListener(view -> fragmentHandler(ListOfWorkouts_fragment.newInstance(null, null)));
 
         progressBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, CurrentWorkout.class)));
     }

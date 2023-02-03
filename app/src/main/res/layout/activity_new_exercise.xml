@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
-    tools:context=".exercises.NewExerciseActivity">
+    tools:context=".workouts.exercises.NewExerciseActivity">
 
     <Button
         android:id="@+id/button"

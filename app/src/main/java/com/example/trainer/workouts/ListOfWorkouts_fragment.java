@@ -1,13 +1,18 @@
 package com.example.trainer.workouts;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.trainer.MainActivity;
 import com.example.trainer.R;
 
 /**
@@ -16,6 +21,8 @@ import com.example.trainer.R;
  * create an instance of this fragment.
  */
 public class ListOfWorkouts_fragment extends Fragment {
+
+    private Button newWorkoutBtn;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,6 +62,8 @@ public class ListOfWorkouts_fragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
@@ -62,5 +71,17 @@ public class ListOfWorkouts_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_list_of_workouts_fragment, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        newWorkoutBtn = view.findViewById(R.id.newWorkoutBtn);
+
+        Context context = getContext();
+
+        newWorkoutBtn.setOnClickListener(viewa -> {
+            startActivity(new Intent(context, CreateWorkoutActivity.class));
+        });
+
     }
 }

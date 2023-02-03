@@ -19,7 +19,7 @@ public class WorkoutListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.workout_selection);
+
 
         LinearLayout workoutParent = findViewById(R.id.workoutParent);
 

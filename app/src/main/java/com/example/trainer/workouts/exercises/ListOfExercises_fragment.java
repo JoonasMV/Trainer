@@ -1,4 +1,4 @@
-package com.example.trainer.exercises;
+package com.example.trainer.workouts.exercises;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.trainer.R;
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.schemas.Exercise;
-import com.example.trainer.workouts.CurrentWorkout;
 
 import java.util.ArrayList;
 

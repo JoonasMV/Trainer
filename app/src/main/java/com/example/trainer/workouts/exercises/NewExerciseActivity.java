@@ -1,4 +1,4 @@
-package com.example.trainer.exercises;
+package com.example.trainer.workouts.exercises;
 
 import androidx.appcompat.app.AppCompatActivity;
 

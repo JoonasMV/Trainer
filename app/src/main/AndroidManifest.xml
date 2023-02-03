@@ -13,10 +13,13 @@
         android:theme="@style/Theme.Trainer"
         tools:targetApi="31">
         <activity
+            android:name=".workouts.CreateWorkoutActivity"
+            android:exported="false" />
+        <activity
             android:name=".workouts.CurrentWorkout"
             android:exported="false" />
         <activity
-            android:name=".exercises.SelectExerciseActivity"
+            android:name=".workouts.exercises.SelectExerciseActivity"
             android:exported="false" />
         <activity
             android:name=".LoginPage"
@@ -46,7 +49,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".exercises.NewExerciseActivity"
+            android:name=".workouts.exercises.NewExerciseActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

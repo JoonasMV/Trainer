@@ -16,7 +16,7 @@ import com.example.trainer.database.schemas.User;
 
 public class WelcomeScreen_fragment extends Fragment {
     UserDAO userDAO;
-    String username = null;
+    String username = "Temp value";
 
 
     @Override
@@ -46,19 +46,5 @@ public class WelcomeScreen_fragment extends Fragment {
     private void handleUserLogin() {
         User user = userDAO.getUser();
         if (user != null) username = user.getUsername();
-
-        if (username == null) {
-            username = getArguments().getString("username");
-            if (username == null) return;
-
-            User newUser = new User(username);
-            try {
-                userDAO.createUser(newUser);
-                Toast.makeText(this.getContext(), "Username added", Toast.LENGTH_LONG);
-            } catch (Exception e) {
-                Toast.makeText(this.getContext(), "Error creating username", Toast.LENGTH_LONG).show();
-                System.out.println("Exception in handleUserLogin " + e.getMessage());
-            }
-        }
     }
 }
