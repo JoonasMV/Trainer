@@ -1,7 +1,6 @@
 package com.example.trainer.database.schemas;
 
 public class ExerciseSet {
-    private String name;
 
     private double weight;
 
@@ -11,20 +10,13 @@ public class ExerciseSet {
 
 
 
-    public ExerciseSet (String name, double weight, int reps) {
+    public ExerciseSet (double weight, int reps) {
         this.weight = weight;
         this.reps = reps;
-        this.name = name;
 
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public double getWeight() {
         return weight;
@@ -53,7 +45,6 @@ public class ExerciseSet {
     @Override
     public String toString() {
         return "ExerciseSet{" +
-                "name='" + name + '\'' +
                 ", weight=" + weight +
                 ", amount=" + reps +
                 ", id=" + id +
