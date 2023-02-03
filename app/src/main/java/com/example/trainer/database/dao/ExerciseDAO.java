@@ -23,8 +23,12 @@ import java.util.Set;
 public class ExerciseDAO implements IexerciseDao{
     DatabaseHelper dbConnection;
 
+    SetDAO setDAO;
+
     public ExerciseDAO(Context context) {
+
         dbConnection = DatabaseHelper.getInstance(context);
+        setDAO = new SetDAO(context);
     }
 
 
@@ -59,15 +63,7 @@ public class ExerciseDAO implements IexerciseDao{
 
 
             if(!sets.isEmpty()){
-                SQLiteDatabase write = dbConnection.getWritableDatabase();
-                String setQuery = "INSERT INTO " + TABLE_SET + " (reps, weight, exerciseId) values (?, ?, ?)";
-                SQLiteStatement setStatement = write.compileStatement(setQuery);
-                for(ExerciseSet e : sets){
-                    setStatement.bindLong(1, e.getAmount());
-                    setStatement.bindDouble(2, e.getWeight());
-                    setStatement.bindLong(3, id);
-                    setStatement.executeInsert();
-                }
+                setDAO.addSetsToDb(sets, id);
 
             }
         }catch (SQLException e) {
@@ -78,23 +74,7 @@ public class ExerciseDAO implements IexerciseDao{
 
 
 
-    //gets setlist corresponding to the exercsise provided by
-    //returns the setlist of the exercise
-    private List<ExerciseSet> getSets(int exId, SQLiteDatabase db) {
-        Cursor cursor = db.query(TABLE_SET, null, "exerciseId=?", new String[]{Integer.toString(exId)}, null, null, null);
-        ArrayList<ExerciseSet> sets = new ArrayList<>();
-        if(cursor != null) {
-            while (cursor.moveToNext()) {
-                int id = (int) cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
-                int amount = cursor.getInt(cursor.getColumnIndexOrThrow("amount"));
-                double weight = cursor.getDouble(cursor.getColumnIndexOrThrow("weight"));
-                ExerciseSet set = new ExerciseSet(weight, amount);
-                set.setId(id);
-                sets.add(set);
-            }
-        }
-        return sets;
-    }
+
 
     //gets an exercise from database based on id
     //returns exercise
@@ -107,7 +87,7 @@ public class ExerciseDAO implements IexerciseDao{
             if(cursor != null) {
                 cursor.moveToFirst();
                 exercise = readExercise(cursor);
-                List<ExerciseSet> sets = getSets(exercise.getExerciseId(), db);
+                List<ExerciseSet> sets = setDAO.getSetsByExerciseId(exercise.getExerciseId());
                 exercise.setSetList(sets);
             }
         }catch (SQLException e) {
@@ -129,7 +109,7 @@ public class ExerciseDAO implements IexerciseDao{
             if (cursor != null) {
                 while (cursor.moveToNext()) {
                     Exercise exercise = readExercise(cursor);
-                    List<ExerciseSet> sets = getSets(exercise.getExerciseId(), db);
+                    List<ExerciseSet> sets = setDAO.getSetsByExerciseId(exercise.getExerciseId());
                     exercise.setSetList(sets);
                     exercises.add(exercise);
                 }
@@ -162,7 +142,7 @@ public class ExerciseDAO implements IexerciseDao{
             if(cursor != null) {
                 while (cursor.moveToNext()) {
                     Exercise exercise = readExercise(cursor);
-                    List<ExerciseSet> sets = getSets(exercise.getExerciseId(), db);
+                    List<ExerciseSet> sets = setDAO.getSetsByExerciseId(exercise.getExerciseId());
                     exercise.setSetList(sets);
                     exercises.add(exercise);
                 }
