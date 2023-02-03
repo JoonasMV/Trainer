@@ -11,5 +11,7 @@ public class WorkoutContract implements BaseColumns {
         public static final String WORKOUT_STARTED = "workoutStarted";
         public static final String WORKOUT_ENDED = "workoutEnded";
         public static final String USER_ID = "userId";
+
+        public static final String PRESET = "isPreset";
     }
 }

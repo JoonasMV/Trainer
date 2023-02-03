@@ -8,11 +8,9 @@ import java.util.List;
 
 public interface IexerciseDao {
 
-    Exercise getExercise(String exerciseToQuery);
 
     public List<Exercise> getAllExercises();
 
-    boolean addExercise(String newExercise);
 
     public int addManyExercises(List<Exercise> exercises);
 
