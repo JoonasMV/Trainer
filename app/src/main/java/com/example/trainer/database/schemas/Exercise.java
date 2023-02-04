@@ -9,7 +9,7 @@ public class Exercise {
 
     private int exerciseId;
     private String exerciseName;
-    private int workoutId;
+    private int workoutId = -1;
 
     private List<ExerciseSet> setList;
 

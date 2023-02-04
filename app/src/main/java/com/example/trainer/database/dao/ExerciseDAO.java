@@ -13,10 +13,11 @@ import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.schemas.Exercise;
 import com.example.trainer.database.schemas.ExerciseSet;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExerciseDAO implements IexerciseDao{
+public class ExerciseDAO {
     DatabaseHelper dbConnection;
 
     SetDAO setDAO;
@@ -39,9 +40,12 @@ public class ExerciseDAO implements IexerciseDao{
 
 
         try {
-            String query = "INSERT INTO " + TABLE_EXERCISE + " (exerciseName) values (?)";
+            String query = "INSERT INTO " + TABLE_EXERCISE + " (exerciseName, workoutId) values (?, ?)";
             SQLiteStatement statement = db.compileStatement(query);
             statement.bindString(1, exercise.getExerciseName());
+            if(exercise.getWorkoutId() != -1){
+                statement.bindLong(2, exercise.getWorkoutId());
+            }
             statement.executeInsert();
 
 
@@ -75,47 +79,22 @@ public class ExerciseDAO implements IexerciseDao{
     //gets an exercise from database based on id
     //returns exercise
     public Exercise getExerciseById(int id){
-        Exercise exercise = null;
         String[] args = new String[] {Integer.toString(id)};
-        try {
-            SQLiteDatabase db = dbConnection.getReadableDatabase();
-            Cursor cursor = db.query(TABLE_EXERCISE, null, "_id=?", args, null, null, null);
-            if(cursor != null) {
-                cursor.moveToFirst();
-                exercise = readExercise(cursor);
-                List<ExerciseSet> sets = setDAO.getSetsByExerciseId(exercise.getExerciseId());
-                exercise.setSetList(sets);
-            }
-        }catch (SQLException e) {
-            Log.w("error", e);
-        }
-        return exercise;
+        List<Exercise> results = selectFromDb(null, "_id=?", args, null, null, null);
+
+        if(results.isEmpty()) return null;
+
+        return results.get(0);
     }
 
     public List<Exercise> getExerciseByWorkoutId(int id){
-        ArrayList<Exercise> exercises = new ArrayList<>();
         String[] args = new String[] {Integer.toString(id)};
-        try {
-            SQLiteDatabase db = dbConnection.getReadableDatabase();
-            Cursor cursor = db.query(TABLE_EXERCISE, null, "workoutId=?", args, null, null, null);
-            if(cursor != null) {
-                while (cursor.moveToNext()) {
-                    Exercise exercise = readExercise(cursor);
-                    List<ExerciseSet> sets = setDAO.getSetsByExerciseId(exercise.getExerciseId());
-                    exercise.setSetList(sets);
-                    exercises.add(exercise);
-                }
-            }
-        }catch (SQLException e) {
-            Log.w("error", e);
-        }
-        return exercises;
+        return selectFromDb(null, "workoutId=?", args, null, null, null);
     }
 
 
     //gets all exercises from database
     //returns list of all exercises
-    @Override
     public ArrayList<Exercise> getAllExercises() {
         ArrayList<Exercise> exercises = new ArrayList<>();
         try {
@@ -124,7 +103,7 @@ public class ExerciseDAO implements IexerciseDao{
             Cursor cursor = db.rawQuery(query, null);
             if (cursor != null) {
                 while (cursor.moveToNext()) {
-                    Exercise exercise = readExercise(cursor);
+                    Exercise exercise = readExerciseRow(cursor);
                     List<ExerciseSet> sets = setDAO.getSetsByExerciseId(exercise.getExerciseId());
                     exercise.setSetList(sets);
                     exercises.add(exercise);
@@ -132,6 +111,7 @@ public class ExerciseDAO implements IexerciseDao{
             }
         } catch (SQLException e) {
             Log.w("error", e);
+            return null;
         }
         return exercises;
     }
@@ -139,7 +119,7 @@ public class ExerciseDAO implements IexerciseDao{
 
     //reads exercise information from database and creates a new exercise object
     //returns the newly created exercise
-    private Exercise readExercise(Cursor cursor) {
+    private Exercise readExerciseRow(Cursor cursor) {
         int id = (int) cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
         String name = cursor.getString(cursor.getColumnIndexOrThrow("exerciseName"));
         Exercise exercise = new Exercise(name, id);
@@ -149,29 +129,15 @@ public class ExerciseDAO implements IexerciseDao{
 
     //get an exercise by name
     //returns an arraylist of exercises matching the given name
-    public ArrayList<Exercise> getExercisesByName(String name) {
-        ArrayList<Exercise> exercises = new ArrayList<>();
+    public List<Exercise> getExercisesByName(String name) {
         String[] args = new String[] {name};
-        try {
-            SQLiteDatabase db = dbConnection.getReadableDatabase();
-            Cursor cursor = db.query(TABLE_EXERCISE, null, "exerciseName LIKE ?", args, null, null, null);
-            if(cursor != null) {
-                while (cursor.moveToNext()) {
-                    Exercise exercise = readExercise(cursor);
-                    List<ExerciseSet> sets = setDAO.getSetsByExerciseId(exercise.getExerciseId());
-                    exercise.setSetList(sets);
-                    exercises.add(exercise);
-                }
-            }
-        }catch (SQLException e) {
-            Log.w("error", e);
-        }
-        return exercises;
+        return selectFromDb(null, "exerciseName LIKE ?", args, null, null, null);
     }
 
-    @Override
-    public int addManyExercises(List<Exercise> exercises) {
-        return 0;
+    public void addManyExercises(List<Exercise> exercises) {
+        for (Exercise e : exercises){
+            addExercise(e);
+        }
     }
 
 
@@ -180,7 +146,27 @@ public class ExerciseDAO implements IexerciseDao{
         SQLiteDatabase db = dbConnection.getWritableDatabase();
 
         db.delete("exercise", null, null);
-        Log.d("m", "deleted");
         db.close();
+    }
+
+    private List<Exercise> selectFromDb(String[] columns, String clause, String[] args, String groupBy, String having, String orderBy) {
+        ArrayList<Exercise> exercises = new ArrayList<>();
+        try {
+            SQLiteDatabase db = dbConnection.getReadableDatabase();
+            Cursor cursor = db.query(TABLE_EXERCISE, columns, clause, args, groupBy, having, orderBy);
+            if(cursor != null) {
+                while (cursor.moveToNext()) {
+                    Exercise exercise = readExerciseRow(cursor);
+                    List<ExerciseSet> sets = setDAO.getSetsByExerciseId(exercise.getExerciseId());
+                    exercise.setSetList(sets);
+                    exercises.add(exercise);
+                }
+            }
+        }catch (SQLException e) {
+            Log.w("error", e);
+            return null;
+        }
+
+        return exercises;
     }
 }

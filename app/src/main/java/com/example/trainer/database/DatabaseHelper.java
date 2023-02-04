@@ -1,17 +1,28 @@
 package com.example.trainer.database;
 
+import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.TABLE_EXERCISE;
+
 import com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry;
 import com.example.trainer.database.contracts.SetContract.ExerciseSetEntry;
 import com.example.trainer.database.contracts.UserContract.UserEntry;
 import com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.example.trainer.database.contracts.UserContract;
+import com.example.trainer.database.schemas.Exercise;
+import com.example.trainer.database.schemas.Workout;
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -84,6 +95,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
-
-
 }

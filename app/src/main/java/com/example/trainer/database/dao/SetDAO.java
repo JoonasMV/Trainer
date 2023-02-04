@@ -33,7 +33,7 @@ public class SetDAO {
             if (cursor != null) {
                 while (cursor.moveToNext()) {
                     int id = (int) cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
-                    int amount = cursor.getInt(cursor.getColumnIndexOrThrow("amount"));
+                    int amount = cursor.getInt(cursor.getColumnIndexOrThrow("reps"));
                     double weight = cursor.getDouble(cursor.getColumnIndexOrThrow("weight"));
                     ExerciseSet set = new ExerciseSet(weight, amount);
                     set.setId(id);
@@ -63,5 +63,11 @@ public class SetDAO {
         }catch (SQLException e) {
             Log.w("error", e);
         }
+    }
+    public void deleteAllSets(){
+        SQLiteDatabase db = dbConnection.getWritableDatabase();
+
+        db.delete("exerciseSet", null, null);
+        db.close();
     }
 }

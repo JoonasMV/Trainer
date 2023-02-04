@@ -24,7 +24,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class WorkoutDAO implements IworkoutDao{
+public class WorkoutDAO {
     DatabaseHelper dbConnection;
 
     ExerciseDAO exerciseDAO;
@@ -33,20 +33,9 @@ public class WorkoutDAO implements IworkoutDao{
 
         dbConnection = DatabaseHelper.getInstance(context);
         exerciseDAO = new ExerciseDAO(context);
-        add(new Workout("testi", new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis())));
-        add(new Workout("testi2", new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis())));
-        add(new Workout("testi3", new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis())));
-        add(new Workout("testi4", new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis())));
-        Log.d("d", "added");
-        ArrayList<Workout> workouts= getAll();
-        for (Workout w : workouts){
-            Log.d("D", w.getName());
-            Log.d("Date", w.getWorkoutStarted().toString());
-        }
     }
 
 
-    @Override
     public ArrayList<Workout> getAll() {
         ArrayList<Workout> workouts = new ArrayList<>();
         try {
@@ -87,12 +76,19 @@ public class WorkoutDAO implements IworkoutDao{
         return workout;
     }
 
-    @Override
     public Workout getById(int id) {
-        return null;
+        String[] args = new String[] {Integer.toString(id)};
+
+        List<Workout> results = selectFromDb(null, "_id=?", args, null, null, null);
+
+        if(results.isEmpty()) return null;
+
+        return results.get(0);
     }
 
-    @Override
+
+
+
     public int add(Workout workout) {
 
         long id = -1;
@@ -147,10 +143,41 @@ public class WorkoutDAO implements IworkoutDao{
         return df.parse(target);
     }
 
-    @Override
-    public int addMany(List<Workout> workouts) {
+    public void addMany(List<Workout> workouts) {
+        for(Workout w : workouts) {
+            add(w);
+        }
+    }
 
+    public List<Workout> getByName(String name) {
+        String[] args = new String[] {name};
+        return selectFromDb(null, "workoutName LIKE ?", args, null, null, null);
+    }
 
-        return 0;
+    private List<Workout> selectFromDb(String[] columns, String clause, String[] args, String groupBy, String having, String orderBy) {
+        ArrayList<Workout> workouts = new ArrayList<>();
+        try {
+            SQLiteDatabase db = dbConnection.getReadableDatabase();
+            Cursor cursor = db.query(TABLE_EXERCISE, columns, clause, args, groupBy, having, orderBy);
+            if(cursor != null) {
+                while (cursor.moveToNext()) {
+                    Workout workout = readWorkoutRow(cursor);
+                    List<Exercise> exercises = exerciseDAO.getExerciseByWorkoutId(workout.getId());
+                    workout.setExList(exercises);
+                }
+            }
+        }catch (SQLException | ParseException e) {
+            Log.w("error", e);
+            return null;
+        }
+
+        return workouts;
+    }
+
+    public void deleteAllWorkouts(){
+        SQLiteDatabase db = dbConnection.getWritableDatabase();
+
+        db.delete("workout", null, null);
+        db.close();
     }
 }

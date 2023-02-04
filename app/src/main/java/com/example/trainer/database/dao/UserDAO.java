@@ -15,7 +15,7 @@ import com.example.trainer.database.contracts.UserContract;
 import com.example.trainer.database.schemas.User;
 import com.example.trainer.database.contracts.UserContract.UserEntry;
 
-public class UserDAO implements IuserDao {
+public class UserDAO {
     DatabaseHelper dbConnection;
 
     public UserDAO(Context context) {
@@ -60,12 +60,10 @@ public class UserDAO implements IuserDao {
 
 
 
-    @Override
     public int addUser(User user) {
         return 0;
     }
 
-    @Override
     public User getUser(int id) {
         return null;
     }
