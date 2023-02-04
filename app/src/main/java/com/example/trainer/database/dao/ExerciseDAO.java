@@ -1,10 +1,7 @@
 package com.example.trainer.database.dao;
 
-import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry;
 import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.TABLE_EXERCISE;
-import static com.example.trainer.database.contracts.SetContract.ExerciseSeEntry.TABLE_SET;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -18,7 +15,6 @@ import com.example.trainer.database.schemas.ExerciseSet;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class ExerciseDAO implements IexerciseDao{
     DatabaseHelper dbConnection;
@@ -94,6 +90,26 @@ public class ExerciseDAO implements IexerciseDao{
             Log.w("error", e);
         }
         return exercise;
+    }
+
+    public List<Exercise> getExerciseByWorkoutId(int id){
+        ArrayList<Exercise> exercises = new ArrayList<>();
+        String[] args = new String[] {Integer.toString(id)};
+        try {
+            SQLiteDatabase db = dbConnection.getReadableDatabase();
+            Cursor cursor = db.query(TABLE_EXERCISE, null, "workoutId=?", args, null, null, null);
+            if(cursor != null) {
+                while (cursor.moveToNext()) {
+                    Exercise exercise = readExercise(cursor);
+                    List<ExerciseSet> sets = setDAO.getSetsByExerciseId(exercise.getExerciseId());
+                    exercise.setSetList(sets);
+                    exercises.add(exercise);
+                }
+            }
+        }catch (SQLException e) {
+            Log.w("error", e);
+        }
+        return exercises;
     }
 
 

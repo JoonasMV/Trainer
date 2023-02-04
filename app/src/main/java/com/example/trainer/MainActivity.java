@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.example.trainer.database.dao.WorkoutDAO;
 import com.example.trainer.workouts.CurrentWorkout;
 import com.example.trainer.workouts.exercises.ListOfExercises_fragment;
 import com.example.trainer.workouts.ListOfWorkouts_fragment;
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         workoutsBtn.setOnClickListener(view -> fragmentHandler(ListOfWorkouts_fragment.newInstance(null, null)));
 
         progressBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, CurrentWorkout.class)));
+
+        WorkoutDAO dao = new WorkoutDAO(getApplicationContext());
     }
 
     @Override

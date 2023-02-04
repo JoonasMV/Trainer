@@ -13,6 +13,7 @@ public class Exercise {
 
     private List<ExerciseSet> setList;
 
+
     public Exercise(String name) {
         this.exerciseName = name;
         this.setList = new ArrayList<>();
@@ -66,4 +67,6 @@ public class Exercise {
     public void setSetList(List<ExerciseSet> setList) {
         this.setList = setList;
     }
+
+
 }

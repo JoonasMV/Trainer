@@ -4,7 +4,7 @@ import android.provider.BaseColumns;
 
 public class SetContract implements BaseColumns {
 
-    public static class ExerciseSeEntry{
+    public static class ExerciseSetEntry {
         public static final String TABLE_SET = "exerciseSet";
         public static final String SET_ID = "_id";
         public static final String SET_REPS = "reps";

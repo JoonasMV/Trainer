@@ -1,6 +1,6 @@
 package com.example.trainer.database.dao;
 
-import static com.example.trainer.database.contracts.SetContract.ExerciseSeEntry.TABLE_SET;
+import static com.example.trainer.database.contracts.SetContract.ExerciseSetEntry.TABLE_SET;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -10,7 +10,6 @@ import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.database.schemas.Exercise;
 import com.example.trainer.database.schemas.ExerciseSet;
 
 import java.util.ArrayList;

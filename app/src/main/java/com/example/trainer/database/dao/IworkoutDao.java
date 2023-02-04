@@ -4,14 +4,15 @@ import com.example.trainer.database.schemas.Exercise;
 import com.example.trainer.database.schemas.Workout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface IworkoutDao {
 
-    public ArrayList<Workout> getAllWorkouts();
+    public ArrayList<Workout> getAll();
 
-    public Workout getWorkoutById();
+    public Workout getById(int id);
 
-    public int addWorkout();
+    public int add(Workout workout);
 
-    public int addManyWorkouts();
+    public int addMany(List<Workout> workouts);
 }

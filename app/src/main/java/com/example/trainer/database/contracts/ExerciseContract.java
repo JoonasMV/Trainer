@@ -11,6 +11,8 @@ public class ExerciseContract implements BaseColumns {
 
         public static final String EXERCISE_NAME = "exerciseName";
 
+        public static final String WORKOUT_ID = "workoutId";
+
 
     }
 }
