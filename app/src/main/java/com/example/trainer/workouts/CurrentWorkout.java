@@ -21,7 +21,7 @@ public class CurrentWorkout extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.exercise_view);
+        setContentView(R.layout.workout_view);
 
         //TODO: test items
         ArrayList<Exercise> exerciseList = new ArrayList<Exercise>();
@@ -47,7 +47,7 @@ public class CurrentWorkout extends AppCompatActivity {
 
         // Recycler view initation
         RecyclerView listOfWorkouts = findViewById(R.id.listOfExercises);
-        listOfWorkouts.setAdapter(new ParentAdapter(testWorkout, this));
+        listOfWorkouts.setAdapter(new ExerciseAdapter(testWorkout, this));
         listOfWorkouts.setLayoutManager(new LinearLayoutManager(this));
     }
 }

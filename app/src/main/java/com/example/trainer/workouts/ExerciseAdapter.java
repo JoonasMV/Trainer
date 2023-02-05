@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainer.R;
 import com.example.trainer.database.schemas.Workout;
 
-public class ParentAdapter extends RecyclerView.Adapter<ParentAdapter.ViewHolder> {
+public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHolder> {
 
     private Workout parentItem;
     private Context context;
 
-    public ParentAdapter(Workout workout, Context context) {
+    public ExerciseAdapter(Workout workout, Context context) {
         this.parentItem = workout;
         this.context = context;
     }
@@ -37,7 +37,7 @@ public class ParentAdapter extends RecyclerView.Adapter<ParentAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.exercise_parent, parent, false);
+                .inflate(R.layout.single_exercise, parent, false);
 
         return new ViewHolder(view);
     }
@@ -45,7 +45,7 @@ public class ParentAdapter extends RecyclerView.Adapter<ParentAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.nameOfTheExerciseASD.setText(parentItem.getExList().get(position).getExerciseName());
-        holder.listOfSets.setAdapter(new ChildAdapter(
+        holder.listOfSets.setAdapter(new SetAdapter(
                 parentItem.getExList().get(position),
                 context)
         );

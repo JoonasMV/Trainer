@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainer.R;
 import com.example.trainer.database.schemas.Exercise;
 
-public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> {
+public class SetAdapter extends RecyclerView.Adapter<SetAdapter.ViewHolder> {
 
     private Exercise exercise;
     private Context context;
 
-    public ChildAdapter(Exercise exercise, Context context) {
+    public SetAdapter(Exercise exercise, Context context) {
         this.exercise = exercise;
         this.context = context;
     }
@@ -34,7 +34,7 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
 
     @NonNull
     @Override
-    public ChildAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SetAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context)
                 .inflate(R.layout.single_set, parent, false);
 
@@ -42,7 +42,7 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ChildAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SetAdapter.ViewHolder holder, int position) {
         holder.setCounter.setText(Integer.toString(position+1));
     }
 
