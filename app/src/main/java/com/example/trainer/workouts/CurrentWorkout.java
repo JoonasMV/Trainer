@@ -4,29 +4,50 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.trainer.R;
-import com.example.trainer.workouts.exercises.SelectExerciseActivity;
+import com.example.trainer.database.schemas.Exercise;
+import com.example.trainer.database.schemas.ExerciseSet;
+import com.example.trainer.database.schemas.Workout;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class CurrentWorkout extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_current_workout);
+        setContentView(R.layout.exercise_view);
 
-        RecyclerView listOfWorkouts = findViewById(R.id.listOfWorkouts);
+        //TODO: test items
+        ArrayList<Exercise> exerciseList = new ArrayList<Exercise>();
+        List setlist = new ArrayList<>();
+        setlist.add(new ExerciseSet(10, 3));
+        setlist.add(new ExerciseSet(10,2));
+        Exercise testEx1 = new Exercise("squat");
+        Exercise testEx2 = new Exercise("bench");
+        testEx1.setSetList(setlist);
+        testEx2.setSetList(setlist);
+        exerciseList.add(testEx1);
+        exerciseList.add(testEx2);
 
-        listOfWorkouts.setAdapter(new listOfWorkoutsAdapter());
+        Workout testWorkout = new Workout(
+                "test workout",
+                new Date(),
+                new Date()
+        );
+        testWorkout.setExList(exerciseList);
+        //------------------
+        TextView workoutName = findViewById(R.id.workoutName);
+        workoutName.setText(testWorkout.getName());
+
+        // Recycler view initation
+        RecyclerView listOfWorkouts = findViewById(R.id.listOfExercises);
+        listOfWorkouts.setAdapter(new ParentAdapter(testWorkout, this));
         listOfWorkouts.setLayoutManager(new LinearLayoutManager(this));
-
-        Button test = findViewById(R.id.button2);
-        test.setOnClickListener(v -> {
-            Intent i = new Intent(this, SelectExerciseActivity.class);
-            startActivity(i);
-        });
     }
 }
