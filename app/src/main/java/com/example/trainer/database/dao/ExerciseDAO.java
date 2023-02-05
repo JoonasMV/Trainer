@@ -1,6 +1,7 @@
 package com.example.trainer.database.dao;
 
 import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.TABLE_EXERCISE;
+import static com.example.trainer.database.contracts.SetContract.ExerciseSetEntry.TABLE_SET;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -29,7 +30,6 @@ public class ExerciseDAO {
     }
 
 
-
     //adds an exercise to database and also adds sets to database that the exercise has
     //returns the id of the exercise added
     public int addExercise(Exercise exercise) {
@@ -43,7 +43,7 @@ public class ExerciseDAO {
             String query = "INSERT INTO " + TABLE_EXERCISE + " (exerciseName, workoutId) values (?, ?)";
             SQLiteStatement statement = db.compileStatement(query);
             statement.bindString(1, exercise.getExerciseName());
-            if(exercise.getWorkoutId() != -1){
+            if (exercise.getWorkoutId() != -1) {
                 statement.bindLong(2, exercise.getWorkoutId());
             }
             statement.executeInsert();
@@ -52,43 +52,40 @@ public class ExerciseDAO {
             SQLiteDatabase read = dbConnection.getReadableDatabase();
             Cursor cursor = read.query(TABLE_EXERCISE, null, null, null, null, null, null);
 
-            if(cursor != null) {
+            if (cursor != null) {
                 cursor.moveToLast();
                 id = (int) cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
             }
 
-            if(id == -1){
+            if (id == -1) {
                 Log.d("error", "no id found");
             }
 
 
-            if(!sets.isEmpty()){
+            if (!sets.isEmpty()) {
                 setDAO.addSetsToDb(sets, id);
 
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             Log.w("error", e);
         }
         return (int) id;
     }
 
 
-
-
-
     //gets an exercise from database based on id
     //returns exercise
-    public Exercise getExerciseById(int id){
-        String[] args = new String[] {Integer.toString(id)};
+    public Exercise getExerciseById(int id) {
+        String[] args = new String[]{Integer.toString(id)};
         List<Exercise> results = selectFromDb(null, "_id=?", args, null, null, null);
 
-        if(results.isEmpty()) return null;
+        if (results.isEmpty()) return null;
 
         return results.get(0);
     }
 
-    public List<Exercise> getExerciseByWorkoutId(int id){
-        String[] args = new String[] {Integer.toString(id)};
+    public List<Exercise> getExerciseByWorkoutId(int id) {
+        String[] args = new String[]{Integer.toString(id)};
         return selectFromDb(null, "workoutId=?", args, null, null, null);
     }
 
@@ -115,6 +112,34 @@ public class ExerciseDAO {
         }
         return exercises;
     }
+
+    public void addSetsToExercise(List<ExerciseSet> sets, int exerciseId) {
+        try {
+            SQLiteDatabase write = dbConnection.getWritableDatabase();
+            String setQuery = "INSERT INTO " + TABLE_SET + " (reps, weight, exerciseId) values (?, ?, ?)";
+            SQLiteStatement setStatement = write.compileStatement(setQuery);
+            for (ExerciseSet e : sets) {
+                setStatement.bindLong(1, e.getAmount());
+                setStatement.bindDouble(2, e.getWeight());
+                setStatement.bindLong(3, exerciseId);
+                setStatement.executeInsert();
+            }
+
+        } catch (SQLException e) {
+            Log.w("error", e);
+        }
+    }
+
+
+
+
+    public void deleteAllSets(){
+        SQLiteDatabase db = dbConnection.getWritableDatabase();
+
+        db.delete("exerciseSet", null, null);
+        db.close();
+    }
+
 
 
     //reads exercise information from database and creates a new exercise object
@@ -146,6 +171,31 @@ public class ExerciseDAO {
         SQLiteDatabase db = dbConnection.getWritableDatabase();
 
         db.delete("exercise", null, null);
+        db.close();
+    }
+
+    public void deleteSetById(int id){
+        SQLiteDatabase db = dbConnection.getWritableDatabase();
+
+        db.delete("exerciseSet", "_id=?", new String[] {Integer.toString(id)});
+
+        db.close();
+    }
+
+    private void deleteAllSetsFromExercise(int exerciseId){
+        SQLiteDatabase db = dbConnection.getWritableDatabase();
+
+        db.delete("exerciseSet", "exericiseId=?", new String[] {Integer.toString(exerciseId)});
+
+        db.close();
+    }
+
+
+    public void deleteExerciseById(int id){
+        SQLiteDatabase db = dbConnection.getWritableDatabase();
+
+        db.delete("exercise", "_id=?", new String[] {Integer.toString(id)});
+        deleteAllSetsFromExercise(id);
         db.close();
     }
 
