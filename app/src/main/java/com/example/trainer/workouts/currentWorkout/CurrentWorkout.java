@@ -1,4 +1,4 @@
-package com.example.trainer.workouts;
+package com.example.trainer.workouts.currentWorkout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;

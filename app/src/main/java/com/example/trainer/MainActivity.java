@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.trainer.database.dao.WorkoutDAO;
-import com.example.trainer.workouts.CurrentWorkout;
+import com.example.trainer.workouts.currentWorkout.CurrentWorkout;
 import com.example.trainer.workouts.exercises.ListOfExercises_fragment;
 import com.example.trainer.workouts.ListOfWorkouts_fragment;
 

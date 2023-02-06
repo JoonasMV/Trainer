@@ -1,16 +1,19 @@
-package com.example.trainer.workouts;
+package com.example.trainer.workouts.currentWorkout;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
+import com.example.trainer.database.schemas.ExerciseSet;
 import com.example.trainer.database.schemas.Workout;
 
 public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHolder> {
@@ -23,14 +26,16 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
         this.context = context;
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView nameOfTheExerciseASD;
+        private TextView nameOfTheExercise;
         private RecyclerView listOfSets;
+        private Button addSetButton;
 
         public ViewHolder(View view) {
             super(view);
 
-            nameOfTheExerciseASD = view.findViewById(R.id.nameOfTheExerciseASD);
+            nameOfTheExercise = view.findViewById(R.id.nameOfTheExercise);
             listOfSets = view.findViewById(R.id.listOfSets);
+            addSetButton = view.findViewById(R.id.addSetBtn);
         }
     }
 
@@ -44,12 +49,17 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.nameOfTheExerciseASD.setText(parentItem.getExList().get(position).getExerciseName());
-        holder.listOfSets.setAdapter(new SetAdapter(
-                parentItem.getExList().get(position),
-                context)
-        );
+        holder.nameOfTheExercise.setText(parentItem.getExList().get(position).getExerciseName());
+
+        SetAdapter setAdapter = new SetAdapter(parentItem.getExList().get(position), context);
+        holder.listOfSets.setAdapter(setAdapter);
         holder.listOfSets.setLayoutManager(new LinearLayoutManager(context));
+
+        holder.addSetButton.setOnClickListener(view -> {
+            //TODO: test values
+            parentItem.getExList().get(position).getSetList().add(new ExerciseSet());
+            setAdapter.notifyDataSetChanged();
+        });
     }
 
     @Override

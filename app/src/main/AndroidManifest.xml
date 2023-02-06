@@ -16,7 +16,7 @@
             android:name=".workouts.CreateWorkoutActivity"
             android:exported="false" />
         <activity
-            android:name=".workouts.CurrentWorkout"
+            android:name=".workouts.currentWorkout.CurrentWorkout"
             android:exported="false" />
         <activity
             android:name=".workouts.exercises.SelectExerciseActivity"
