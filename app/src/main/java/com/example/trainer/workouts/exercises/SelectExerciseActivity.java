@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.example.trainer.R;
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.schemas.Exercise;
-import com.example.trainer.workouts.CurrentWorkout;
+import com.example.trainer.workouts.currentWorkout.CurrentWorkout;
 
 import java.util.ArrayList;
 

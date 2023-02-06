@@ -13,10 +13,9 @@ public class ExerciseSet {
     public ExerciseSet (double weight, int reps) {
         this.weight = weight;
         this.reps = reps;
-
     }
 
-
+    public ExerciseSet() {}
 
     public double getWeight() {
         return weight;
