@@ -1,50 +1,68 @@
 package com.example.trainer.workouts.exercises;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.trainer.R;
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.schemas.Exercise;
-import com.example.trainer.workouts.currentWorkout.CurrentWorkout;
+import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
 
 import java.util.ArrayList;
 
-public class SelectExerciseActivity extends AppCompatActivity {
+
+public class selectExercise extends Fragment {
+
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
+    public selectExercise() {
+        // Required empty public constructor
+    }
 
     ExerciseDAO exerciseDAO;
+    ListView lv;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
 
-        exerciseDAO = new ExerciseDAO(this);
-        setContentView(R.layout.activity_select_exercise);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_select_exercise, container, false);
 
+        exerciseDAO = new ExerciseDAO(getContext());
+
+        lv = v.findViewById(R.id.lista);
         handleExercisesToDisplay();
-        ListView lv = findViewById(R.id.lista);
 
 
 
         lv.setOnItemClickListener((adapterView, view, i, l) -> {
-            Log.d("tag","onclick");
+            Log.d("tag", "onclick");
             ArrayList<Exercise> exercises = exerciseDAO.getAllExercises();
             Exercise exercise = exercises.get(i);
             String exerciseName = exercise.getExerciseName();
-            Toast.makeText(this, "Exercise "+exerciseName+" selected", Toast.LENGTH_LONG).show();
             System.out.println(exerciseName);
-            Intent intent = new Intent(this, CurrentWorkout.class);
-            intent.putExtra("name", exerciseName);
-            startActivity(intent);
+            getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, CurrentWorkoutFragment.class, null).commit();
         });
+
+        return v;
     }
+
+
     private void handleExercisesToDisplay() {
         ArrayList<Exercise> listOfExercises = exerciseDAO.getAllExercises();
         if (listOfExercises.size() <= 0) return;
@@ -54,9 +72,9 @@ public class SelectExerciseActivity extends AppCompatActivity {
             exercisesToDisplay.add(exercise.getExerciseName());
         }
 
-        ListView lv = findViewById(R.id.lista);
+//        ListView lv = getView().findViewById(R.id.lista);
         lv.setAdapter(new ArrayAdapter<String>(
-                this,
+                this.getContext(),
                 android.R.layout.simple_list_item_1,
                 exercisesToDisplay
         ));

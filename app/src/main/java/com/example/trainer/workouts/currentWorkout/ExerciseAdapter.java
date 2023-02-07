@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,12 +29,14 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
         private RecyclerView listOfSets;
         private Button addSetButton;
 
+
         public ViewHolder(View view) {
             super(view);
 
             nameOfTheExercise = view.findViewById(R.id.nameOfTheExercise);
             listOfSets = view.findViewById(R.id.listOfSets);
             addSetButton = view.findViewById(R.id.addSetBtn);
+
         }
     }
 
@@ -60,6 +61,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
             parentItem.getExList().get(position).getSetList().add(new ExerciseSet());
             setAdapter.notifyDataSetChanged();
         });
+
     }
 
     @Override

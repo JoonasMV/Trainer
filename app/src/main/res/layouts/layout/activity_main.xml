@@ -13,7 +13,7 @@
         >
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerView2"
+            android:id="@+id/mainContainer"
             android:name="com.example.trainer.WelcomeScreen_fragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
