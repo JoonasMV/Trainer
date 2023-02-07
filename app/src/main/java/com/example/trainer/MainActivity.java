@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.trainer.database.dao.WorkoutDAO;
-import com.example.trainer.workouts.currentWorkout.CurrentWorkout;
+import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
 import com.example.trainer.workouts.exercises.ListOfExercises_fragment;
 import com.example.trainer.workouts.ListOfWorkouts_fragment;
 
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                 .setReorderingAllowed(true)
-                .add(R.id.fragmentContainerView2, WelcomeScreen_fragment.class, savedInstanceState)
+                .add(R.id.mainContainer, WelcomeScreen_fragment.class, savedInstanceState)
                 .addToBackStack(null)
                 .commit();
         }
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         homeBtn.setOnClickListener(view -> fragmentHandler(new WelcomeScreen_fragment()));
         workoutsBtn.setOnClickListener(view -> fragmentHandler(ListOfWorkouts_fragment.newInstance(null, null)));
 
-        progressBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, CurrentWorkout.class)));
+        progressBtn.setOnClickListener(view -> fragmentHandler(new CurrentWorkoutFragment()));
 
         WorkoutDAO dao = new WorkoutDAO(getApplicationContext());
     }
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void fragmentHandler(Fragment fragment) {
         fragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainerView2, fragment.getClass(), null)
+                .replace(R.id.mainContainer, fragment.getClass(), null)
                 .addToBackStack(null)
                 .commit();
     }

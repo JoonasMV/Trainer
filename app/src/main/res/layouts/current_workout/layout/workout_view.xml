@@ -29,6 +29,12 @@
             android:layout_height="wrap_content"
             android:text="Cancel workout" />
 
+        <Button
+            android:id="@+id/addExerciseBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/addExerciseButton" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
