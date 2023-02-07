@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                 .setReorderingAllowed(true)
-                .add(R.id.fragmentContainerView2, WelcomeScreen_fragment.class, savedInstanceState)
+                .add(R.id.fragmentContainerView2, WelcomeScreen_fragment.class, null)
                 .addToBackStack(null)
                 .commit();
         }
@@ -35,16 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        Button exercisesBtn = findViewById(R.id.exercisesBtn);
-        Button workoutsBtn = findViewById(R.id.workoutsBtn);
-        Button progressBtn = findViewById(R.id.progressBtn);
-        Button homeBtn = findViewById(R.id.homeBtn);
+        findViewById(R.id.exercisesBtn).setOnClickListener(view -> fragmentHandler(new ListOfExercises_fragment()));
+        findViewById(R.id.homeBtn).setOnClickListener(view -> fragmentHandler(new WelcomeScreen_fragment()));
+        findViewById(R.id.workoutsBtn).setOnClickListener(view -> fragmentHandler(ListOfWorkouts_fragment.newInstance(null, null)));
 
-        exercisesBtn.setOnClickListener(view -> fragmentHandler(new ListOfExercises_fragment()));
-        homeBtn.setOnClickListener(view -> fragmentHandler(new WelcomeScreen_fragment()));
-        workoutsBtn.setOnClickListener(view -> fragmentHandler(ListOfWorkouts_fragment.newInstance(null, null)));
-
-        progressBtn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, CurrentWorkout.class)));
+        findViewById(R.id.progressBtn).setOnClickListener(view -> startActivity(new Intent(MainActivity.this, CurrentWorkout.class)));
 
         WorkoutDAO dao = new WorkoutDAO(getApplicationContext());
     }

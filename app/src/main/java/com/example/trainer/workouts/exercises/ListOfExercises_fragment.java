@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 import com.example.trainer.R;
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.schemas.Exercise;
+import com.example.trainer.new_exercise;
 
 import java.util.ArrayList;
 
@@ -29,31 +31,16 @@ public class ListOfExercises_fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_list_of_exercises_fragment, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         exerciseDAO = new ExerciseDAO(this.getContext());
-
-
-
         handleExercisesToDisplay();
-        ListView lv = getView().findViewById(R.id.exerciseList);
 
-        lv.setOnItemClickListener((adapterView, v, i, l) -> {
-            //siirretty select exercise activityyn
-        });
-        getView().findViewById(R.id.tempTestBtn).setOnClickListener(v -> {
-        });
-
-
-
-        Button addExercise = getView().findViewById(R.id.addExercise);
-        addExercise.setOnClickListener(v -> {
-            startActivity(new Intent(this.getContext(), NewExerciseActivity.class));
-        });
+        getView().findViewById(R.id.addExercise)
+                .setOnClickListener(v -> { goToNewExerciseFragment(); });
     }
 
     private void handleExercisesToDisplay() {
@@ -71,5 +58,12 @@ public class ListOfExercises_fragment extends Fragment {
                 android.R.layout.simple_list_item_1,
                 exercisesToDisplay
         ));
+    }
+
+    private void goToNewExerciseFragment() {
+        getParentFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerView2, new_exercise.class, null)
+                .addToBackStack(null)
+                .commit();
     }
 }
