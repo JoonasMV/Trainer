@@ -56,7 +56,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
         holder.listOfSets.setLayoutManager(new LinearLayoutManager(context));
 
         holder.addSetButton.setOnClickListener(view -> {
-            //TODO: test values
+            //TODO: notifyDataSetChanged() does not invoke animations
             parentItem.getExList().get(position).getSetList().add(new ExerciseSet());
             setAdapter.notifyDataSetChanged();
         });
