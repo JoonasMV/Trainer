@@ -6,12 +6,11 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
 import com.example.trainer.database.dao.WorkoutDAO;
-import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
-import com.example.trainer.workouts.exercises.ListOfExercises_fragment;
 import com.example.trainer.workouts.ListOfWorkouts_fragment;
+import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
+import com.example.trainer.workouts.exercises.selectExercise;
 
 public class MainActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
@@ -28,18 +27,13 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
         }
 
-        Intent i = getIntent();
-        if (i.hasExtra("FromNewExActivity") && i.getExtras().getBoolean("FromNewExActivity")) {
-            fragmentHandler(new ListOfExercises_fragment());
-        }
-
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.exercisesBtn).setOnClickListener(view -> fragmentHandler(new ListOfExercises_fragment()));
+        findViewById(R.id.exercisesBtn).setOnClickListener(view -> fragmentHandler(new selectExercise()));
         findViewById(R.id.homeBtn).setOnClickListener(view -> fragmentHandler(new WelcomeScreen_fragment()));
         findViewById(R.id.workoutsBtn).setOnClickListener(view -> fragmentHandler(ListOfWorkouts_fragment.newInstance(null, null)));
 
-        findViewById(R.id.progressBtn).setOnClickListener(view -> startActivity(new Intent(MainActivity.this, CurrentWorkout.class)));
+        findViewById(R.id.progressBtn).setOnClickListener(view -> fragmentHandler(new  CurrentWorkoutFragment()));
 
         WorkoutDAO dao = new WorkoutDAO(getApplicationContext());
     }
