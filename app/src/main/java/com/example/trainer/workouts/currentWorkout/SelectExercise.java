@@ -1,8 +1,10 @@
-package com.example.trainer.workouts.exercises;
+package com.example.trainer.workouts.currentWorkout;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,22 +16,15 @@ import android.widget.ListView;
 import com.example.trainer.R;
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.schemas.Exercise;
-import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
 
 import java.util.ArrayList;
 
 
 public class SelectExercise extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-    public SelectExercise() {
-        // Required empty public constructor
-    }
-
-    ExerciseDAO exerciseDAO;
-    ListView lv;
+    private ExerciseDAO exerciseDAO;
+    private ListView lv;
+    private WorkoutViewModel workoutManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,11 +35,6 @@ public class SelectExercise extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        if (savedInstanceState != null) {
-
-        }
-
-
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_select_exercise, container, false);
 
@@ -53,26 +43,23 @@ public class SelectExercise extends Fragment {
         lv = v.findViewById(R.id.lista);
         handleExercisesToDisplay();
 
-
-
         lv.setOnItemClickListener((adapterView, view, i, l) -> {
             Log.d("tag", "onclick");
             ArrayList<Exercise> exercises = exerciseDAO.getAllExercises();
-            Exercise exercise = exercises.get(i);
+            Exercise newExercise = exercises.get(i);
 
-            Bundle bundle = new Bundle();
-            bundle.putInt("newExercise", exercise.getExerciseId());
-
-            CurrentWorkoutFragment currentWorkoutFragment = new CurrentWorkoutFragment();
-            currentWorkoutFragment.setArguments(bundle);
-            getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, currentWorkoutFragment, null).commit();
+            getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, new CurrentWorkoutFragment()).commit();
+            workoutManager.addExerciseToWorkoutById(newExercise.getExerciseId());
         });
 
         return v;
     }
 
-
-
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        workoutManager = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
+    }
 
     private void handleExercisesToDisplay() {
         ArrayList<Exercise> listOfExercises = exerciseDAO.getAllExercises();
