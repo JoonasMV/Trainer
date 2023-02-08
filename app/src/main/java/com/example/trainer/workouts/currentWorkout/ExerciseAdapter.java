@@ -24,6 +24,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
         this.parentItem = workout;
         this.context = context;
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView nameOfTheExercise;
         private RecyclerView listOfSets;
@@ -36,7 +37,6 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
             nameOfTheExercise = view.findViewById(R.id.nameOfTheExercise);
             listOfSets = view.findViewById(R.id.listOfSets);
             addSetButton = view.findViewById(R.id.addSetBtn);
-
         }
     }
 

@@ -1,4 +1,4 @@
-package com.example.trainer;
+package com.example.trainer.workouts.exercises;
 
 import android.os.Bundle;
 
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.trainer.R;
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.schemas.Exercise;
 
