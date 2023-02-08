@@ -28,7 +28,6 @@ import java.util.List;
 
 public class CurrentWorkoutFragment extends Fragment {
 
-    private ExerciseDAO exerciseDAO;
     private Workout currentWorkout;
     private ExerciseAdapter exerciseAdapter;
     private WorkoutViewModel workoutManager;
@@ -37,7 +36,6 @@ public class CurrentWorkoutFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        exerciseDAO = new ExerciseDAO(getContext());
     }
 
     @Override
@@ -48,37 +46,16 @@ public class CurrentWorkoutFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_current_workout, container, false);
 
         v.findViewById(R.id.cancelWorkoutBtn).setOnClickListener(view -> {
-            getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, ListOfWorkouts_fragment.class, null).commit();
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.mainContainer, ListOfWorkouts_fragment.class, null)
+                    .commit();
         });
 
         v.findViewById(R.id.addExerciseBtn).setOnClickListener(view -> {
             getParentFragmentManager().beginTransaction()
-                    .add(R.id.mainContainer, new SelectExercise(), null)
-                    .hide(this)
+                    .replace(R.id.mainContainer, new SelectExercise(), null)
                     .commit();
         });
-        //TODO: test items
-//        ArrayList<Exercise> exerciseList = new ArrayList<Exercise>();
-//        List setlist = new ArrayList<>();
-//        List setlist2 = new ArrayList<>();
-//        setlist.add(new ExerciseSet(100, 3));
-//        setlist.add(new ExerciseSet(105, 2));
-//        setlist2.add(new ExerciseSet(50, 10));
-//        setlist2.add(new ExerciseSet(25, 20));
-//        Exercise testEx1 = new Exercise("squat");
-//        Exercise testEx2 = new Exercise("bench");
-//        testEx1.setSetList(setlist);
-//        testEx2.setSetList(setlist2);
-//        exerciseList.add(testEx1);
-//        exerciseList.add(testEx2);
-//
-//        currentWorkout = new Workout(
-//                "test workout",
-//                new Date(),
-//                new Date()
-//        );
-//        currentWorkout.setExList(exerciseList);
-        //------------------
         TextView workoutName = v.findViewById(R.id.workoutName);
 
         workoutManager = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);

@@ -14,9 +14,10 @@ import java.util.List;
 // Se vaan toimii ¯\_(ツ)_/¯
 public class WorkoutViewModel extends ViewModel {
 
-    Workout currentWorkout;
     SelectExercise selectExercise = new SelectExercise();
     CurrentWorkoutFragment currentWorkoutFragment = new CurrentWorkoutFragment();
+
+    Workout currentWorkout;
     ExerciseDAO exerciseDAO = new ExerciseDAO(currentWorkoutFragment.getContext());
 
     public WorkoutViewModel() {
@@ -33,7 +34,7 @@ public class WorkoutViewModel extends ViewModel {
     }
 
     //TODO: workout initiation needs to be pulled from DB
-    private void initWorkout() {
+    public void initWorkout() {
         ArrayList<Exercise> exerciseList = new ArrayList<Exercise>();
         List setlist = new ArrayList<>();
         List setlist2 = new ArrayList<>();

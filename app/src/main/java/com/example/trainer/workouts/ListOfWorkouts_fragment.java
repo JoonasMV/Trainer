@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,11 +17,13 @@ import android.widget.Button;
 import com.example.trainer.MainActivity;
 import com.example.trainer.R;
 import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
+import com.example.trainer.workouts.currentWorkout.WorkoutViewModel;
 
 
 public class ListOfWorkouts_fragment extends Fragment {
 
     private Button newWorkoutBtn;
+    private WorkoutViewModel workoutViewModel;
 
     public ListOfWorkouts_fragment() {
         // Required empty public constructor
@@ -44,15 +48,19 @@ public class ListOfWorkouts_fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_list_of_workouts_fragment, container, false);
 
-        newWorkoutBtn = view.findViewById(R.id.newWorkoutBtn);
+        workoutViewModel = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
 
-        newWorkoutBtn.setOnClickListener(v -> {
-            getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, new CurrentWorkoutFragment()).commit();
-        });
+        view.findViewById(R.id.newWorkoutBtn).setOnClickListener(v -> { startNewWorkout(); });
 
         return view;
     }
 
-
-
+    private void startNewWorkout() {
+        workoutViewModel.initWorkout();
+        getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, new CurrentWorkoutFragment()).commit();
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    }
+}
