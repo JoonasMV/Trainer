@@ -39,7 +39,10 @@ public class ListOfWorkouts_fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        workoutViewModel = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
+        if (workoutViewModel.getWorkoutState()) {
+            getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, new CurrentWorkoutFragment()).commit();
+        }
     }
 
     @Override
@@ -47,8 +50,6 @@ public class ListOfWorkouts_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_list_of_workouts_fragment, container, false);
-
-        workoutViewModel = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
 
         view.findViewById(R.id.newWorkoutBtn).setOnClickListener(v -> { startNewWorkout(); });
 

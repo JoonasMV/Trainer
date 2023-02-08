@@ -18,26 +18,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState == null) {
-            fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                .setReorderingAllowed(true)
-                .add(R.id.mainContainer, WelcomeScreen_fragment.class, null)
-                .addToBackStack(null)
-                .commit();
-        }
-
-        Intent i = getIntent();
-        if (i.hasExtra("FromNewExActivity") && i.getExtras().getBoolean("FromNewExActivity")) {
-            fragmentHandler(new ListOfExercises_fragment());
-        }
-
         setContentView(R.layout.activity_main);
+
+        if (savedInstanceState == null) createFragmentManager();
 
         findViewById(R.id.exercisesBtn).setOnClickListener(view -> fragmentHandler(new ListOfExercises_fragment()));
         findViewById(R.id.homeBtn).setOnClickListener(view -> fragmentHandler(new WelcomeScreen_fragment()));
-        findViewById(R.id.workoutsBtn).setOnClickListener(view -> fragmentHandler(ListOfWorkouts_fragment.newInstance(null, null)));
-
+        findViewById(R.id.workoutsBtn).setOnClickListener(view -> fragmentHandler(new ListOfWorkouts_fragment()));
         findViewById(R.id.progressBtn).setOnClickListener(view -> fragmentHandler(new CurrentWorkoutFragment()));
 
         WorkoutDAO dao = new WorkoutDAO(getApplicationContext());
@@ -55,6 +42,15 @@ public class MainActivity extends AppCompatActivity {
     private void fragmentHandler(Fragment fragment) {
         fragmentManager.beginTransaction()
                 .replace(R.id.mainContainer, fragment.getClass(), null)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    private void createFragmentManager() {
+        fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .setReorderingAllowed(true)
+                .add(R.id.mainContainer, WelcomeScreen_fragment.class, null)
                 .addToBackStack(null)
                 .commit();
     }

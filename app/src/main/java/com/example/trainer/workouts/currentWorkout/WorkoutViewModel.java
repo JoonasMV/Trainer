@@ -20,9 +20,7 @@ public class WorkoutViewModel extends ViewModel {
     Workout currentWorkout;
     ExerciseDAO exerciseDAO = new ExerciseDAO(currentWorkoutFragment.getContext());
 
-    public WorkoutViewModel() {
-        initWorkout();
-    }
+    private boolean workoutInProgress = false;
 
     public void testing() {
         System.out.println("Internal screaming");
@@ -55,9 +53,15 @@ public class WorkoutViewModel extends ViewModel {
                 new Date()
         );
         currentWorkout.setExList(exerciseList);
+
+        workoutInProgress = true;
     }
+
+    public void cancelWorkout() { workoutInProgress = false; }
 
     public Workout getWorkout() {
         return currentWorkout;
     }
+
+    public boolean getWorkoutState() { return workoutInProgress; }
 }
