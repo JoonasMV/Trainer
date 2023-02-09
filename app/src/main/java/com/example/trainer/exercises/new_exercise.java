@@ -1,4 +1,4 @@
-package com.example.trainer.workouts.exercises;
+package com.example.trainer.exercises;
 
 import android.os.Bundle;
 

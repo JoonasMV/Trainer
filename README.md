@@ -1,2 +1,2 @@
-# Trenbologna
+# Trainer
 App to track workouts

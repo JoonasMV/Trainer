@@ -185,7 +185,7 @@ public class ExerciseDAO {
     private void deleteAllSetsFromExercise(int exerciseId){
         SQLiteDatabase db = dbConnection.getWritableDatabase();
 
-        db.delete("exerciseSet", "exericiseId=?", new String[] {Integer.toString(exerciseId)});
+        db.delete("exerciseSet", "exerciseId=?", new String[] {Integer.toString(exerciseId)});
 
         db.close();
     }

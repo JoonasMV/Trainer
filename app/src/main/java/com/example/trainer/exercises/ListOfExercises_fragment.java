@@ -1,4 +1,4 @@
-package com.example.trainer.workouts.exercises;
+package com.example.trainer.exercises;
 
 import android.os.Bundle;
 
@@ -35,7 +35,6 @@ public class ListOfExercises_fragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         exerciseDAO = new ExerciseDAO(this.getContext());
-        //handleExercisesToDisplay();
 
         getView().findViewById(R.id.addExercise)
                 .setOnClickListener(v -> { goToNewExerciseFragment(); });
@@ -43,25 +42,8 @@ public class ListOfExercises_fragment extends Fragment {
         exerciseList = getView().findViewById(R.id.listOfExercises);
         listOfExercises = exerciseDAO.getAllExercises();
 
-        exerciseList.setAdapter(new ListOfExercisesAdapter(listOfExercises));
+        exerciseList.setAdapter(new ListOfExercisesAdapter(listOfExercises, exerciseDAO));
         exerciseList.setLayoutManager(new LinearLayoutManager(getContext()));
-    }
-
-    private void handleExercisesToDisplay() {
-        ArrayList<Exercise> listOfExercises = exerciseDAO.getAllExercises();
-        if (listOfExercises.size() <= 0) return;
-
-        ArrayList<String> exercisesToDisplay = new ArrayList<>();
-        for (Exercise exercise: listOfExercises) {
-            exercisesToDisplay.add(exercise.getExerciseName());
-        }
-
-//        ListView lv = getView().findViewById(R.id.exerciseList);
-//        lv.setAdapter(new ArrayAdapter<String>(
-//                this.getContext(),
-//                android.R.layout.simple_list_item_1,
-//                exercisesToDisplay
-//        ));
     }
 
     private void goToNewExerciseFragment() {

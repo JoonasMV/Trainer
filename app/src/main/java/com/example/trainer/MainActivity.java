@@ -4,12 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.trainer.database.dao.WorkoutDAO;
 import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
-import com.example.trainer.workouts.exercises.ListOfExercises_fragment;
+import com.example.trainer.exercises.ListOfExercises_fragment;
 import com.example.trainer.workouts.ListOfWorkouts_fragment;
 
 public class MainActivity extends AppCompatActivity {
