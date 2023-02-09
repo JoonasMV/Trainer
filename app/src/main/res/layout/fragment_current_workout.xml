@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -17,7 +17,7 @@
 
             <TextView
                 android:id="@+id/workoutName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
@@ -25,20 +25,31 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listOfExercises"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="489dp"
+                android:layout_weight="1">
 
-            <Button
-                android:id="@+id/cancelWorkoutBtn"
-                style="@style/Widget.AppCompat.Button.Colored"
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cancel workout" />
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/addExerciseBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/addExerciseButton" />
+                <Button
+                    android:id="@+id/addExerciseBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/addExerciseButton" />
+
+                <Button
+                    android:id="@+id/cancelWorkoutBtn"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cancel workout" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

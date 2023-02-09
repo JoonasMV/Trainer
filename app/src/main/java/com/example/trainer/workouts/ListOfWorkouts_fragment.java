@@ -41,7 +41,11 @@ public class ListOfWorkouts_fragment extends Fragment {
         super.onCreate(savedInstanceState);
         workoutViewModel = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
         if (workoutViewModel.getWorkoutState()) {
-            getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, new CurrentWorkoutFragment()).commit();
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .addToBackStack(null)
+                    .replace(R.id.mainContainer, new CurrentWorkoutFragment())
+                    .commit();
         }
     }
 

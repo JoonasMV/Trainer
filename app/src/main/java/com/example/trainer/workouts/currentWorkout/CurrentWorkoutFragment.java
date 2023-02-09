@@ -57,6 +57,7 @@ public class CurrentWorkoutFragment extends Fragment {
         return v;
     }
 
+
     private void initRecyclerView(View v) {
         RecyclerView listOfWorkouts = v.findViewById(R.id.listOfExercises);
         exerciseAdapter = new ExerciseAdapter(currentWorkout, getContext());
