@@ -62,7 +62,11 @@ public class ListOfWorkouts_fragment extends Fragment {
 
     private void startNewWorkout() {
         workoutViewModel.initWorkout();
-        getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, new CurrentWorkoutFragment()).commit();
+        getParentFragmentManager()
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.mainContainer, new CurrentWorkoutFragment())
+                .commit();
     }
 
     @Override

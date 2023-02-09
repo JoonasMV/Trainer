@@ -10,6 +10,7 @@ import com.example.trainer.database.dao.WorkoutDAO;
 import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
 import com.example.trainer.exercises.ListOfExercises_fragment;
 import com.example.trainer.workouts.ListOfWorkouts_fragment;
+import com.example.trainer.workouts.currentWorkout.WorkoutViewModel;
 
 public class MainActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
