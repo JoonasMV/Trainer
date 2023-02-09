@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,15 +36,24 @@ public class ListOfExercises_fragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         exerciseDAO = new ExerciseDAO(this.getContext());
-
-        getView().findViewById(R.id.addExercise)
-                .setOnClickListener(v -> { goToNewExerciseFragment(); });
-
-        exerciseList = getView().findViewById(R.id.listOfExercises);
         listOfExercises = exerciseDAO.getAllExercises();
 
-        exerciseList.setAdapter(new ListOfExercisesAdapter(listOfExercises, exerciseDAO));
+        exerciseList = getView().findViewById(R.id.listOfExercises);
+        ListOfExercisesAdapter adapter = new ListOfExercisesAdapter(listOfExercises, exerciseDAO);
+        exerciseList.setAdapter(adapter);
         exerciseList.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        getView().findViewById(R.id.addExercise).setOnClickListener(v -> goToNewExerciseFragment());
+
+        // Animation testing
+        getView().findViewById(R.id.tempTestBtn).setOnClickListener(v -> {
+            for (int i = 0; i < 3; i++) {
+                Exercise ex = new Exercise(new String("test "+i));
+                listOfExercises.add(ex);
+                exerciseDAO.addExercise(ex);
+            }
+            adapter.notifyDataSetChanged();
+        });
     }
 
     private void goToNewExerciseFragment() {
