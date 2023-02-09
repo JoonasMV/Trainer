@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.trainer.R;
+import com.example.trainer.WelcomeScreen_fragment;
 import com.example.trainer.database.schemas.Workout;
 import com.example.trainer.workouts.ListOfWorkouts_fragment;
 
@@ -32,6 +33,10 @@ public class CurrentWorkoutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        workoutManager = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
+        //System.out.println(workoutManager.getWorkout());
+        //currentWorkout = workoutManager.getWorkout();
+
         View v = inflater.inflate(R.layout.fragment_current_workout, container, false);
 
         v.findViewById(R.id.cancelWorkoutBtn).setOnClickListener(view -> {
@@ -47,9 +52,17 @@ public class CurrentWorkoutFragment extends Fragment {
                     .commit();
         });
 
+        v.findViewById(R.id.endWorkoutBtn).setOnClickListener(view -> {
+            workoutManager.saveWorkout(exerciseAdapter.getWorkout());
+            workoutManager.cancelWorkout();
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.mainContainer, new WelcomeScreen_fragment(), null)
+                    .commit();
+        });
+
         TextView workoutName = v.findViewById(R.id.workoutName);
 
-        workoutManager = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
+
         currentWorkout = workoutManager.getWorkout();
         workoutName.setText(currentWorkout.getName());
 
@@ -57,11 +70,17 @@ public class CurrentWorkoutFragment extends Fragment {
         return v;
     }
 
-
     private void initRecyclerView(View v) {
         RecyclerView listOfWorkouts = v.findViewById(R.id.listOfExercises);
         exerciseAdapter = new ExerciseAdapter(currentWorkout, getContext());
         listOfWorkouts.setAdapter(exerciseAdapter);
         listOfWorkouts.setLayoutManager(new LinearLayoutManager(getContext()));
     }
+
+    @Override
+    public void onDestroyView() {
+        workoutManager.saveWorkoutState(exerciseAdapter.getWorkout());
+        super.onDestroyView();
+    }
+
 }

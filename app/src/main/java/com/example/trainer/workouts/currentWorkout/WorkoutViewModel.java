@@ -3,6 +3,7 @@ package com.example.trainer.workouts.currentWorkout;
 import androidx.lifecycle.ViewModel;
 
 import com.example.trainer.database.dao.ExerciseDAO;
+import com.example.trainer.database.dao.WorkoutDAO;
 import com.example.trainer.database.schemas.Exercise;
 import com.example.trainer.database.schemas.ExerciseSet;
 import com.example.trainer.database.schemas.Workout;
@@ -17,8 +18,9 @@ public class WorkoutViewModel extends ViewModel {
     SelectExercise selectExercise = new SelectExercise();
     CurrentWorkoutFragment currentWorkoutFragment = new CurrentWorkoutFragment();
 
-    Workout currentWorkout;
+    Workout currentWorkout = null;
     ExerciseDAO exerciseDAO = new ExerciseDAO(currentWorkoutFragment.getContext());
+    WorkoutDAO workoutDAO = new WorkoutDAO(currentWorkoutFragment.getContext());
 
     private boolean workoutInProgress = false;
 
@@ -55,13 +57,24 @@ public class WorkoutViewModel extends ViewModel {
         currentWorkout.setExList(exerciseList);
 
         workoutInProgress = true;
+
+        System.out.println("init workout called");
     }
 
     public void cancelWorkout() { workoutInProgress = false; }
+
+    public void saveWorkout(Workout completedWorkout) {
+        System.out.println(completedWorkout.getExList().get(1).getSetList().get(1).getWeight());
+        workoutDAO.add(completedWorkout);
+    }
 
     public Workout getWorkout() {
         return currentWorkout;
     }
 
     public boolean getWorkoutState() { return workoutInProgress; }
+
+    public void saveWorkoutState(Workout workoutInProgress) {
+        this.currentWorkout = workoutInProgress;
+    }
 }

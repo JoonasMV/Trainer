@@ -1,6 +1,7 @@
 package com.example.trainer.workouts.currentWorkout;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,12 +53,21 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull SetAdapter.ViewHolder holder, int position) {
         holder.setCounter.setText(Integer.toString(position+1));
-        holder.setRepField.setHint(df.format(exercise.getSetList().get(position).getAmount()));
-        holder.setWeightField.setHint(df.format(exercise.getSetList().get(position).getWeight()));
+        //holder.setRepField.setHint(df.format(exercise.getSetList().get(position).getAmount()));
+        System.out.println("testing");
+        //TODO: error checking
+        holder.setWeightField.setOnClickListener(v -> {
+            System.out.println("vittu toimi");
+        });
+        //exercise.getSetList().get(posit
+        //I/System.out: testingion).setAmount(Integer.valueOf(holder.setRepField.toString()));
+        //exercise.getSetList().get(position).setWeight(Integer.valueOf(holder.setWeightField.toString()));
+        //holder.setWeightField.setHint(df.format(exercise.getSetList().get(position).getWeight()));
     }
 
     @Override
     public int getItemCount() {
         return exercise.getSetList().size();
     }
+
 }
