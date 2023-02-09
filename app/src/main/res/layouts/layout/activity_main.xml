@@ -18,16 +18,15 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             tools:layout="@layout/fragment_welcome_screen"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            />
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="horizontal"
             android:layout_weight="15"
-
-
-
+            android:background="?android:attr/dividerHorizontal"
             >
 
             <Button
@@ -60,7 +59,7 @@
                 android:layout_weight="1"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:text="Workouts"
+                android:text="@string/workouts"
                 android:textColor="@color/black"
                 android:textSize="12dp" />
 
@@ -72,7 +71,7 @@
                 android:layout_weight="1"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:text="Progress"
+                android:text="@string/progress"
                 android:textColor="@color/black"
                 android:textSize="12dp" />
         </LinearLayout>

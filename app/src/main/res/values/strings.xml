@@ -6,6 +6,8 @@
     <string name="workout_name_field">Workout name</string>
     <string name="back">back</string>
     <string name="save">save</string>
+    <string name="progress">PRGRS</string>
+    <string name="workouts">WKOUTS</string>
     <string name="add_new_exercise_button">Add new exercise</string>
 
 </resources>
