@@ -2,6 +2,8 @@ package com.example.trainer.workouts.currentWorkout;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
 import com.example.trainer.database.schemas.Exercise;
+import com.example.trainer.database.schemas.ExerciseSet;
 
 import java.text.DecimalFormat;
 
@@ -53,16 +56,39 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull SetAdapter.ViewHolder holder, int position) {
         holder.setCounter.setText(Integer.toString(position+1));
-        //holder.setRepField.setHint(df.format(exercise.getSetList().get(position).getAmount()));
-        System.out.println("testing");
+        ExerciseSet currentSet = exercise.getSetList().get(position);
+
+        holder.setRepField.setText(String.valueOf(exercise.getSetList().get(position).getAmount()));
+        holder.setWeightField.setText(String.valueOf(exercise.getSetList().get(position).getWeight()));
+        //        holder.setWeightField.setText(currentSet.getAmount());
         //TODO: error checking
-        holder.setWeightField.setOnClickListener(v -> {
-            System.out.println("vittu toimi");
+        holder.setWeightField.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                exercise.getSetList().get(holder.getAdapterPosition()).setWeight(Double.parseDouble(holder.setWeightField.getText().toString()));
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {}
         });
-        //exercise.getSetList().get(posit
-        //I/System.out: testingion).setAmount(Integer.valueOf(holder.setRepField.toString()));
-        //exercise.getSetList().get(position).setWeight(Integer.valueOf(holder.setWeightField.toString()));
-        //holder.setWeightField.setHint(df.format(exercise.getSetList().get(position).getWeight()));
+        holder.setRepField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                exercise.getSetList().get(holder.getAdapterPosition()).setAmount(Integer.parseInt(holder.setRepField.getText().toString()));
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
+    }
+
+    private boolean isDouble(String s) {
+        try {
+            Double.parseDouble(s);
+            return true;
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 
     @Override
