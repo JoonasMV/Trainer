@@ -17,18 +17,17 @@ import com.example.trainer.database.schemas.Workout;
 
 public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHolder> {
 
-    private Workout parentItem;
+    private final WorkoutManager workoutManager = WorkoutManager.getInstance();
     private Context context;
 
-    public ExerciseAdapter(Workout workout, Context context) {
-        this.parentItem = workout;
+    public ExerciseAdapter(Context context) {
         this.context = context;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView nameOfTheExercise;
-        private RecyclerView listOfSets;
-        private Button addSetButton;
+        private final TextView nameOfTheExercise;
+        private final RecyclerView listOfSets;
+        private final Button addSetButton;
 
 
         public ViewHolder(View view) {
@@ -50,24 +49,21 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.nameOfTheExercise.setText(parentItem.getExList().get(position).getExerciseName());
+        holder.nameOfTheExercise.setText(workoutManager.getWorkout().getExList().get(position).getExerciseName());
 
-        SetAdapter setAdapter = new SetAdapter(parentItem.getExList().get(position), context);
+        SetAdapter setAdapter = new SetAdapter(workoutManager.getWorkout().getExList().get(position), context);
         holder.listOfSets.setAdapter(setAdapter);
         holder.listOfSets.setLayoutManager(new LinearLayoutManager(context));
 
         holder.addSetButton.setOnClickListener(view -> {
             //TODO: notifyDataSetChanged() does not invoke animations
-            parentItem.getExList().get(position).getSetList().add(new ExerciseSet());
+            workoutManager.getWorkout().getExList().get(position).getSetList().add(new ExerciseSet());
             setAdapter.notifyDataSetChanged();
         });
 
     }
-
     @Override
     public int getItemCount() {
-        return parentItem.getExList().size();
+        return workoutManager.getWorkout().getExList().size();
     }
-
-    public Workout getWorkout() { return parentItem; }
 }

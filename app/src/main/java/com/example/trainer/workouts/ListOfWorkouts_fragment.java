@@ -17,13 +17,14 @@ import android.widget.Button;
 import com.example.trainer.MainActivity;
 import com.example.trainer.R;
 import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
+import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 import com.example.trainer.workouts.currentWorkout.WorkoutViewModel;
 
 
 public class ListOfWorkouts_fragment extends Fragment {
 
     private Button newWorkoutBtn;
-    private WorkoutViewModel workoutViewModel;
+    private WorkoutManager workoutManager;
 
     public ListOfWorkouts_fragment() {
         // Required empty public constructor
@@ -39,11 +40,11 @@ public class ListOfWorkouts_fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        workoutViewModel = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
+        workoutManager = WorkoutManager.getInstance();
 
         Fragment fragment = getParentFragmentManager().findFragmentByTag("CurrentWorkout");
 //        System.out.println(fragment);
-        if (workoutViewModel.getWorkoutState()) {
+        if (workoutManager.workoutActive()) {
             getParentFragmentManager()
                     .beginTransaction()
                     .replace(R.id.mainContainer, fragment)
@@ -67,7 +68,7 @@ public class ListOfWorkouts_fragment extends Fragment {
     }
 
     private void startNewWorkout() {
-        workoutViewModel.initWorkout();
+        workoutManager.initWorkout();
         getParentFragmentManager()
                 .beginTransaction()
                 .addToBackStack(null)
