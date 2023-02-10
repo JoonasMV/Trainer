@@ -23,7 +23,7 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.ViewHolder> {
 
     private Exercise exercise;
     private Context context;
-    DecimalFormat df = new DecimalFormat("###.#");
+    private DecimalFormat df = new DecimalFormat("###.#");
 
     public SetAdapter(Exercise exercise, Context context) {
         this.exercise = exercise;

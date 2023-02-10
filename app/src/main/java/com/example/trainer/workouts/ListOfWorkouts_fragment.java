@@ -43,7 +43,7 @@ public class ListOfWorkouts_fragment extends Fragment {
         workoutManager = WorkoutManager.getInstance();
 
         Fragment fragment = getParentFragmentManager().findFragmentByTag("CurrentWorkout");
-//        System.out.println(fragment);
+        System.out.println(fragment);
         if (workoutManager.workoutActive()) {
             getParentFragmentManager()
                     .beginTransaction()
@@ -71,8 +71,8 @@ public class ListOfWorkouts_fragment extends Fragment {
         workoutManager.initWorkout();
         getParentFragmentManager()
                 .beginTransaction()
-                .addToBackStack(null)
                 .replace(R.id.mainContainer, new CurrentWorkoutFragment(), "CurrentWorkout")
+                .addToBackStack(null)
                 .commit();
     }
 

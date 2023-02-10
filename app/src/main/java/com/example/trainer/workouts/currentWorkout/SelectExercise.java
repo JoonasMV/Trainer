@@ -24,7 +24,7 @@ public class SelectExercise extends Fragment {
 
     private ExerciseDAO exerciseDAO;
     private ListView lv;
-    private WorkoutViewModel workoutManager;
+    private WorkoutManager workoutManager = WorkoutManager.getInstance();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class SelectExercise extends Fragment {
             Exercise newExercise = exercises.get(i);
 
             getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, new CurrentWorkoutFragment()).commit();
-            workoutManager.addExerciseToWorkoutById(newExercise.getExerciseId());
+            workoutManager.addExercise(new Exercise(newExercise.getExerciseName()));
         });
 
         return v;
@@ -58,7 +58,6 @@ public class SelectExercise extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        workoutManager = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
     }
 
     private void handleExercisesToDisplay() {

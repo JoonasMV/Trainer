@@ -57,7 +57,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
 
         holder.addSetButton.setOnClickListener(view -> {
             //TODO: notifyDataSetChanged() does not invoke animations
-            workoutManager.getWorkout().getExList().get(position).getSetList().add(new ExerciseSet());
+            workoutManager.addSet(position);
             setAdapter.notifyDataSetChanged();
         });
 

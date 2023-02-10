@@ -75,6 +75,13 @@ public class WorkoutManager {
         return this.workout;
     }
 
+    public void addSet(int exercisePosition){
+       this.workout.getExList().get(exercisePosition).getSetList().add(new ExerciseSet());
+    }
+
+    public void addExercise(Exercise exercise) {
+        this.workout.addExerciseToList(exercise);
+    }
 
 
 
