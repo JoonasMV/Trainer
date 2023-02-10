@@ -11,6 +11,8 @@ public class Exercise {
     private String exerciseName;
     private int workoutId = -1;
 
+    private ExerciseType exerciseType;
+
     private List<ExerciseSet> setList;
 
 
@@ -68,5 +70,11 @@ public class Exercise {
         this.setList = setList;
     }
 
+    public ExerciseType getExerciseType() {
+        return exerciseType;
+    }
 
+    public void setExerciseType(ExerciseType exerciseType) {
+        this.exerciseType = exerciseType;
+    }
 }

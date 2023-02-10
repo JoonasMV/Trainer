@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.trainer.R;
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.schemas.Exercise;
+import com.example.trainer.database.schemas.ExerciseType;
 
 public class new_exercise extends Fragment {
 
@@ -39,7 +40,7 @@ public class new_exercise extends Fragment {
         TextView exerciseNameInput = v.findViewById(R.id.exerciseNameInput);
         v.findViewById(R.id.newExerciseBtn).setOnClickListener(view -> {
             System.out.println(exerciseDAO);
-            exerciseDAO.addExercise(new Exercise(exerciseNameInput.getText().toString()));
+            exerciseDAO.addExerciseType(new ExerciseType(exerciseNameInput.getText().toString()));
             getParentFragmentManager().popBackStack();
         });
 

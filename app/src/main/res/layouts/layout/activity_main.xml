@@ -19,7 +19,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="@color/color3"
+            android:background="@color/color1"
             tools:layout="@layout/fragment_welcome_screen" />
 
         <LinearLayout
