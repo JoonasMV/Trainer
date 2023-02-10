@@ -14,13 +14,14 @@ import android.view.ViewGroup;
 import com.example.trainer.R;
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.schemas.Exercise;
+import com.example.trainer.database.schemas.ExerciseType;
 
 import java.util.ArrayList;
 
 public class ListOfExercises_fragment extends Fragment {
     ExerciseDAO exerciseDAO;
     RecyclerView exerciseList;
-    ArrayList<Exercise> listOfExercises = new ArrayList<>();
+    ArrayList<ExerciseType> listOfExercises = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class ListOfExercises_fragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         exerciseDAO = new ExerciseDAO(this.getContext());
-        listOfExercises = exerciseDAO.getAllExercises();
+        listOfExercises = exerciseDAO.getAllExerciseTypes();
 
         exerciseList = getView().findViewById(R.id.listOfExercises);
         ListOfExercisesAdapter adapter = new ListOfExercisesAdapter(listOfExercises, exerciseDAO);
@@ -46,14 +47,17 @@ public class ListOfExercises_fragment extends Fragment {
         getView().findViewById(R.id.addExercise).setOnClickListener(v -> goToNewExerciseFragment());
 
         // Animation testing
+
         getView().findViewById(R.id.tempTestBtn).setOnClickListener(v -> {
             for (int i = 0; i < 3; i++) {
-                Exercise ex = new Exercise(new String("test "+i));
+                ExerciseType ex = new ExerciseType(new String("test "+i));
                 listOfExercises.add(ex);
-                exerciseDAO.addExercise(ex);
+                exerciseDAO.addExerciseType(ex);
             }
             adapter.notifyDataSetChanged();
         });
+
+
     }
 
     private void goToNewExerciseFragment() {

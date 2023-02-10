@@ -50,6 +50,7 @@ public class CurrentWorkoutFragment extends Fragment {
         });
 
         v.findViewById(R.id.endWorkoutBtn).setOnClickListener(view -> {
+
             workoutManager.saveWorkout(exerciseAdapter.getWorkout());
             workoutManager.cancelWorkout();
             getParentFragmentManager().beginTransaction()

@@ -12,16 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainer.R;
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.schemas.Exercise;
+import com.example.trainer.database.schemas.ExerciseType;
 
 import java.util.ArrayList;
 
 public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercisesAdapter.ViewHolder> {
 
-    private ArrayList<Exercise> exerciseList;
+    private ArrayList<ExerciseType> exerciseTypeList;
     private ExerciseDAO exerciseDAO;
 
-    public ListOfExercisesAdapter(ArrayList<Exercise> exerciseList, ExerciseDAO exerciseDAO) {
-        this.exerciseList = exerciseList;
+    public ListOfExercisesAdapter(ArrayList<ExerciseType> exerciseList, ExerciseDAO exerciseDAO) {
+        this.exerciseTypeList = exerciseList;
         this.exerciseDAO = exerciseDAO;
     }
 
@@ -47,11 +48,11 @@ public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercises
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.nameOfExercise.setText(exerciseList.get(position).getExerciseName());
+        holder.nameOfExercise.setText(exerciseTypeList.get(position).getName());
 
         holder.deleteExerciseBtn.setOnClickListener(view -> {
-            exerciseDAO.deleteExerciseById(exerciseList.get(position).getExerciseId());
-            exerciseList.remove(position);
+            exerciseDAO.deleteExerciseById(exerciseTypeList.get(position).getId());
+            exerciseTypeList.remove(position);
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, getItemCount());
         });
@@ -59,6 +60,6 @@ public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercises
 
     @Override
     public int getItemCount() {
-        return exerciseList.size();
+        return exerciseTypeList.size();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.trainer.database.dao;
 
 import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.TABLE_EXERCISE;
+import static com.example.trainer.database.contracts.ExerciseTypeContract.ExerciseTypeEntry.TABLE_EXERCISETYPE;
 import static com.example.trainer.database.contracts.SetContract.ExerciseSetEntry.TABLE_SET;
 
 import android.content.Context;
@@ -13,6 +14,7 @@ import android.util.Log;
 import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.schemas.Exercise;
 import com.example.trainer.database.schemas.ExerciseSet;
+import com.example.trainer.database.schemas.ExerciseType;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -23,11 +25,18 @@ public class ExerciseDAO {
 
     SetDAO setDAO;
 
+
+
     public ExerciseDAO(Context context) {
 
         dbConnection = DatabaseHelper.getInstance(context);
         setDAO = new SetDAO(context);
+
+
+
     }
+
+
 
 
     //adds an exercise to database and also adds sets to database that the exercise has
@@ -40,12 +49,13 @@ public class ExerciseDAO {
 
 
         try {
-            String query = "INSERT INTO " + TABLE_EXERCISE + " (exerciseName, workoutId) values (?, ?)";
+            String query = "INSERT INTO " + TABLE_EXERCISE + " (exerciseName, workoutId, exerciseTypeId) values (?, ?, ?)";
             SQLiteStatement statement = db.compileStatement(query);
             statement.bindString(1, exercise.getExerciseName());
             if (exercise.getWorkoutId() != -1) {
                 statement.bindLong(2, exercise.getWorkoutId());
             }
+            statement.bindLong(3, exercise.getExerciseType().getId());
             statement.executeInsert();
 
 
@@ -147,7 +157,10 @@ public class ExerciseDAO {
     private Exercise readExerciseRow(Cursor cursor) {
         int id = (int) cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
         String name = cursor.getString(cursor.getColumnIndexOrThrow("exerciseName"));
+        int exerciseTypeId = (int) cursor.getLong(cursor.getColumnIndexOrThrow("exerciseTypeId"));
         Exercise exercise = new Exercise(name, id);
+        ExerciseType type = getExerciseTypeById(exerciseTypeId);
+        exercise.setExerciseType(type);
         return exercise;
     }
 
@@ -219,4 +232,103 @@ public class ExerciseDAO {
 
         return exercises;
     }
+
+
+
+
+    /*  -> exerciseType methods  */
+
+    public int addExerciseType(ExerciseType exerciseType) {
+        long id = -1;
+        SQLiteDatabase db = dbConnection.getWritableDatabase();
+
+
+        try {
+            String query = "INSERT INTO " + TABLE_EXERCISETYPE + " (exerciseTypeName) values (?)";
+            SQLiteStatement statement = db.compileStatement(query);
+            statement.bindString(1, exerciseType.getName());
+            statement.executeInsert();
+
+
+            SQLiteDatabase read = dbConnection.getReadableDatabase();
+            Cursor cursor = read.query(TABLE_EXERCISETYPE, null, null, null, null, null, null);
+
+            if (cursor != null) {
+                cursor.moveToLast();
+                id = (int) cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+            }
+
+            if (id == -1) {
+                Log.d("error", "no id found");
+            }
+
+        } catch (SQLException e) {
+            Log.w("error", e);
+        }
+        return (int) id;
+    }
+
+    public void deleteExerciseTypeById(int id){
+        SQLiteDatabase db = dbConnection.getWritableDatabase();
+
+        db.delete("exerciseType", "_id=?", new String[] {Integer.toString(id)});
+        deleteAllSetsFromExercise(id);
+        db.close();
+    }
+
+    public void deleteAllExerciseTypes(){
+        SQLiteDatabase db = dbConnection.getWritableDatabase();
+
+        db.delete("exerciseType", null, null);
+        db.close();
+    }
+
+    public ArrayList<ExerciseType> getAllExerciseTypes() {
+        ArrayList<ExerciseType> exerciseTypes = new ArrayList<>();
+        try {
+            SQLiteDatabase db = dbConnection.getReadableDatabase();
+            String query = "SELECT * FROM " + TABLE_EXERCISETYPE + " ORDER BY exerciseTypeName;";
+            Cursor cursor = db.rawQuery(query, null);
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
+                    int id = (int) cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+                    String name = cursor.getString(cursor.getColumnIndexOrThrow("exerciseTypeName"));
+                    ExerciseType exerciseType = new ExerciseType(name);
+                    exerciseType.setId(id);
+                    exerciseTypes.add(exerciseType);
+                }
+            }
+        } catch (SQLException e) {
+            Log.w("error", e);
+            return null;
+        }
+        return exerciseTypes;
+    }
+
+    public ExerciseType getExerciseTypeById(int id) {
+        ArrayList<ExerciseType> exerciseTypes = new ArrayList<>();
+        try {
+            SQLiteDatabase db = dbConnection.getReadableDatabase();
+            Cursor cursor = db.query(TABLE_EXERCISETYPE, null, "_id=?", new String[] {Integer.toString(id)}, null, null, null);
+            if(cursor != null) {
+                while (cursor.moveToNext()) {
+                    int exerciseId = (int) cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+                    String name = cursor.getString(cursor.getColumnIndexOrThrow("exerciseTypeName"));
+                    ExerciseType exerciseType = new ExerciseType(name);
+                    exerciseType.setId(exerciseId);
+                    exerciseTypes.add(exerciseType);
+                }
+            }
+        }catch (SQLException e) {
+            Log.w("error", e);
+            return null;
+        }
+
+        return exerciseTypes.get(0);
+    }
+
+
+
+
+
 }
