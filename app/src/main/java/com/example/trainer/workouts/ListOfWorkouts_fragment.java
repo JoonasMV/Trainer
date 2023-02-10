@@ -23,7 +23,6 @@ import com.example.trainer.workouts.currentWorkout.WorkoutViewModel;
 
 public class ListOfWorkouts_fragment extends Fragment {
 
-    private Button newWorkoutBtn;
     private WorkoutManager workoutManager;
 
     public ListOfWorkouts_fragment() {
@@ -42,12 +41,10 @@ public class ListOfWorkouts_fragment extends Fragment {
         super.onCreate(savedInstanceState);
         workoutManager = WorkoutManager.getInstance();
 
-        Fragment fragment = getParentFragmentManager().findFragmentByTag("CurrentWorkout");
-        System.out.println(fragment);
         if (workoutManager.workoutActive()) {
             getParentFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.mainContainer, fragment)
+                    .replace(R.id.mainContainer, new CurrentWorkoutFragment())
                     .addToBackStack(null)
                     .commit();
         }
@@ -71,7 +68,7 @@ public class ListOfWorkouts_fragment extends Fragment {
         workoutManager.initWorkout();
         getParentFragmentManager()
                 .beginTransaction()
-                .replace(R.id.mainContainer, new CurrentWorkoutFragment(), "CurrentWorkout")
+                .replace(R.id.mainContainer, new CurrentWorkoutFragment())
                 .addToBackStack(null)
                 .commit();
     }

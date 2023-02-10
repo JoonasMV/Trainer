@@ -3,8 +3,6 @@ package com.example.trainer.workouts.currentWorkout;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,30 +28,22 @@ public class CurrentWorkoutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        workoutManager = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
         View v = inflater.inflate(R.layout.fragment_current_workout, container, false);
 
-
+        getParentFragmentManager().beginTransaction();
 
         v.findViewById(R.id.cancelWorkoutBtn).setOnClickListener(view -> {
             workoutManager.cancelWorkout();
-            getParentFragmentManager().beginTransaction()
-                    .replace(R.id.mainContainer, ListOfWorkouts_fragment.class, null)
-                    .commit();
+            fragmentHandler(new ListOfWorkouts_fragment());
         });
 
         v.findViewById(R.id.addExerciseBtn).setOnClickListener(view -> {
-            getParentFragmentManager().beginTransaction()
-                    .replace(R.id.mainContainer, new SelectExercise(), null)
-                    .commit();
+            fragmentHandler(new SelectExercise());
         });
 
         v.findViewById(R.id.endWorkoutBtn).setOnClickListener(view -> {
             workoutManager.saveWorkout();
-            workoutManager.cancelWorkout();
-            getParentFragmentManager().beginTransaction()
-                    .replace(R.id.mainContainer, new WelcomeScreen_fragment(), null)
-                    .commit();
+            fragmentHandler(new WelcomeScreen_fragment());
         });
 
         TextView workoutName = v.findViewById(R.id.workoutName);
@@ -70,5 +60,11 @@ public class CurrentWorkoutFragment extends Fragment {
         exerciseAdapter = new ExerciseAdapter(getContext());
         listOfWorkouts.setAdapter(exerciseAdapter);
         listOfWorkouts.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    private void fragmentHandler(Fragment fragment) {
+        getParentFragmentManager().beginTransaction()
+                .replace(R.id.mainContainer, fragment.getClass(), null)
+                .commit();
     }
 }

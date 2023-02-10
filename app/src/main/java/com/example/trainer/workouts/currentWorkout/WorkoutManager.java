@@ -34,6 +34,7 @@ public class WorkoutManager {
 
     public void saveWorkout() {
         workoutDAO.add(workout);
+        this.workout = null;
     }
 
     public boolean workoutActive() {
