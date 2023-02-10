@@ -25,6 +25,7 @@
 
         <Button
             android:id="@+id/deleteExerciseBtn"
+            style="@style/Theme.Trainer.button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

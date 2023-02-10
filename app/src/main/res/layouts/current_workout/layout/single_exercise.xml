@@ -27,6 +27,7 @@
 
         <Button
             android:id="@+id/addSetBtn"
+            style="@style/Theme.Trainer.button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add set" />

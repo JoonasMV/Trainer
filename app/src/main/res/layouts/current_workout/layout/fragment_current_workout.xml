@@ -38,19 +38,21 @@
 
                 <Button
                     android:id="@+id/addExerciseBtn"
+                    style="@style/Theme.Trainer.button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/addExerciseButton" />
 
                 <Button
                     android:id="@+id/cancelWorkoutBtn"
-                    style="@style/Widget.AppCompat.Button.Colored"
+                    style="@style/Theme.Trainer.button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Cancel workout" />
 
                 <Button
                     android:id="@+id/endWorkoutBtn"
+                    style="@style/Theme.Trainer.button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="End workout" />
