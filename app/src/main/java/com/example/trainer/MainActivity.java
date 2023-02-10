@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         WorkoutDAO dao = new WorkoutDAO(getApplicationContext());
     }
 
+
     @Override
     public void onBackPressed() {
         if (fragmentManager.getBackStackEntryCount() > 0) {
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .setReorderingAllowed(true)
-                .add(R.id.mainContainer, WelcomeScreen_fragment.class, null)
+                .replace(R.id.mainContainer, WelcomeScreen_fragment.class, null)
                 .addToBackStack(null)
                 .commit();
     }

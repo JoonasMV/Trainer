@@ -56,6 +56,9 @@ public class ListOfWorkouts_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        if (container != null) {
+            container.removeAllViews();
+        }
         View view = inflater.inflate(R.layout.fragment_list_of_workouts_fragment, container, false);
 
         view.findViewById(R.id.newWorkoutBtn).setOnClickListener(v -> { startNewWorkout(); });
