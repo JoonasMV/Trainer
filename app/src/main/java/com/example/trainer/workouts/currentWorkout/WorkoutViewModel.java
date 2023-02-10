@@ -1,5 +1,8 @@
 package com.example.trainer.workouts.currentWorkout;
 
+import android.content.Context;
+
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 
 import com.example.trainer.database.dao.ExerciseDAO;
@@ -15,18 +18,15 @@ import java.util.List;
 // Se vaan toimii ¯\_(ツ)_/¯
 public class WorkoutViewModel extends ViewModel {
 
+    Context context;
     SelectExercise selectExercise = new SelectExercise();
-    CurrentWorkoutFragment currentWorkoutFragment = new CurrentWorkoutFragment();
+    CurrentWorkoutFragment currentWorkoutFragment;
 
     Workout currentWorkout = null;
-    ExerciseDAO exerciseDAO = new ExerciseDAO(currentWorkoutFragment.getContext());
-    WorkoutDAO workoutDAO = new WorkoutDAO(currentWorkoutFragment.getContext());
+    ExerciseDAO exerciseDAO = new ExerciseDAO(null);
+    WorkoutDAO workoutDAO = new WorkoutDAO(null);
 
     private boolean workoutInProgress = false;
-
-    public void testing() {
-        System.out.println("Internal screaming");
-    }
 
     public void addExerciseToWorkoutById(int id) {
         Exercise newExercise = exerciseDAO.getExerciseById(id);

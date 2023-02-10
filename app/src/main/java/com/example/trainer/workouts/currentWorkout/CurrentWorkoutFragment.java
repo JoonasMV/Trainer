@@ -34,9 +34,6 @@ public class CurrentWorkoutFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         workoutManager = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
-        //System.out.println(workoutManager.getWorkout());
-        //currentWorkout = workoutManager.getWorkout();
-
         View v = inflater.inflate(R.layout.fragment_current_workout, container, false);
 
         v.findViewById(R.id.cancelWorkoutBtn).setOnClickListener(view -> {
@@ -76,11 +73,4 @@ public class CurrentWorkoutFragment extends Fragment {
         listOfWorkouts.setAdapter(exerciseAdapter);
         listOfWorkouts.setLayoutManager(new LinearLayoutManager(getContext()));
     }
-
-    @Override
-    public void onDestroyView() {
-        workoutManager.saveWorkoutState(exerciseAdapter.getWorkout());
-        super.onDestroyView();
-    }
-
 }

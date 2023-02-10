@@ -58,14 +58,21 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.ViewHolder> {
         holder.setCounter.setText(Integer.toString(position+1));
         ExerciseSet currentSet = exercise.getSetList().get(position);
 
-        holder.setRepField.setText(String.valueOf(exercise.getSetList().get(position).getAmount()));
-        holder.setWeightField.setText(String.valueOf(exercise.getSetList().get(position).getWeight()));
-        //        holder.setWeightField.setText(currentSet.getAmount());
+        try {
+            holder.setWeightField.setText(String.valueOf(exercise.getSetList().get(holder.getAdapterPosition()).getWeight()));
+            holder.setRepField.setText(String.valueOf(exercise.getSetList().get(holder.getAdapterPosition()).getAmount()));
+        } catch (Exception e) {
+        }
+
         //TODO: error checking
         holder.setWeightField.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
             @Override public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+               try {
                 exercise.getSetList().get(holder.getAdapterPosition()).setWeight(Double.parseDouble(holder.setWeightField.getText().toString()));
+               } catch (Exception e) {
+
+               }
             }
             @Override
             public void afterTextChanged(Editable editable) {}
@@ -75,20 +82,15 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.ViewHolder> {
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                exercise.getSetList().get(holder.getAdapterPosition()).setAmount(Integer.parseInt(holder.setRepField.getText().toString()));
+                try {
+                    exercise.getSetList().get(holder.getAdapterPosition()).setAmount(Integer.parseInt(holder.setRepField.getText().toString()));
+                } catch (Exception e) {
+
+                }
             }
             @Override
             public void afterTextChanged(Editable editable) {}
         });
-    }
-
-    private boolean isDouble(String s) {
-        try {
-            Double.parseDouble(s);
-            return true;
-        } catch (NullPointerException e) {
-            return false;
-        }
     }
 
     @Override
