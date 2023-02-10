@@ -1,6 +1,9 @@
 package com.example.trainer.workouts.currentWorkout;
 
 import android.content.Context;
+import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
 import com.example.trainer.database.schemas.Exercise;
+import com.example.trainer.database.schemas.ExerciseSet;
 
 import java.text.DecimalFormat;
 
@@ -52,12 +56,46 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull SetAdapter.ViewHolder holder, int position) {
         holder.setCounter.setText(Integer.toString(position+1));
-        holder.setRepField.setHint(df.format(exercise.getSetList().get(position).getAmount()));
-        holder.setWeightField.setHint(df.format(exercise.getSetList().get(position).getWeight()));
+        ExerciseSet currentSet = exercise.getSetList().get(position);
+
+        try {
+            holder.setWeightField.setText(String.valueOf(exercise.getSetList().get(holder.getAdapterPosition()).getWeight()));
+            holder.setRepField.setText(String.valueOf(exercise.getSetList().get(holder.getAdapterPosition()).getAmount()));
+        } catch (Exception e) {
+        }
+
+        //TODO: error checking
+        holder.setWeightField.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+               try {
+                exercise.getSetList().get(holder.getAdapterPosition()).setWeight(Double.parseDouble(holder.setWeightField.getText().toString()));
+               } catch (Exception e) {
+
+               }
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
+        holder.setRepField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                try {
+                    exercise.getSetList().get(holder.getAdapterPosition()).setAmount(Integer.parseInt(holder.setRepField.getText().toString()));
+                } catch (Exception e) {
+
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
     }
 
     @Override
     public int getItemCount() {
         return exercise.getSetList().size();
     }
+
 }

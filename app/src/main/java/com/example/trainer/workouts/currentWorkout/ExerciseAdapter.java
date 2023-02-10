@@ -68,4 +68,6 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
     public int getItemCount() {
         return parentItem.getExList().size();
     }
+
+    public Workout getWorkout() { return parentItem; }
 }

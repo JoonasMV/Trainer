@@ -49,6 +49,12 @@
                     android:layout_height="wrap_content"
                     android:text="Cancel workout" />
 
+                <Button
+                    android:id="@+id/endWorkoutBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="End workout" />
+
             </LinearLayout>
 
         </LinearLayout>

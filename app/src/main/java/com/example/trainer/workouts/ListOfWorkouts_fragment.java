@@ -40,11 +40,14 @@ public class ListOfWorkouts_fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         workoutViewModel = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
+
+        Fragment fragment = getParentFragmentManager().findFragmentByTag("CurrentWorkout");
+//        System.out.println(fragment);
         if (workoutViewModel.getWorkoutState()) {
             getParentFragmentManager()
                     .beginTransaction()
+                    .replace(R.id.mainContainer, fragment)
                     .addToBackStack(null)
-                    .replace(R.id.mainContainer, new CurrentWorkoutFragment())
                     .commit();
         }
     }
@@ -65,7 +68,7 @@ public class ListOfWorkouts_fragment extends Fragment {
         getParentFragmentManager()
                 .beginTransaction()
                 .addToBackStack(null)
-                .replace(R.id.mainContainer, new CurrentWorkoutFragment())
+                .replace(R.id.mainContainer, new CurrentWorkoutFragment(), "CurrentWorkout")
                 .commit();
     }
 
