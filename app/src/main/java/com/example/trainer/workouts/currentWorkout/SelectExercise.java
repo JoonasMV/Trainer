@@ -38,7 +38,7 @@ public class SelectExercise extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_select_exercise, container, false);
 
-        exerciseDAO = new ExerciseDAO(getContext());
+        exerciseDAO = new ExerciseDAO();
 
         lv = v.findViewById(R.id.lista);
         handleExercisesToDisplay();

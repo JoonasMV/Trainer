@@ -6,28 +6,35 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
+import com.example.trainer.database.DatabaseHelper;
+import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.dao.WorkoutDAO;
+import com.example.trainer.database.schemas.ExerciseType;
 import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
 import com.example.trainer.exercises.ListOfExercises_fragment;
 import com.example.trainer.workouts.ListOfWorkouts_fragment;
 import com.example.trainer.workouts.currentWorkout.WorkoutViewModel;
 
 public class MainActivity extends AppCompatActivity {
-    FragmentManager fragmentManager;
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DatabaseHelper.initialize(this);
+
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState == null) createFragmentManager();
+        if(savedInstanceState == null){
+            createFragmentManager();
+        }
 
         findViewById(R.id.exercisesBtn).setOnClickListener(view -> fragmentHandler(new ListOfExercises_fragment()));
         findViewById(R.id.homeBtn).setOnClickListener(view -> fragmentHandler(new WelcomeScreen_fragment()));
         findViewById(R.id.workoutsBtn).setOnClickListener(view -> fragmentHandler(new ListOfWorkouts_fragment()));
         findViewById(R.id.progressBtn).setOnClickListener(view -> fragmentHandler(new CurrentWorkoutFragment()));
 
-        WorkoutDAO dao = new WorkoutDAO(getApplicationContext());
+        WorkoutDAO dao = new WorkoutDAO();
     }
 
 

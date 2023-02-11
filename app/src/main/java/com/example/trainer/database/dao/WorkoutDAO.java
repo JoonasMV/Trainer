@@ -29,10 +29,10 @@ public class WorkoutDAO {
 
     ExerciseDAO exerciseDAO;
 
-    public WorkoutDAO(Context context) {
+    public WorkoutDAO() {
 
-        dbConnection = DatabaseHelper.getInstance(context);
-        exerciseDAO = new ExerciseDAO(context);
+        dbConnection = DatabaseHelper.getInstance();
+        exerciseDAO = new ExerciseDAO();
     }
 
 

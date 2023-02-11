@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,15 +12,15 @@ import android.view.ViewGroup;
 
 import com.example.trainer.R;
 import com.example.trainer.database.dao.ExerciseDAO;
-import com.example.trainer.database.schemas.Exercise;
 import com.example.trainer.database.schemas.ExerciseType;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListOfExercises_fragment extends Fragment {
     ExerciseDAO exerciseDAO;
     RecyclerView exerciseList;
-    ArrayList<ExerciseType> listOfExercises = new ArrayList<>();
+    List<ExerciseType> listOfExercises = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,7 @@ public class ListOfExercises_fragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        exerciseDAO = new ExerciseDAO(this.getContext());
+        exerciseDAO = new ExerciseDAO();
         listOfExercises = exerciseDAO.getAllExerciseTypes();
 
         exerciseList = getView().findViewById(R.id.listOfExercises);
@@ -50,7 +49,7 @@ public class ListOfExercises_fragment extends Fragment {
 
         getView().findViewById(R.id.tempTestBtn).setOnClickListener(v -> {
             for (int i = 0; i < 3; i++) {
-                ExerciseType ex = new ExerciseType(new String("test "+i));
+                ExerciseType ex = new ExerciseType("test " + i);
                 listOfExercises.add(ex);
                 exerciseDAO.addExerciseType(ex);
             }

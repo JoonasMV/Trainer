@@ -44,10 +44,11 @@ public class DatabaseTests {
     @BeforeClass
     public static void setup(){
         ctx = InstrumentationRegistry.getInstrumentation().getContext();
-        exDao = new ExerciseDAO(ctx);
-        workoutDAO = new WorkoutDAO(ctx);
-        setDAO = new SetDAO(ctx);
-        userDAO = new UserDAO(ctx);
+        DatabaseHelper.initialize(ctx);
+        exDao = new ExerciseDAO();
+        workoutDAO = new WorkoutDAO();
+        setDAO = new SetDAO();
+        userDAO = new UserDAO();
 
     }
 

@@ -18,8 +18,8 @@ import com.example.trainer.database.contracts.UserContract.UserEntry;
 public class UserDAO {
     DatabaseHelper dbConnection;
 
-    public UserDAO(Context context) {
-        dbConnection = DatabaseHelper.getInstance(context.getApplicationContext());
+    public UserDAO() {
+        dbConnection = DatabaseHelper.getInstance();
     }
 
     public boolean createUser(User newUser) {

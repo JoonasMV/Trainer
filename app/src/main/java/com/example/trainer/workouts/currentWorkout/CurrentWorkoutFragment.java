@@ -30,7 +30,6 @@ public class CurrentWorkoutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        workoutManager = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
         View v = inflater.inflate(R.layout.fragment_current_workout, container, false);
 
 

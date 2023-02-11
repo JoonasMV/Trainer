@@ -26,22 +26,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static DatabaseHelper dbConnection;
 
     private String[] basicExercises = { "squat", "bench", "deadlift" };
-    private Context context;
 
 
 
-    public static DatabaseHelper getInstance(Context context) {
-        if (dbConnection == null) {
-            dbConnection = new DatabaseHelper(context.getApplicationContext());
-            dbConnection.getReadableDatabase();
-            dbConnection.close();
-        }
+    public static void initialize(Context context){
+        dbConnection = new DatabaseHelper(context.getApplicationContext());
+    }
+    public static DatabaseHelper getInstance() {
         return dbConnection;
     }
 
     private DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        this.context = context;
     }
 
     @Override

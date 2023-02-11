@@ -32,7 +32,7 @@ public class WelcomeScreen_fragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        userDAO = new UserDAO(this.getContext());
+        userDAO = new UserDAO();
         TextView userGreetText = getView().findViewById(R.id.userGreetText);
         handleUserLogin();
 

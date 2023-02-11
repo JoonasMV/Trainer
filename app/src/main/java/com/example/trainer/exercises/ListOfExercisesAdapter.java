@@ -11,17 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
 import com.example.trainer.database.dao.ExerciseDAO;
-import com.example.trainer.database.schemas.Exercise;
 import com.example.trainer.database.schemas.ExerciseType;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercisesAdapter.ViewHolder> {
 
-    private ArrayList<ExerciseType> exerciseTypeList;
+    private List<ExerciseType> exerciseTypeList;
     private ExerciseDAO exerciseDAO;
 
-    public ListOfExercisesAdapter(ArrayList<ExerciseType> exerciseList, ExerciseDAO exerciseDAO) {
+    public ListOfExercisesAdapter(List<ExerciseType> exerciseList, ExerciseDAO exerciseDAO) {
         this.exerciseTypeList = exerciseList;
         this.exerciseDAO = exerciseDAO;
     }
