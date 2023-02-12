@@ -9,11 +9,9 @@ import android.os.Bundle;
 import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.dao.WorkoutDAO;
-import com.example.trainer.database.schemas.ExerciseType;
 import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
 import com.example.trainer.exercises.ListOfExercises_fragment;
 import com.example.trainer.workouts.ListOfWorkouts_fragment;
-import com.example.trainer.workouts.currentWorkout.WorkoutViewModel;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
@@ -22,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DatabaseHelper.initialize(this);
+        ExerciseDAO exerciseDAO = new ExerciseDAO();
+        exerciseDAO.getAllExercises();
 
         setContentView(R.layout.activity_main);
 

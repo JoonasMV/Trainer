@@ -46,10 +46,13 @@ public class SelectExercise extends Fragment {
         lv.setOnItemClickListener((adapterView, view, i, l) -> {
             Log.d("tag", "onclick");
             ArrayList<Exercise> exercises = exerciseDAO.getAllExercises();
-            Exercise newExercise = exercises.get(i);
+            if(!exercises.isEmpty()){
+                Exercise newExercise = exercises.get(i);
 
-            getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, new CurrentWorkoutFragment()).commit();
-            workoutManager.addExercise(new Exercise(newExercise.getExerciseName()));
+                getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, new CurrentWorkoutFragment()).commit();
+                workoutManager.addExercise(new Exercise(newExercise.getExerciseName(), newExercise.getWorkoutId(), newExercise.getTypeId()));
+            }
+
         });
 
         return v;
