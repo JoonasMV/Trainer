@@ -1,4 +1,4 @@
-package com.example.trainer.workouts.currentWorkout;
+package com.example.trainer.workouts.currentWorkout.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
-import com.example.trainer.database.schemas.ExerciseSet;
-import com.example.trainer.database.schemas.Workout;
+import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 
 public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHolder> {
 

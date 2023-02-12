@@ -1,7 +1,6 @@
-package com.example.trainer.workouts.currentWorkout;
+package com.example.trainer.workouts.currentWorkout.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -55,41 +54,61 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull SetAdapter.ViewHolder holder, int position) {
-        holder.setCounter.setText(Integer.toString(position+1));
-        ExerciseSet currentSet = exercise.getSetList().get(position);
+        holder.setCounter.setText(Integer.toString(position + 1));
+
+        ExerciseSet valuePosition = exercise.getSetList().get(holder.getAdapterPosition());
 
         try {
-            holder.setWeightField.setText(String.valueOf(exercise.getSetList().get(holder.getAdapterPosition()).getWeight()));
-            holder.setRepField.setText(String.valueOf(exercise.getSetList().get(holder.getAdapterPosition()).getAmount()));
-        } catch (Exception e) {
+            holder.setRepField.setText(String.valueOf(valuePosition.getAmount()));
+            if (valuePosition.getAmount() <= -1) {
+                holder.setRepField.setText(null);
+                holder.setRepField.setHint("Reps");
+            }
+        } catch (NumberFormatException e) {
+            holder.setRepField.setHint("Reps");
         }
 
-        //TODO: error checking
-        holder.setWeightField.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-            @Override public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-               try {
-                exercise.getSetList().get(holder.getAdapterPosition()).setWeight(Double.parseDouble(holder.setWeightField.getText().toString()));
-               } catch (Exception e) {
-
-               }
+        try {
+            holder.setWeightField.setText(String.valueOf(valuePosition.getWeight()));
+            if (valuePosition.getWeight() <= -1) {
+                holder.setWeightField.setText(null);
+                holder.setWeightField.setHint("Weight");
             }
-            @Override
-            public void afterTextChanged(Editable editable) {}
-        });
+        } catch (NumberFormatException e) {
+            holder.setWeightField.setHint("Weight");
+        }
+
+
         holder.setRepField.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 try {
-                    exercise.getSetList().get(holder.getAdapterPosition()).setAmount(Integer.parseInt(holder.setRepField.getText().toString()));
-                } catch (Exception e) {
-
+                    valuePosition.setAmount(Integer.parseInt(holder.setRepField.getText().toString()));
+                } catch (NumberFormatException e) {
+                    valuePosition.setAmount(-1);
+                    holder.setRepField.setError("Invalid rep amount");
                 }
             }
+
+            @Override public void afterTextChanged(Editable editable) {}
+        });
+
+        holder.setWeightField.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+
             @Override
-            public void afterTextChanged(Editable editable) {}
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                try {
+                    valuePosition.setWeight(Double.parseDouble(holder.setWeightField.getText().toString()));
+                } catch (NumberFormatException e) {
+                    valuePosition.setWeight(-1);
+                    holder.setWeightField.setError("Invalid weight amount");
+                }
+            }
+
+            @Override public void afterTextChanged(Editable editable) { }
         });
     }
 
@@ -97,5 +116,4 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.ViewHolder> {
     public int getItemCount() {
         return exercise.getSetList().size();
     }
-
 }
