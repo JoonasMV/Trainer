@@ -13,11 +13,13 @@ import com.example.trainer.database.schemas.ExerciseType;
 import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
 import com.example.trainer.exercises.ListOfExercises_fragment;
 import com.example.trainer.workouts.ListOfWorkouts_fragment;
+import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 import com.example.trainer.workouts.currentWorkout.WorkoutViewModel;
 import com.example.trainer.workouts.workoutHistory.WorkoutHistory_fragment;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
+    private WorkoutManager workoutManager = WorkoutManager.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

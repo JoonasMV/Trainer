@@ -58,7 +58,6 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.ViewHolder> {
 
         ExerciseSet valuePosition = exercise.getSetList().get(holder.getAdapterPosition());
 
-        System.out.println(valuePosition.getWeight() <= -1);
         try {
             holder.setRepField.setText(String.valueOf(valuePosition.getAmount()));
             if (valuePosition.getAmount() <= -1) {

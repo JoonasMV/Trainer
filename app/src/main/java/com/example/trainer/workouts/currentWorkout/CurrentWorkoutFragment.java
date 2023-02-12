@@ -28,7 +28,6 @@ public class CurrentWorkoutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View v = inflater.inflate(R.layout.fragment_current_workout, container, false);
 
         getParentFragmentManager().beginTransaction();
@@ -66,6 +65,7 @@ public class CurrentWorkoutFragment extends Fragment {
     private void fragmentHandler(Fragment fragment) {
         getParentFragmentManager().beginTransaction()
                 .replace(R.id.mainContainer, fragment.getClass(), null)
+                .addToBackStack(null)
                 .commit();
     }
 }
