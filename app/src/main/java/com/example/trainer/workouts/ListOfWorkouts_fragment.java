@@ -56,7 +56,8 @@ public class ListOfWorkouts_fragment extends Fragment {
     }
 
     private void startNewWorkout() {
-        workoutManager.initWorkout();
+        if (!workoutManager.workoutActive()) workoutManager.initWorkout();
+
         getParentFragmentManager()
                 .beginTransaction()
                 .replace(R.id.mainContainer, new CurrentWorkoutFragment())

@@ -30,7 +30,7 @@ public class CurrentWorkoutFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_current_workout, container, false);
 
-        getParentFragmentManager().beginTransaction();
+        //getParentFragmentManager().beginTransaction();
 
         v.findViewById(R.id.cancelWorkoutBtn).setOnClickListener(view -> {
             workoutManager.cancelWorkout();

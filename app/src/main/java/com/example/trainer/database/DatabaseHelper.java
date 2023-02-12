@@ -33,7 +33,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         dbConnection = new DatabaseHelper(context.getApplicationContext());
     }
     public static DatabaseHelper getInstance() {
-        if(dbConnection == null) throw new RuntimeException("DB CONNECTION NOT INITIALIZED");
         return dbConnection;
     }
 
