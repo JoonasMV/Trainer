@@ -30,7 +30,6 @@ public class WorkoutDAO {
     ExerciseDAO exerciseDAO;
 
     public WorkoutDAO() {
-
         dbConnection = DatabaseHelper.getInstance();
         exerciseDAO = new ExerciseDAO();
     }

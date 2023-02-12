@@ -33,7 +33,8 @@ android {
                     "src/main/res",
                     "src/main/res/layouts",
                     "src/main/res/layouts/current_workout",
-                    "src/main/res/layouts/exerciselist"
+                    "src/main/res/layouts/exerciselist",
+                    "src/main/res/layouts/workout_history"
             ]
         }
     }

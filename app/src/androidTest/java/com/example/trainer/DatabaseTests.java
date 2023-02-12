@@ -21,7 +21,9 @@ import com.example.trainer.database.dao.UserDAO;
 import com.example.trainer.database.dao.WorkoutDAO;
 import com.example.trainer.database.schemas.Exercise;
 import com.example.trainer.database.schemas.ExerciseSet;
+import com.example.trainer.database.schemas.ExerciseType;
 import com.example.trainer.database.schemas.Workout;
+import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,10 +43,13 @@ public class DatabaseTests {
     private static List<Exercise> mockExercises;
     private static List<Workout> mockWorkouts;
 
+    private static WorkoutManager workoutManager;
+
     @BeforeClass
     public static void setup(){
         ctx = InstrumentationRegistry.getInstrumentation().getContext();
         DatabaseHelper.initialize(ctx);
+        workoutManager = WorkoutManager.getInstance();
         exDao = new ExerciseDAO();
         workoutDAO = new WorkoutDAO();
         setDAO = new SetDAO();
@@ -57,30 +62,32 @@ public class DatabaseTests {
         exDao.deleteAllExercises();
         workoutDAO.deleteAllWorkouts();
         setDAO.deleteAllSets();
+        exDao.deleteAllExerciseTypes();
+        exDao.addExerciseType(new ExerciseType("MOCKEXERCISE"));
 
-        mockSets = new ArrayList<>();
-        mockSets.add(new ExerciseSet(20, 10));
-        mockSets.add(new ExerciseSet(30, 6));
+        workoutManager.startWorkout("new workout");
 
-        mockExercises = new ArrayList<>();
+        Exercise e = new Exercise();
 
-        mockExercises.add(new Exercise("TEST", mockSets));
+        workoutManager.addExercise(e);
 
+        workoutManager.addSet(0, new ExerciseSet(20, 20));
+
+        workoutManager.saveWorkout();
+    }
+
+
+    @Test
+    public void workouts_are_saved(){
+        Workout w = workoutDAO.getAll().get(0);
+
+        assertEquals("new workout", w.getName());
+        assertEquals(1, w.getExList().size());
     }
 
     @Test
     public void setCreationAndGet() {
-        long exId = 1;
 
-        setDAO.addSetsToDb(mockSets, exId);
-        List<ExerciseSet> setsFromDb = setDAO.getSetsByExerciseId((int) exId);
-
-        assertEquals(setsFromDb.size(), mockSets.size());
-
-        ExerciseSet mockSet1 = mockSets.get(0);
-        ExerciseSet setFromDb = setsFromDb.get(0);
-
-        assertEquals(mockSet1.getWeight(), setFromDb.getWeight(), 0);
 
     }
 

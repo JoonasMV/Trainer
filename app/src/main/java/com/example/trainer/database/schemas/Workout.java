@@ -28,7 +28,6 @@ public class Workout {
     public Workout (String name, Date workoutStarted) {
         this.name = name;
         this.workoutStarted = workoutStarted;
-        this.workoutEnded = workoutEnded;
         this.isPreset = false;
         this.exList = new ArrayList<>();
     }
