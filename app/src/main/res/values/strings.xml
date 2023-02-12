@@ -10,5 +10,6 @@
     <string name="workouts">WKOUTS</string>
     <string name="add_new_exercise_button">Add new exercise</string>
     <string name="exercises">Exercises</string>
+    <string name="workoutHistory_title">Workout history</string>
 
 </resources>

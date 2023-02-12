@@ -14,6 +14,7 @@ import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
 import com.example.trainer.exercises.ListOfExercises_fragment;
 import com.example.trainer.workouts.ListOfWorkouts_fragment;
 import com.example.trainer.workouts.currentWorkout.WorkoutViewModel;
+import com.example.trainer.workouts.workoutHistory.WorkoutHistory_fragment;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.exercisesBtn).setOnClickListener(view -> fragmentHandler(new ListOfExercises_fragment()));
         findViewById(R.id.homeBtn).setOnClickListener(view -> fragmentHandler(new WelcomeScreen_fragment()));
         findViewById(R.id.workoutsBtn).setOnClickListener(view -> fragmentHandler(new ListOfWorkouts_fragment()));
-        findViewById(R.id.progressBtn).setOnClickListener(view -> fragmentHandler(new CurrentWorkoutFragment()));
+        findViewById(R.id.progressBtn).setOnClickListener(view -> fragmentHandler(new WorkoutHistory_fragment()));
 
         WorkoutDAO dao = new WorkoutDAO();
     }
