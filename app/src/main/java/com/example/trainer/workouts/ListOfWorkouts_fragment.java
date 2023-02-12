@@ -60,7 +60,6 @@ public class ListOfWorkouts_fragment extends Fragment {
         getParentFragmentManager()
                 .beginTransaction()
                 .replace(R.id.mainContainer, new CurrentWorkoutFragment())
-                //.addToBackStack(ListOfWorkouts_fragment.class.getName())
                 .commit();
     }
 

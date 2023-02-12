@@ -44,13 +44,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (fragmentManager.getBackStackEntryCount() > 0) {
-            fragmentManager.popBackStack();
+            fragmentManager.popBackStackImmediate();
         } else {
             super.onBackPressed();
         }
     }
 
     private void fragmentHandler(Fragment fragment) {
+        Fragment currentFragment = fragmentManager.findFragmentById(R.id.mainContainer);
+        if(currentFragment.getClass().equals(fragment.getClass())) return;
+
         fragmentManager.beginTransaction()
                 .replace(R.id.mainContainer, fragment.getClass(), null)
                 .addToBackStack(null)
