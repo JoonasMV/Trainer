@@ -52,7 +52,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(
                 "CREATE TABLE " + ExerciseEntry.TABLE_EXERCISE + " (" +
                         ExerciseEntry.EXERCISE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        ExerciseEntry.EXERCISE_NAME + " TEXT," +
                         ExerciseEntry.WORKOUT_ID + " INTEGER," +
                         ExerciseEntry.EXERCISE_TYPEID + " INTEGER," +
                         "FOREIGN KEY(" + ExerciseEntry.EXERCISE_TYPEID + ") REFERENCES " + ExerciseTypeEntry.TABLE_EXERCISETYPE + "(" + ExerciseTypeEntry.EXERCISETYPE_ID + ")," +
