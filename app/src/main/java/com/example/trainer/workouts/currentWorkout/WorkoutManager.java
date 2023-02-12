@@ -12,7 +12,7 @@ import java.util.List;
 
 public class WorkoutManager {
 
-    private final static WorkoutManager instance = new WorkoutManager();
+    private static WorkoutManager instance;
 
     private Workout workout = null;
     ExerciseDAO exerciseDAO = new ExerciseDAO();
@@ -21,6 +21,10 @@ public class WorkoutManager {
     private WorkoutManager(){}
 
     public static WorkoutManager getInstance() {
+        if(instance == null) {
+            instance = new WorkoutManager();
+        }
+
         return instance;
     }
 
@@ -33,6 +37,7 @@ public class WorkoutManager {
     }
 
     public void saveWorkout() {
+        this.workout.setWorkoutEnded(new Date());
         workoutDAO.add(workout);
         this.workout = null;
     }
@@ -76,8 +81,8 @@ public class WorkoutManager {
         return this.workout;
     }
 
-    public void addSet(int exercisePosition){
-       this.workout.getExList().get(exercisePosition).getSetList().add(new ExerciseSet());
+    public void addSet(int exercisePosition, ExerciseSet set){
+       this.workout.getExList().get(exercisePosition).getSetList().add(set);
     }
 
     public void addExercise(Exercise exercise) {

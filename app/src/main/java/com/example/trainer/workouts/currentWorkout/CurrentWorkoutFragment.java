@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.trainer.R;
 import com.example.trainer.WelcomeScreen_fragment;
 import com.example.trainer.workouts.ListOfWorkouts_fragment;
+import com.example.trainer.workouts.currentWorkout.adapters.ExerciseAdapter;
 
 public class CurrentWorkoutFragment extends Fragment {
     private ExerciseAdapter exerciseAdapter;
@@ -27,7 +28,6 @@ public class CurrentWorkoutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View v = inflater.inflate(R.layout.fragment_current_workout, container, false);
 
         getParentFragmentManager().beginTransaction();
@@ -65,6 +65,7 @@ public class CurrentWorkoutFragment extends Fragment {
     private void fragmentHandler(Fragment fragment) {
         getParentFragmentManager().beginTransaction()
                 .replace(R.id.mainContainer, fragment.getClass(), null)
+                .addToBackStack(null)
                 .commit();
     }
 }

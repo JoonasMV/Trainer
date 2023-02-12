@@ -13,10 +13,13 @@ import com.example.trainer.database.schemas.ExerciseType;
 import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
 import com.example.trainer.exercises.ListOfExercises_fragment;
 import com.example.trainer.workouts.ListOfWorkouts_fragment;
+import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 import com.example.trainer.workouts.currentWorkout.WorkoutViewModel;
+import com.example.trainer.workouts.workoutHistory.WorkoutHistory_fragment;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
+    private WorkoutManager workoutManager = WorkoutManager.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.exercisesBtn).setOnClickListener(view -> fragmentHandler(new ListOfExercises_fragment()));
         findViewById(R.id.homeBtn).setOnClickListener(view -> fragmentHandler(new WelcomeScreen_fragment()));
         findViewById(R.id.workoutsBtn).setOnClickListener(view -> fragmentHandler(new ListOfWorkouts_fragment()));
-        findViewById(R.id.progressBtn).setOnClickListener(view -> fragmentHandler(new CurrentWorkoutFragment()));
+        findViewById(R.id.progressBtn).setOnClickListener(view -> fragmentHandler(new WorkoutHistory_fragment()));
 
         WorkoutDAO dao = new WorkoutDAO();
     }
@@ -41,13 +44,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (fragmentManager.getBackStackEntryCount() > 0) {
-            fragmentManager.popBackStack();
+            fragmentManager.popBackStackImmediate();
         } else {
             super.onBackPressed();
         }
     }
 
     private void fragmentHandler(Fragment fragment) {
+        Fragment currentFragment = fragmentManager.findFragmentById(R.id.mainContainer);
+        if(currentFragment.getClass().equals(fragment.getClass())) return;
+
         fragmentManager.beginTransaction()
                 .replace(R.id.mainContainer, fragment.getClass(), null)
                 .addToBackStack(null)
