@@ -27,13 +27,9 @@ public class ExerciseDAO {
 
 
 
-    public ExerciseDAO(Context context) {
-
-        dbConnection = DatabaseHelper.getInstance(context);
-        setDAO = new SetDAO(context);
-
-
-
+    public ExerciseDAO() {
+        dbConnection = DatabaseHelper.getInstance();
+        setDAO = new SetDAO();
     }
 
 
@@ -283,8 +279,8 @@ public class ExerciseDAO {
         db.close();
     }
 
-    public ArrayList<ExerciseType> getAllExerciseTypes() {
-        ArrayList<ExerciseType> exerciseTypes = new ArrayList<>();
+    public List<ExerciseType> getAllExerciseTypes() {
+        List<ExerciseType> exerciseTypes = new ArrayList<>();
         try {
             SQLiteDatabase db = dbConnection.getReadableDatabase();
             String query = "SELECT * FROM " + TABLE_EXERCISETYPE + " ORDER BY exerciseTypeName;";

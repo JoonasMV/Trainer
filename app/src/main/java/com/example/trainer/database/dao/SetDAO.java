@@ -18,8 +18,8 @@ import java.util.List;
 public class SetDAO {
     DatabaseHelper dbConnection;
 
-    public SetDAO(Context context) {
-        dbConnection = DatabaseHelper.getInstance(context);
+    public SetDAO() {
+        dbConnection = DatabaseHelper.getInstance();
     }
 
     //gets setlist corresponding to the exercsise provided

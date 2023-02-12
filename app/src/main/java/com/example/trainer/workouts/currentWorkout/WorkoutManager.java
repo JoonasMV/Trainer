@@ -15,8 +15,8 @@ public class WorkoutManager {
     private final static WorkoutManager instance = new WorkoutManager();
 
     private Workout workout = null;
-    ExerciseDAO exerciseDAO = new ExerciseDAO(null);
-    WorkoutDAO workoutDAO = new WorkoutDAO(null);
+    ExerciseDAO exerciseDAO = new ExerciseDAO();
+    WorkoutDAO workoutDAO = new WorkoutDAO();
 
     private WorkoutManager(){}
 

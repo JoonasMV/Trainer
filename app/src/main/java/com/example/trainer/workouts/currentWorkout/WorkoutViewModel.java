@@ -18,13 +18,12 @@ import java.util.List;
 // Se vaan toimii ¯\_(ツ)_/¯
 public class WorkoutViewModel extends ViewModel {
 
-    Context context;
     SelectExercise selectExercise = new SelectExercise();
     CurrentWorkoutFragment currentWorkoutFragment;
 
     Workout currentWorkout = null;
-    ExerciseDAO exerciseDAO = new ExerciseDAO(null);
-    WorkoutDAO workoutDAO = new WorkoutDAO(null);
+    ExerciseDAO exerciseDAO = new ExerciseDAO();
+    WorkoutDAO workoutDAO = new WorkoutDAO();
 
     private boolean workoutInProgress = false;
 
