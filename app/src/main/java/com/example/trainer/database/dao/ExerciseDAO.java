@@ -33,8 +33,6 @@ public class ExerciseDAO {
     }
 
 
-
-
     //adds an exercise to database and also adds sets to database that the exercise has
     //returns the id of the exercise added
     public int addExercise(Exercise exercise) {
@@ -45,13 +43,10 @@ public class ExerciseDAO {
 
 
         try {
-            String query = "INSERT INTO " + TABLE_EXERCISE + " (exerciseName, workoutId, exerciseTypeId) values (?, ?, ?)";
+            String query = "INSERT INTO " + TABLE_EXERCISE + " (workoutId, exerciseTypeId) values (?, ?)";
             SQLiteStatement statement = db.compileStatement(query);
-            statement.bindString(1, exercise.getExerciseName());
-            if (exercise.getWorkoutId() != -1) {
-                statement.bindLong(2, exercise.getWorkoutId());
-            }
-            statement.bindLong(3, exercise.getExerciseType().getId());
+            statement.bindLong(1, exercise.getWorkoutId());
+            statement.bindLong(2, exercise.getTypeId());
             statement.executeInsert();
 
 
@@ -154,7 +149,7 @@ public class ExerciseDAO {
         int id = (int) cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
         String name = cursor.getString(cursor.getColumnIndexOrThrow("exerciseName"));
         int exerciseTypeId = (int) cursor.getLong(cursor.getColumnIndexOrThrow("exerciseTypeId"));
-        Exercise exercise = new Exercise(name, id);
+        Exercise exercise = new Exercise(name, id, );
         ExerciseType type = getExerciseTypeById(exerciseTypeId);
         exercise.setExerciseType(type);
         return exercise;
