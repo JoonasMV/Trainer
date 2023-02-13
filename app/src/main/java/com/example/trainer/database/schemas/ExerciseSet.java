@@ -15,7 +15,10 @@ public class ExerciseSet {
         this.reps = reps;
     }
 
-    public ExerciseSet() {}
+    public ExerciseSet() {
+        this.weight = -1;
+        this.reps = -1;
+    }
 
     public double getWeight() {
         return weight;

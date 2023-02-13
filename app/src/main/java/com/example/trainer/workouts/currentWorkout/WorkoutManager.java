@@ -15,12 +15,12 @@ public class WorkoutManager {
     private static WorkoutManager instance;
 
     private Workout workout;
-    ExerciseDAO exerciseDAO = new ExerciseDAO();
-    WorkoutDAO workoutDAO = new WorkoutDAO();
+    ExerciseDAO exerciseDAO;
+    WorkoutDAO workoutDAO;
 
     private WorkoutManager(){
-//        this.exerciseDAO = new ExerciseDAO();
-//        this.workoutDAO = new WorkoutDAO();
+        this.exerciseDAO = new ExerciseDAO();
+        this.workoutDAO = new WorkoutDAO();
     }
 
     public static WorkoutManager getInstance() {
@@ -40,7 +40,6 @@ public class WorkoutManager {
     }
 
     public void saveWorkout() {
-        this.workoutDAO = new WorkoutDAO();
         this.workout.setWorkoutEnded(new Date());
         workoutDAO.add(workout);
         this.workout = null;
@@ -64,9 +63,9 @@ public class WorkoutManager {
 
     public void addExercise(Exercise exercise) {
         if (workout == null) {
-            this.workout = new Workout("string", new Date());
+            this.workout = new Workout("WorkoutManager line: 67", new Date());
         }
-        exercise.getSetList().add(new ExerciseSet(-1, -1));
+        exercise.addSet(new ExerciseSet());
         workout.addExerciseToList(exercise);
     }
 

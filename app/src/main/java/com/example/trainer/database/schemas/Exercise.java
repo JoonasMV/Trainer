@@ -38,6 +38,10 @@ public class Exercise {
         this.setList = setList;
     }
 
+    public void addSet(ExerciseSet set) {
+        setList.add(set);
+    }
+
     public String getExerciseName() {
         return exerciseName;
     }
