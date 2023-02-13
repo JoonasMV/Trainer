@@ -7,14 +7,9 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.dao.WorkoutDAO;
-import com.example.trainer.database.schemas.ExerciseType;
-import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
 import com.example.trainer.exercises.ListOfExercises_fragment;
 import com.example.trainer.workouts.ListOfWorkouts_fragment;
-import com.example.trainer.workouts.currentWorkout.WorkoutManager;
-import com.example.trainer.workouts.currentWorkout.WorkoutViewModel;
 import com.example.trainer.workouts.workoutHistory.WorkoutHistory_fragment;
 
 public class MainActivity extends AppCompatActivity {

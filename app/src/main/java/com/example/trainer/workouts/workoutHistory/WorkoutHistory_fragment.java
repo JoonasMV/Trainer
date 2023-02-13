@@ -14,6 +14,9 @@ import com.example.trainer.R;
 import com.example.trainer.database.dao.WorkoutDAO;
 import com.example.trainer.database.schemas.Workout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WorkoutHistory_fragment extends Fragment {
 
     WorkoutDAO workoutDAO;
@@ -40,7 +43,8 @@ public class WorkoutHistory_fragment extends Fragment {
                                Bundle savedInstanceState) {
 
         RecyclerView workoutHistory = view.findViewById(R.id.workoutHistoryRV);
-        WorkoutHistoryAdapter adapter = new WorkoutHistoryAdapter(workoutDAO.getAll());
+        ArrayList<Workout> listOfWorkouts = new ArrayList<>(workoutDAO.getAll());
+        WorkoutHistoryAdapter adapter = new WorkoutHistoryAdapter(listOfWorkouts);
         workoutHistory.setLayoutManager(new LinearLayoutManager(getContext()));
         workoutHistory.setAdapter(adapter);
     }
