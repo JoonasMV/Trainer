@@ -214,7 +214,6 @@ public class ExerciseDAO {
         int typeId = (int) cursor.getLong(cursor.getColumnIndexOrThrow("typeId"));
         String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
         int workoutId = (int) cursor.getLong(cursor.getColumnIndexOrThrow("workoutId"));
-        ExerciseType type = getExerciseTypeById(typeId);
         List<ExerciseSet> sets = setDAO.getSetsByExerciseId(id);
 
         if(sets == null){
@@ -222,7 +221,7 @@ public class ExerciseDAO {
         }
 
 
-        return new Exercise(type.getName(), id, workoutId, typeId, sets);
+        return new Exercise(name, id, workoutId, typeId, sets);
     }
 
 
