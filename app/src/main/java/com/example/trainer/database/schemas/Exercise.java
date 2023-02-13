@@ -1,5 +1,7 @@
 package com.example.trainer.database.schemas;
 
+import com.example.trainer.database.dao.ExerciseDAO;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,24 @@ public class Exercise {
 
     private List<ExerciseSet> setList;
 
+    public Exercise(String name, int exerciseId, int workoutId, int typeId, List<ExerciseSet> sets) {
+        this.exerciseId = exerciseId;
+        this.workoutId = workoutId;
+        this.exerciseName = name;
+        this.typeId = typeId;
+        if(sets == null) {
+            this.setList = new ArrayList<>();
+        } else {
+            this.setList = sets;
+        }
+    }
+
+    public Exercise(int exerciseTypeId){
+        ExerciseDAO dao = new ExerciseDAO();
+        ExerciseType type = dao.getExerciseTypeById(exerciseTypeId);
+        this.setList = new ArrayList<>();
+        this.exerciseName = type.getName();
+    }
 
     public Exercise(String name, int workoutId, int typeId) {
         this.exerciseName = name;
@@ -27,21 +47,6 @@ public class Exercise {
         this.exerciseName = name;
         this.exerciseId = exerciseId;
         this.setList = new ArrayList<>();
-        this.workoutId = workoutId;
-        this.typeId = typeId;
-    }
-
-    public Exercise(String name, List<ExerciseSet> setList, int workoutId, int typeId) {
-        this.exerciseName = name;
-        this.setList = setList;
-        this.workoutId = workoutId;
-        this.typeId = typeId;
-    }
-
-    public Exercise(String name,int exerciseId, List<ExerciseSet> setList, int workoutId, int typeId) {
-        this.exerciseName = name;
-        this.exerciseId = exerciseId;
-        this.setList = setList;
         this.workoutId = workoutId;
         this.typeId = typeId;
     }
