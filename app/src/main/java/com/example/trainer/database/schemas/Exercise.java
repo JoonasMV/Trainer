@@ -11,31 +11,39 @@ public class Exercise {
     private String exerciseName;
     private int workoutId = -1;
 
-    private ExerciseType exerciseType;
+    private int typeId;
 
     private List<ExerciseSet> setList;
 
 
-    public Exercise(String name) {
+    public Exercise(String name, int workoutId, int typeId) {
         this.exerciseName = name;
         this.setList = new ArrayList<>();
+        this.workoutId = workoutId;
+        this.typeId = typeId;
     }
 
-    public Exercise(String name, int exerciseId) {
+    public Exercise(String name, int exerciseId, int workoutId, int typeId) {
         this.exerciseName = name;
         this.exerciseId = exerciseId;
         this.setList = new ArrayList<>();
+        this.workoutId = workoutId;
+        this.typeId = typeId;
     }
 
-    public Exercise(String name, List<ExerciseSet> setList) {
+    public Exercise(String name, List<ExerciseSet> setList, int workoutId, int typeId) {
         this.exerciseName = name;
         this.setList = setList;
+        this.workoutId = workoutId;
+        this.typeId = typeId;
     }
 
-    public Exercise(String name,int exerciseId, List<ExerciseSet> setList) {
+    public Exercise(String name,int exerciseId, List<ExerciseSet> setList, int workoutId, int typeId) {
         this.exerciseName = name;
         this.exerciseId = exerciseId;
         this.setList = setList;
+        this.workoutId = workoutId;
+        this.typeId = typeId;
     }
 
     public void addSet(ExerciseSet set) {
@@ -74,11 +82,11 @@ public class Exercise {
         this.setList = setList;
     }
 
-    public ExerciseType getExerciseType() {
-        return exerciseType;
+    public int getTypeId() {
+        return typeId;
     }
 
-    public void setExerciseType(ExerciseType exerciseType) {
-        this.exerciseType = exerciseType;
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
     }
 }

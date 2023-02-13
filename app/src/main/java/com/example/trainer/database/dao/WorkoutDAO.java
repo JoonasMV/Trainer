@@ -35,24 +35,20 @@ public class WorkoutDAO {
     }
 
 
-    public ArrayList<Workout> getAll() {
-        ArrayList<Workout> workouts = new ArrayList<>();
-        try {
-            SQLiteDatabase db = dbConnection.getReadableDatabase();
-            String query = "SELECT * FROM " + TABLE_WORKOUT + ";";
-            Cursor cursor = db.rawQuery(query, null);
-            if (cursor != null) {
-                while (cursor.moveToNext()) {
-                    Workout workout = readWorkoutRow(cursor);
-                    List<Exercise> exercises = exerciseDAO.getExerciseByWorkoutId(workout.getId());
-                    workout.setExList(exercises);
-                    workouts.add(workout);
-                }
-            }
-        } catch (SQLException | ParseException e) {
-            Log.w("error", e);
-        }
-        return workouts;
+    public List<Workout> getPresets() {
+        List<Workout> results = selectFromDb(null, "isPreset=?", new String[] {Integer.toString(1)}, null, null, null);
+        return results;
+    }
+
+
+    public List<Workout> getAll() {
+        List<Workout> results = selectFromDb(null, null, null, null, null, null);
+        return results;
+    }
+
+    public List<Workout> getAllByUserId(int userId) {
+        List<Workout> results = selectFromDb(null, "userId=?", new String[] {Integer.toString(userId)}, null, null, null);
+        return results;
     }
 
     private Workout readWorkoutRow(Cursor cursor) throws ParseException {
@@ -163,6 +159,7 @@ public class WorkoutDAO {
                     Workout workout = readWorkoutRow(cursor);
                     List<Exercise> exercises = exerciseDAO.getExerciseByWorkoutId(workout.getId());
                     workout.setExList(exercises);
+                    workouts.add(workout);
                 }
             }
         }catch (SQLException | ParseException e) {
