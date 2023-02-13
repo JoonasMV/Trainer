@@ -26,6 +26,7 @@ import com.example.trainer.database.schemas.Workout;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RunWith(AndroidJUnit4.class)
@@ -87,38 +88,31 @@ public class DatabaseTests {
         assertEquals(1, w.getExList().size());
     }
 
-    @Test
-    public void setCreationAndGet() {
 
-
-    }
-
-    @Test public void exerciseCreationAndGetById() {
-        Exercise exercise = new Exercise(exTypeId);
-
-        int id = exDao.addExercise(exercise);
-
-        Exercise ex = exDao.getExerciseById(id);
-
-        assertEquals("MOCKEXERCISE", ex.getExerciseName());
-    }
 
     @Test
-    public void exerciseGetByWorkoutId() {
-        Exercise exercise = mockExercises.get(0);
-        exercise.setWorkoutId(1);
+    public void can_create_and_save_workout(){
+        workoutManager.startWorkout("mockWorkout");
 
-        int id = exDao.addExercise(exercise);
-        List<Exercise> listFromDb = exDao.getExerciseByWorkoutId(1);
+        workoutManager.addExercise(new Exercise(exTypeId));
 
-        Exercise exFromDb = listFromDb.get(0);
+        workoutManager.addSet(0);
 
-        assertEquals(exercise.getExerciseName(), exFromDb.getExerciseName());
-    }
+        Workout w = workoutManager.getWorkout();
 
-    @Test
-    public void workoutCreationAndSet() {
-        fail();
+        w.setWorkoutEnded(new Date());
+        w.getExList().get(0).getSetList().get(0).setWeight(10);
+
+        int id = workoutDAO.add(w);
+
+        Workout workoutFromDb = workoutDAO.getById(id);
+
+
+        assertEquals("mockWorkout", workoutFromDb.getName());
+
+        ExerciseSet set = workoutFromDb.getExList().get(0).getSetList().get(0);
+
+        assertEquals(10, set.getWeight(), 0);
     }
 
 

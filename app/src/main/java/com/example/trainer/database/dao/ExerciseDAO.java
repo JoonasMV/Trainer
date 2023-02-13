@@ -144,7 +144,6 @@ public class ExerciseDAO {
         SQLiteDatabase db = dbConnection.getWritableDatabase();
 
         db.delete("exercise", null, null);
-        db.close();
     }
 
 
@@ -224,11 +223,10 @@ public class ExerciseDAO {
     }
 
     public void deleteAllExerciseTypes(){
-        throw new RuntimeException("NOT IMPLEMENTED YET");
-//        SQLiteDatabase db = dbConnection.getWritableDatabase();
-//
-//        db.delete("exerciseType", null, null);
-//        db.close();
+        SQLiteDatabase db = dbConnection.getWritableDatabase();
+        deleteAllExercises();
+
+        db.delete("exerciseType", null, null);
     }
 
     public List<ExerciseType> getAllExerciseTypes() {

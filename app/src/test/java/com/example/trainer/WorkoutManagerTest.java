@@ -51,18 +51,18 @@ public class WorkoutManagerTest {
 
     @Test
     public void workoutManager_addExercise(){
-        manager.addExercise(new Exercise("TEST"));
+        manager.addExercise(new Exercise(123));
 
         assertEquals("TEST", manager.getWorkout().getExList().get(0).getExerciseName());
     }
 
     @Test
     public void workoutManager_addSet() {
-        manager.addExercise(new Exercise("TEST"));
+        manager.addExercise(new Exercise(123));
 
-        manager.addSet(0, new ExerciseSet(20, 20));
+        manager.addSet(0);
 
-        assertEquals(20, manager.getWorkout().getExList().get(0).getSetList().get(0).getWeight(), 0);
+        assertEquals(0, manager.getWorkout().getExList().get(0).getSetList().get(0).getWeight(), 0);
     }
 
 }
