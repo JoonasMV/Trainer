@@ -117,21 +117,6 @@ public class DatabaseTests {
     }
 
     @Test
-    public void excerciseByName() {
-        Exercise exercise = mockExercises.get(0);
-        mockExercises.add(exercise);
-        exDao.addManyExercises(mockExercises);
-
-        List<Exercise> listFromDb = exDao.getExercisesByName(exercise.getExerciseName());
-
-        assertEquals(mockExercises.size(), listFromDb.size());
-
-        Exercise exFromDb = listFromDb.get(0);
-
-        assertEquals(exercise.getExerciseName(), exFromDb.getExerciseName());
-    }
-
-    @Test
     public void workoutCreationAndSet() {
         fail();
     }

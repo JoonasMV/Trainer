@@ -70,4 +70,11 @@ public class SetDAO {
         db.delete("exerciseSet", null, null);
         db.close();
     }
+    public void deleteAllSetsFromExercise(int exerciseId){
+        SQLiteDatabase db = dbConnection.getWritableDatabase();
+
+        db.delete("exerciseSet", "exerciseId=?", new String[] {Integer.toString(exerciseId)});
+
+        db.close();
+    }
 }

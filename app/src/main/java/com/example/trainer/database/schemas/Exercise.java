@@ -30,6 +30,7 @@ public class Exercise {
     }
 
     public Exercise(int exerciseTypeId){
+        this.typeId = exerciseTypeId;
         ExerciseDAO dao = new ExerciseDAO();
         ExerciseType type = dao.getExerciseTypeById(exerciseTypeId);
         this.setList = new ArrayList<>();

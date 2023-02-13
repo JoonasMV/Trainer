@@ -121,7 +121,11 @@ public class WorkoutDAO {
                 Log.d("error", "no id found");
             }
 
+
             if(!exercises.isEmpty()){
+                for(Exercise e : exercises){
+                    e.setWorkoutId((int) id);
+                }
                 exerciseDAO.addManyExercises(exercises);
 
             }
