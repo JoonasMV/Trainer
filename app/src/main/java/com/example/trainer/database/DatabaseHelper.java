@@ -26,7 +26,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static String DATABASE_NAME = "trainer.db";
     private static int DATABASE_VERSION = 1;
     private static DatabaseHelper dbConnection;
-    private static Context context;
 
     private String[] basicExercises = { "squat", "bench", "deadlift" };
 
@@ -35,9 +34,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public static DatabaseHelper getInstance() {
-        if (dbConnection == null) {
-            dbConnection = new DatabaseHelper(null);
-        }
         return dbConnection;
     }
 
