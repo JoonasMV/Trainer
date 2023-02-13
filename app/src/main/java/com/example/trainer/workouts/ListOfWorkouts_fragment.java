@@ -17,6 +17,7 @@ import android.widget.Button;
 import com.example.trainer.MainActivity;
 import com.example.trainer.R;
 import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
+import com.example.trainer.workouts.currentWorkout.SelectExercise;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 import com.example.trainer.workouts.currentWorkout.WorkoutViewModel;
 
@@ -41,7 +42,12 @@ public class ListOfWorkouts_fragment extends Fragment {
         super.onCreate(savedInstanceState);
         workoutManager = WorkoutManager.getInstance();
 
-        if (workoutManager.workoutActive()) startNewWorkout();
+        if (workoutManager.workoutActive()) {
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.mainContainer, new CurrentWorkoutFragment())
+                    .commit();
+        };
     }
 
     @Override
@@ -56,12 +62,17 @@ public class ListOfWorkouts_fragment extends Fragment {
     }
 
     private void startNewWorkout() {
-        if (!workoutManager.workoutActive()) workoutManager.initWorkout();
-
-        getParentFragmentManager()
-                .beginTransaction()
-                .replace(R.id.mainContainer, new CurrentWorkoutFragment())
-                .commit();
+        if (!workoutManager.workoutActive()) {
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.mainContainer, new SelectExercise())
+                    .commit();
+        } else {
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.mainContainer, new CurrentWorkoutFragment())
+                    .commit();
+        }
     }
 
     @Override

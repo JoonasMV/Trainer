@@ -12,12 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.trainer.R;
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.schemas.Exercise;
+import com.example.trainer.database.schemas.ExerciseType;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class SelectExercise extends Fragment {
@@ -44,12 +47,11 @@ public class SelectExercise extends Fragment {
         handleExercisesToDisplay();
 
         lv.setOnItemClickListener((adapterView, view, i, l) -> {
-            Log.d("tag", "onclick");
-            ArrayList<Exercise> exercises = exerciseDAO.getAllExercises();
-            Exercise newExercise = exercises.get(i);
+            List<ExerciseType> exercises = exerciseDAO.getAllExerciseTypes();
+            ExerciseType newExercise = exercises.get(i);
 
             getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, new CurrentWorkoutFragment()).commit();
-            workoutManager.addExercise(new Exercise(newExercise.getExerciseName()));
+            workoutManager.addExercise(new Exercise(newExercise.getName()));
         });
 
         return v;
@@ -61,12 +63,12 @@ public class SelectExercise extends Fragment {
     }
 
     private void handleExercisesToDisplay() {
-        ArrayList<Exercise> listOfExercises = exerciseDAO.getAllExercises();
+        List<ExerciseType> listOfExercises = exerciseDAO.getAllExerciseTypes();
         if (listOfExercises.size() <= 0) return;
 
         ArrayList<String> exercisesToDisplay = new ArrayList<>();
-        for (Exercise exercise: listOfExercises) {
-            exercisesToDisplay.add(exercise.getExerciseName());
+        for (ExerciseType exercise: listOfExercises) {
+            exercisesToDisplay.add(exercise.getName());
         }
 
 //        ListView lv = getView().findViewById(R.id.lista);

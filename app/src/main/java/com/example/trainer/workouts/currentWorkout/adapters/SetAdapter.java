@@ -88,7 +88,7 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.ViewHolder> {
                     valuePosition.setAmount(Integer.parseInt(holder.setRepField.getText().toString()));
                 } catch (NumberFormatException e) {
                     valuePosition.setAmount(-1);
-                    holder.setRepField.setError("Invalid rep amount");
+//                    holder.setRepField.setError("Invalid rep amount");
                 }
             }
 
@@ -104,7 +104,7 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.ViewHolder> {
                     valuePosition.setWeight(Double.parseDouble(holder.setWeightField.getText().toString()));
                 } catch (NumberFormatException e) {
                     valuePosition.setWeight(-1);
-                    holder.setWeightField.setError("Invalid weight amount");
+//                    holder.setWeightField.setError("Invalid weight amount");
                 }
             }
 

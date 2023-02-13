@@ -14,7 +14,7 @@ public class WorkoutManager {
 
     private static WorkoutManager instance;
 
-    private Workout workout = null;
+    private Workout workout;
     ExerciseDAO exerciseDAO = new ExerciseDAO();
     WorkoutDAO workoutDAO = new WorkoutDAO();
 
@@ -50,43 +50,20 @@ public class WorkoutManager {
         this.workout = workout;
     }
 
-    public void initWorkout(){
-        ArrayList<Exercise> exerciseList = new ArrayList<Exercise>();
-        List setlist = new ArrayList<>();
-        List setlist2 = new ArrayList<>();
-        setlist.add(new ExerciseSet(100, 3));
-        setlist.add(new ExerciseSet(105, 2));
-        setlist2.add(new ExerciseSet(50, 10));
-        setlist2.add(new ExerciseSet(25, 20));
-        Exercise testEx1 = new Exercise("squat");
-        Exercise testEx2 = new Exercise("bench");
-        testEx1.setSetList(setlist);
-        testEx2.setSetList(setlist2);
-        exerciseList.add(testEx1);
-        exerciseList.add(testEx2);
-
-        Workout currentWorkout = new Workout(
-                "test workout",
-                new Date(),
-                new Date()
-        );
-        currentWorkout.setExList(exerciseList);
-
-        setWorkout(currentWorkout);
-        System.out.println("WORKOUT INIT");
-        System.out.println(this.workout.getName());
-    }
-
     public Workout getWorkout()  {
         return this.workout;
     }
 
-    public void addSet(int exercisePosition, ExerciseSet set){
-       this.workout.getExList().get(exercisePosition).getSetList().add(set);
+    public void addSet(int exercisePosition){
+       this.workout.getExList().get(exercisePosition).getSetList().add(new ExerciseSet(-1, -1));
     }
 
     public void addExercise(Exercise exercise) {
-        this.workout.addExerciseToList(exercise);
+        if (workout == null) {
+            this.workout = new Workout("string", new Date());
+        }
+        exercise.getSetList().add(new ExerciseSet(-1, -1));
+        workout.addExerciseToList(exercise);
     }
 
 
