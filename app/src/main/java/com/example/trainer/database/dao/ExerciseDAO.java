@@ -181,8 +181,6 @@ public class ExerciseDAO {
     }
 
 
-
-
     /*  -> exerciseType methods  */
 
     public int addExerciseType(ExerciseType exerciseType) {
@@ -191,6 +189,10 @@ public class ExerciseDAO {
 
 
         try {
+
+
+
+
             String query = "INSERT INTO " + TABLE_EXERCISETYPE + " (exerciseTypeName) values (?)";
             SQLiteStatement statement = db.compileStatement(query);
             statement.bindString(1, exerciseType.getName());
@@ -217,15 +219,15 @@ public class ExerciseDAO {
 
     public void deleteExerciseTypeById(int id){
         SQLiteDatabase db = dbConnection.getWritableDatabase();
-
         db.delete("exerciseType", "_id=?", new String[] {Integer.toString(id)});
+        db.delete("exercise", "exerciseTypeId=?", new String[] {Integer.toString(id)});
+
         db.close();
     }
 
     public void deleteAllExerciseTypes(){
         SQLiteDatabase db = dbConnection.getWritableDatabase();
         deleteAllExercises();
-
         db.delete("exerciseType", null, null);
     }
 

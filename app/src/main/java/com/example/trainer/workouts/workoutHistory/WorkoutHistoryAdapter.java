@@ -13,12 +13,13 @@ import com.example.trainer.R;
 import com.example.trainer.database.schemas.Workout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAdapter.ViewHolder> {
 
-    ArrayList<Workout> workoutHistory;
-    public WorkoutHistoryAdapter(ArrayList<Workout> workoutHistory) {
+    List<Workout> workoutHistory;
+    public WorkoutHistoryAdapter(List<Workout> workoutHistory) {
         this.workoutHistory = workoutHistory;
     }
 

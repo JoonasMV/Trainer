@@ -32,6 +32,12 @@ public class Workout {
         this.exList = new ArrayList<>();
     }
 
+    public Workout (String name) {
+        this.name = name;
+        this.isPreset = false;
+        this.exList = new ArrayList<>();
+    }
+
     public String getName() {
         return name;
     }
