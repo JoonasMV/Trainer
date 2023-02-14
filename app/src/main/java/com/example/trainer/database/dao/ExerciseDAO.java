@@ -142,7 +142,6 @@ public class ExerciseDAO {
     //self explanatory
     public void deleteAllExercises(){
         SQLiteDatabase db = dbConnection.getWritableDatabase();
-
         db.delete("exercise", null, null);
     }
 
