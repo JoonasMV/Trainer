@@ -15,7 +15,6 @@ import com.example.trainer.workouts.workoutHistory.WorkoutHistory_fragment;
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
 //    private WorkoutManager workoutManager = WorkoutManager.getInstance();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
