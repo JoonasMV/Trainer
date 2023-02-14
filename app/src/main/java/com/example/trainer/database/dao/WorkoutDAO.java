@@ -42,6 +42,11 @@ public class WorkoutDAO {
         return results;
     }
 
+    public List<Workout> getUserPresets(int userId) {
+        List<Workout> results = selectFromDb(null, "isPreset=? AND userId=?", new String[] {Integer.toString(1), Integer.toString(userId)}, null, null, null);
+        return results;
+    }
+
 
     public List<Workout> getAll() {
         List<Workout> results = selectFromDb(null, null, null, null, null, null);
@@ -87,17 +92,16 @@ public class WorkoutDAO {
         return results.get(0);
     }
 
-
-
+    public void addAsPreset(Workout workout){
+        workout.setPreset(true);
+        add(workout);
+    }
 
     public int add(Workout workout) {
 
         long id = -1;
         SQLiteDatabase db = dbConnection.getWritableDatabase();
-
-
         List<Exercise> exercises = workout.getExList();
-
 
         try {
 
@@ -118,7 +122,6 @@ public class WorkoutDAO {
             }
 
             statement.executeInsert();
-
 
             SQLiteDatabase read = dbConnection.getReadableDatabase();
             Cursor cursor = read.query(TABLE_WORKOUT, null, null, null, null, null, null);
@@ -163,6 +166,7 @@ public class WorkoutDAO {
         return selectFromDb(null, "workoutName LIKE ?", args, null, null, null);
     }
 
+
     private List<Workout> selectFromDb(String[] columns, String clause, String[] args, String groupBy, String having, String orderBy) {
         ArrayList<Workout> workouts = new ArrayList<>();
         try {
@@ -187,8 +191,9 @@ public class WorkoutDAO {
 
     public void deleteAllWorkouts(){
         SQLiteDatabase db = dbConnection.getWritableDatabase();
-
         db.delete("workout", null, null);
+        db.delete("exercise", null, null);
+        db.delete("exerciseSet", null, null);
         db.close();
     }
 }
