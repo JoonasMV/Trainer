@@ -121,7 +121,11 @@ public class WorkoutDAO {
                 Log.d("error", "no id found");
             }
 
+
             if(!exercises.isEmpty()){
+                for(Exercise e : exercises){
+                    e.setWorkoutId((int) id);
+                }
                 exerciseDAO.addManyExercises(exercises);
 
             }
@@ -153,7 +157,7 @@ public class WorkoutDAO {
         ArrayList<Workout> workouts = new ArrayList<>();
         try {
             SQLiteDatabase db = dbConnection.getReadableDatabase();
-            Cursor cursor = db.query(TABLE_EXERCISE, columns, clause, args, groupBy, having, orderBy);
+            Cursor cursor = db.query(TABLE_WORKOUT, columns, clause, args, groupBy, having, orderBy);
             if(cursor != null) {
                 while (cursor.moveToNext()) {
                     Workout workout = readWorkoutRow(cursor);
