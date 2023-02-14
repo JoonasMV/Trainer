@@ -191,6 +191,10 @@ public class ExerciseDAO {
 
 
         try {
+
+
+
+
             String query = "INSERT INTO " + TABLE_EXERCISETYPE + " (exerciseTypeName) values (?)";
             SQLiteStatement statement = db.compileStatement(query);
             statement.bindString(1, exerciseType.getName());

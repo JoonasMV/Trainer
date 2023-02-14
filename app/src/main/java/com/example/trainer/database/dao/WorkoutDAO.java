@@ -1,6 +1,7 @@
 package com.example.trainer.database.dao;
 
 import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.TABLE_EXERCISE;
+import static com.example.trainer.database.contracts.ExerciseTypeContract.ExerciseTypeEntry.TABLE_EXERCISETYPE;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.TABLE_WORKOUT;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.WORKOUT_ID;
 
@@ -29,6 +30,7 @@ public class WorkoutDAO {
 
     ExerciseDAO exerciseDAO;
 
+
     public WorkoutDAO() {
         dbConnection = DatabaseHelper.getInstance();
         exerciseDAO = new ExerciseDAO();
@@ -52,24 +54,28 @@ public class WorkoutDAO {
     }
 
     private Workout readWorkoutRow(Cursor cursor) throws ParseException {
-        int id = (int) cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+        Workout workout;
         String name = cursor.getString(cursor.getColumnIndexOrThrow("workoutName"));
-        String started = cursor.getString(cursor.getColumnIndexOrThrow("workoutStarted"));
-        String ended = cursor.getString(cursor.getColumnIndexOrThrow("workoutEnded"));
         int user = (int) cursor.getLong(cursor.getColumnIndexOrThrow("userId"));
         int preset = (int)cursor.getLong(cursor.getColumnIndexOrThrow("isPreset"));
-
-        Date start = parseDate(started);
-        Date end = parseDate(ended);
-        Workout workout = new Workout(name, start, end);
         if(preset == 1){
+            workout = new Workout(name);
             workout.setPreset(true);
+        }else {
+            String started = cursor.getString(cursor.getColumnIndexOrThrow("workoutStarted"));
+            String ended = cursor.getString(cursor.getColumnIndexOrThrow("workoutEnded"));
+            Date start = parseDate(started);
+            Date end = parseDate(ended);
+            workout = new Workout(name, start, end);
+
         }
+        int id = (int) cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
         workout.setUserId(user);
         workout.setId(id);
-
         return workout;
     }
+
+
 
     public Workout getById(int id) {
         String[] args = new String[] {Integer.toString(id)};
@@ -94,15 +100,20 @@ public class WorkoutDAO {
 
 
         try {
+
             String query = "INSERT INTO " + TABLE_WORKOUT + " (workoutName, workoutStarted, workoutEnded, userId, isPreset) values (?, ?, ?, ?, ?)";
             SQLiteStatement statement = db.compileStatement(query);
-            statement.bindString(1, workout.getName());
-            statement.bindString(2, workout.getWorkoutStarted().toString());
-            statement.bindString(3, workout.getWorkoutEnded().toString());
-            statement.bindLong(4, workout.getUserId());
             if(workout.isPreset()){
+                statement.bindString(1, workout.getName());
+                statement.bindString(2, null);
+                statement.bindString(3, null);
+                statement.bindLong(4, workout.getUserId());
                 statement.bindLong(5, 1);
             }else {
+                statement.bindString(1, workout.getName());
+                statement.bindString(2, workout.getWorkoutStarted().toString());
+                statement.bindString(3, workout.getWorkoutEnded().toString());
+                statement.bindLong(4, workout.getUserId());
                 statement.bindLong(5,0);
             }
 
@@ -120,7 +131,6 @@ public class WorkoutDAO {
             if(id == -1){
                 Log.d("error", "no id found");
             }
-
 
             if(!exercises.isEmpty()){
                 for(Exercise e : exercises){
@@ -173,6 +183,7 @@ public class WorkoutDAO {
 
         return workouts;
     }
+
 
     public void deleteAllWorkouts(){
         SQLiteDatabase db = dbConnection.getWritableDatabase();
