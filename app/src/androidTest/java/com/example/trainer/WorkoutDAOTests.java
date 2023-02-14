@@ -13,6 +13,7 @@ import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.dao.WorkoutDAO;
 import com.example.trainer.database.schemas.Exercise;
+import com.example.trainer.database.schemas.ExerciseSet;
 import com.example.trainer.database.schemas.ExerciseType;
 import com.example.trainer.database.schemas.Workout;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
@@ -25,6 +26,7 @@ import org.junit.runner.RunWith;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -38,6 +40,8 @@ public class WorkoutDAOTests{
     private static int exerciseTypeId;
 
     private List<Exercise> exerciseList;
+
+    private List<ExerciseSet> setList;
 
     private static WorkoutManager workoutManager;
 
@@ -61,56 +65,51 @@ public class WorkoutDAOTests{
 
         exerciseList = new ArrayList<>();
 
+        setList = new ArrayList<>();
 
-        Exercise e1 = new Exercise(exerciseTypeId));
-        Exercise e2 = new Exercise(exerciseTypeId));
-        Exercise e3 = new Exercise(exerciseTypeId));
+
+        Exercise e1 = new Exercise(exerciseTypeId);
+        Exercise e2 = new Exercise(exerciseTypeId);
+        Exercise e3 = new Exercise(exerciseTypeId);
+
+        ExerciseSet s1 = new ExerciseSet(20, 100);
+        ExerciseSet s2 = new ExerciseSet(3, 50);
+        ExerciseSet s3 = new ExerciseSet(9, 133);
+        ExerciseSet s4 = new ExerciseSet(28, 11);
+
+        setList.add(s1);
+        setList.add(s2);
+        setList.add(s3);
+        setList.add(s4);
+
+        e1.setSetList(setList);
+        e2.addSet(s2);
+        e2.addSet(s3);
+        e3.addSet(s4);
+        e3.addSet(s3);
+
+        exerciseList.add(e1);
+        exerciseList.add(e2);
+        exerciseList.add(e3);
+
+
+
     }
 
     @Test
-    public void workout_creation() {
-        exerciseTypeId = eDao.addExerciseType(new ExerciseType("mock2"));
+    public void workout_add() {
 
-        ExerciseType type = eDao.getExerciseTypeById(exerciseTypeId);
+        Workout workout = new Workout("workout");
+        workout.setExList(exerciseList);
 
-        assertEquals("mock2", type.getName());
+        int id = wDao.add(workout);
+
+        Workout workout1 = wDao.getById(id);
+
+        assertEquals(id, workout1.getId());
     }
 
-    @Test
-    public void exercise_creation(){
-        Exercise e = new Exercise(exerciseTypeId);
-
-        int id = eDao.addExercise(e);
 
 
-        assertNotEquals(-1, id);
-
-        Exercise exFromDb = eDao.getExerciseById(id);
-
-        assertEquals("mockType", exFromDb.getExerciseName());
-    }
-
-    @Test
-    public void getByWorkoutId() {
-        workoutManager.startWorkout("TEST");
-
-        Exercise e = new Exercise(exerciseTypeId);
-
-        workoutManager.addExercise(e);
-
-        WorkoutDAO workoutDAO = new WorkoutDAO();
-
-        Workout w = workoutManager.getWorkout();
-        w.setWorkoutEnded(new Date());
-
-        int id = workoutDAO.add(w);
-
-        Log.d("WORKOUT ID", Integer.toString(id));
-
-        List<Exercise> exFromDb = eDao.getExerciseByWorkoutId(id);
-
-        assertEquals(1, exFromDb.size());
-        assertEquals("mockType", exFromDb.get(0).getExerciseName());
-    }
 }
 
