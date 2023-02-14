@@ -37,21 +37,6 @@ public class Exercise {
         this.exerciseName = type.getName();
     }
 
-    public Exercise(String name, int workoutId, int typeId) {
-        this.exerciseName = name;
-        this.setList = new ArrayList<>();
-        this.workoutId = workoutId;
-        this.typeId = typeId;
-    }
-
-    public Exercise(String name, int exerciseId, int workoutId, int typeId) {
-        this.exerciseName = name;
-        this.exerciseId = exerciseId;
-        this.setList = new ArrayList<>();
-        this.workoutId = workoutId;
-        this.typeId = typeId;
-    }
-
     public void addSet(ExerciseSet set) {
         setList.add(set);
     }

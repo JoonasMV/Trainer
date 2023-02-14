@@ -29,7 +29,7 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
         public ViewHolder(View view) {
             super(view);
 
-            workoutTitle = view.findViewById(R.id.workoutHistoryTitle);
+            workoutTitle = view.findViewById(R.id.workoutHistoryItem);
         }
     }
 
@@ -44,7 +44,11 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
 
     @Override
     public void onBindViewHolder(@NonNull WorkoutHistoryAdapter.ViewHolder holder, int position) {
-        holder.workoutTitle.setText(workoutHistory.get(position).getName());
+        try {
+            holder.workoutTitle.setText(workoutHistory.get(position).getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
