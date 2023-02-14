@@ -38,7 +38,8 @@
                 app:icon="@drawable/exercises"
                 app:iconGravity="textStart"
                 app:iconTint="@color/white"
-                app:iconSize="70px"
+                app:iconPadding="0dp"
+                app:iconSize="50dp"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <com.google.android.material.button.MaterialButton
@@ -50,7 +51,7 @@
                 app:icon="@drawable/home"
                 app:iconGravity="textStart"
                 app:iconTint="@color/white"
-                app:iconSize="70px"
+                app:iconSize="27dp"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <com.google.android.material.button.MaterialButton
@@ -62,7 +63,7 @@
                 app:icon="@drawable/workout"
                 app:iconGravity="textStart"
                 app:iconTint="@color/white"
-                app:iconSize="100px"
+                app:iconSize="40dp"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <com.google.android.material.button.MaterialButton
@@ -74,7 +75,7 @@
                 app:icon="@drawable/progress"
                 app:iconGravity="textStart"
                 app:iconTint="@color/white"
-                app:iconSize="70px"
+                app:iconSize="30dp"
                 app:layout_constraintStart_toStartOf="parent" />
         </LinearLayout>
     </LinearLayout>
