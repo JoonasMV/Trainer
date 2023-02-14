@@ -109,8 +109,6 @@ public class WorkoutDAO {
             SQLiteStatement statement = db.compileStatement(query);
             if(workout.isPreset()){
                 statement.bindString(1, workout.getName());
-                statement.bindString(2, null);
-                statement.bindString(3, null);
                 statement.bindLong(4, workout.getUserId());
                 statement.bindLong(5, 1);
             }else {
