@@ -1,14 +1,12 @@
 package com.example.trainer.database;
 
 
-import com.example.trainer.MainActivity;
 import com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry;
 import com.example.trainer.database.contracts.ExerciseTypeContract.ExerciseTypeEntry;
 import com.example.trainer.database.contracts.SetContract.ExerciseSetEntry;
 import com.example.trainer.database.contracts.UserContract.UserEntry;
 import com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry;
 
-import android.Manifest;
 import android.content.Context;
 
 import android.database.sqlite.SQLiteDatabase;
@@ -18,7 +16,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.example.trainer.database.contracts.UserContract;
-import com.example.trainer.database.schemas.ExerciseType;
 ;
 
 

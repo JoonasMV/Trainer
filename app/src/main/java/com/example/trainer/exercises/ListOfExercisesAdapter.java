@@ -1,5 +1,6 @@
 package com.example.trainer.exercises;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +21,9 @@ public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercises
     private List<ExerciseType> exerciseTypeList;
     private ExerciseDAO exerciseDAO;
 
-    public ListOfExercisesAdapter(List<ExerciseType> exerciseList, ExerciseDAO exerciseDAO) {
+    public ListOfExercisesAdapter(List<ExerciseType> exerciseList) {
         this.exerciseTypeList = exerciseList;
-        this.exerciseDAO = exerciseDAO;
+        this.exerciseDAO = new ExerciseDAO();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -50,7 +51,7 @@ public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercises
         holder.nameOfExercise.setText(exerciseTypeList.get(position).getName());
 
         holder.deleteExerciseBtn.setOnClickListener(view -> {
-            exerciseDAO.deleteExerciseById(exerciseTypeList.get(position).getId());
+            exerciseDAO.deleteExerciseTypeById(exerciseTypeList.get(position).getId());
             exerciseTypeList.remove(position);
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, getItemCount());

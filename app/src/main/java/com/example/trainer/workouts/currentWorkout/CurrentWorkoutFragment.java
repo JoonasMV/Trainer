@@ -42,6 +42,8 @@ public class CurrentWorkoutFragment extends Fragment {
         });
 
         v.findViewById(R.id.endWorkoutBtn).setOnClickListener(view -> {
+
+
             workoutManager.saveWorkout();
             fragmentHandler(new WelcomeScreen_fragment());
         });

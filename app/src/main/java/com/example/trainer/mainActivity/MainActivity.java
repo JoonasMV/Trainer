@@ -1,11 +1,14 @@
-package com.example.trainer;
+package com.example.trainer.mainActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
+import com.example.trainer.R;
+import com.example.trainer.WelcomeScreen_fragment;
 import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.dao.WorkoutDAO;
 import com.example.trainer.exercises.ListOfExercises_fragment;
@@ -14,7 +17,7 @@ import com.example.trainer.workouts.workoutHistory.WorkoutHistory_fragment;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
-//    private WorkoutManager workoutManager = WorkoutManager.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

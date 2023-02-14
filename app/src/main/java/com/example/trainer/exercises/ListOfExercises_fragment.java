@@ -20,11 +20,13 @@ import java.util.List;
 public class ListOfExercises_fragment extends Fragment {
     ExerciseDAO exerciseDAO;
     RecyclerView exerciseList;
-    List<ExerciseType> listOfExercises = new ArrayList<>();
+    List<ExerciseType> listOfExercises;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        exerciseDAO = new ExerciseDAO();
+        listOfExercises = new ArrayList<>(exerciseDAO.getAllExerciseTypes());
     }
 
     @Override
@@ -39,24 +41,11 @@ public class ListOfExercises_fragment extends Fragment {
         listOfExercises = exerciseDAO.getAllExerciseTypes();
 
         exerciseList = getView().findViewById(R.id.listOfExercises);
-        ListOfExercisesAdapter adapter = new ListOfExercisesAdapter(listOfExercises, exerciseDAO);
+        ListOfExercisesAdapter adapter = new ListOfExercisesAdapter(listOfExercises);
         exerciseList.setAdapter(adapter);
         exerciseList.setLayoutManager(new LinearLayoutManager(getContext()));
 
         getView().findViewById(R.id.addExercise).setOnClickListener(v -> goToNewExerciseFragment());
-
-        // Animation testing
-
-        getView().findViewById(R.id.tempTestBtn).setOnClickListener(v -> {
-            for (int i = 0; i < 3; i++) {
-                ExerciseType ex = new ExerciseType("test " + i);
-                listOfExercises.add(ex);
-                exerciseDAO.addExerciseType(ex);
-            }
-            adapter.notifyDataSetChanged();
-        });
-
-
     }
 
     private void goToNewExerciseFragment() {
