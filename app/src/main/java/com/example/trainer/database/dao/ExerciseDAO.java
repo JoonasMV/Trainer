@@ -15,9 +15,11 @@ import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.schemas.Exercise;
 import com.example.trainer.database.schemas.ExerciseSet;
 import com.example.trainer.database.schemas.ExerciseType;
+import com.example.trainer.database.schemas.Workout;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ExerciseDAO {
@@ -25,14 +27,46 @@ public class ExerciseDAO {
 
     SetDAO setDAO;
 
+    private String columns = "exerciseType._id AS typeId, exerciseType.exerciseTypeName AS name, exercise.workoutId, exercise._id AS id";
+    private String sqlQuery = "SELECT " + columns + " FROM " + TABLE_EXERCISETYPE + " INNER JOIN " + TABLE_EXERCISE + " ON exercise.exerciseTypeId = exerciseType._id;";
 
 
     public ExerciseDAO() {
         dbConnection = DatabaseHelper.getInstance();
         setDAO = new SetDAO();
+
+
     }
 
+    private void test(){
+        Log.d("mfsf", "dfs");
+        ExerciseType t = new ExerciseType("testi");
+        int id = addExerciseType(t);
 
+        Log.d("DATABASE", Integer.toString(id));
+
+        Workout w = new Workout("testiW", new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()));
+
+        WorkoutDAO dao = new WorkoutDAO();
+
+        int wID = dao.add(w);
+
+        Log.d("DATABASE", Integer.toString(wID));
+
+        Exercise e = new Exercise("nimi", wID, id);
+
+        int eId = addExercise(e);
+
+        ArrayList<ExerciseSet> sets = new ArrayList<>();
+
+        sets.add(new ExerciseSet(20, 100));
+
+
+        setDAO.addSetsToDb(sets, eId);
+
+        Log.d("DATABASE", Integer.toString(eId));
+
+    }
 
 
     //adds an exercise to database and also adds sets to database that the exercise has
@@ -45,13 +79,10 @@ public class ExerciseDAO {
 
 
         try {
-            String query = "INSERT INTO " + TABLE_EXERCISE + " (exerciseName, workoutId, exerciseTypeId) values (?, ?, ?)";
+            String query = "INSERT INTO " + TABLE_EXERCISE + " (workoutId, exerciseTypeId) values (?, ?)";
             SQLiteStatement statement = db.compileStatement(query);
-            statement.bindString(1, exercise.getExerciseName());
-            if (exercise.getWorkoutId() != -1) {
-                statement.bindLong(2, exercise.getWorkoutId());
-            }
-            statement.bindLong(3, exercise.getExerciseType().getId());
+            statement.bindLong(1, exercise.getWorkoutId());
+            statement.bindLong(2, exercise.getTypeId());
             statement.executeInsert();
 
 
@@ -82,17 +113,11 @@ public class ExerciseDAO {
     //gets an exercise from database based on id
     //returns exercise
     public Exercise getExerciseById(int id) {
-        String[] args = new String[]{Integer.toString(id)};
-        List<Exercise> results = selectFromDb(null, "_id=?", args, null, null, null);
-
-        if (results.isEmpty()) return null;
-
-        return results.get(0);
+        return selectExFromDb(id);
     }
 
     public List<Exercise> getExerciseByWorkoutId(int id) {
-        String[] args = new String[]{Integer.toString(id)};
-        return selectFromDb(null, "workoutId=?", args, null, null, null);
+        return selectFromDb(new String[] {String.format("wrokoutId=%d", id)});
     }
 
 
@@ -101,9 +126,14 @@ public class ExerciseDAO {
     public ArrayList<Exercise> getAllExercises() {
         ArrayList<Exercise> exercises = new ArrayList<>();
         try {
+            test();
+            Log.d("DATABASE", "database");
             SQLiteDatabase db = dbConnection.getReadableDatabase();
-            String query = "SELECT * FROM " + TABLE_EXERCISE + ";";
-            Cursor cursor = db.rawQuery(query, null);
+
+            Log.d("DATABASE", sqlQuery);
+
+            Cursor cursor = db.rawQuery(sqlQuery, null);
+
             if (cursor != null) {
                 while (cursor.moveToNext()) {
                     Exercise exercise = readExerciseRow(cursor);
@@ -150,22 +180,27 @@ public class ExerciseDAO {
 
     //reads exercise information from database and creates a new exercise object
     //returns the newly created exercise
+
     private Exercise readExerciseRow(Cursor cursor) {
-        int id = (int) cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
-        String name = cursor.getString(cursor.getColumnIndexOrThrow("exerciseName"));
-        int exerciseTypeId = (int) cursor.getLong(cursor.getColumnIndexOrThrow("exerciseTypeId"));
-        Exercise exercise = new Exercise(name, id);
-        ExerciseType type = getExerciseTypeById(exerciseTypeId);
-        exercise.setExerciseType(type);
-        return exercise;
+        int id = (int) cursor.getLong(cursor.getColumnIndexOrThrow("id"));
+        int typeId = (int) cursor.getLong(cursor.getColumnIndexOrThrow("typeId"));
+        int workoutId = (int) cursor.getLong(cursor.getColumnIndexOrThrow("workoutId"));
+        ExerciseType type = getExerciseTypeById(typeId);
+        List<ExerciseSet> sets = setDAO.getSetsByExerciseId(id);
+
+        if(sets == null){
+            sets = new ArrayList<>();
+        }
+
+
+        return new Exercise(type.getName(), id, workoutId, typeId, sets);
     }
 
 
     //get an exercise by name
     //returns an arraylist of exercises matching the given name
     public List<Exercise> getExercisesByName(String name) {
-        String[] args = new String[] {name};
-        return selectFromDb(null, "exerciseName LIKE ?", args, null, null, null);
+        return selectFromDb( new String[] {String.format("name LIKE %s", name)});
     }
 
     public void addManyExercises(List<Exercise> exercises) {
@@ -208,16 +243,38 @@ public class ExerciseDAO {
         db.close();
     }
 
-    private List<Exercise> selectFromDb(String[] columns, String clause, String[] args, String groupBy, String having, String orderBy) {
+    private Exercise selectExFromDb(int id){
+        try {
+            SQLiteDatabase db = dbConnection.getReadableDatabase();
+            Cursor cursor = db.query(TABLE_EXERCISE, null, "_id=?", new String[] {Integer.toString(id)}, null, null, null);
+            if(cursor != null) {
+                cursor.moveToFirst();
+                int typeId = (int) cursor.getLong(cursor.getColumnIndexOrThrow("exerciseTypeId"));
+                int workoutId = (int) cursor.getLong(cursor.getColumnIndexOrThrow("workoutId"));
+                ExerciseType type = getExerciseTypeById(typeId);
+                List<ExerciseSet> sets = setDAO.getSetsByExerciseId(id);
+
+                System.out.println(type);
+                System.out.println(type.getName());
+
+                return new Exercise(type.getName(), id, workoutId, typeId, sets);
+            }
+        }catch (SQLException e) {
+            Log.w("error", e);
+            return null;
+        }
+        return null;
+    }
+
+
+    private List<Exercise> selectFromDb(String[] args) {
         ArrayList<Exercise> exercises = new ArrayList<>();
         try {
             SQLiteDatabase db = dbConnection.getReadableDatabase();
-            Cursor cursor = db.query(TABLE_EXERCISE, columns, clause, args, groupBy, having, orderBy);
+            Cursor cursor = db.rawQuery(sqlQuery, args);
             if(cursor != null) {
                 while (cursor.moveToNext()) {
                     Exercise exercise = readExerciseRow(cursor);
-                    List<ExerciseSet> sets = setDAO.getSetsByExerciseId(exercise.getExerciseId());
-                    exercise.setSetList(sets);
                     exercises.add(exercise);
                 }
             }
@@ -302,25 +359,24 @@ public class ExerciseDAO {
     }
 
     public ExerciseType getExerciseTypeById(int id) {
-        ArrayList<ExerciseType> exerciseTypes = new ArrayList<>();
         try {
             SQLiteDatabase db = dbConnection.getReadableDatabase();
             Cursor cursor = db.query(TABLE_EXERCISETYPE, null, "_id=?", new String[] {Integer.toString(id)}, null, null, null);
             if(cursor != null) {
-                while (cursor.moveToNext()) {
-                    int exerciseId = (int) cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
-                    String name = cursor.getString(cursor.getColumnIndexOrThrow("exerciseTypeName"));
-                    ExerciseType exerciseType = new ExerciseType(name);
-                    exerciseType.setId(exerciseId);
-                    exerciseTypes.add(exerciseType);
-                }
+                cursor.moveToFirst();
+                int typeId = (int) cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow("exerciseTypeName"));
+                ExerciseType exerciseType = new ExerciseType(name);
+                exerciseType.setId(typeId);
+                System.out.println("NAME" + name);
+                System.out.println("ID" + typeId);
+                return exerciseType;
             }
         }catch (SQLException e) {
             Log.w("error", e);
             return null;
         }
-
-        return exerciseTypes.get(0);
+        return null;
     }
 
 

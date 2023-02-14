@@ -7,17 +7,14 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.dao.WorkoutDAO;
-import com.example.trainer.database.schemas.ExerciseType;
-import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
 import com.example.trainer.exercises.ListOfExercises_fragment;
 import com.example.trainer.workouts.ListOfWorkouts_fragment;
-import com.example.trainer.workouts.currentWorkout.WorkoutViewModel;
 import com.example.trainer.workouts.workoutHistory.WorkoutHistory_fragment;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
+//    private WorkoutManager workoutManager = WorkoutManager.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +39,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (fragmentManager.getBackStackEntryCount() > 0) {
-            fragmentManager.popBackStack();
+            fragmentManager.popBackStackImmediate();
         } else {
             super.onBackPressed();
         }
     }
 
     private void fragmentHandler(Fragment fragment) {
+        Fragment currentFragment = fragmentManager.findFragmentById(R.id.mainContainer);
+        if(currentFragment.getClass().equals(fragment.getClass())) return;
+
         fragmentManager.beginTransaction()
                 .replace(R.id.mainContainer, fragment.getClass(), null)
                 .addToBackStack(null)

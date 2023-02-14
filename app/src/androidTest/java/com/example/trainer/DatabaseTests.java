@@ -45,6 +45,8 @@ public class DatabaseTests {
 
     private static WorkoutManager workoutManager;
 
+    private static int exTypeId;
+
     @BeforeClass
     public static void setup(){
         ctx = InstrumentationRegistry.getInstrumentation().getContext();
@@ -63,15 +65,15 @@ public class DatabaseTests {
         workoutDAO.deleteAllWorkouts();
         setDAO.deleteAllSets();
         exDao.deleteAllExerciseTypes();
-        exDao.addExerciseType(new ExerciseType("MOCKEXERCISE"));
+        exTypeId = exDao.addExerciseType(new ExerciseType("mockType"));
 
         workoutManager.startWorkout("new workout");
 
-        Exercise e = new Exercise();
+        Exercise e = new Exercise(exTypeId);
 
         workoutManager.addExercise(e);
 
-        workoutManager.addSet(0, new ExerciseSet(20, 20));
+        workoutManager.addSet(0);
 
         workoutManager.saveWorkout();
     }
@@ -91,15 +93,14 @@ public class DatabaseTests {
 
     }
 
-    @Test
-    public void exerciseCreationAndGetById() {
-        Exercise exercise = mockExercises.get(0);
+    @Test public void exerciseCreationAndGetById() {
+        Exercise exercise = new Exercise(exTypeId);
 
         int id = exDao.addExercise(exercise);
 
         Exercise ex = exDao.getExerciseById(id);
 
-        assertEquals(exercise.getExerciseName(), ex.getExerciseName());
+        assertEquals("MOCKEXERCISE", ex.getExerciseName());
     }
 
     @Test

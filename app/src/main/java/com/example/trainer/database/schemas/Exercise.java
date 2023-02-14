@@ -1,5 +1,7 @@
 package com.example.trainer.database.schemas;
 
+import com.example.trainer.database.dao.ExerciseDAO;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,31 +13,46 @@ public class Exercise {
     private String exerciseName;
     private int workoutId = -1;
 
-    private ExerciseType exerciseType;
+    private int typeId;
 
     private List<ExerciseSet> setList;
 
-
-    public Exercise(String name) {
+    public Exercise(String name, int exerciseId, int workoutId, int typeId, List<ExerciseSet> sets) {
+        this.exerciseId = exerciseId;
+        this.workoutId = workoutId;
         this.exerciseName = name;
-        this.setList = new ArrayList<>();
+        this.typeId = typeId;
+        if(sets == null) {
+            this.setList = new ArrayList<>();
+        } else {
+            this.setList = sets;
+        }
     }
 
-    public Exercise(String name, int exerciseId) {
+    public Exercise(int exerciseTypeId){
+        ExerciseDAO dao = new ExerciseDAO();
+        ExerciseType type = dao.getExerciseTypeById(exerciseTypeId);
+        this.setList = new ArrayList<>();
+        this.exerciseName = type.getName();
+    }
+
+    public Exercise(String name, int workoutId, int typeId) {
+        this.exerciseName = name;
+        this.setList = new ArrayList<>();
+        this.workoutId = workoutId;
+        this.typeId = typeId;
+    }
+
+    public Exercise(String name, int exerciseId, int workoutId, int typeId) {
         this.exerciseName = name;
         this.exerciseId = exerciseId;
         this.setList = new ArrayList<>();
+        this.workoutId = workoutId;
+        this.typeId = typeId;
     }
 
-    public Exercise(String name, List<ExerciseSet> setList) {
-        this.exerciseName = name;
-        this.setList = setList;
-    }
-
-    public Exercise(String name,int exerciseId, List<ExerciseSet> setList) {
-        this.exerciseName = name;
-        this.exerciseId = exerciseId;
-        this.setList = setList;
+    public void addSet(ExerciseSet set) {
+        setList.add(set);
     }
 
     public String getExerciseName() {
@@ -70,11 +87,11 @@ public class Exercise {
         this.setList = setList;
     }
 
-    public ExerciseType getExerciseType() {
-        return exerciseType;
+    public int getTypeId() {
+        return typeId;
     }
 
-    public void setExerciseType(ExerciseType exerciseType) {
-        this.exerciseType = exerciseType;
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
     }
 }
