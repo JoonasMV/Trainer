@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.example.trainer.R;
 import com.example.trainer.WelcomeScreen_fragment;
-import com.example.trainer.workouts.ListOfWorkouts_fragment;
+import com.example.trainer.workouts.ListOfPresetWorkouts_fragment;
 import com.example.trainer.workouts.currentWorkout.adapters.ExerciseAdapter;
 
 public class CurrentWorkoutFragment extends Fragment {
@@ -34,7 +34,7 @@ public class CurrentWorkoutFragment extends Fragment {
 
         v.findViewById(R.id.cancelWorkoutBtn).setOnClickListener(view -> {
             workoutManager.cancelWorkout();
-            fragmentHandler(new ListOfWorkouts_fragment());
+            fragmentHandler(new ListOfPresetWorkouts_fragment());
         });
 
         v.findViewById(R.id.addExerciseBtn).setOnClickListener(view -> {
@@ -42,8 +42,6 @@ public class CurrentWorkoutFragment extends Fragment {
         });
 
         v.findViewById(R.id.endWorkoutBtn).setOnClickListener(view -> {
-
-
             workoutManager.saveWorkout();
             fragmentHandler(new WelcomeScreen_fragment());
         });
