@@ -2,9 +2,7 @@ package com.example.trainer.database.dao;
 
 import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.TABLE_EXERCISE;
 import static com.example.trainer.database.contracts.ExerciseTypeContract.ExerciseTypeEntry.TABLE_EXERCISETYPE;
-import static com.example.trainer.database.contracts.SetContract.ExerciseSetEntry.TABLE_SET;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,11 +13,8 @@ import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.schemas.Exercise;
 import com.example.trainer.database.schemas.ExerciseSet;
 import com.example.trainer.database.schemas.ExerciseType;
-import com.example.trainer.database.schemas.Workout;
 
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ExerciseDAO {
@@ -194,22 +189,17 @@ public class ExerciseDAO {
 
             String query = "INSERT INTO " + TABLE_EXERCISETYPE + " (exerciseTypeName) values (?)";
             SQLiteStatement statement = db.compileStatement(query);
-            statement.bindString(1, exerciseType.getName());
+            statement.bindString(1, exerciseType.getName().toLowerCase());
             statement.executeInsert();
-
-
             SQLiteDatabase read = dbConnection.getReadableDatabase();
             Cursor cursor = read.query(TABLE_EXERCISETYPE, null, null, null, null, null, null);
-
             if (cursor != null) {
                 cursor.moveToLast();
                 id = (int) cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
             }
-
             if (id == -1) {
                 Log.d("error", "no id found");
             }
-
         } catch (SQLException e) {
             Log.w("error", e);
         }
@@ -265,6 +255,26 @@ public class ExerciseDAO {
                 exerciseType.setId(typeId);
                 return exerciseType;
             }
+        }catch (SQLException e) {
+            Log.w("error", e);
+            return null;
+        }
+        return null;
+    }
+
+    public ExerciseType getExerciseTypeByName(String givenName) {
+        ExerciseType exerciseType = null;
+        try {
+            SQLiteDatabase db = dbConnection.getReadableDatabase();
+            Cursor cursor = db.query(TABLE_EXERCISETYPE, null, "exerciseTypeName=?", new String[] {givenName}, null, null, null);
+            if(cursor != null && cursor.moveToFirst() ) {
+                int typeId = (int) cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow("exerciseTypeName"));
+                exerciseType = new ExerciseType(name);
+                exerciseType.setId(typeId);
+                return exerciseType;
+            }
+
         }catch (SQLException e) {
             Log.w("error", e);
             return null;
