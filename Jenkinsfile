@@ -1,6 +1,6 @@
 pipeline {
   agent { 
-    node { label 'android' }                     (*)
+    node { label 'android' }
   }
 
   stages(){
