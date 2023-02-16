@@ -101,6 +101,7 @@ public class WorkoutDAOTests{
 
         Workout workout = new Workout("workout");
         workout.setExList(exerciseList);
+        workout.setPreset(true);
 
         int id = wDao.add(workout);
 

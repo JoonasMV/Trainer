@@ -14,6 +14,7 @@ import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class WorkoutManagerTest {
@@ -51,18 +52,21 @@ public class WorkoutManagerTest {
 
     @Test
     public void workoutManager_addExercise(){
-        manager.addExercise(new Exercise(123));
+        Exercise exercise = new Exercise("mock", 1, 1, 1, new ArrayList<>());
+        manager.addExercise(exercise);
 
-        assertEquals("TEST", manager.getWorkout().getExList().get(0).getExerciseName());
+        assertEquals("mock", manager.getWorkout().getExList().get(0).getExerciseName());
     }
 
     @Test
     public void workoutManager_addSet() {
-        manager.addExercise(new Exercise(123));
+        Exercise exercise = new Exercise("mock", 1, 1, 1, new ArrayList<>());
+
+        manager.addExercise(exercise);
 
         manager.addSet(0);
 
-        assertEquals(0, manager.getWorkout().getExList().get(0).getSetList().get(0).getWeight(), 0);
+        assertEquals(2, exercise.getSetList().size());
     }
 
 }
