@@ -1,8 +1,5 @@
 pipeline {
-  agent { 
-    node { label 'android' }
-  }
-
+  agent any
   stages(){
     stage('Hello world'){
       steps {
