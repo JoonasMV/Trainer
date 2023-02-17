@@ -14,7 +14,6 @@ pipeline {
         sh 'chmod +x gradlew && ./gradlew testDebugUnitTest'
         sh 'chmod +x gradlew && ./gradlew createDebugUnitTestCoverageReport'
         step([$class: 'JacocoPublisher'])
-        junit "test-results/.xml"
       }
     }
   }
