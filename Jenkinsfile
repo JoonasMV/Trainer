@@ -12,11 +12,11 @@ pipeline {
         sh 'chmod +x gradlew && ./gradlew test'
         sh 'chmod +x gradlew && ./gradlew testDebugUnitTest'
         sh 'chmod +x gradlew && ./gradlew createDebugUnitTestCoverageReport'
-        step([$class: 'JacocoPublisher',
-              execPattern: 'build/jacoco/jacoco.exec',
-              classPattern: 'build/classes/main',
-              sourcePattern: 'src/main/java',
-              exclusionPattern: 'src/test*'
+        step([$class: 'JacocoPublisher'
+              //execPattern: 'build/jacoco/jacoco.exec',
+              //classPattern: 'build/classes/main',
+              //sourcePattern: 'src/main/java',
+              //exclusionPattern: 'src/test*'
         ])
       }
     }
