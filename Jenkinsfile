@@ -6,6 +6,12 @@ pipeline {
         sh 'echo "Hello world!"'
       }
     }
+
+    stage('Run unit tests'){
+      steps{
+        sh './gradlew test'
+      }
+    }
   }
 }
 
