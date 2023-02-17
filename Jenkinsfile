@@ -16,7 +16,7 @@ pipeline {
         step([$class: 'JacocoPublisher'])
       }
     }
-    post {   always {   junit "*/build/test-results/.xml"     } }
+    post {   always {  junit "*/build/test-results/.xml"     } }
   }
 }
 
