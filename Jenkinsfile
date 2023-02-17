@@ -9,6 +9,8 @@ pipeline {
 
     stage('Run unit tests'){
       steps{
+
+        sh 'export ANDROID_HOME=/var/jenkins_home/tools/android-sdk'
         sh 'chmod +x gradlew && ./gradlew test'
       }
     }
