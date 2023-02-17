@@ -50,7 +50,7 @@ public class ListOfExercises_fragment extends Fragment {
 
     private void goToNewExerciseFragment() {
         getParentFragmentManager().beginTransaction()
-                .replace(R.id.mainContainer, new_exercise.class, null)
+                .replace(R.id.mainContainer, NewExercise.class, null)
                 .addToBackStack(null)
                 .commit();
     }

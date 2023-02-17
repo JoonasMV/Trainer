@@ -12,5 +12,7 @@
     <string name="exercises">Exercises</string>
     <string name="workoutHistory_title">Workout history</string>
     <string name="saveAsPreset">Save as preset</string>
+    <string name="workoutName">Name your workout</string>
+    <string name="workoutNameButton">Start workout</string>
 
 </resources>

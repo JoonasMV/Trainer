@@ -62,6 +62,8 @@ public class ExerciseDAOTests{
         assertEquals("mock2", type.getName());
     }
 
+
+
     @Test
     public void exercise_creation(){
         Exercise e = new Exercise(exerciseTypeId);
