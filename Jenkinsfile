@@ -15,7 +15,7 @@ pipeline {
         sh 'chmod +x gradlew && ./gradlew createDebugUnitTestCoverageReport'
         step([$class: 'JacocoPublisher'])
       }
-      post {   always {    junit '*/build/test-results/.xml'   } }
+      post {   always {    junit '*/build/reports/coverage/debug/.xml'   } }
     }
   }
 }
