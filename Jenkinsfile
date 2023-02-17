@@ -19,7 +19,7 @@ pipeline {
               //exclusionPattern: 'src/test*'
         ])
       }
-      post {   always {    junit '*/build/outputs/reports/androidTests'   } }
+      post {   always {    junit '*/build/outputs/reports/coverage/test/debug/report.xml'   } }
     }
   }
 }
