@@ -19,7 +19,9 @@ pipeline {
               //exclusionPattern: 'src/test*'
         ])
       }
+      post {   always {     junit '*/target/surefire-reports/.xml'   } }
     }
   }
 }
+
 
