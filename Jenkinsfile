@@ -14,8 +14,9 @@ pipeline {
         sh 'chmod +x gradlew && ./gradlew createDebugUnitTestCoverageReport'
         step([$class: 'JacocoPublisher',
               execPattern: 'target/.exec',
-              classPattern: 'target/classes',
-              sourcePattern: 'src/main/java'
+              classPattern: 'build/classes/main',
+              sourcePattern: 'src/main/java',
+              exclusionPattern: 'src/test*'
         ])
       }
     }
