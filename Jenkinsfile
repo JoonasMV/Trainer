@@ -9,7 +9,7 @@ pipeline {
 
     stage('Run unit tests'){
       steps{
-        sh './gradlew test'
+        sh 'chmod +x gradlew && ./gradlew test'
       }
     }
   }
