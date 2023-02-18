@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.trainer.R;
+import com.example.trainer.workouts.currentWorkout.AddWorkoutName;
 import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
-import com.example.trainer.workouts.currentWorkout.SelectExercise;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 
 
@@ -58,7 +58,7 @@ public class ListOfPresetWorkouts_fragment extends Fragment {
         if (!workoutManager.workoutActive()) {
             getParentFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.mainContainer, new addWorkoutName())
+                    .replace(R.id.mainContainer, new AddWorkoutName())
                     .commit();
         } else {
             getParentFragmentManager()
