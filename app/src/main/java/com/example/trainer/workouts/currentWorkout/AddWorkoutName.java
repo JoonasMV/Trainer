@@ -1,4 +1,4 @@
-package com.example.trainer.workouts;
+package com.example.trainer.workouts.currentWorkout;
 
 import android.os.Bundle;
 
@@ -7,23 +7,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.trainer.R;
-import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
 import com.example.trainer.workouts.currentWorkout.SelectExercise;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 
 
-public class addWorkoutName extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+public class AddWorkoutName extends Fragment {
 
     private final WorkoutManager workoutManager = WorkoutManager.getInstance();
-
-    private String name;
 
 
     @Override
@@ -40,8 +33,8 @@ public class addWorkoutName extends Fragment {
 
         v.findViewById(R.id.button).setOnClickListener(view ->{
             TextView tv = v.findViewById(R.id.workout);
-            name = tv.getText().toString();
-            workoutManager.setName(name);
+            String name = tv.getText().toString();
+            workoutManager.startWorkout(name);
             getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, new SelectExercise()).commit();
         });
 
