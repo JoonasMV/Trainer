@@ -58,7 +58,7 @@ public class ListOfPresetWorkouts_fragment extends Fragment {
         if (!workoutManager.workoutActive()) {
             getParentFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.mainContainer, new SelectExercise())
+                    .replace(R.id.mainContainer, new addWorkoutName())
                     .commit();
         } else {
             getParentFragmentManager()

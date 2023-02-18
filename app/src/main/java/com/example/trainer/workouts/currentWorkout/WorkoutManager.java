@@ -15,8 +15,13 @@ public class WorkoutManager {
     private static WorkoutManager instance;
 
     private Workout workout;
+    private String name;
     ExerciseDAO exerciseDAO;
     WorkoutDAO workoutDAO;
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     private WorkoutManager(){
         this.exerciseDAO = new ExerciseDAO();
@@ -36,13 +41,16 @@ public class WorkoutManager {
     }
 
     public void cancelWorkout() {
+
         this.workout = null;
+        this.name = null;
     }
 
     public void saveWorkout() {
         this.workout.setWorkoutEnded(new Date());
         workoutDAO.add(workout);
         this.workout = null;
+        this.name = null;
     }
 
     public boolean workoutActive() {
@@ -63,7 +71,7 @@ public class WorkoutManager {
 
     public void addExercise(Exercise exercise) {
         if (workout == null) {
-            this.workout = new Workout("WorkoutManager line: 67", new Date());
+            this.workout = new Workout(name, new Date());
         }
         exercise.addSet(new ExerciseSet());
         workout.addExerciseToList(exercise);
