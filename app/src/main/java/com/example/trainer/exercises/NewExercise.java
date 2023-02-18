@@ -12,18 +12,16 @@ import android.widget.Toast;
 
 import com.example.trainer.R;
 import com.example.trainer.database.dao.ExerciseDAO;
-import com.example.trainer.database.schemas.Exercise;
 import com.example.trainer.database.schemas.ExerciseType;
-import com.example.trainer.mainActivity.MainActivity;
 
-public class new_exercise extends Fragment {
+public class NewExercise extends Fragment {
 
-    public new_exercise() {
+    public NewExercise() {
         // Required empty public constructor
     }
 
-    public static new_exercise newInstance(String param1, String param2) {
-        new_exercise fragment = new new_exercise();
+    public static NewExercise newInstance(String param1, String param2) {
+        NewExercise fragment = new NewExercise();
         return fragment;
     }
 
