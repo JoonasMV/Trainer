@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class Exercise {
+public class Exercise implements Serializable{
 
+    private static final long serialVersionUID = 3L;
     private int exerciseId;
     private String exerciseName;
     private int workoutId = -1;

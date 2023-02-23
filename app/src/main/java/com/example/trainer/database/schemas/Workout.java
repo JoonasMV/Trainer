@@ -1,10 +1,13 @@
 package com.example.trainer.database.schemas;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Workout {
+public class Workout implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private String name;
     private Date workoutStarted;
     private Date workoutEnded;

@@ -1,7 +1,10 @@
 package com.example.trainer.database.schemas;
 
-public class ExerciseSet {
+import java.io.Serializable;
 
+public class ExerciseSet implements Serializable {
+
+    private static final long serialVersionUID = 2L;
     private double weight;
 
     private int reps;
