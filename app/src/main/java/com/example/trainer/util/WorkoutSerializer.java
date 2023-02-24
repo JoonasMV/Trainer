@@ -4,13 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-import com.example.trainer.R;
 import com.example.trainer.database.schemas.Workout;
 import com.google.gson.Gson;
 
 public class WorkoutSerializer {
 
     private final static String key = "workout_key";
+    private static final String fileKey = "workout_file_key";
 
     private WorkoutSerializer(){
 
@@ -23,7 +23,6 @@ public class WorkoutSerializer {
      */
 
     public static Workout readWorkoutFromPref(Context context){
-        String fileKey = context.getString(R.string.preference_file_key);
         SharedPreferences pref = context.getSharedPreferences(fileKey, Context.MODE_PRIVATE);
         String value = pref.getString(key, null);
         if(value == null){
@@ -40,16 +39,18 @@ public class WorkoutSerializer {
 
     public static void writeWorkoutToPref(Workout workout, Context context){
         String json = serialize(workout);
-
-        String fileKey = context.getString(R.string.preference_file_key);
         Editor prefsEditor = context.getSharedPreferences(fileKey, Context.MODE_PRIVATE).edit();
-        prefsEditor.putString(key, json);
-        prefsEditor.commit();
+        prefsEditor.putString(key, json).commit();
     }
 
     private static String serialize(Workout workout){
         Gson gson = new Gson();
         return gson.toJson(workout);
+    }
+
+    public static void clearPrefs(Context context){
+        SharedPreferences pref = context.getSharedPreferences(fileKey, Context.MODE_PRIVATE);
+        pref.edit().clear().commit();
     }
 
 }
