@@ -13,6 +13,7 @@ import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.dao.WorkoutDAO;
 import com.example.trainer.exercises.ListOfExercises_fragment;
 import com.example.trainer.workouts.ListOfPresetWorkouts_fragment;
+import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 import com.example.trainer.workouts.workoutHistory.WorkoutHistory_fragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.progressBtn).setOnClickListener(view -> fragmentHandler(new WorkoutHistory_fragment()));
 
         WorkoutDAO dao = new WorkoutDAO();
+
+        WorkoutManager.getInstance().readFromPref(getApplicationContext());
     }
 
 
@@ -64,5 +67,11 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.mainContainer, WelcomeScreen_fragment.class, null)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        WorkoutManager.getInstance().saveToPref(getApplicationContext());
     }
 }

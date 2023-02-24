@@ -1,6 +1,7 @@
 package com.example.trainer.workouts.currentWorkout;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.dao.WorkoutDAO;
@@ -77,11 +78,16 @@ public class WorkoutManager {
     }
 
     public void saveToPref(Context context){
+        Log.d("Serialization", "Serialized workout");
         WorkoutSerializer.writeWorkoutToPref(this.workout, context);
     }
 
     public void readFromPref(Context context){
         this.workout = WorkoutSerializer.readWorkoutFromPref(context);
+
+        if(workout != null){
+            Log.d("Serialization", String.format("Deserialized workout\n name: %s \n lenght of exercise list: %d", workout.getName(), workout.getExList().size()));
+        }
     }
 
 
