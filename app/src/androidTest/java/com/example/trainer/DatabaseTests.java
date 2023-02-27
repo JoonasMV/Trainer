@@ -89,6 +89,19 @@ public class DatabaseTests {
     }
 
 
+    @Test
+    public void get_presets_from_database(){
+        List<Workout> list = workoutDAO.getPresets();
+
+        assertEquals(0, list.size());
+    }
+
+    @Test
+    public void get_non_presets_from_database(){
+        List<Workout> list = workoutDAO.getNonPresets();
+
+        assertEquals(1, list.size());
+    }
 
     @Test
     public void can_create_and_save_workout(){

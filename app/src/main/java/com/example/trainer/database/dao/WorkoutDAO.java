@@ -47,6 +47,10 @@ public class WorkoutDAO {
         return results;
     }
 
+    public List<Workout> getNonPresets() {
+        List<Workout> results = selectFromDb(null, "isPreset=?", new String[] {Integer.toString(0)}, null, null, null);
+        return results;
+    }
     public List<Workout> getUserPresets(int userId) {
         List<Workout> results = selectFromDb(null, "isPreset=? AND userId=?", new String[] {Integer.toString(1), Integer.toString(userId)}, null, null, null);
         return results;
@@ -57,6 +61,7 @@ public class WorkoutDAO {
         List<Workout> results = selectFromDb(null, null, null, null, null, null);
         return results;
     }
+
 
     public List<Workout> getAllByUserId(int userId) {
         List<Workout> results = selectFromDb(null, "userId=?", new String[] {Integer.toString(userId)}, null, null, null);

@@ -44,9 +44,9 @@ public class WorkoutHistory_fragment extends Fragment {
 
         RecyclerView workoutHistory = view.findViewById(R.id.workoutHistoryRV);
 
-        List<Workout> workouts = workoutDAO.getAll();
+        ArrayList<Workout> list = new ArrayList<>(workoutDAO.getNonPresets());
 
-        WorkoutHistoryAdapter adapter = new WorkoutHistoryAdapter(workouts);
+        WorkoutHistoryAdapter adapter = new WorkoutHistoryAdapter(list);
         workoutHistory.setLayoutManager(new LinearLayoutManager(getContext()));
         workoutHistory.setAdapter(adapter);
     }

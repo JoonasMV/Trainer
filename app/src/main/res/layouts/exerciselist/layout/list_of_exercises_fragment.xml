@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".exercises.ListOfExercises_fragment"
-    android:background="@color/color1">
+    >
 
     <!-- TODO: Update blank fragment layout -->
 

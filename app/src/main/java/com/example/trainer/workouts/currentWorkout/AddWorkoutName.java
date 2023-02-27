@@ -35,7 +35,7 @@ public class AddWorkoutName extends Fragment {
             TextView tv = v.findViewById(R.id.workout);
             String name = tv.getText().toString();
             workoutManager.startWorkout(name);
-            getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, new SelectExercise()).commit();
+            getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, new SelectExercise()).addToBackStack(null).commit();
         });
 
         return v;

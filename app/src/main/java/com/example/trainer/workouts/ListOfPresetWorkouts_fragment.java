@@ -69,11 +69,13 @@ public class ListOfPresetWorkouts_fragment extends Fragment {
             getParentFragmentManager()
                     .beginTransaction()
                     .replace(R.id.mainContainer, new AddWorkoutName())
+                    .addToBackStack(null)
                     .commit();
         } else {
             getParentFragmentManager()
                     .beginTransaction()
                     .replace(R.id.mainContainer, new CurrentWorkoutFragment())
+                    .addToBackStack(null)
                     .commit();
         }
     }
@@ -82,16 +84,9 @@ public class ListOfPresetWorkouts_fragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
         RecyclerView presets = view.findViewById(R.id.workoutList);
-        ArrayList<Workout> list = new ArrayList<>(workoutDAO.getAll());
-        ArrayList<Workout> listOfPresets = new ArrayList<>();
-        //Only non preset workouts are shown
-        for(Workout w: list){
-            if(w.isPreset()==true){
-                listOfPresets.add(w);
-            }
-        }
+        ArrayList<Workout> list = new ArrayList<>(workoutDAO.getPresets());
 
-        PresetAdapter adapter = new PresetAdapter(listOfPresets);
+        PresetAdapter adapter = new PresetAdapter(list);
         presets.setLayoutManager(new LinearLayoutManager(getContext()));
         presets.setAdapter(adapter);
 
