@@ -89,5 +89,13 @@ public class WorkoutManager {
             Log.d("Serialization", String.format("Deserialized workout\n name: %s \n lenght of exercise list: %d", workout.getName(), workout.getExList().size()));
         }
     }
+
+    public void startWorkoutFromPreset(Workout workout){
+        Workout copy = new Workout(workout.getName(), new Date());
+        copy.setExList(new ArrayList<>(workout.getExList()));
+        copy.setPreset(false);
+        this.workout = copy;
+    }
+
 }
 
