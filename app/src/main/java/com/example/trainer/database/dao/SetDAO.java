@@ -1,7 +1,14 @@
 package com.example.trainer.database.dao;
 
+import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.EXERCISE_ID;
+import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.EXERCISE_TYPEID;
+import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.TABLE_EXERCISE;
+import static com.example.trainer.database.contracts.SetContract.ExerciseSetEntry.SET_ID;
+import static com.example.trainer.database.contracts.SetContract.ExerciseSetEntry.SET_REPS;
+import static com.example.trainer.database.contracts.SetContract.ExerciseSetEntry.SET_WEIGHT;
 import static com.example.trainer.database.contracts.SetContract.ExerciseSetEntry.TABLE_SET;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -75,6 +82,18 @@ public class SetDAO {
 
         db.delete("exerciseSet", "exerciseId=?", new String[] {Integer.toString(exerciseId)});
 
+        db.close();
+    }
+
+    public void update(ExerciseSet set){
+        SQLiteDatabase db = dbConnection.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(SET_WEIGHT, set.getWeight());
+        values.put(SET_REPS, set.getAmount());
+
+        db.update(TABLE_SET, values, String.format("%s=?", SET_ID), new String[]{String.valueOf(set.getId())});
         db.close();
     }
 }

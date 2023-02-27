@@ -89,8 +89,5 @@ public class WorkoutManager {
             Log.d("Serialization", String.format("Deserialized workout\n name: %s \n lenght of exercise list: %d", workout.getName(), workout.getExList().size()));
         }
     }
-
-
-
-
 }
+

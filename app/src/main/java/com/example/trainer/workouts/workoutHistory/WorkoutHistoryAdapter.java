@@ -53,7 +53,7 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
     public void onBindViewHolder(@NonNull WorkoutHistoryAdapter.ViewHolder holder, int position) {
 
         holder.workoutTitle.setText(workoutHistory.get(position).getName());
-        holder.saveAsPresetBtn.setOnClickListener(view -> workoutDAO.addAsPreset(workoutHistory.get(position)));
+        holder.saveAsPresetBtn.setOnClickListener(view -> workoutDAO.makePreset(workoutHistory.get(position)));
     }
 
     @Override

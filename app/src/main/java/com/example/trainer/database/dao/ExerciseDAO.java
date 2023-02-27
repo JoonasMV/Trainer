@@ -1,8 +1,13 @@
 package com.example.trainer.database.dao;
 
+import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.EXERCISE_ID;
+import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.EXERCISE_TYPEID;
 import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.TABLE_EXERCISE;
 import static com.example.trainer.database.contracts.ExerciseTypeContract.ExerciseTypeEntry.TABLE_EXERCISETYPE;
+import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.TABLE_WORKOUT;
+import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.WORKOUT_ID;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -48,7 +53,6 @@ public class ExerciseDAO {
             statement.bindLong(1, exercise.getWorkoutId());
             statement.bindLong(2, exercise.getTypeId());
             statement.executeInsert();
-
 
             SQLiteDatabase read = dbConnection.getReadableDatabase();
             Cursor cursor = read.query(TABLE_EXERCISE, null, null, null, null, null, null);
@@ -181,12 +185,7 @@ public class ExerciseDAO {
         long id = -1;
         SQLiteDatabase db = dbConnection.getWritableDatabase();
 
-
         try {
-
-
-
-
             String query = "INSERT INTO " + TABLE_EXERCISETYPE + " (exerciseTypeName) values (?)";
             SQLiteStatement statement = db.compileStatement(query);
             statement.bindString(1, exerciseType.getName().toLowerCase());
@@ -281,4 +280,24 @@ public class ExerciseDAO {
         }
         return null;
     }
+
+    public void update(Exercise exercise){
+
+        SQLiteDatabase db = dbConnection.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(EXERCISE_TYPEID, exercise.getTypeId());
+
+        db.update(TABLE_EXERCISE, values, String.format("%s=?", EXERCISE_ID), new String[]{String.valueOf(exercise.getExerciseId())});
+        db.close();
+
+        List<ExerciseSet> sets = exercise.getSetList();
+
+        for(ExerciseSet set : sets){
+            setDAO.update(set);
+        }
+
+    }
+
 }

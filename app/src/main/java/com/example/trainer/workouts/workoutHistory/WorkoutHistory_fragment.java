@@ -43,15 +43,10 @@ public class WorkoutHistory_fragment extends Fragment {
                                Bundle savedInstanceState) {
 
         RecyclerView workoutHistory = view.findViewById(R.id.workoutHistoryRV);
-        ArrayList<Workout> list = new ArrayList<>(workoutDAO.getAll());
-        ArrayList<Workout> listOfWorkouts = new ArrayList<>();
-        //Only non preset workouts are shown
-        for(Workout w: list){
-            if(w.isPreset()==false){
-                listOfWorkouts.add(w);
-            }
-        }
-        WorkoutHistoryAdapter adapter = new WorkoutHistoryAdapter(listOfWorkouts);
+
+        List<Workout> workouts = workoutDAO.getAll();
+
+        WorkoutHistoryAdapter adapter = new WorkoutHistoryAdapter(workouts);
         workoutHistory.setLayoutManager(new LinearLayoutManager(getContext()));
         workoutHistory.setAdapter(adapter);
     }

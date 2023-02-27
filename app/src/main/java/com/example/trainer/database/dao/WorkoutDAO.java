@@ -2,9 +2,14 @@ package com.example.trainer.database.dao;
 
 import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.TABLE_EXERCISE;
 import static com.example.trainer.database.contracts.ExerciseTypeContract.ExerciseTypeEntry.TABLE_EXERCISETYPE;
+import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.PRESET;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.TABLE_WORKOUT;
+import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.WORKOUT_ENDED;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.WORKOUT_ID;
+import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.WORKOUT_NAME;
+import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.WORKOUT_STARTED;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -92,9 +97,30 @@ public class WorkoutDAO {
         return results.get(0);
     }
 
-    public void addAsPreset(Workout workout){
+    public void makePreset(Workout workout){
         workout.setPreset(true);
-        add(workout);
+        update(workout);
+    }
+
+
+
+    public void update(Workout workout){
+        SQLiteDatabase db = dbConnection.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(WORKOUT_NAME, workout.getName());
+        values.put(WORKOUT_ENDED, workout.getWorkoutEnded().toString());
+        values.put(WORKOUT_STARTED, workout.getWorkoutStarted().toString());
+        values.put(PRESET, workout.isPreset());
+
+        db.update(TABLE_WORKOUT, values, String.format("%s=?", WORKOUT_ID), new String[]{String.valueOf(workout.getId())});
+        db.close();
+
+        List<Exercise> exercises = workout.getExList();
+
+        for(Exercise e : exercises){
+            exerciseDAO.update(e);
+        }
     }
 
     public int add(Workout workout) {
