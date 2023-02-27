@@ -1,4 +1,4 @@
-package com.example.trainer.mainActivity;
+package com.example.trainer.workouts.mainActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;

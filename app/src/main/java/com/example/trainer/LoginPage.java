@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 import com.example.trainer.database.dao.UserDAO;
 import com.example.trainer.database.schemas.User;
-import com.example.trainer.mainActivity.MainActivity;
+import com.example.trainer.workouts.mainActivity.MainActivity;
 //import android.widget.Toast;
 
 

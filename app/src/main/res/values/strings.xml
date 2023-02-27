@@ -15,5 +15,6 @@
     <string name="addWorkoutName">Start workout</string>
     <string name="workoutName">Name your workout</string>
     <string name="preference_file_key">workouts_pref</string>
+    <string name="login_button_text">Create user</string>
 
 </resources>
