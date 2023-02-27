@@ -15,8 +15,9 @@ import com.example.trainer.database.dao.UserDAO;
 import com.example.trainer.database.schemas.User;
 
 public class WelcomeScreen_fragment extends Fragment {
-    UserDAO userDAO;
-    String username = "Temp value";
+    private UserDAO userDAO;
+
+    private User user;
 
 
     @Override
@@ -34,17 +35,17 @@ public class WelcomeScreen_fragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         userDAO = new UserDAO();
         TextView userGreetText = getView().findViewById(R.id.userGreetText);
-        handleUserLogin();
+        getUserFromDb();
 
-        if (username == null || username.length() == 0) {
+        if(user == null){
             startActivity(new Intent(this.getContext(), LoginPage.class));
+            return;
         }
-        userGreetText.setText("Welcome back " + username);
+        userGreetText.setText(String.format("Welcome back %s", user.getUsername()));
     }
 
-
-    private void handleUserLogin() {
-        User user = userDAO.getUser();
-        if (user != null) username = user.getUsername();
+    private void getUserFromDb(){
+        this.user = userDAO.getUser();
     }
+
 }
