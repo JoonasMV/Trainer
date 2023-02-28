@@ -20,6 +20,7 @@ import android.util.Log;
 import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.schemas.Exercise;
 import com.example.trainer.database.schemas.ExerciseSet;
+import com.example.trainer.database.schemas.ExerciseType;
 import com.example.trainer.database.schemas.Workout;
 
 import java.text.DateFormat;
@@ -230,5 +231,42 @@ public class WorkoutDAO {
         db.delete("exercise", null, null);
         db.delete("exerciseSet", null, null);
         db.close();
+    }
+
+    public void initPresets() {
+        Exercise squatExercise = new Exercise(exerciseDAO.getExerciseTypeByName("squat").getId());
+        Exercise benchExercise = new Exercise(exerciseDAO.getExerciseTypeByName("bench press").getId());
+        Exercise deadliftExercise = new Exercise(exerciseDAO.getExerciseTypeByName("deadlift").getId());
+        Exercise barbellRowExercise = new Exercise(exerciseDAO.getExerciseTypeByName("barbell row").getId());
+        Exercise overheadPressExercise = new Exercise(exerciseDAO.getExerciseTypeByName("overhead press").getId());
+
+        for (int i = 0; i < 5; i++) {
+            squatExercise.addSet(new ExerciseSet());
+            deadliftExercise.addSet(new ExerciseSet());
+            benchExercise.addSet(new ExerciseSet());
+            barbellRowExercise.addSet(new ExerciseSet());
+            overheadPressExercise.addSet(new ExerciseSet());
+        }
+
+        // beginner 5x5 program
+        Workout monday5x5 = new Workout("Monday 5x5", true);
+        monday5x5.getExList().add(squatExercise);
+        monday5x5.getExList().add(benchExercise);
+        monday5x5.getExList().add(barbellRowExercise);
+
+        Workout wednesday5x5 = new Workout("Wednesday 5x5", true);
+        wednesday5x5.getExList().add(deadliftExercise);
+        wednesday5x5.getExList().add(benchExercise);
+        wednesday5x5.getExList().add(overheadPressExercise);
+
+        Workout friday5x5 = new Workout("Friday 5x5", true);
+        friday5x5.getExList().add(squatExercise);
+        friday5x5.getExList().add(overheadPressExercise);
+        friday5x5.getExList().add(barbellRowExercise);
+
+        add(monday5x5);
+        add(wednesday5x5);
+        add(friday5x5);
+        // ---------------------------------------------------------------
     }
 }

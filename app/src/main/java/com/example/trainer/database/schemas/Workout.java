@@ -41,6 +41,12 @@ public class Workout implements Serializable {
         this.exList = new ArrayList<>();
     }
 
+    public Workout (String name, boolean isPreset) {
+        this.name = name;
+        this.isPreset = isPreset;
+        this.exList = new ArrayList<>();
+    }
+
     public String getName() {
         return name;
     }

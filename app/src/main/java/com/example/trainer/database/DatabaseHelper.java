@@ -24,7 +24,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static int DATABASE_VERSION = 1;
     private static DatabaseHelper dbConnection;
 
-    private String[] basicExercises = { "squat", "bench", "deadlift" };
+    private String[] basicExercises = {
+            "squat", "front squat", "bench press", "incline bench press",
+            "dumbbell press", "deadlift", "romanian deadlift", "barbell row",
+            "overhead press", "barbell curl", "dumbbell curl", "tricep extension"
+    };
 
     public static void initialize(Context context){
         dbConnection = new DatabaseHelper(context.getApplicationContext());
