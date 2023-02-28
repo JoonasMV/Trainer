@@ -3,6 +3,7 @@ package com.example.trainer.workouts.currentWorkout;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,6 +30,9 @@ public class CurrentWorkoutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        if (container != null) {
+            container.removeAllViews();
+        }
 
         View v = inflater.inflate(R.layout.fragment_current_workout, container, false);
         if(!workoutManager.workoutActive()) {
@@ -67,6 +71,9 @@ public class CurrentWorkoutFragment extends Fragment {
     }
 
     private void changeFragment(Fragment fragment) {
+        //getParentFragmentManager().popBackStack(AddWorkoutName.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        //getView().setVisibility(View.GONE);
+
         getParentFragmentManager().beginTransaction()
                 .replace(R.id.mainContainer, fragment.getClass(), null)
                 .addToBackStack(null)

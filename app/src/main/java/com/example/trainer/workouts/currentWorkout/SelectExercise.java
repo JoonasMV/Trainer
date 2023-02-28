@@ -36,6 +36,9 @@ public class SelectExercise extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        if (container != null) {
+            container.removeAllViews();
+        }
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_select_exercise, container, false);
 
