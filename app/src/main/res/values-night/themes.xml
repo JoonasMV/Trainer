@@ -7,11 +7,12 @@
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/purple_200</item>
         <!-- Secondary brand color. -->
-        <item name="android:background">@color/gray</item>
+        <!--item name="android:background">@color/gray</item-->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
+        <item name="actionBarStyle">@style/MyCustomBar</item>
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
@@ -21,5 +22,8 @@
         <item name="android:textSize">12dp</item>
         <item name="android:layout_marginRight">2px</item>
         <item name="android:layout_marginLeft">2px</item>
+    </style>
+    <style name="MyCustomBar" parent="Widget.MaterialComponents.ActionBar.Primary">
+        <item name="background">@color/gray2</item>
     </style>
 </resources>
