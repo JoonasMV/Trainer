@@ -146,12 +146,12 @@ public class ExerciseDAO {
 
 
 
-    public void deleteExerciseById(int id){
+    public void delete(Exercise exercise){
+        int id = exercise.getExerciseId();
         SQLiteDatabase db = dbConnection.getWritableDatabase();
-
         db.delete("exercise", "_id=?", new String[] {Integer.toString(id)});
-        setDAO.deleteAllSetsFromExercise(id);
         db.close();
+        setDAO.deleteAllSetsFromExercise(id);
     }
 
     private List<Exercise> selectFromDb(String whereClause, String[] args) {

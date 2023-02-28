@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        if(savedInstanceState == null){
+        if(fragmentManager == null){
             createFragmentManager();
         }
 

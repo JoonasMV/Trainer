@@ -43,13 +43,11 @@ public class WorkoutDAO {
 
 
     public List<Workout> getPresets() {
-        List<Workout> results = selectFromDb(null, "isPreset=?", new String[] {Integer.toString(1)}, null, null, null);
-        return results;
+        return selectFromDb(null, "isPreset=?", new String[] {Integer.toString(1)}, null, null, null);
     }
 
     public List<Workout> getUserPresets(int userId) {
-        List<Workout> results = selectFromDb(null, "isPreset=? AND userId=?", new String[] {Integer.toString(1), Integer.toString(userId)}, null, null, null);
-        return results;
+        return selectFromDb(null, "isPreset=? AND userId=?", new String[] {Integer.toString(1), Integer.toString(userId)}, null, null, null);
     }
 
 
@@ -123,6 +121,14 @@ public class WorkoutDAO {
         }
     }
 
+    public void delete(Workout workout){
+        SQLiteDatabase db = dbConnection.getWritableDatabase();
+        db.delete(TABLE_WORKOUT, String.format("%s=?", WORKOUT_ID), new String[] {String.valueOf(workout.getId())});
+        db.close();
+        for(Exercise e : workout.getExList()) {
+            exerciseDAO.delete(e);
+        }
+    }
     public int add(Workout workout) {
 
         long id = -1;

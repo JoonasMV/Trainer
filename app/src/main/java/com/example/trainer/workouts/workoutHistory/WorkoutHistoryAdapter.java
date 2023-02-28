@@ -32,11 +32,14 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
         public TextView workoutTitle;
         private Button saveAsPresetBtn;
 
+        private Button deleteButton;
+
         public ViewHolder(View view) {
             super(view);
 
             workoutTitle = view.findViewById(R.id.workoutHistoryItem);
             saveAsPresetBtn = view.findViewById(R.id.saveAsPresetBtn);
+            deleteButton = view.findViewById(R.id.deleteButton);
         }
     }
 
@@ -51,9 +54,15 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
 
     @Override
     public void onBindViewHolder(@NonNull WorkoutHistoryAdapter.ViewHolder holder, int position) {
+        Workout workout = workoutHistory.get(position);
 
-        holder.workoutTitle.setText(workoutHistory.get(position).getName());
-        holder.saveAsPresetBtn.setOnClickListener(view -> workoutDAO.makePreset(workoutHistory.get(position)));
+        holder.workoutTitle.setText(workout.getName());
+        holder.saveAsPresetBtn.setOnClickListener(view -> workoutDAO.makePreset(workout));
+        holder.deleteButton.setOnClickListener(view -> {
+            workoutDAO.delete(workout);
+            workoutHistory.remove(workout);
+            notifyDataSetChanged();
+        });
     }
 
     @Override

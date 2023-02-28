@@ -85,7 +85,7 @@ public class ListOfPresetWorkouts_fragment extends Fragment {
 
         RecyclerView presets = view.findViewById(R.id.workoutList);
 
-        List<Workout> workouts = workoutDAO.getAll();
+        List<Workout> workouts = workoutDAO.getPresets();
 
         PresetAdapter adapter = new PresetAdapter(workouts, getParentFragmentManager());
         presets.setLayoutManager(new LinearLayoutManager(getContext()));
