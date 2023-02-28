@@ -1,4 +1,4 @@
-package com.example.trainer.mainActivity;
+package com.example.trainer.workouts.mainActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        if(savedInstanceState == null){
+        if(fragmentManager == null){
             createFragmentManager();
         }
 

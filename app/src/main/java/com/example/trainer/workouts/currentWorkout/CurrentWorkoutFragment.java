@@ -28,26 +28,30 @@ public class CurrentWorkoutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         View v = inflater.inflate(R.layout.fragment_current_workout, container, false);
+        if(!workoutManager.workoutActive()) {
+            changeFragment(new ListOfPresetWorkouts_fragment());
+            return v;
+        }
 
-        //getParentFragmentManager().beginTransaction();
 
-        v.findViewById(R.id.cancelWorkoutBtn).setOnClickListener(view -> {
+            v.findViewById(R.id.cancelWorkoutBtn).setOnClickListener(view -> {
             workoutManager.cancelWorkout();
-            fragmentHandler(new ListOfPresetWorkouts_fragment());
+            changeFragment(new ListOfPresetWorkouts_fragment());
         });
 
         v.findViewById(R.id.addExerciseBtn).setOnClickListener(view -> {
-            fragmentHandler(new SelectExercise());
+            changeFragment(new SelectExercise());
         });
 
         v.findViewById(R.id.endWorkoutBtn).setOnClickListener(view -> {
             workoutManager.saveWorkout();
-            fragmentHandler(new WelcomeScreen_fragment());
+            changeFragment(new WelcomeScreen_fragment());
         });
 
         TextView workoutName = v.findViewById(R.id.workoutName);
-
 
         workoutName.setText(workoutManager.getWorkout().getName());
 
@@ -62,7 +66,7 @@ public class CurrentWorkoutFragment extends Fragment {
         listOfWorkouts.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
-    private void fragmentHandler(Fragment fragment) {
+    private void changeFragment(Fragment fragment) {
         getParentFragmentManager().beginTransaction()
                 .replace(R.id.mainContainer, fragment.getClass(), null)
                 .addToBackStack(null)
