@@ -17,11 +17,17 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.Trainer.button" parent="button_theme">
+    <style name="Theme.Trainer.button" parent="button_basic">
+        <item name="backgroundTint">@color/gray2</item>
+    </style>
+
+    <style name="Theme.Trainer.button.listButton" parent="button_basic">
+        <item name="android:layout_margin">2dp</item>
         <item name="backgroundTint">@color/gray2</item>
     </style>
 
     <style name="MyCustomBar" parent="Widget.MaterialComponents.ActionBar.Primary">
         <item name="background">@color/gray2</item>
+        <item name="android:layout_marginTop">20dp</item>
     </style>
 </resources>
