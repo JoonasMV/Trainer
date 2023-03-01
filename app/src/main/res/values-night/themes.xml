@@ -24,4 +24,8 @@
     <style name="MyCustomBar" parent="Widget.MaterialComponents.ActionBar.Primary">
         <item name="background">@color/gray2</item>
     </style>
+
+    <style name="image_style">
+        <item name="android:tint">@color/white</item>
+</style>
 </resources>

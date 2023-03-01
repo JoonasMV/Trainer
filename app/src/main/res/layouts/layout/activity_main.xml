@@ -5,12 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".mainActivity.MainActivity">
+    tools:context=".workouts.mainActivity.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:orientation="vertical">
 
         <androidx.fragment.app.FragmentContainerView
@@ -25,7 +24,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="15"
+            android:layout_weight="11"
 
             >
 
@@ -35,10 +34,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
+                android:text="exercises"
+                android:padding="0dp"
+                android:textSize="10sp"
+                android:textColor="@color/white"
                 app:icon="@drawable/exercises"
-                app:iconGravity="textStart"
                 app:iconPadding="0dp"
-                app:iconSize="50dp"
+                app:iconGravity="textTop"
+                app:iconSize="37dp"
                 app:iconTint="@color/white"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -48,9 +51,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
+                android:text="home"
+                android:textSize="10sp"
                 app:icon="@drawable/home"
-                app:iconGravity="textStart"
-                app:iconSize="27dp"
+                app:iconGravity="textTop"
+                app:iconSize="30dp"
                 app:iconTint="@color/white"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -60,9 +65,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
+                android:text="workouts"
+                android:textSize="10sp"
                 app:icon="@drawable/workout"
-                app:iconGravity="textStart"
-                app:iconSize="40dp"
+                app:iconGravity="textTop"
+                app:iconSize="30dp"
                 app:iconTint="@color/white"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -72,8 +79,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
+                android:text="progress"
+                android:textSize="10sp"
                 app:icon="@drawable/progress"
-                app:iconGravity="textStart"
+                app:iconGravity="textTop"
                 app:iconSize="30dp"
                 app:iconTint="@color/white"
                 app:layout_constraintStart_toStartOf="parent" />
