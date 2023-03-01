@@ -40,7 +40,8 @@
                 app:iconPadding="0dp"
                 app:iconSize="50dp"
                 app:iconTint="@color/white"
-                app:layout_constraintStart_toStartOf="parent" />
+                />
+<!--                app:layout_constraintStart_toStartOf="parent" -->
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/homeBtn"

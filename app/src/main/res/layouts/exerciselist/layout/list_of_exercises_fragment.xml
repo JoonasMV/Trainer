@@ -13,15 +13,12 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ExerciseListActivity">
+        tools:context=".ExerciseListActivity"
+        >
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listOfExercises"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="16dp"
+            style="@style/recyclerView_theme"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,13 +28,12 @@
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="16dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginHorizontal="6dp"
-            >
-<!--            android:background="@android:color/black"-->
+            tools:layout_editor_absoluteX="16dp">
+            <!--            android:background="@android:color/black"-->
 
             <Button
                 android:id="@+id/addExercise"

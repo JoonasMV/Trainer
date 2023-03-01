@@ -12,26 +12,26 @@
 
         <TextView
             android:id="@+id/workoutHistoryItem"
-            android:layout_width="107dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:text="TextView"
+            style="@style/list_text"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="workoutName"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <Button
-            style="@style/Theme.Trainer.button.listButton"
+            style="@style/button_list"
             android:id="@+id/deleteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_width="0dp"
             android:text="@string/delete_workout" />
 
         <Button
-            style="@style/Theme.Trainer.button.listButton"
+            style="@style/button_list"
             android:id="@+id/saveAsPresetBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_width="0dp"
             android:text="@string/saveAsPreset" />
     </LinearLayout>
 
