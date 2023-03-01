@@ -15,8 +15,8 @@
     </style>
 
 
-    <style name="Theme.Trainer.button.bigButton" parent="button_basic">
-        <item name="android:layout_marginHorizontal">4dp</item>
-    </style>
+<!--    <style name="Theme.Trainer.button.bigButton" parent="button_basic">-->
+<!--        <item name="android:layout_marginHorizontal">4dp</item>-->
+<!--    </style>-->
 
 </resources>
