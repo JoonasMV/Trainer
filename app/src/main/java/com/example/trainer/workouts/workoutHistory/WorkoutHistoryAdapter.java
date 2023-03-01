@@ -1,6 +1,7 @@
 package com.example.trainer.workouts.workoutHistory;
 
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainer.R;
 import com.example.trainer.database.dao.WorkoutDAO;
 import com.example.trainer.database.schemas.Workout;
+import com.example.trainer.util.Toaster;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
 
     private ArrayList<Workout> workoutHistory;
     private WorkoutDAO workoutDAO;
+    private Context parentContext;
 
     public WorkoutHistoryAdapter(List<Workout> workoutHistory) {
         this.workoutHistory = new ArrayList<>(workoutHistory);
@@ -33,6 +36,7 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
         private Button saveAsPresetBtn;
 
         private Button deleteButton;
+
 
         public ViewHolder(View view) {
             super(view);
@@ -46,7 +50,8 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
     @NonNull
     @Override
     public WorkoutHistoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
+        parentContext = parent.getContext();
+        View v = LayoutInflater.from(parentContext)
                 .inflate(R.layout.workout_history_item, parent, false);
 
         return new ViewHolder(v);
@@ -57,10 +62,18 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
         Workout workout = workoutHistory.get(position);
 
         holder.workoutTitle.setText(workout.getName());
-        holder.saveAsPresetBtn.setOnClickListener(view -> workoutDAO.makePreset(workout));
+        holder.saveAsPresetBtn.setOnClickListener(view -> {
+            if(workout.isPreset()){
+                Toaster.toast(parentContext, String.format("%s is already a preset", workout.getName()));
+            } else {
+                workoutDAO.makePreset(workout);
+                Toaster.toast(parentContext, String.format("%s is now a preset", workout.getName()));
+            }
+        });
         holder.deleteButton.setOnClickListener(view -> {
             workoutDAO.delete(workout);
             workoutHistory.remove(workout);
+            Toaster.toast(parentContext, "Workout removed!");
             notifyDataSetChanged();
         });
     }
