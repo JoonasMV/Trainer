@@ -7,7 +7,8 @@
     <string name="back">back</string>
     <string name="save">save</string>
     <string name="progress">PRGRS</string>
-    <string name="workouts">WKOUTS</string>
+    <string name="workouts">Workout</string>
+    <string name="history">History</string>
     <string name="add_new_exercise_button">Add new exercise</string>
     <string name="exercises">Exercises</string>
     <string name="workoutHistory_title">Workout history</string>
