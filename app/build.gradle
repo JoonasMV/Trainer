@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.trainer"
-        minSdk 21
+        minSdk 26
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -38,7 +38,8 @@ android {
                     "src/main/res/layouts",
                     "src/main/res/layouts/current_workout",
                     "src/main/res/layouts/exerciselist",
-                    "src/main/res/layouts/workout_history"
+                    "src/main/res/layouts/workout_history",
+                    "src/main/res/icons"
             ]
         }
     }

@@ -19,6 +19,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <Button
+            style="@style/Theme.Trainer.button.listButton"
             android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,6 +27,7 @@
             android:text="@string/delete_workout" />
 
         <Button
+            style="@style/Theme.Trainer.button.listButton"
             android:id="@+id/saveAsPresetBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

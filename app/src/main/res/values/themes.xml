@@ -14,7 +14,9 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.Trainer.button" parent="button_theme">
-        <item name="backgroundTint">@color/color3</item>
+
+    <style name="Theme.Trainer.button.bigButton" parent="button_theme">
+        <item name="android:layout_marginHorizontal">4dp</item>
     </style>
+
 </resources>
