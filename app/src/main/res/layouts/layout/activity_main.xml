@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:layout_weight="15"
 
-            android:orientation="horizontal">
+            >
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/exercisesBtn"
@@ -37,9 +37,9 @@
                 android:layout_weight="1"
                 app:icon="@drawable/exercises"
                 app:iconGravity="textStart"
-                app:iconTint="@color/white"
                 app:iconPadding="0dp"
                 app:iconSize="50dp"
+                app:iconTint="@color/white"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <com.google.android.material.button.MaterialButton
@@ -50,8 +50,8 @@
                 android:layout_weight="1"
                 app:icon="@drawable/home"
                 app:iconGravity="textStart"
-                app:iconTint="@color/white"
                 app:iconSize="27dp"
+                app:iconTint="@color/white"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <com.google.android.material.button.MaterialButton
@@ -62,8 +62,8 @@
                 android:layout_weight="1"
                 app:icon="@drawable/workout"
                 app:iconGravity="textStart"
-                app:iconTint="@color/white"
                 app:iconSize="40dp"
+                app:iconTint="@color/white"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <com.google.android.material.button.MaterialButton
@@ -74,8 +74,8 @@
                 android:layout_weight="1"
                 app:icon="@drawable/progress"
                 app:iconGravity="textStart"
-                app:iconTint="@color/white"
                 app:iconSize="30dp"
+                app:iconTint="@color/white"
                 app:layout_constraintStart_toStartOf="parent" />
         </LinearLayout>
     </LinearLayout>
