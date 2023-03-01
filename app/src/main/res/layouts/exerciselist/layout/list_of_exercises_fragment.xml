@@ -7,8 +7,6 @@
     tools:context=".exercises.ListOfExercises_fragment"
     >
 
-    <!-- TODO: Update blank fragment layout -->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -18,7 +16,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listOfExercises"
-            style="@style/recyclerView_theme"
+            style="@style/recyclerView_basic"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +35,7 @@
 
             <Button
                 android:id="@+id/addExercise"
-                style="@style/button_big"
+                style="@style/button_round"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/addExerciseButton" />

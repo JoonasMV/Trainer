@@ -6,33 +6,34 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        style="@style/list_theme"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
         <TextView
             android:id="@+id/workoutHistoryItem"
             style="@style/list_text"
-            android:layout_width="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:text="workoutName"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            />
 
         <Button
-            style="@style/button_list"
             android:id="@+id/deleteButton"
-            android:layout_height="match_parent"
+            style="@style/button_list"
             android:layout_weight="1"
-            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:text="@string/delete_workout" />
 
         <Button
-            style="@style/button_list"
             android:id="@+id/saveAsPresetBtn"
-            android:layout_height="match_parent"
+            style="@style/button_list"
             android:layout_weight="1"
-            android:layout_width="0dp"
-            android:text="@string/saveAsPreset" />
+            android:layout_height="match_parent"
+            android:text="@string/saveAsPreset"
+            />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,17 +12,15 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/nameOfExercise"
             style="@style/list_text"
             android:layout_weight="2"
-            android:id="@+id/nameOfExercise"
             android:text="TextView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            />
 
         <Button
             android:id="@+id/deleteExerciseBtn"
             style="@style/button_list"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Delete" />
     </LinearLayout>
