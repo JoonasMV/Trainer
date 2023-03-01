@@ -31,7 +31,6 @@
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:layout_editor_absoluteX="16dp">
-            <!--            android:background="@android:color/black"-->
 
             <Button
                 android:id="@+id/addExercise"
