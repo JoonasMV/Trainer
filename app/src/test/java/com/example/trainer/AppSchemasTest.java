@@ -13,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class AppSchemasTest {
     private Exercise exercise;
@@ -29,6 +30,9 @@ public class AppSchemasTest {
         set = new ExerciseSet();
         user = new User("user");
         workout = new Workout("testWorkout");
+        exercise.addSet(set);
+        exercise.addSet(new ExerciseSet());
+        exercise.addSet(new ExerciseSet());
 
     }
 
@@ -78,7 +82,97 @@ public class AppSchemasTest {
     }
 
 
+    //Exercise tests
 
+    @Test
+    public void testGetName(){
+        exercise.setExerciseName("name");
+        assertEquals("name", exercise.getExerciseName());
+    }
+    @Test
+    public void testGetWorkoutId(){
+        exercise.setWorkoutId(3);
+        assertEquals(3, exercise.getWorkoutId());
+    }
+    @Test
+    public void testGetExId(){
+        exercise.setExerciseId(55);
+        assertEquals(55, exercise.getExerciseId());
+    }
+    @Test
+    public void testGetSetList(){
+        ExerciseSet set1 = new ExerciseSet();
+        set1.setWeight(44);
+        set1.setAmount(10);
+        exercise.setSetList(new ArrayList<>());
+        exercise.addSet(set1);
+        assertEquals(44, exercise.getSetList().get(0).getWeight(), 0);
+        assertEquals(10, exercise.getSetList().get(0).getAmount(), 0);
+    }
+    @Test
+    public void testGetTypeId(){
+        exercise.setTypeId(33);
+        assertEquals(33, exercise.getTypeId());
+    }
+
+
+    //workout tests
+
+    @Test
+    public void testGetWname(){
+        workout.setName("workout");
+        assertEquals("workout", workout.getName());
+    }
+
+    @Test
+    public void testGetWStartedAndEnded(){
+        Date date = new Date(System.currentTimeMillis());
+        workout.setWorkoutStarted(date);
+        workout.setWorkoutEnded(date);
+        assertEquals(date, workout.getWorkoutStarted());
+        assertEquals(date, workout.getWorkoutEnded());
+
+    }
+
+    @Test
+    public void testGetWid(){
+        workout.setId(44);
+        assertEquals(44, workout.getId());
+    }
+
+    @Test
+    public void testIsPreset(){
+        assertEquals(false, workout.isPreset());
+        workout.setPreset(true);
+        assertEquals(true, workout.isPreset());
+    }
+
+
+    @Test
+    public void testExList(){
+        ArrayList<Exercise> e = new ArrayList<>();
+        e.add(exercise);
+        workout.setExList(e);
+        assertEquals("ex", workout.getExList().get(0).getExerciseName());
+        workout.addExerciseToList(new Exercise("ex2", 2, 3, 4, new ArrayList<>()));
+        assertEquals("ex2", workout.getExList().get(1).getExerciseName());
+
+    }
+
+    @Test
+    public void testGetWUserId(){
+        workout.setUserId(55);
+        assertEquals(55, workout.getUserId());
+    }
+
+
+    //User tests
+
+    @Test
+    public void testGetUsername(){
+        user.setUsername("testiUser");
+        assertEquals("testiUser", user.getUsername());
+    }
 
 
 }
