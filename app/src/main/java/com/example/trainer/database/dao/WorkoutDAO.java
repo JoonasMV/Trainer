@@ -103,7 +103,12 @@ public class WorkoutDAO {
 
     public void makePreset(Workout workout){
         workout.setPreset(true);
-        update(workout);
+        add(workout);
+    }
+
+    public void saveAsPresetAndNormal(Workout workout){
+        add(workout);
+        makePreset(workout);
     }
 
 
