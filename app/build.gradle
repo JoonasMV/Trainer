@@ -37,8 +37,9 @@ android {
                     "src/main/res",
                     "src/main/res/layouts",
                     "src/main/res/layouts/current_workout",
-                    "src/main/res/layouts/exerciselist",
+                    "src/main/res/layouts/exercise_list",
                     "src/main/res/layouts/workout_history",
+                    "src/main/res/layouts/preset_workouts",
                     "src/main/res/icons",
                     "src/main/res/icons/logo"
             ]
