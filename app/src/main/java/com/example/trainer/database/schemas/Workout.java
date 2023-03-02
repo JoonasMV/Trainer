@@ -84,6 +84,9 @@ public class Workout implements Serializable {
     }
 
     public void setPreset(boolean preset) {
+        if(preset == true){
+            exList = new ArrayList<>();
+        }
         isPreset = preset;
     }
 
