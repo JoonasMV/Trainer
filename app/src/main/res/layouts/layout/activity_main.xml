@@ -5,17 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".workouts.mainActivity.MainActivity">
+    tools:context=".mainActivity.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:orientation="vertical">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/mainContainer"
             android:name="com.example.trainer.WelcomeScreen_fragment"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
 
@@ -24,68 +25,54 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="11"
+            android:layout_weight="10"
 
             >
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/exercisesBtn"
-                style="@style/Theme.Trainer.button"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                style="@style/button_basic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/exercises"
                 android:layout_weight="1"
-                android:text="exercises"
-                android:padding="0dp"
-                android:textSize="10sp"
-                android:textColor="@color/white"
-                app:icon="@drawable/exercises"
-                app:iconPadding="0dp"
-                app:iconGravity="textTop"
-                app:iconSize="37dp"
-                app:iconTint="@color/white"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:drawableTop="@drawable/exercises"
+                android:drawableTint="@color/white"
+                />
+<!--                app:layout_constraintStart_toStartOf="parent" -->
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/homeBtn"
-                style="@style/Theme.Trainer.button"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                style="@style/button_basic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="home"
-                android:textSize="10sp"
-                app:icon="@drawable/home"
-                app:iconGravity="textTop"
-                app:iconSize="30dp"
-                app:iconTint="@color/white"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:drawableTop="@drawable/home"
+                android:drawableTint="@color/white"
+                />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/workoutsBtn"
-                style="@style/Theme.Trainer.button"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                style="@style/button_basic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="workouts"
-                android:textSize="10sp"
-                app:icon="@drawable/workout"
-                app:iconGravity="textTop"
-                app:iconSize="30dp"
-                app:iconTint="@color/white"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:text="@string/workouts"
+                android:drawableTop="@drawable/workout"
+                android:drawableTint="@color/white"
+                />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/progressBtn"
-                style="@style/Theme.Trainer.button"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                style="@style/button_basic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="progress"
-                android:textSize="10sp"
-                app:icon="@drawable/progress"
-                app:iconGravity="textTop"
-                app:iconSize="30dp"
-                app:iconTint="@color/white"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:text="@string/history"
+                android:drawableTop="@drawable/progress"
+                android:drawableTint="@color/white"
+                />
         </LinearLayout>
     </LinearLayout>
 
