@@ -40,10 +40,10 @@ public class WorkoutManager {
         this.workout = new Workout(workoutName, new Date());
     }
 
-    public void cancelWorkout() {
+    public void cancelWorkout(Context context) {
 
         this.workout = null;
-
+        WorkoutSerializer.clearPrefs(context);
     }
 
     public void saveWorkout() {

@@ -42,7 +42,7 @@ public class CurrentWorkoutFragment extends Fragment {
 
 
             v.findViewById(R.id.cancelWorkoutBtn).setOnClickListener(view -> {
-            workoutManager.cancelWorkout();
+            workoutManager.cancelWorkout(getContext());
             changeFragment(new ListOfPresetWorkouts_fragment());
         });
 
