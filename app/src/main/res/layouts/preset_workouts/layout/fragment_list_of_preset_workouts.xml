@@ -14,13 +14,10 @@
 
         <TextView
             android:id="@+id/workoutsText"
+            style="@style/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="4dp"
-            android:text="Workouts"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:text="@string/presetText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/workoutList"
