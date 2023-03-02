@@ -9,13 +9,15 @@
         style="@style/list_theme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/border"
+        >
 
         <TextView
             android:id="@+id/preset"
             style="@style/list_text"
             android:layout_weight="2"
-            android:text="TextView" />
+            android:text="@string/presetText"/>
 
         <Button
             android:id="@+id/deletePresetButton"

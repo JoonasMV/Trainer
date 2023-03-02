@@ -28,7 +28,6 @@
 
     <style name="MyCustomBar" parent="Widget.MaterialComponents.ActionBar.Primary">
         <item name="background">@color/gray2</item>
-        <item name="android:layout_marginTop">20dp</item>
     </style>
 
     <style name="image_style">

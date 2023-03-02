@@ -22,5 +22,6 @@
     <string name="delete_workout">Delete</string>
     <string name="saveExercise">Save Exercise</string>
     <string name="exerciseName">Exercise name</string>
+    <string name="presetText">Presets</string>
 
 </resources>
