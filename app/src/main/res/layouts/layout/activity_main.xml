@@ -29,7 +29,7 @@
 
             >
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/exercisesBtn"
                 style="@style/button_basic"
                 android:layout_width="0dp"
@@ -41,7 +41,7 @@
                 />
 <!--                app:layout_constraintStart_toStartOf="parent" -->
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/homeBtn"
                 style="@style/button_basic"
                 android:layout_width="0dp"
@@ -52,7 +52,7 @@
                 android:drawableTint="@color/white"
                 />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/workoutsBtn"
                 style="@style/button_basic"
                 android:layout_width="0dp"
@@ -63,7 +63,7 @@
                 android:drawableTint="@color/white"
                 />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/progressBtn"
                 style="@style/button_basic"
                 android:layout_width="0dp"

@@ -40,10 +40,9 @@
             <LinearLayout
                 android:id="@+id/linearLayout3"
                 style="@style/list_theme"
+                android:layout_marginHorizontal="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginBottom="0dp"
                 android:orientation="vertical">
 
                 <Button
@@ -53,23 +52,19 @@
                     android:layout_height="wrap_content"
                     android:text="@string/addExerciseButton" />
 
-                <LinearLayout
+                <Button
+                    android:id="@+id/cancelWorkoutBtn"
+                    style="@style/button_round"
+                    android:layout_marginVertical="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="4dp">
+                    android:text="Cancel workout" />
 
-                    <Button
-                        android:id="@+id/cancelWorkoutBtn"
-                        style="@style/button_round"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Cancel workout" />
-
-                </LinearLayout>
 
                 <Button
                     android:id="@+id/endWorkoutBtn"
                     style="@style/button_round"
+                    android:layout_marginBottom="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="End workout" />

@@ -3,8 +3,9 @@
         <style name="list_theme">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginVertical">10dp</item>
+<!--        <item name="android:layout_marginVertical">10dp</item>-->
         <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginTop">4dp</item>
     </style>
 
     <style name="list_text">
@@ -21,5 +22,9 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_marginHorizontal">8dp</item>
+        <item name="android:layout_marginVertical">8dp</item>
+    </style>
+
+    <style name="list_item">
     </style>
 </resources>
