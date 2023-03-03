@@ -53,6 +53,21 @@ public class WorkoutManager {
 
     }
 
+    public void setEndWorkout(){
+        this.workout.setWorkoutEnded(new Date());
+    }
+
+    public void saveToDB(){
+        workoutDAO.add(workout);
+        this.workout = null;
+    }
+
+    public void changeWorkoutName(String name){
+        if(!name.isEmpty()){
+            workout.setName(name);
+        }
+    }
+
     public boolean workoutActive() {
         return this.workout != null;
     }

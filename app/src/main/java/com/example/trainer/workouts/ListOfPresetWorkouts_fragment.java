@@ -13,14 +13,11 @@ import android.view.ViewGroup;
 
 import com.example.trainer.R;
 import com.example.trainer.database.dao.WorkoutDAO;
-import com.example.trainer.database.schemas.Exercise;
 import com.example.trainer.database.schemas.Workout;
-import com.example.trainer.workouts.currentWorkout.AddWorkoutName;
 import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
+import com.example.trainer.workouts.currentWorkout.SelectExercise;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
-import com.example.trainer.workouts.workoutHistory.WorkoutHistoryAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -74,7 +71,7 @@ public class ListOfPresetWorkouts_fragment extends Fragment {
         if (!workoutManager.workoutActive()) {
             getParentFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.mainContainer, new AddWorkoutName())
+                    .replace(R.id.mainContainer, new SelectExercise())
                     .addToBackStack(null)
                     .commit();
         } else {

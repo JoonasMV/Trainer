@@ -7,9 +7,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.trainer.R;
@@ -40,6 +43,7 @@ public class CurrentWorkoutFragment extends Fragment {
             return v;
         }
 
+        TextView workoutName = v.findViewById(R.id.workoutName);
 
             v.findViewById(R.id.cancelWorkoutBtn).setOnClickListener(view -> {
             workoutManager.cancelWorkout(getContext());
@@ -55,7 +59,6 @@ public class CurrentWorkoutFragment extends Fragment {
             changeFragment(new WelcomeScreen_fragment());
         });
 
-        TextView workoutName = v.findViewById(R.id.workoutName);
 
         workoutName.setText(workoutManager.getWorkout().getName());
 
@@ -63,6 +66,22 @@ public class CurrentWorkoutFragment extends Fragment {
         return v;
     }
 
+
+    @Override public void onViewCreated(View view,
+                               Bundle savedInstanceState){
+        TextView text = view.findViewById(R.id.workoutName);
+        text.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    workoutManager.changeWorkoutName(text.getText().toString());
+            }
+
+            @Override public void afterTextChanged(Editable editable) {}
+        });
+
+    }
     private void initRecyclerView(View v) {
         RecyclerView listOfWorkouts = v.findViewById(R.id.listOfExercises);
         exerciseAdapter = new ExerciseAdapter(getContext());
@@ -79,4 +98,6 @@ public class CurrentWorkoutFragment extends Fragment {
                 .addToBackStack(null)
                 .commit();
     }
+
+
 }

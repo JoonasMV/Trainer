@@ -21,12 +21,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
+            <EditText
                 android:id="@+id/workoutName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+                android:ems="10"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:inputType="textPersonName"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:text="@string/workoutName"
+
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listOfExercises"
