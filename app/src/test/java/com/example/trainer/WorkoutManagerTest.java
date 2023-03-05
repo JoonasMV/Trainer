@@ -24,7 +24,7 @@ public class WorkoutManagerTest {
 
     @Before
     public void beforeTest(){
-        manager.cancelWorkout();
+        manager.cancelWorkout(null);
         manager.startWorkout("MOCK");
     }
 
@@ -36,7 +36,7 @@ public class WorkoutManagerTest {
 
     @Test
     public void workoutManager_cancelWorkout(){
-        manager.cancelWorkout();
+        manager.cancelWorkout(null);
         assertNull(manager.getWorkout());
     }
 

@@ -35,11 +35,16 @@ public class NewExercise extends Fragment {
         v.findViewById(R.id.newExerciseBtn).setOnClickListener(view -> {
             String name = exerciseNameInput.getText().toString();
             if (exerciseDAO.getExerciseTypeByName(name.toLowerCase()) == null) {
-                exerciseDAO.addExerciseType(new ExerciseType(name));
-                getParentFragmentManager().popBackStack();
+                if(name.isEmpty()){
+                    Toaster.toast(getContext(),"No name given");
+                } else {
+                    exerciseDAO.addExerciseType(new ExerciseType(name));
+                    getParentFragmentManager().popBackStack();
+                }
             } else{
-                Toaster.toast(getContext(),"Exercise already added");
+                Toaster.toast(getContext(),"Exercise exists already");
             }
+
         });
         return v;
     }
