@@ -101,7 +101,7 @@ public class WorkoutManager {
         this.workout = WorkoutSerializer.readWorkoutFromPref(context);
 
         if(workout != null){
-            Log.d("Serialization", String.format("Deserialized workout\n name: %s \n lenght of exercise list: %d", workout.getName(), workout.getExList().size()));
+            Log.d("Serialization", String.format("Deserialized workout\n name: %s \n length of exercise list: %d", workout.getName(), workout.getExList().size()));
         }
     }
 
