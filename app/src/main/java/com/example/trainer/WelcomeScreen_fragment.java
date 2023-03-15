@@ -8,11 +8,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trainer.database.dao.UserDAO;
+import com.example.trainer.database.schemas.ExerciseType;
 import com.example.trainer.database.schemas.User;
+import com.example.trainer.exercises.ExerciseChart;
+import com.example.trainer.util.Toaster;
 
 public class WelcomeScreen_fragment extends Fragment {
     private UserDAO userDAO;
@@ -46,6 +50,13 @@ public class WelcomeScreen_fragment extends Fragment {
             return;
         }
         userGreetText.setText(String.format("Welcome back %s", user.getUsername()));
+
+        view.findViewById(R.id.testing).setOnClickListener(v -> {
+         getParentFragmentManager().beginTransaction()
+                 .replace(R.id.mainContainer, new ExerciseChart())
+                 .addToBackStack(null).commit();
+
+        });
     }
 
     private void getUserFromDb(){
