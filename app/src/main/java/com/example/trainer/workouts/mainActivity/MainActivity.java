@@ -3,14 +3,13 @@ package com.example.trainer.workouts.mainActivity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
 import com.example.trainer.R;
 import com.example.trainer.WelcomeScreen_fragment;
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.database.dao.WorkoutDAO;
+import com.example.trainer.mainActivity.dao.WorkoutDAO;
 import com.example.trainer.exercises.ListOfExercises_fragment;
 import com.example.trainer.workouts.ListOfPresetWorkouts_fragment;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;

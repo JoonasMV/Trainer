@@ -11,15 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.trainer.R;
-import com.example.trainer.database.dao.WorkoutDAO;
-import com.example.trainer.database.schemas.Workout;
+import com.example.trainer.schemas.Workout;
+import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class WorkoutHistory_fragment extends Fragment {
 
-    WorkoutDAO workoutDAO;
 
     public WorkoutHistory_fragment() {
         // Required empty public constructor
@@ -28,7 +26,6 @@ public class WorkoutHistory_fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        workoutDAO = new WorkoutDAO();
     }
 
     @Override
@@ -48,7 +45,7 @@ public class WorkoutHistory_fragment extends Fragment {
 
         RecyclerView workoutHistory = view.findViewById(R.id.workoutHistoryRV);
 
-        ArrayList<Workout> list = new ArrayList<>(workoutDAO.getNonPresets());
+        ArrayList<Workout> list = new ArrayList<>(WorkoutManager.getInstance().getNonPresetWorkouts());
 
         WorkoutHistoryAdapter adapter = new WorkoutHistoryAdapter(list);
         workoutHistory.setLayoutManager(new LinearLayoutManager(getContext()));

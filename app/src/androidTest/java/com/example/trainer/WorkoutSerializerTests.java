@@ -7,8 +7,8 @@ import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.example.trainer.database.schemas.Exercise;
-import com.example.trainer.database.schemas.Workout;
+import com.example.trainer.schemas.Exercise;
+import com.example.trainer.schemas.Workout;
 import com.example.trainer.util.WorkoutSerializer;
 
 import org.junit.Before;
@@ -17,7 +17,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.Date;
-import com.example.trainer.R;
 
 @RunWith(JUnit4.class)
 public class WorkoutSerializerTests {

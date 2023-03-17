@@ -1,7 +1,5 @@
-package com.example.trainer.database.dao;
+package com.example.trainer.mainActivity.dao;
 
-import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.TABLE_EXERCISE;
-import static com.example.trainer.database.contracts.ExerciseTypeContract.ExerciseTypeEntry.TABLE_EXERCISETYPE;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.PRESET;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.TABLE_WORKOUT;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.WORKOUT_ENDED;
@@ -10,7 +8,6 @@ import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntr
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.WORKOUT_STARTED;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,10 +15,10 @@ import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.database.schemas.Exercise;
-import com.example.trainer.database.schemas.ExerciseSet;
-import com.example.trainer.database.schemas.ExerciseType;
-import com.example.trainer.database.schemas.Workout;
+import com.example.trainer.mainActivity.dao.framework.IExerciseDAO;
+import com.example.trainer.mainActivity.dao.framework.IWorkoutDAO;
+import com.example.trainer.schemas.Exercise;
+import com.example.trainer.schemas.Workout;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -31,10 +28,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class WorkoutDAO {
+public class WorkoutDAO implements IWorkoutDAO {
     DatabaseHelper dbConnection;
+    IExerciseDAO exerciseDAO;
 
-    ExerciseDAO exerciseDAO;
 
 
     public WorkoutDAO() {
@@ -103,15 +100,8 @@ public class WorkoutDAO {
 
     public void makePreset(Workout workout){
         workout.setPreset(true);
-        add(workout);
+        save(workout);
     }
-
-    public void saveAsPresetAndNormal(Workout workout){
-        add(workout);
-        makePreset(workout);
-    }
-
-
 
     public void update(Workout workout){
         SQLiteDatabase db = dbConnection.getWritableDatabase();
@@ -140,7 +130,7 @@ public class WorkoutDAO {
             exerciseDAO.delete(e);
         }
     }
-    public int add(Workout workout) {
+    public int save(Workout workout) {
 
         long id = -1;
         SQLiteDatabase db = dbConnection.getWritableDatabase();
@@ -180,7 +170,7 @@ public class WorkoutDAO {
                 for(Exercise e : exercises){
                     e.setWorkoutId((int) id);
                 }
-                exerciseDAO.addManyExercises(exercises);
+                exerciseDAO.saveMany(exercises);
 
             }
         }catch (SQLException e) {
@@ -196,17 +186,6 @@ public class WorkoutDAO {
         return df.parse(target);
     }
 
-    public void addMany(List<Workout> workouts) {
-        for(Workout w : workouts) {
-            add(w);
-        }
-    }
-
-    public List<Workout> getByName(String name) {
-        String[] args = new String[] {name};
-        return selectFromDb(null, "workoutName LIKE ?", args, null, null, null);
-    }
-
 
     private List<Workout> selectFromDb(String[] columns, String clause, String[] args, String groupBy, String having, String orderBy) {
         ArrayList<Workout> workouts = new ArrayList<>();
@@ -216,7 +195,7 @@ public class WorkoutDAO {
             if(cursor != null) {
                 while (cursor.moveToNext()) {
                     Workout workout = readWorkoutRow(cursor);
-                    List<Exercise> exercises = exerciseDAO.getExerciseByWorkoutId(workout.getId());
+                    List<Exercise> exercises = exerciseDAO.getByWorkoutId(workout.getId());
                     workout.setExList(exercises);
                     workouts.add(workout);
                 }
@@ -239,39 +218,39 @@ public class WorkoutDAO {
     }
 
     public void initPresets() {
-        Exercise squatExercise = new Exercise(exerciseDAO.getExerciseTypeByName("squat").getId());
-        Exercise benchExercise = new Exercise(exerciseDAO.getExerciseTypeByName("bench press").getId());
-        Exercise deadliftExercise = new Exercise(exerciseDAO.getExerciseTypeByName("deadlift").getId());
-        Exercise barbellRowExercise = new Exercise(exerciseDAO.getExerciseTypeByName("barbell row").getId());
-        Exercise overheadPressExercise = new Exercise(exerciseDAO.getExerciseTypeByName("overhead press").getId());
-
-        for (int i = 0; i < 5; i++) {
-            squatExercise.addSet(new ExerciseSet());
-            deadliftExercise.addSet(new ExerciseSet());
-            benchExercise.addSet(new ExerciseSet());
-            barbellRowExercise.addSet(new ExerciseSet());
-            overheadPressExercise.addSet(new ExerciseSet());
-        }
-
-        // beginner 5x5 program
-        Workout monday5x5 = new Workout("Monday 5x5", true);
-        monday5x5.getExList().add(squatExercise);
-        monday5x5.getExList().add(benchExercise);
-        monday5x5.getExList().add(barbellRowExercise);
-
-        Workout wednesday5x5 = new Workout("Wednesday 5x5", true);
-        wednesday5x5.getExList().add(deadliftExercise);
-        wednesday5x5.getExList().add(benchExercise);
-        wednesday5x5.getExList().add(overheadPressExercise);
-
-        Workout friday5x5 = new Workout("Friday 5x5", true);
-        friday5x5.getExList().add(squatExercise);
-        friday5x5.getExList().add(overheadPressExercise);
-        friday5x5.getExList().add(barbellRowExercise);
-
-        add(monday5x5);
-        add(wednesday5x5);
-        add(friday5x5);
-        // ---------------------------------------------------------------
+//        Exercise squatExercise = new Exercise(exerciseDAO.getExerciseTypeByName("squat").getId());
+//        Exercise benchExercise = new Exercise(exerciseDAO.getExerciseTypeByName("bench press").getId());
+//        Exercise deadliftExercise = new Exercise(exerciseDAO.getExerciseTypeByName("deadlift").getId());
+//        Exercise barbellRowExercise = new Exercise(exerciseDAO.getExerciseTypeByName("barbell row").getId());
+//        Exercise overheadPressExercise = new Exercise(exerciseDAO.getExerciseTypeByName("overhead press").getId());
+//
+//        for (int i = 0; i < 5; i++) {
+//            squatExercise.addSet(new ExerciseSet());
+//            deadliftExercise.addSet(new ExerciseSet());
+//            benchExercise.addSet(new ExerciseSet());
+//            barbellRowExercise.addSet(new ExerciseSet());
+//            overheadPressExercise.addSet(new ExerciseSet());
+//        }
+//
+//        // beginner 5x5 program
+//        Workout monday5x5 = new Workout("Monday 5x5", true);
+//        monday5x5.getExList().add(squatExercise);
+//        monday5x5.getExList().add(benchExercise);
+//        monday5x5.getExList().add(barbellRowExercise);
+//
+//        Workout wednesday5x5 = new Workout("Wednesday 5x5", true);
+//        wednesday5x5.getExList().add(deadliftExercise);
+//        wednesday5x5.getExList().add(benchExercise);
+//        wednesday5x5.getExList().add(overheadPressExercise);
+//
+//        Workout friday5x5 = new Workout("Friday 5x5", true);
+//        friday5x5.getExList().add(squatExercise);
+//        friday5x5.getExList().add(overheadPressExercise);
+//        friday5x5.getExList().add(barbellRowExercise);
+//
+//        save(monday5x5);
+//        save(wednesday5x5);
+//        save(friday5x5);
+//        // ---------------------------------------------------------------
     }
 }

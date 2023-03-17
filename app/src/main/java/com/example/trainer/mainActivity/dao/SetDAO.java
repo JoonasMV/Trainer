@@ -1,15 +1,11 @@
-package com.example.trainer.database.dao;
+package com.example.trainer.mainActivity.dao;
 
-import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.EXERCISE_ID;
-import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.EXERCISE_TYPEID;
-import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.TABLE_EXERCISE;
 import static com.example.trainer.database.contracts.SetContract.ExerciseSetEntry.SET_ID;
 import static com.example.trainer.database.contracts.SetContract.ExerciseSetEntry.SET_REPS;
 import static com.example.trainer.database.contracts.SetContract.ExerciseSetEntry.SET_WEIGHT;
 import static com.example.trainer.database.contracts.SetContract.ExerciseSetEntry.TABLE_SET;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,12 +13,14 @@ import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.database.schemas.ExerciseSet;
+import com.example.trainer.database.contracts.SetContract;
+import com.example.trainer.mainActivity.dao.framework.ISetDAO;
+import com.example.trainer.schemas.ExerciseSet;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SetDAO {
+public class SetDAO implements ISetDAO {
     DatabaseHelper dbConnection;
 
     public SetDAO() {
@@ -55,7 +53,8 @@ public class SetDAO {
     }
 
     //adds sets to database
-    public void addSetsToDb(List<ExerciseSet> sets, long exerciseId){
+    @Override
+    public void saveMany(List<ExerciseSet> sets, int exerciseId){
         try {
             SQLiteDatabase write = dbConnection.getWritableDatabase();
             String setQuery = "INSERT INTO " + TABLE_SET + " (reps, weight, exerciseId) values (?, ?, ?)";
@@ -85,13 +84,15 @@ public class SetDAO {
         db.close();
     }
 
-    public void update(ExerciseSet set){
+    @Override
+    public void update(ExerciseSet set, int exerciseId) {
         SQLiteDatabase db = dbConnection.getWritableDatabase();
 
         ContentValues values = new ContentValues();
 
         values.put(SET_WEIGHT, set.getWeight());
         values.put(SET_REPS, set.getAmount());
+        values.put(SetContract.ExerciseSetEntry.EXERCISE_ID, exerciseId);
 
         db.update(TABLE_SET, values, String.format("%s=?", SET_ID), new String[]{String.valueOf(set.getId())});
         db.close();

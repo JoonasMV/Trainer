@@ -7,9 +7,8 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import com.example.trainer.database.schemas.Exercise;
-import com.example.trainer.database.schemas.ExerciseSet;
-import com.example.trainer.database.schemas.Workout;
+import com.example.trainer.schemas.Exercise;
+import com.example.trainer.schemas.Workout;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 
 import org.junit.Before;

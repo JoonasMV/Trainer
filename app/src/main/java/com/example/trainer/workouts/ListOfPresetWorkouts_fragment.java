@@ -12,8 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.trainer.R;
-import com.example.trainer.database.dao.WorkoutDAO;
-import com.example.trainer.database.schemas.Workout;
+import com.example.trainer.schemas.Workout;
 import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
 import com.example.trainer.workouts.currentWorkout.SelectExercise;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
@@ -25,7 +24,6 @@ public class ListOfPresetWorkouts_fragment extends Fragment {
 
     private WorkoutManager workoutManager;
 
-    private WorkoutDAO workoutDAO;
 
     public ListOfPresetWorkouts_fragment() {
         // Required empty public constructor
@@ -42,7 +40,6 @@ public class ListOfPresetWorkouts_fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         workoutManager = WorkoutManager.getInstance();
-        workoutDAO = new WorkoutDAO();
 
         if (workoutManager.workoutActive()) {
             getParentFragmentManager()
@@ -88,7 +85,7 @@ public class ListOfPresetWorkouts_fragment extends Fragment {
 
         RecyclerView presets = view.findViewById(R.id.workoutList);
 
-        List<Workout> workouts = workoutDAO.getPresets();
+        List<Workout> workouts = workoutManager.getPresetWorkouts();
 
         PresetAdapter adapter = new PresetAdapter(workouts, getParentFragmentManager());
         presets.setLayoutManager(new LinearLayoutManager(getContext()));

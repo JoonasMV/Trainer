@@ -3,11 +3,17 @@ package com.example.trainer.workouts.currentWorkout;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.trainer.database.dao.ExerciseDAO;
-import com.example.trainer.database.dao.WorkoutDAO;
-import com.example.trainer.database.schemas.Exercise;
-import com.example.trainer.database.schemas.ExerciseSet;
-import com.example.trainer.database.schemas.Workout;
+import com.example.trainer.mainActivity.dao.framework.DAOFactory;
+import com.example.trainer.mainActivity.dao.framework.IExerciseDAO;
+import com.example.trainer.mainActivity.dao.framework.IExerciseTypeDAO;
+import com.example.trainer.mainActivity.dao.framework.IUserDAO;
+import com.example.trainer.mainActivity.dao.framework.IWorkoutDAO;
+import com.example.trainer.mainActivity.dao.sqlite.BetterSqliteDAOFactory;
+import com.example.trainer.schemas.Exercise;
+import com.example.trainer.schemas.ExerciseSet;
+import com.example.trainer.schemas.ExerciseType;
+import com.example.trainer.schemas.User;
+import com.example.trainer.schemas.Workout;
 import com.example.trainer.util.WorkoutSerializer;
 
 import java.util.ArrayList;
@@ -19,18 +25,24 @@ public class WorkoutManager {
     private static WorkoutManager instance;
 
     private Workout workout;
-    ExerciseDAO exerciseDAO;
-    WorkoutDAO workoutDAO;
+    private final IExerciseDAO exerciseDAO;
+    private final IWorkoutDAO workoutDAO;
+
+    private final IUserDAO userDAO;
+
+    private final IExerciseTypeDAO exerciseTypeDAO;
 
 
-    private WorkoutManager(){
-        this.exerciseDAO = new ExerciseDAO();
-        this.workoutDAO = new WorkoutDAO();
+    private WorkoutManager(DAOFactory factory){
+        this.exerciseDAO = factory.createExerciseDAO();
+        this.workoutDAO = factory.createWorkoutDAO();
+        this.userDAO = factory.createUserDAO();
+        this.exerciseTypeDAO = factory.createExerciseTypeDAO();
     }
 
     public static WorkoutManager getInstance() {
         if(instance == null) {
-            instance = new WorkoutManager();
+            instance = new WorkoutManager(new BetterSqliteDAOFactory());
         }
 
         return instance;
@@ -48,19 +60,11 @@ public class WorkoutManager {
 
     public void saveWorkout() {
         this.workout.setWorkoutEnded(new Date());
-        workoutDAO.add(workout);
+        workoutDAO.save(workout);
         this.workout = null;
 
     }
 
-    public void setEndWorkout(){
-        this.workout.setWorkoutEnded(new Date());
-    }
-
-    public void saveToDB(){
-        workoutDAO.add(workout);
-        this.workout = null;
-    }
 
     public void changeWorkoutName(String name){
         if(!name.isEmpty()){
@@ -109,8 +113,54 @@ public class WorkoutManager {
         Workout copy = new Workout(workout.getName(), new Date());
         copy.setExList(new ArrayList<>(workout.getExList()));
         copy.setPreset(false);
+        System.out.println("Starting workout exlist size: " + workout.getExList().size());
         this.workout = copy;
     }
+
+    public List<ExerciseType> getExerciseTypes(){
+        return exerciseTypeDAO.getAll();
+    };
+
+    public void deleteExerciseType(int id){
+       exerciseTypeDAO.deleteById(id);
+    }
+
+    public void createUser(User user){
+        this.userDAO.createUser(user);
+    }
+
+    public User findUser(){
+        return userDAO.getUser();
+    }
+
+    public List<Workout> getPresetWorkouts(){
+        return workoutDAO.getPresets();
+    }
+    public List<Workout> getNonPresetWorkouts(){
+        return workoutDAO.getNonPresets();
+    }
+
+    public void makePreset(Workout workout){
+        workout.setPreset(true);
+        System.out.println("making preset" + workout.getName());
+        workoutDAO.save(workout);
+    }
+
+    public void deleteWorkout(Workout workout){
+        workoutDAO.delete(workout);
+    }
+
+    public boolean exerciseTypeExists(String type){
+       String caseInsensitive = type.toLowerCase();
+       String found = exerciseTypeDAO.getExerciseTypeByName(type).getName().toLowerCase();
+       return caseInsensitive.equals(found);
+    }
+
+    public void createExerciseType(ExerciseType type){
+        exerciseTypeDAO.save(type);
+    }
+
+
 
 }
 

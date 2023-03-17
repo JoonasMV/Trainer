@@ -14,5 +14,6 @@
     <color name="color3">#1D3557</color>
     <color name="gray">#212529</color>
     <color name="gray2">#373737</color>
+    <color name="border_color">#212529</color>
 
 </resources>

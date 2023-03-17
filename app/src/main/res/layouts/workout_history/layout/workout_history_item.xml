@@ -5,36 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
-        style="@style/list_theme"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:background="#673AB7"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/workoutHistoryItem"
-            style="@style/list_text"
-            android:layout_weight="2"
-            android:text="workoutName" />
+        <LinearLayout
+            style="@style/list_theme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/deleteButton"
-            style="@style/button_list"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginEnd="4dp"
-            android:text="@string/delete_workout" />
+            <TextView
+                android:id="@+id/workoutHistoryItem"
+                style="@style/list_text"
+                android:layout_weight="2"
+                android:text="workoutName" />
 
-        <Button
-            android:id="@+id/saveAsPresetBtn"
-            style="@style/button_list"
-            android:layout_height="match_parent"
-            android:layout_weight="1.1"
-            android:text="@string/makePreset" />
+            <Button
+                android:id="@+id/deleteButton"
+                style="@style/button_list"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:text="@string/delete_workout" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/saveAsPresetBtn"
+                style="@style/button_list"
+                android:layout_height="match_parent"
+                android:layout_weight="1.1"
+                android:text="@string/makePreset" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

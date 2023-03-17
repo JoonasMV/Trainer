@@ -10,12 +10,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.trainer.R;
-import com.example.trainer.database.dao.ExerciseDAO;
-import com.example.trainer.database.schemas.ExerciseType;
+import com.example.trainer.schemas.ExerciseType;
 import com.example.trainer.util.Toaster;
+import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 
 public class NewExercise extends Fragment {
 
+    private WorkoutManager workoutManager;
     public NewExercise() {
     }
 
@@ -28,23 +29,18 @@ public class NewExercise extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ExerciseDAO exerciseDAO = new ExerciseDAO();
         View v = inflater.inflate(R.layout.fragment_new_exercise, container, false);
 
+        workoutManager = WorkoutManager.getInstance();
         TextView exerciseNameInput = v.findViewById(R.id.exerciseNameInput);
         v.findViewById(R.id.newExerciseBtn).setOnClickListener(view -> {
             String name = exerciseNameInput.getText().toString();
-            if (exerciseDAO.getExerciseTypeByName(name.toLowerCase()) == null) {
-                if(name.isEmpty()){
-                    Toaster.toast(getContext(),"No name given");
-                } else {
-                    exerciseDAO.addExerciseType(new ExerciseType(name));
-                    getParentFragmentManager().popBackStack();
-                }
+            if (workoutManager.exerciseTypeExists(name)) {
+                workoutManager.createExerciseType(new ExerciseType(name));
+                getParentFragmentManager().popBackStack();
             } else{
-                Toaster.toast(getContext(),"Exercise exists already");
+                Toaster.toast(getContext(),"Exercise already added");
             }
-
         });
         return v;
     }

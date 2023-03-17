@@ -8,10 +8,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.database.dao.ExerciseDAO;
-import com.example.trainer.database.dao.SetDAO;
-import com.example.trainer.database.schemas.ExerciseSet;
-import com.example.trainer.workouts.currentWorkout.WorkoutManager;
+import com.example.trainer.mainActivity.dao.SetDAO;
+import com.example.trainer.schemas.ExerciseSet;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -48,7 +46,7 @@ public class SetDAOTests {
         List<ExerciseSet> sets = new ArrayList<>();
 
         sets.add(set);
-        setDAO.addSetsToDb(sets, 10);
+        setDAO.saveMany(sets, 10);
 
         List<ExerciseSet> setsFromDb = setDAO.getSetsByExerciseId(10);
 

@@ -4,18 +4,17 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.database.dao.ExerciseDAO;
-import com.example.trainer.database.dao.WorkoutDAO;
-import com.example.trainer.database.schemas.Exercise;
-import com.example.trainer.database.schemas.ExerciseSet;
-import com.example.trainer.database.schemas.ExerciseType;
-import com.example.trainer.database.schemas.Workout;
+import com.example.trainer.mainActivity.dao.ExerciseDAO;
+import com.example.trainer.mainActivity.dao.WorkoutDAO;
+import com.example.trainer.schemas.Exercise;
+import com.example.trainer.schemas.ExerciseSet;
+import com.example.trainer.schemas.ExerciseType;
+import com.example.trainer.schemas.Workout;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 
 import org.junit.Before;
@@ -24,9 +23,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -103,7 +100,7 @@ public class WorkoutDAOTests{
         workout.setExList(exerciseList);
         workout.setPreset(true);
 
-        int id = wDao.add(workout);
+        int id = wDao.save(workout);
 
         Workout workout1 = wDao.getById(id);
 

@@ -1,13 +1,12 @@
-package com.example.trainer.database.schemas;
+package com.example.trainer.schemas;
 
-import com.example.trainer.database.dao.ExerciseDAO;
+import com.example.trainer.mainActivity.dao.ExerciseDAO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-public class Exercise implements Serializable{
+public class Exercise implements Serializable {
 
     private static final long serialVersionUID = 3L;
     private int exerciseId;
@@ -81,4 +80,5 @@ public class Exercise implements Serializable{
     public void setTypeId(int typeId) {
         this.typeId = typeId;
     }
+
 }

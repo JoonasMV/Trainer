@@ -11,22 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.trainer.R;
-import com.example.trainer.database.dao.ExerciseDAO;
-import com.example.trainer.database.schemas.ExerciseType;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ListOfExercises_fragment extends Fragment {
-    ExerciseDAO exerciseDAO;
     RecyclerView exerciseList;
-    List<ExerciseType> listOfExercises;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        exerciseDAO = new ExerciseDAO();
-        listOfExercises = new ArrayList<>(exerciseDAO.getAllExerciseTypes());
     }
 
     @Override
@@ -42,11 +33,9 @@ public class ListOfExercises_fragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        exerciseDAO = new ExerciseDAO();
-        listOfExercises = exerciseDAO.getAllExerciseTypes();
 
         exerciseList = getView().findViewById(R.id.listOfExercises);
-        ListOfExercisesAdapter adapter = new ListOfExercisesAdapter(listOfExercises);
+        ListOfExercisesAdapter adapter = new ListOfExercisesAdapter();
         exerciseList.setAdapter(adapter);
         exerciseList.setLayoutManager(new LinearLayoutManager(getContext()));
 

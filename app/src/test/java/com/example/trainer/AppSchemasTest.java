@@ -2,14 +2,13 @@ package com.example.trainer;
 
 import static org.junit.Assert.assertEquals;
 
-import com.example.trainer.database.schemas.Exercise;
-import com.example.trainer.database.schemas.ExerciseSet;
-import com.example.trainer.database.schemas.ExerciseType;
-import com.example.trainer.database.schemas.User;
-import com.example.trainer.database.schemas.Workout;
+import com.example.trainer.schemas.Exercise;
+import com.example.trainer.schemas.ExerciseSet;
+import com.example.trainer.schemas.ExerciseType;
+import com.example.trainer.schemas.User;
+import com.example.trainer.schemas.Workout;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
