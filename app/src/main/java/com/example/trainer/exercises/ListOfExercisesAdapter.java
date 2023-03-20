@@ -8,11 +8,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.database.schemas.ExerciseType;
+import com.example.trainer.workouts.mainActivity.MainActivity;
 
 import java.util.List;
 
@@ -55,6 +59,16 @@ public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercises
             exerciseTypeList.remove(position);
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, getItemCount());
+        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                ExerciseChart exerciseChart = new ExerciseChart();
+                ((MainActivity)v.getContext()).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.mainContainer, exerciseChart,"")
+                        .addToBackStack(null).commit();
+            }
         });
     }
 

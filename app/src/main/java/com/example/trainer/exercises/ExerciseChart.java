@@ -1,21 +1,35 @@
 package com.example.trainer.exercises;
 
+import android.graphics.Color;
+import android.graphics.DashPathEffect;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.trainer.R;
+import com.example.trainer.database.schemas.Workout;
+import com.example.trainer.workouts.PresetAdapter;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 public class ExerciseChart extends Fragment {
@@ -28,7 +42,6 @@ public class ExerciseChart extends Fragment {
     }
 
 
-    // TODO: Rename and change types and number of parameters
     public static ExerciseChart newInstance() {
         ExerciseChart fragment = new ExerciseChart();
         Bundle args = new Bundle();
@@ -66,14 +79,52 @@ public class ExerciseChart extends Fragment {
         }
 
         View v = inflater.inflate(R.layout.fragment_exercise_chart, container, false);
-        mpLineChart = (LineChart) v.findViewById(R.id.linechart);
-        LineDataSet lineDataSet1 = new LineDataSet(dataValues1(), "data set 1");
-        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-        dataSets.add(lineDataSet1);
-        LineData data = new LineData(dataSets);
+        mpLineChart = (LineChart) v.findViewById(R.id.lineChart);
+        LineDataSet set1 = new LineDataSet(dataValues1(), "Weights");
+        set1.setColor(Color.GREEN);
+        set1.setCircleColor(Color.GREEN);
+        set1.setLineWidth(3f);
+        set1.setCircleRadius(5f);
+        set1.setDrawCircleHole(false);
+        set1.setValueTextSize(16f);
+        set1.setDrawFilled(true);
+        set1.setFillColor(Color.GREEN);
+        set1.setFormLineWidth(2f);
 
+        set1.setFormSize(15.f);
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+        dataSets.add(set1);
+        LineData data = new LineData(dataSets);
+        AxisBase yAxis = mpLineChart.getAxisLeft();
+        AxisBase xAxis = mpLineChart.getXAxis();
+
+        yAxis.setTextSize(14f);
+        yAxis.setAxisLineWidth(2f);
+        xAxis.setTextSize(14f);
+        xAxis.setAxisLineWidth(2f);
+        mpLineChart.getAxisRight().setEnabled(false);
+        mpLineChart.setExtraOffsets(10,15,5,5);
         mpLineChart.setData(data);
+        mpLineChart.animateY(1000);
+
         mpLineChart.invalidate();
         return v;
     }
+
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+
+        RecyclerView presets = view.findViewById(R.id.bestWeights);
+
+       List<Workout> list = new ArrayList<>();
+
+       list.add(new Workout("workout", new Date(), new Date()));
+       list.add(new Workout("workout2", new Date(), new Date()));
+       list.add(new Workout("workout3", new Date(), new Date()));
+
+        ExerciseChartAdapter adapter = new ExerciseChartAdapter(list, getParentFragmentManager());
+        presets.setLayoutManager(new LinearLayoutManager(getContext()));
+        presets.setAdapter(adapter);
+
+    }
+
 }

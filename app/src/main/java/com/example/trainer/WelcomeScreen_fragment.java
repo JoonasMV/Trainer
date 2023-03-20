@@ -51,12 +51,6 @@ public class WelcomeScreen_fragment extends Fragment {
         }
         userGreetText.setText(String.format("Welcome back %s", user.getUsername()));
 
-        view.findViewById(R.id.testing).setOnClickListener(v -> {
-         getParentFragmentManager().beginTransaction()
-                 .replace(R.id.mainContainer, new ExerciseChart())
-                 .addToBackStack(null).commit();
-
-        });
     }
 
     private void getUserFromDb(){
