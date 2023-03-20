@@ -1,11 +1,9 @@
-package com.example.trainer.database.dao;
+package com.example.trainer.mainActivity.dao;
 
 import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.EXERCISE_ID;
 import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.EXERCISE_TYPEID;
 import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.TABLE_EXERCISE;
 import static com.example.trainer.database.contracts.ExerciseTypeContract.ExerciseTypeEntry.TABLE_EXERCISETYPE;
-import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.TABLE_WORKOUT;
-import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.WORKOUT_ID;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -15,17 +13,19 @@ import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.database.schemas.Exercise;
-import com.example.trainer.database.schemas.ExerciseSet;
-import com.example.trainer.database.schemas.ExerciseType;
+import com.example.trainer.mainActivity.dao.framework.IExerciseDAO;
+import com.example.trainer.mainActivity.dao.framework.ISetDAO;
+import com.example.trainer.schemas.Exercise;
+import com.example.trainer.schemas.ExerciseSet;
+import com.example.trainer.schemas.ExerciseType;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExerciseDAO {
+public class ExerciseDAO implements IExerciseDAO {
     DatabaseHelper dbConnection;
 
-    SetDAO setDAO;
+    ISetDAO setDAO;
 
     private String columns = "exerciseType._id AS typeId, exerciseType.exerciseTypeName AS name, exercise.workoutId, exercise._id AS id";
     private String sqlQuery = "SELECT " + columns + " FROM " + TABLE_EXERCISETYPE + " INNER JOIN " + TABLE_EXERCISE + " ON exercise.exerciseTypeId = exerciseType._id;";
@@ -40,8 +40,9 @@ public class ExerciseDAO {
 
     //adds an exercise to database and also adds sets to database that the exercise has
     //returns the id of the exercise added
-    public int addExercise(Exercise exercise) {
-        long id = -1;
+    @Override
+    public int save(Exercise exercise) {
+        int id = -1;
         SQLiteDatabase db = dbConnection.getWritableDatabase();
 
         List<ExerciseSet> sets = exercise.getSetList();
@@ -59,7 +60,7 @@ public class ExerciseDAO {
 
             if (cursor != null) {
                 cursor.moveToLast();
-                id = (int) cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+                id = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
             }
 
             if (id == -1) {
@@ -68,7 +69,7 @@ public class ExerciseDAO {
 
 
             if (!sets.isEmpty()) {
-                setDAO.addSetsToDb(sets, id);
+                setDAO.saveMany(sets, id);
 
             }
         } catch (SQLException e) {
@@ -80,44 +81,20 @@ public class ExerciseDAO {
 
     //gets an exercise from database based on id
     //returns exercise
-    public Exercise getExerciseById(int id) {
+    @Override
+    public Exercise getById(int id) {
         List<Exercise> e = selectFromDb("id=?;", new String[] {Integer.toString(id)});
         if(e == null) return null;
         if(e.isEmpty()) return null;
         return e.get(0);
     }
 
-    public List<Exercise> getExerciseByWorkoutId(int id) {
+    @Override
+    public List<Exercise> getByWorkoutId(int id) {
         return selectFromDb("exercise.workoutId=?",new String[] { Integer.toString(id) });
     }
 
 
-    //gets all exercises from database
-    //returns list of all exercises
-    public ArrayList<Exercise> getAllExercises() {
-        ArrayList<Exercise> exercises = new ArrayList<>();
-        try {
-            Log.d("DATABASE", "database");
-            SQLiteDatabase db = dbConnection.getReadableDatabase();
-
-            Log.d("DATABASE", sqlQuery);
-
-            Cursor cursor = db.rawQuery(sqlQuery, null);
-
-            if (cursor != null) {
-                while (cursor.moveToNext()) {
-                    Exercise exercise = readExerciseRow(cursor);
-                    List<ExerciseSet> sets = setDAO.getSetsByExerciseId(exercise.getExerciseId());
-                    exercise.setSetList(sets);
-                    exercises.add(exercise);
-                }
-            }
-        } catch (SQLException e) {
-            Log.w("error", e);
-            return null;
-        }
-        return exercises;
-    }
 
     //reads exercise information from database and creates a new exercise object
     //returns the newly created exercise
@@ -131,21 +108,23 @@ public class ExerciseDAO {
         return new Exercise(name, id, workoutId, typeId, sets);
     }
 
-    public void addManyExercises(List<Exercise> exercises) {
+    @Override
+    public void saveMany(List<Exercise> exercises) {
         for (Exercise e : exercises){
-            addExercise(e);
+            save(e);
         }
     }
 
 
     //self explanatory
-    public void deleteAllExercises(){
+    public void deleteAll(){
         SQLiteDatabase db = dbConnection.getWritableDatabase();
         db.delete("exercise", null, null);
     }
 
 
 
+    @Override
     public void delete(Exercise exercise){
         int id = exercise.getExerciseId();
         SQLiteDatabase db = dbConnection.getWritableDatabase();
@@ -180,7 +159,6 @@ public class ExerciseDAO {
 
 
     /*  -> exerciseType methods  */
-
     public int addExerciseType(ExerciseType exerciseType) {
         long id = -1;
         SQLiteDatabase db = dbConnection.getWritableDatabase();
@@ -215,7 +193,7 @@ public class ExerciseDAO {
 
     public void deleteAllExerciseTypes(){
         SQLiteDatabase db = dbConnection.getWritableDatabase();
-        deleteAllExercises();
+        deleteAll();
         db.delete("exerciseType", null, null);
     }
 
@@ -261,15 +239,15 @@ public class ExerciseDAO {
         return null;
     }
 
-    public ExerciseType getExerciseTypeByName(String givenName) {
+    public ExerciseType getExerciseTypeByName(String name) {
         ExerciseType exerciseType = null;
         try {
             SQLiteDatabase db = dbConnection.getReadableDatabase();
-            Cursor cursor = db.query(TABLE_EXERCISETYPE, null, "exerciseTypeName=?", new String[] {givenName}, null, null, null);
+            Cursor cursor = db.query(TABLE_EXERCISETYPE, null, "exerciseTypeName=?", new String[] {name}, null, null, null);
             if(cursor != null && cursor.moveToFirst() ) {
                 int typeId = (int) cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
-                String name = cursor.getString(cursor.getColumnIndexOrThrow("exerciseTypeName"));
-                exerciseType = new ExerciseType(name);
+                String exerciseTypeName = cursor.getString(cursor.getColumnIndexOrThrow("exerciseTypeName"));
+                exerciseType = new ExerciseType(exerciseTypeName);
                 exerciseType.setId(typeId);
                 return exerciseType;
             }
@@ -281,6 +259,7 @@ public class ExerciseDAO {
         return null;
     }
 
+    @Override
     public void update(Exercise exercise){
 
         SQLiteDatabase db = dbConnection.getWritableDatabase();
@@ -295,7 +274,7 @@ public class ExerciseDAO {
         List<ExerciseSet> sets = exercise.getSetList();
 
         for(ExerciseSet set : sets){
-            setDAO.update(set);
+            setDAO.update(set, exercise.getExerciseId());
         }
 
     }

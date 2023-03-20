@@ -7,9 +7,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.trainer.database.dao.UserDAO;
-import com.example.trainer.database.dao.WorkoutDAO;
-import com.example.trainer.database.schemas.User;
+import com.example.trainer.schemas.User;
+import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 import com.example.trainer.workouts.mainActivity.MainActivity;
 //import android.widget.Toast;
 
@@ -28,8 +27,7 @@ public class LoginPage extends AppCompatActivity {
 
         startBtn.setOnClickListener(view -> {
             String username = nameInput.getText().toString();
-            new UserDAO().createUser(new User(username));
-            new WorkoutDAO().initPresets();
+            WorkoutManager.getInstance().createUser(new User(username));
             startActivity(new Intent(this, MainActivity.class));
         });
     }

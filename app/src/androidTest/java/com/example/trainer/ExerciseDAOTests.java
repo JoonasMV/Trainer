@@ -10,11 +10,11 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.database.dao.ExerciseDAO;
-import com.example.trainer.database.dao.WorkoutDAO;
-import com.example.trainer.database.schemas.Exercise;
-import com.example.trainer.database.schemas.ExerciseType;
-import com.example.trainer.database.schemas.Workout;
+import com.example.trainer.mainActivity.dao.ExerciseDAO;
+import com.example.trainer.mainActivity.dao.WorkoutDAO;
+import com.example.trainer.schemas.Exercise;
+import com.example.trainer.schemas.ExerciseType;
+import com.example.trainer.schemas.Workout;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 
 import org.junit.Before;
@@ -47,7 +47,7 @@ public class ExerciseDAOTests{
 
     @Before
     public void beforeEach(){
-        exDao.deleteAllExercises();
+        exDao.deleteAll();
         exDao.deleteAllExerciseTypes();
 
         exerciseTypeId = exDao.addExerciseType(new ExerciseType("mockType"));
@@ -68,12 +68,12 @@ public class ExerciseDAOTests{
     public void exercise_creation(){
         Exercise e = new Exercise(exerciseTypeId);
 
-        int id = exDao.addExercise(e);
+        int id = exDao.save(e);
 
 
         assertNotEquals(-1, id);
 
-        Exercise exFromDb = exDao.getExerciseById(id);
+        Exercise exFromDb = exDao.getById(id);
 
         assertEquals("mockType", exFromDb.getExerciseName());
     }
@@ -91,7 +91,7 @@ public class ExerciseDAOTests{
         Workout w = workoutManager.getWorkout();
         w.setWorkoutEnded(new Date());
 
-        int id = workoutDAO.add(w);
+        int id = workoutDAO.save(w);
 
         Log.d("WORKOUT ID", Integer.toString(id));
 

@@ -2,7 +2,6 @@ package com.example.trainer;
 
 import android.content.Context;
 
-import androidx.annotation.DisplayContext;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -15,17 +14,16 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.database.dao.ExerciseDAO;
-import com.example.trainer.database.dao.SetDAO;
-import com.example.trainer.database.dao.UserDAO;
-import com.example.trainer.database.dao.WorkoutDAO;
-import com.example.trainer.database.schemas.Exercise;
-import com.example.trainer.database.schemas.ExerciseSet;
-import com.example.trainer.database.schemas.ExerciseType;
-import com.example.trainer.database.schemas.Workout;
+import com.example.trainer.mainActivity.dao.ExerciseDAO;
+import com.example.trainer.mainActivity.dao.SetDAO;
+import com.example.trainer.mainActivity.dao.UserDAO;
+import com.example.trainer.mainActivity.dao.WorkoutDAO;
+import com.example.trainer.schemas.Exercise;
+import com.example.trainer.schemas.ExerciseSet;
+import com.example.trainer.schemas.ExerciseType;
+import com.example.trainer.schemas.Workout;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -62,7 +60,7 @@ public class DatabaseTests {
 
     @Before
     public void beforeTest(){
-        exDao.deleteAllExercises();
+        exDao.deleteAll();
         workoutDAO.deleteAllWorkouts();
         setDAO.deleteAllSets();
         exDao.deleteAllExerciseTypes();
@@ -116,7 +114,7 @@ public class DatabaseTests {
         w.setWorkoutEnded(new Date());
         w.getExList().get(0).getSetList().get(0).setWeight(10);
 
-        int id = workoutDAO.add(w);
+        int id = workoutDAO.save(w);
 
         Workout workoutFromDb = workoutDAO.getById(id);
 
