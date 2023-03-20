@@ -4,6 +4,6 @@ import okhttp3.OkHttpClient;
 
 public interface DatabaseService {
     Object[] getAll(OkHttpClient okHttpClient);
-    Object getOne(OkHttpClient okHttpClient, int id);
-    Object getById(OkHttpClient okHttpClient);
+    Object getById(OkHttpClient okHttpClient, int id);
+    Object post(OkHttpClient okHttpClient, Object item);
 }

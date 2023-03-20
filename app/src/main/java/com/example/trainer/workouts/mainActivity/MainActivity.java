@@ -9,6 +9,7 @@ import android.os.Bundle;
 import com.example.trainer.R;
 import com.example.trainer.WelcomeScreen_fragment;
 import com.example.trainer.database.DatabaseHelper;
+import com.example.trainer.database.dao.UserDAO;
 import com.example.trainer.database.dao.WorkoutDAO;
 import com.example.trainer.database.schemas.User;
 import com.example.trainer.exercises.ListOfExercises_fragment;
@@ -39,8 +40,12 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseConnector onlineDb = new DatabaseConnector();
         findViewById(R.id.testiBtn).setOnClickListener(v -> {
-            User asd = onlineDb.user().getOne(2);
-            System.out.println(asd);
+//            User testPostUser = new User("Testing2");
+//            User test2 = new UserDAO().getUser();
+//            System.out.println(test2);
+////            System.out.println(testPostUser);
+//            User resUser = onlineDb.user().post(testPostUser);
+//            System.out.println(resUser);
         });
 
         WorkoutDAO dao = new WorkoutDAO();

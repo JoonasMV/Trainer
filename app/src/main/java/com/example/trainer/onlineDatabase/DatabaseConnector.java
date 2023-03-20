@@ -38,6 +38,11 @@ public class DatabaseConnector  {
 
     @SuppressWarnings("unchecked")
     public <T> T getOne(int id) {
-        return (T) service.getOne(okHttpClient, id);
+        return (T) service.getById(okHttpClient, id);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T post(Object item) {
+        return (T) service.post(okHttpClient, item);
     }
 }
