@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".workouts.mainActivity.MainActivity">
 
+    <Button
+        android:id="@+id/testiBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Button" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -69,6 +76,7 @@
                 android:text="@string/history" />
 
         </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

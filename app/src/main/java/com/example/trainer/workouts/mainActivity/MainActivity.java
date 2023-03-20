@@ -12,6 +12,9 @@ import com.example.trainer.WelcomeScreen_fragment;
 import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.dao.WorkoutDAO;
 import com.example.trainer.exercises.ListOfExercises_fragment;
+import com.example.trainer.onlineDatabase.DatabaseService;
+import com.example.trainer.onlineDatabase.NetworkService;
+import com.example.trainer.onlineDatabase.UserService;
 import com.example.trainer.workouts.ListOfPresetWorkouts_fragment;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 import com.example.trainer.workouts.workoutHistory.WorkoutHistory_fragment;
@@ -34,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.homeBtn).setOnClickListener(view -> fragmentHandler(new WelcomeScreen_fragment()));
         findViewById(R.id.workoutsBtn).setOnClickListener(view -> fragmentHandler(new ListOfPresetWorkouts_fragment()));
         findViewById(R.id.progressBtn).setOnClickListener(view -> fragmentHandler(new WorkoutHistory_fragment()));
+
+        UserService userService = new UserService();
+        findViewById(R.id.testiBtn).setOnClickListener(v -> userService.getAllUsers());
 
         WorkoutDAO dao = new WorkoutDAO();
 
