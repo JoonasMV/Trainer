@@ -9,12 +9,8 @@ import android.os.Bundle;
 import com.example.trainer.R;
 import com.example.trainer.WelcomeScreen_fragment;
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.database.dao.UserDAO;
-import com.example.trainer.database.dao.WorkoutDAO;
-import com.example.trainer.database.schemas.User;
 import com.example.trainer.exercises.ListOfExercises_fragment;
 import com.example.trainer.onlineDatabase.DatabaseConnector;
-import com.example.trainer.onlineDatabase.UserService;
 import com.example.trainer.workouts.ListOfPresetWorkouts_fragment;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 import com.example.trainer.workouts.workoutHistory.WorkoutHistory_fragment;
@@ -48,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
 //            System.out.println(resUser);
         });
 
-        WorkoutDAO dao = new WorkoutDAO();
-
         WorkoutManager.getInstance().readFromPref(getApplicationContext());
     }
 
@@ -65,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void fragmentHandler(Fragment fragment) {
         Fragment currentFragment = fragmentManager.findFragmentById(R.id.mainContainer);
+
+        assert currentFragment != null;
         if(currentFragment.getClass().equals(fragment.getClass())) return;
 
         fragmentManager.beginTransaction()
