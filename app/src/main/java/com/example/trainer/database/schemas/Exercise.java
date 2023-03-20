@@ -81,4 +81,15 @@ public class Exercise implements Serializable{
     public void setTypeId(int typeId) {
         this.typeId = typeId;
     }
+
+    @Override
+    public String toString() {
+        return "Exercise{" +
+                "exerciseId=" + exerciseId +
+                ", exerciseName='" + exerciseName + '\'' +
+                ", workoutId=" + workoutId +
+                ", typeId=" + typeId +
+                ", setList=" + setList +
+                '}';
+    }
 }

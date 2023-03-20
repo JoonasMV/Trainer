@@ -3,7 +3,6 @@ package com.example.trainer.workouts.mainActivity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
@@ -11,9 +10,9 @@ import com.example.trainer.R;
 import com.example.trainer.WelcomeScreen_fragment;
 import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.dao.WorkoutDAO;
+import com.example.trainer.database.schemas.User;
 import com.example.trainer.exercises.ListOfExercises_fragment;
-import com.example.trainer.onlineDatabase.DatabaseService;
-import com.example.trainer.onlineDatabase.NetworkService;
+import com.example.trainer.onlineDatabase.DatabaseConnector;
 import com.example.trainer.onlineDatabase.UserService;
 import com.example.trainer.workouts.ListOfPresetWorkouts_fragment;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
@@ -38,8 +37,11 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.workoutsBtn).setOnClickListener(view -> fragmentHandler(new ListOfPresetWorkouts_fragment()));
         findViewById(R.id.progressBtn).setOnClickListener(view -> fragmentHandler(new WorkoutHistory_fragment()));
 
-        UserService userService = new UserService();
-        findViewById(R.id.testiBtn).setOnClickListener(v -> userService.getAllUsers());
+        DatabaseConnector onlineDb = new DatabaseConnector();
+        findViewById(R.id.testiBtn).setOnClickListener(v -> {
+            User[] asd = onlineDb.user().getAll();
+            System.out.println(asd[0]);
+        });
 
         WorkoutDAO dao = new WorkoutDAO();
 
