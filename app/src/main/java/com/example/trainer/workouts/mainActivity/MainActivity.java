@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseConnector onlineDb = new DatabaseConnector();
         findViewById(R.id.testiBtn).setOnClickListener(v -> {
-            User[] asd = onlineDb.user().getAll();
-            System.out.println(asd[0]);
+            User asd = onlineDb.user().getOne(2);
+            System.out.println(asd);
         });
 
         WorkoutDAO dao = new WorkoutDAO();
