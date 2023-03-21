@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.workoutsBtn).setOnClickListener(view -> fragmentHandler(new ListOfPresetWorkouts_fragment()));
         findViewById(R.id.progressBtn).setOnClickListener(view -> fragmentHandler(new WorkoutHistory_fragment()));
 
-        DatabaseConnector onlineDb = new DatabaseConnector();
+//        DatabaseConnector onlineDb = new DatabaseConnector();
         findViewById(R.id.testiBtn).setOnClickListener(v -> {
 //            User testPostUser = new User("Testing2");
 //            User test2 = new UserDAO().getUser();

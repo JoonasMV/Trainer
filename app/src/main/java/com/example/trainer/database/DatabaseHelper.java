@@ -47,7 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL(
                 "CREATE TABLE " + UserEntry.TABLE_USER + " (" +
-                        UserContract.UserEntry.USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        UserContract.UserEntry.USER_ID + " TEXT PRIMARY KEY, " +
                         UserContract.UserEntry.USERNAME + " TEXT);"
         );
 

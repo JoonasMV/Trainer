@@ -7,6 +7,7 @@ import okhttp3.OkHttpClient;
  */
 
 public class DatabaseConnector  {
+    private static DatabaseConnector instance = null;
 
     /** Client for HTTP requests */
     private final OkHttpClient okHttpClient = new OkHttpClient();
@@ -16,6 +17,13 @@ public class DatabaseConnector  {
 
     /** Service used to access users in database */
     private final DatabaseService userService = UserService.getInstance();
+
+    private DatabaseConnector() {}
+
+    public static DatabaseConnector getInstance() {
+        if(instance == null) instance = new DatabaseConnector();
+        return instance;
+    }
 
     /**
      *

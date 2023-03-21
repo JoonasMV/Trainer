@@ -14,9 +14,11 @@ import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.contracts.UserContract;
 import com.example.trainer.database.schemas.User;
 import com.example.trainer.database.contracts.UserContract.UserEntry;
+import com.example.trainer.onlineDatabase.DatabaseConnector;
 
 public class UserDAO {
     DatabaseHelper dbConnection;
+    DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
 
     public UserDAO() {
         dbConnection = DatabaseHelper.getInstance();
@@ -26,7 +28,10 @@ public class UserDAO {
         SQLiteDatabase db = dbConnection.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(UserContract.UserEntry.USERNAME, newUser.getUsername());
+        User createdUser = databaseConnector.user().post(newUser);
+
+        cv.put(UserContract.UserEntry.USERNAME, createdUser.getUsername());
+        cv.put(UserEntry.USER_ID, createdUser.getId());
         long success = db.insert(UserContract.UserEntry.TABLE_USER, null, cv);
         db.close();
 

@@ -1,7 +1,10 @@
 package com.example.trainer.database.schemas;
 
+import java.util.UUID;
+
 public class User {
     private String username;
+    private String _id;
 
     public User(String username) {
         this.username = username;
@@ -10,6 +13,8 @@ public class User {
     public String getUsername() {
         return username;
     }
+
+    public String getId() { return _id; }
 
     public void setUsername(String username) {
         this.username = username;
