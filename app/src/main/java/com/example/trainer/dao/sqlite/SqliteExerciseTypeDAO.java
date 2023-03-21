@@ -1,4 +1,4 @@
-package com.example.trainer.mainActivity.dao.sqlite;
+package com.example.trainer.dao.sqlite;
 
 import static com.example.trainer.database.contracts.ExerciseTypeContract.ExerciseTypeEntry.TABLE_EXERCISETYPE;
 
@@ -6,10 +6,10 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.trainer.dao.entityCreators.EntityCreator;
+import com.example.trainer.dao.framework.IExerciseTypeDAO;
 import com.example.trainer.database.contracts.ExerciseTypeContract;
-import com.example.trainer.mainActivity.dao.framework.DAOBase;
-import com.example.trainer.mainActivity.dao.framework.IExerciseTypeDAO;
-import com.example.trainer.mainActivity.dao.entityCreators.EntityCreator;
+import com.example.trainer.dao.framework.DAOBase;
 import com.example.trainer.schemas.ExerciseType;
 
 import java.util.ArrayList;

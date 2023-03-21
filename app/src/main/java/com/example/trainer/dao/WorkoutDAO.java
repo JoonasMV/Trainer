@@ -1,4 +1,4 @@
-package com.example.trainer.mainActivity.dao;
+package com.example.trainer.dao;
 
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.PRESET;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.TABLE_WORKOUT;
@@ -14,9 +14,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
+import com.example.trainer.dao.framework.IExerciseDAO;
+import com.example.trainer.dao.framework.IWorkoutDAO;
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.mainActivity.dao.framework.IExerciseDAO;
-import com.example.trainer.mainActivity.dao.framework.IWorkoutDAO;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.Workout;
 

@@ -1,4 +1,4 @@
-package com.example.trainer.mainActivity.dao.framework;
+package com.example.trainer.dao.framework;
 
 import com.example.trainer.schemas.ExerciseSet;
 

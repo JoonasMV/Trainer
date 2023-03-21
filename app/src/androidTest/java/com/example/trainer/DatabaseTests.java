@@ -14,10 +14,10 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.mainActivity.dao.ExerciseDAO;
-import com.example.trainer.mainActivity.dao.SetDAO;
-import com.example.trainer.mainActivity.dao.UserDAO;
-import com.example.trainer.mainActivity.dao.WorkoutDAO;
+import com.example.trainer.dao.ExerciseDAO;
+import com.example.trainer.dao.SetDAO;
+import com.example.trainer.dao.UserDAO;
+import com.example.trainer.dao.WorkoutDAO;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.ExerciseSet;
 import com.example.trainer.schemas.ExerciseType;

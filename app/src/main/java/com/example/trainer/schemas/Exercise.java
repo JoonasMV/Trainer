@@ -1,11 +1,10 @@
 package com.example.trainer.schemas;
 
-import com.example.trainer.mainActivity.dao.ExerciseDAO;
+import com.example.trainer.dao.ExerciseDAO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class Exercise implements Serializable {
 

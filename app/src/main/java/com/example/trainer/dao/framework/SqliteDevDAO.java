@@ -1,8 +1,8 @@
-package com.example.trainer.mainActivity.dao.framework;
+package com.example.trainer.dao.framework;
 
-import com.example.trainer.mainActivity.dao.ExerciseDAO;
-import com.example.trainer.mainActivity.dao.SetDAO;
-import com.example.trainer.mainActivity.dao.WorkoutDAO;
+import com.example.trainer.dao.ExerciseDAO;
+import com.example.trainer.dao.SetDAO;
+import com.example.trainer.dao.WorkoutDAO;
 
 public class SqliteDevDAO extends DevelopmentDAO {
 

@@ -1,4 +1,4 @@
-package com.example.trainer.mainActivity.dao.sqlite;
+package com.example.trainer.dao.sqlite;
 
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.PRESET;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.WORKOUT_ENDED;
@@ -7,10 +7,10 @@ import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntr
 
 import android.content.ContentValues;
 
-import com.example.trainer.mainActivity.dao.entityCreators.EntityCreator;
-import com.example.trainer.mainActivity.dao.framework.DAOBase;
-import com.example.trainer.mainActivity.dao.framework.IExerciseDAO;
-import com.example.trainer.mainActivity.dao.framework.IWorkoutDAO;
+import com.example.trainer.dao.entityCreators.EntityCreator;
+import com.example.trainer.dao.framework.IExerciseDAO;
+import com.example.trainer.dao.framework.IWorkoutDAO;
+import com.example.trainer.dao.framework.DAOBase;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.Workout;
 

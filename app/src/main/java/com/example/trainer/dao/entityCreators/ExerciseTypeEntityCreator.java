@@ -1,4 +1,4 @@
-package com.example.trainer.mainActivity.dao.entityCreators;
+package com.example.trainer.dao.entityCreators;
 
 import android.database.Cursor;
 

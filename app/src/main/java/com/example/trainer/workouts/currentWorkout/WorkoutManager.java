@@ -3,12 +3,12 @@ package com.example.trainer.workouts.currentWorkout;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.trainer.mainActivity.dao.framework.DAOFactory;
-import com.example.trainer.mainActivity.dao.framework.IExerciseDAO;
-import com.example.trainer.mainActivity.dao.framework.IExerciseTypeDAO;
-import com.example.trainer.mainActivity.dao.framework.IUserDAO;
-import com.example.trainer.mainActivity.dao.framework.IWorkoutDAO;
-import com.example.trainer.mainActivity.dao.sqlite.BetterSqliteDAOFactory;
+import com.example.trainer.dao.framework.DAOFactory;
+import com.example.trainer.dao.framework.IExerciseDAO;
+import com.example.trainer.dao.framework.IExerciseTypeDAO;
+import com.example.trainer.dao.framework.IUserDAO;
+import com.example.trainer.dao.framework.IWorkoutDAO;
+import com.example.trainer.dao.sqlite.BetterSqliteDAOFactory;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.ExerciseSet;
 import com.example.trainer.schemas.ExerciseType;

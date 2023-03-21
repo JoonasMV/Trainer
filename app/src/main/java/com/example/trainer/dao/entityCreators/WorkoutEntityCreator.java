@@ -1,8 +1,8 @@
-package com.example.trainer.mainActivity.dao.entityCreators;
+package com.example.trainer.dao.entityCreators;
 
 import android.database.Cursor;
 
-import com.example.trainer.mainActivity.dao.framework.IExerciseDAO;
+import com.example.trainer.dao.framework.IExerciseDAO;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.Workout;
 

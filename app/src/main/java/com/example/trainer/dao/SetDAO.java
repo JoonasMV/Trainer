@@ -1,4 +1,4 @@
-package com.example.trainer.mainActivity.dao;
+package com.example.trainer.dao;
 
 import static com.example.trainer.database.contracts.SetContract.ExerciseSetEntry.SET_ID;
 import static com.example.trainer.database.contracts.SetContract.ExerciseSetEntry.SET_REPS;
@@ -12,9 +12,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
+import com.example.trainer.dao.framework.ISetDAO;
 import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.contracts.SetContract;
-import com.example.trainer.mainActivity.dao.framework.ISetDAO;
 import com.example.trainer.schemas.ExerciseSet;
 
 import java.util.ArrayList;

@@ -9,8 +9,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.mainActivity.dao.ExerciseDAO;
-import com.example.trainer.mainActivity.dao.WorkoutDAO;
+import com.example.trainer.dao.ExerciseDAO;
+import com.example.trainer.dao.WorkoutDAO;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.ExerciseSet;
 import com.example.trainer.schemas.ExerciseType;

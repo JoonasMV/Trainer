@@ -1,11 +1,11 @@
-package com.example.trainer.mainActivity.dao.framework;
+package com.example.trainer.dao.framework;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.trainer.dao.entityCreators.EntityCreator;
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.mainActivity.dao.entityCreators.EntityCreator;
 
 import java.util.ArrayList;
 import java.util.List;

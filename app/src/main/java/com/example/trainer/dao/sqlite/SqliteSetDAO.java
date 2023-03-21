@@ -1,11 +1,11 @@
-package com.example.trainer.mainActivity.dao.sqlite;
+package com.example.trainer.dao.sqlite;
 
 import android.content.ContentValues;
 
+import com.example.trainer.dao.entityCreators.EntityCreator;
+import com.example.trainer.dao.framework.ISetDAO;
 import com.example.trainer.database.contracts.SetContract;
-import com.example.trainer.mainActivity.dao.entityCreators.EntityCreator;
-import com.example.trainer.mainActivity.dao.framework.DAOBase;
-import com.example.trainer.mainActivity.dao.framework.ISetDAO;
+import com.example.trainer.dao.framework.DAOBase;
 import com.example.trainer.schemas.ExerciseSet;
 
 import java.util.List;
