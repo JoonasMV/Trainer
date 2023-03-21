@@ -9,13 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.trainer.database.dao.UserDAO;
-import com.example.trainer.database.schemas.User;
+import com.example.trainer.schemas.User;
+import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 
 public class WelcomeScreen_fragment extends Fragment {
-    private UserDAO userDAO;
 
     private User user;
 
@@ -37,9 +35,8 @@ public class WelcomeScreen_fragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        userDAO = new UserDAO();
         TextView userGreetText = getView().findViewById(R.id.userGreetText);
-        getUserFromDb();
+        user = WorkoutManager.getInstance().findUser();
 
         if(user == null){
             startActivity(new Intent(this.getContext(), LoginPage.class));
@@ -48,8 +45,5 @@ public class WelcomeScreen_fragment extends Fragment {
         userGreetText.setText(String.format("Welcome back %s", user.getUsername()));
     }
 
-    private void getUserFromDb(){
-        this.user = userDAO.getUser();
-    }
 
 }

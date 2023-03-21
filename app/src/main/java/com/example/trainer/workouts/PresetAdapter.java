@@ -12,28 +12,24 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
-import com.example.trainer.database.dao.WorkoutDAO;
-import com.example.trainer.database.schemas.Workout;
+import com.example.trainer.schemas.Workout;
 import com.example.trainer.util.Toaster;
 import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
-import com.example.trainer.workouts.mainActivity.MainActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PresetAdapter extends RecyclerView.Adapter<PresetAdapter.ViewHolder> {
 
-    private ArrayList<Workout> workoutPresets;
-    private WorkoutDAO workoutDAO;
+    private List<Workout> presets;
     private FragmentManager fManager;
+    private final WorkoutManager workoutManager = WorkoutManager.getInstance();
 
     private Context parentContext;
 
-    public PresetAdapter(List<Workout> workoutPresets, FragmentManager fManager) {
+    public PresetAdapter(List<Workout> presets, FragmentManager fManager) {
         this.fManager = fManager;
-        this.workoutPresets = new ArrayList<>(workoutPresets);
-        this.workoutDAO = new WorkoutDAO();
+        this.presets = presets;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -60,18 +56,18 @@ public class PresetAdapter extends RecyclerView.Adapter<PresetAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull PresetAdapter.ViewHolder holder, int position) {
-        Workout workout = workoutPresets.get(position);
+        Workout workout = presets.get(position);
+        System.out.println(workout.getExList().size());
 
         holder.workoutTitle.setText(workout.getName());
         holder.workoutTitle.setOnClickListener(view -> {
-            WorkoutManager.getInstance().startWorkoutFromPreset(workout);
-
+            workoutManager.startWorkoutFromPreset(workout);
             fManager.beginTransaction().replace(R.id.mainContainer, new CurrentWorkoutFragment()).commit();
         });
 
         holder.deleteButton.setOnClickListener(view -> {
-            workoutDAO.delete(workout);
-            workoutPresets.remove(workout);
+            workoutManager.deleteWorkout(workout);
+            presets.remove(workout);
             Toaster.toast(parentContext, "Preset removed!");
             notifyDataSetChanged();
         });
@@ -80,6 +76,6 @@ public class PresetAdapter extends RecyclerView.Adapter<PresetAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return workoutPresets.size();
+        return presets.size();
     }
 }

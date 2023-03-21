@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,9 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.trainer.R;
-import com.example.trainer.database.dao.ExerciseDAO;
-import com.example.trainer.database.schemas.Exercise;
-import com.example.trainer.database.schemas.ExerciseType;
+import com.example.trainer.mainActivity.dao.ExerciseDAO;
+import com.example.trainer.schemas.Exercise;
+import com.example.trainer.schemas.ExerciseType;
 
 import java.util.ArrayList;
 

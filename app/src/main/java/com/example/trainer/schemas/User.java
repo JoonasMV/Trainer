@@ -1,4 +1,4 @@
-package com.example.trainer.database.schemas;
+package com.example.trainer.schemas;
 
 import java.util.UUID;
 
