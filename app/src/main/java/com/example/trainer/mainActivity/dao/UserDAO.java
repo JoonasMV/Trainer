@@ -9,11 +9,11 @@ import com.example.trainer.database.contracts.UserContract;
 import com.example.trainer.mainActivity.dao.framework.IUserDAO;
 import com.example.trainer.schemas.User;
 import com.example.trainer.database.contracts.UserContract.UserEntry;
-import com.example.trainer.onlineDatabase.DatabaseConnector;
+import com.example.trainer.serverConnector.Server;
 
 public class UserDAO implements IUserDAO {
     DatabaseHelper dbConnection;
-    DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
+    Server server = Server.getInstance();
 
     public UserDAO() {
         dbConnection = DatabaseHelper.getInstance();
@@ -24,7 +24,7 @@ public class UserDAO implements IUserDAO {
         SQLiteDatabase db = dbConnection.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        User createdUser = databaseConnector.user().post(newUser);
+        User createdUser = server.user().save(newUser);
 
         cv.put(UserContract.UserEntry.USERNAME, createdUser.getUsername());
         cv.put(UserEntry.USER_ID, createdUser.getId());

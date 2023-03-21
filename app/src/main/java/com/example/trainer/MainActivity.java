@@ -1,4 +1,4 @@
-package com.example.trainer.workouts.mainActivity;
+package com.example.trainer;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -6,11 +6,10 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
-import com.example.trainer.R;
-import com.example.trainer.WelcomeScreen_fragment;
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.mainActivity.dao.WorkoutDAO;
 import com.example.trainer.exercises.ListOfExercises_fragment;
+import com.example.trainer.serverConnector.Server;
+import com.example.trainer.schemas.User;
 import com.example.trainer.workouts.ListOfPresetWorkouts_fragment;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
 import com.example.trainer.workouts.workoutHistory.WorkoutHistory_fragment;
@@ -34,14 +33,10 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.workoutsBtn).setOnClickListener(view -> fragmentHandler(new ListOfPresetWorkouts_fragment()));
         findViewById(R.id.progressBtn).setOnClickListener(view -> fragmentHandler(new WorkoutHistory_fragment()));
 
-//        DatabaseConnector onlineDb = new DatabaseConnector();
+        Server server = Server.getInstance();
         findViewById(R.id.testiBtn).setOnClickListener(v -> {
-//            User testPostUser = new User("Testing2");
-//            User test2 = new UserDAO().getUser();
-//            System.out.println(test2);
-////            System.out.println(testPostUser);
-//            User resUser = onlineDb.user().post(testPostUser);
-//            System.out.println(resUser);
+            User test = server.user().getById("2c7d2cfd-1bb5-4791-a54f-20df978b7233");
+            System.out.println(test);
         });
 
         WorkoutManager.getInstance().readFromPref(getApplicationContext());

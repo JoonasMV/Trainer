@@ -22,7 +22,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".workouts.mainActivity.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

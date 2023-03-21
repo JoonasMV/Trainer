@@ -9,7 +9,6 @@ import android.widget.EditText;
 
 import com.example.trainer.schemas.User;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
-import com.example.trainer.workouts.mainActivity.MainActivity;
 //import android.widget.Toast;
 
 
