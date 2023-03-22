@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainer.R;
 import com.example.trainer.schemas.Workout;
 import com.example.trainer.util.Toaster;
-import com.example.trainer.workouts.currentWorkout.WorkoutManager;
+import com.example.trainer.controllers.WorkoutManager;
 
 import java.util.ArrayList;
 import java.util.List;

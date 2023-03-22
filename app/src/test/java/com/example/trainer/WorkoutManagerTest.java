@@ -9,7 +9,7 @@ import static org.junit.Assert.fail;
 
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.Workout;
-import com.example.trainer.workouts.currentWorkout.WorkoutManager;
+import com.example.trainer.controllers.WorkoutManager;
 
 import org.junit.Before;
 import org.junit.Test;

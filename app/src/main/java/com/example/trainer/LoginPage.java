@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.trainer.schemas.User;
-import com.example.trainer.workouts.currentWorkout.WorkoutManager;
+import com.example.trainer.controllers.WorkoutManager;
 //import android.widget.Toast;
 
 

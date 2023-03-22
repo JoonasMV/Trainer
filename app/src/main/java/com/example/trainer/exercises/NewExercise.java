@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.example.trainer.R;
 import com.example.trainer.schemas.ExerciseType;
 import com.example.trainer.util.Toaster;
-import com.example.trainer.workouts.currentWorkout.WorkoutManager;
+import com.example.trainer.controllers.WorkoutManager;
 
 public class NewExercise extends Fragment {
 

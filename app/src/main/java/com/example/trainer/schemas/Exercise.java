@@ -1,6 +1,6 @@
 package com.example.trainer.schemas;
 
-import com.example.trainer.dao.ExerciseDAO;
+import com.example.trainer.database.dao.ExerciseDAO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -81,14 +81,4 @@ public class Exercise implements Serializable {
         this.typeId = typeId;
     }
 
-    @Override
-    public String toString() {
-        return "Exercise{" +
-                "exerciseId=" + exerciseId +
-                ", exerciseName='" + exerciseName + '\'' +
-                ", workoutId=" + workoutId +
-                ", typeId=" + typeId +
-                ", setList=" + setList +
-                '}';
-    }
 }

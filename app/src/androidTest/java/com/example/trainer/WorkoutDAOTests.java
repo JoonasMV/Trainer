@@ -9,13 +9,13 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.dao.ExerciseDAO;
-import com.example.trainer.dao.WorkoutDAO;
+import com.example.trainer.database.dao.ExerciseDAO;
+import com.example.trainer.database.dao.WorkoutDAO;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.ExerciseSet;
 import com.example.trainer.schemas.ExerciseType;
 import com.example.trainer.schemas.Workout;
-import com.example.trainer.workouts.currentWorkout.WorkoutManager;
+import com.example.trainer.controllers.WorkoutManager;
 
 import org.junit.Before;
 import org.junit.BeforeClass;

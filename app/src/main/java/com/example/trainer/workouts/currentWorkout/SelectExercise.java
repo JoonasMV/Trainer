@@ -13,7 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.trainer.R;
-import com.example.trainer.dao.ExerciseDAO;
+import com.example.trainer.controllers.WorkoutManager;
+import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.ExerciseType;
 

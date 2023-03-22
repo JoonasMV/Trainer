@@ -11,7 +11,7 @@ import com.example.trainer.exercises.ListOfExercises_fragment;
 import com.example.trainer.serverConnector.Server;
 import com.example.trainer.schemas.User;
 import com.example.trainer.workouts.ListOfPresetWorkouts_fragment;
-import com.example.trainer.workouts.currentWorkout.WorkoutManager;
+import com.example.trainer.controllers.WorkoutManager;
 import com.example.trainer.workouts.workoutHistory.WorkoutHistory_fragment;
 
 public class MainActivity extends AppCompatActivity {

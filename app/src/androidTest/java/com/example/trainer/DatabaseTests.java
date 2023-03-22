@@ -14,15 +14,17 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.dao.ExerciseDAO;
-import com.example.trainer.dao.SetDAO;
-import com.example.trainer.dao.UserDAO;
-import com.example.trainer.dao.WorkoutDAO;
+import com.example.trainer.database.dao.ExerciseDAO;
+import com.example.trainer.database.dao.SetDAO;
+import com.example.trainer.database.dao.UserDAO;
+import com.example.trainer.database.dao.WorkoutDAO;
+import com.example.trainer.database.dao.framework.DAOFactory;
+import com.example.trainer.database.dao.sqlite.SqliteDAOFactory;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.ExerciseSet;
 import com.example.trainer.schemas.ExerciseType;
 import com.example.trainer.schemas.Workout;
-import com.example.trainer.workouts.currentWorkout.WorkoutManager;
+import com.example.trainer.controllers.WorkoutManager;
 
 import java.util.Date;
 import java.util.List;
@@ -51,11 +53,7 @@ public class DatabaseTests {
         ctx = InstrumentationRegistry.getInstrumentation().getContext();
         DatabaseHelper.initialize(ctx);
         workoutManager = WorkoutManager.getInstance();
-        exDao = new ExerciseDAO();
-        workoutDAO = new WorkoutDAO();
-        setDAO = new SetDAO();
-        userDAO = new UserDAO();
-
+        DAOFactory factory = new SqliteDAOFactory();
     }
 
     @Before

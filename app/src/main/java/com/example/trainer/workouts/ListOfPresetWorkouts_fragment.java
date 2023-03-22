@@ -15,7 +15,7 @@ import com.example.trainer.R;
 import com.example.trainer.schemas.Workout;
 import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
 import com.example.trainer.workouts.currentWorkout.SelectExercise;
-import com.example.trainer.workouts.currentWorkout.WorkoutManager;
+import com.example.trainer.controllers.WorkoutManager;
 
 import java.util.List;
 

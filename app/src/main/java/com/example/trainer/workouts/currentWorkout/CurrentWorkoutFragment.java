@@ -3,7 +3,6 @@ package com.example.trainer.workouts.currentWorkout;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,11 +11,11 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.trainer.R;
 import com.example.trainer.WelcomeScreen_fragment;
+import com.example.trainer.controllers.WorkoutManager;
 import com.example.trainer.workouts.ListOfPresetWorkouts_fragment;
 import com.example.trainer.workouts.currentWorkout.adapters.ExerciseAdapter;
 
