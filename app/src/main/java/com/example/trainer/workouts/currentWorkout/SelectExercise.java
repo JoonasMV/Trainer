@@ -13,7 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.trainer.R;
-import com.example.trainer.controllers.WorkoutManager;
+import com.example.trainer.controllers.BaseController;
+import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.database.dao.ExerciseDAO;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.ExerciseType;
@@ -25,7 +26,7 @@ public class SelectExercise extends Fragment {
 
     private ExerciseDAO exerciseDAO;
     private ListView lv;
-    private WorkoutManager workoutManager = WorkoutManager.getInstance();
+    private final TrainerController workoutManager = BaseController.getController();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class SelectExercise extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         if (container != null) {
@@ -78,7 +79,7 @@ public class SelectExercise extends Fragment {
         }
 
 //        ListView lv = getView().findViewById(R.id.lista);
-        lv.setAdapter(new ArrayAdapter<String>(
+        lv.setAdapter(new ArrayAdapter<>(
                 this.getContext(),
                 android.R.layout.simple_list_item_1,
                 exercisesToDisplay

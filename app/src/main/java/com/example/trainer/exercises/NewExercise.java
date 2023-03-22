@@ -10,13 +10,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.trainer.R;
+import com.example.trainer.controllers.BaseController;
+import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.schemas.ExerciseType;
 import com.example.trainer.util.Toaster;
-import com.example.trainer.controllers.WorkoutManager;
 
 public class NewExercise extends Fragment {
 
-    private WorkoutManager workoutManager;
+    private TrainerController workoutManager;
     public NewExercise() {
     }
 
@@ -31,7 +32,7 @@ public class NewExercise extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_new_exercise, container, false);
 
-        workoutManager = WorkoutManager.getInstance();
+        workoutManager = BaseController.getController();
         TextView exerciseNameInput = v.findViewById(R.id.exerciseNameInput);
         v.findViewById(R.id.newExerciseBtn).setOnClickListener(view -> {
             String name = exerciseNameInput.getText().toString();

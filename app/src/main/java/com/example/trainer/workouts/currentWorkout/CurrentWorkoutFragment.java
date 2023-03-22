@@ -2,6 +2,7 @@ package com.example.trainer.workouts.currentWorkout;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,13 +16,13 @@ import android.widget.TextView;
 
 import com.example.trainer.R;
 import com.example.trainer.WelcomeScreen_fragment;
-import com.example.trainer.controllers.WorkoutManager;
+import com.example.trainer.controllers.BaseController;
+import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.workouts.ListOfPresetWorkouts_fragment;
 import com.example.trainer.workouts.currentWorkout.adapters.ExerciseAdapter;
 
 public class CurrentWorkoutFragment extends Fragment {
-    private ExerciseAdapter exerciseAdapter;
-    private final WorkoutManager workoutManager = WorkoutManager.getInstance();
+    private final TrainerController workoutManager = BaseController.getController();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class CurrentWorkoutFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         if (container != null) {
@@ -49,9 +50,7 @@ public class CurrentWorkoutFragment extends Fragment {
             changeFragment(new ListOfPresetWorkouts_fragment());
         });
 
-        v.findViewById(R.id.addExerciseBtn).setOnClickListener(view -> {
-            changeFragment(new SelectExercise());
-        });
+        v.findViewById(R.id.addExerciseBtn).setOnClickListener(view -> changeFragment(new SelectExercise()));
 
         v.findViewById(R.id.endWorkoutBtn).setOnClickListener(view -> {
             workoutManager.saveWorkout();
@@ -83,7 +82,7 @@ public class CurrentWorkoutFragment extends Fragment {
     }
     private void initRecyclerView(View v) {
         RecyclerView listOfWorkouts = v.findViewById(R.id.listOfExercises);
-        exerciseAdapter = new ExerciseAdapter(getContext());
+        ExerciseAdapter exerciseAdapter = new ExerciseAdapter(getContext());
         listOfWorkouts.setAdapter(exerciseAdapter);
         listOfWorkouts.setLayoutManager(new LinearLayoutManager(getContext()));
     }

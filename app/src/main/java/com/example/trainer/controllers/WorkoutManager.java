@@ -3,7 +3,6 @@ package com.example.trainer.controllers;
 import android.content.Context;
 
 import com.example.trainer.database.dao.framework.DAOFactory;
-import com.example.trainer.database.dao.framework.IExerciseDAO;
 import com.example.trainer.database.dao.framework.IExerciseTypeDAO;
 import com.example.trainer.database.dao.framework.IUserDAO;
 import com.example.trainer.database.dao.framework.IWorkoutDAO;
@@ -34,7 +33,7 @@ public class WorkoutManager extends BaseController{
         this.exerciseTypeDAO = factory.createExerciseTypeDAO();
     }
 
-    public static WorkoutManager getInstance() {
+    public static TrainerController getInstance() {
         if(instance == null) {
             instance = new WorkoutManager(new BetterSqliteDAOFactory());
         }
@@ -60,7 +59,7 @@ public class WorkoutManager extends BaseController{
     }
     public List<ExerciseType> getExerciseTypes(){
         return exerciseTypeDAO.getAll();
-    };
+    }
 
     public void deleteExerciseType(int id){
        exerciseTypeDAO.deleteById(id);
@@ -81,10 +80,21 @@ public class WorkoutManager extends BaseController{
         return workoutDAO.getNonPresets();
     }
 
+    @Override
     public void makePreset(Workout workout){
         workout.setPreset(true);
         System.out.println("making preset" + workout.getName());
         workoutDAO.save(workout);
+    }
+
+    @Override
+    public Workout getWorkout() {
+       return workout;
+    }
+
+    @Override
+    public void setWorkout(Workout workout) {
+        this.workout = workout;
     }
 
     public void deleteWorkout(Workout workout){

@@ -48,4 +48,10 @@ public interface TrainerController {
     boolean exerciseTypeExists(String type);
 
     void createExerciseType(ExerciseType type);
+
+    void makePreset(Workout workout);
+
+    Workout getWorkout();
+
+    void setWorkout(Workout workout);
 }

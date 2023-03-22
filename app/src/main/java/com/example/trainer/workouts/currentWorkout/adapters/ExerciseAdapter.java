@@ -1,5 +1,6 @@
 package com.example.trainer.workouts.currentWorkout.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,18 +13,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
-import com.example.trainer.controllers.WorkoutManager;
+import com.example.trainer.controllers.BaseController;
+import com.example.trainer.controllers.TrainerController;
 
 public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHolder> {
 
-    private final WorkoutManager workoutManager = WorkoutManager.getInstance();
-    private Context context;
+    private final TrainerController workoutManager = BaseController.getController();
+    private final Context context;
 
     public ExerciseAdapter(Context context) {
         this.context = context;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameOfTheExercise;
         private final RecyclerView listOfSets;
         private final Button addSetButton;
@@ -38,6 +40,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
         }
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -46,6 +49,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
         return new ViewHolder(view);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.nameOfTheExercise.setText(workoutManager.getWorkout().getExList().get(position).getExerciseName());

@@ -14,6 +14,11 @@ public abstract class BaseController implements TrainerController{
 
     protected Workout workout;
 
+
+    public static TrainerController getController(){
+        return WorkoutManager.getInstance();
+    }
+
     @Override
     public void changeWorkoutName(String name){
         if(!name.isEmpty()){

@@ -1,5 +1,6 @@
 package com.example.trainer.workouts;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,18 +13,19 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
+import com.example.trainer.controllers.BaseController;
+import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.schemas.Workout;
 import com.example.trainer.util.Toaster;
 import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
-import com.example.trainer.controllers.WorkoutManager;
 
 import java.util.List;
 
 public class PresetAdapter extends RecyclerView.Adapter<PresetAdapter.ViewHolder> {
 
-    private List<Workout> presets;
-    private FragmentManager fManager;
-    private final WorkoutManager workoutManager = WorkoutManager.getInstance();
+    private final List<Workout> presets;
+    private final FragmentManager fManager;
+    private final TrainerController workoutManager = BaseController.getController();
 
     private Context parentContext;
 
@@ -32,10 +34,10 @@ public class PresetAdapter extends RecyclerView.Adapter<PresetAdapter.ViewHolder
         this.presets = presets;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView workoutTitle;
 
-        private Button deleteButton;
+        private final Button deleteButton;
         public ViewHolder(View view) {
             super(view);
 
@@ -51,9 +53,10 @@ public class PresetAdapter extends RecyclerView.Adapter<PresetAdapter.ViewHolder
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.preset_item, parent, false);
 
-        return new PresetAdapter.ViewHolder(v);
+        return new ViewHolder(v);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onBindViewHolder(@NonNull PresetAdapter.ViewHolder holder, int position) {
         Workout workout = presets.get(position);

@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
+import com.example.trainer.controllers.BaseController;
 import com.example.trainer.schemas.ExerciseType;
-import com.example.trainer.controllers.WorkoutManager;
 
 import java.util.List;
 
@@ -20,12 +20,12 @@ public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercises
     private List<ExerciseType> exerciseTypes;
 
     public ListOfExercisesAdapter() {
-        exerciseTypes = WorkoutManager.getInstance().getExerciseTypes();
+        exerciseTypes = BaseController.getController().getExerciseTypes();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView nameOfExercise;
-        private Button deleteExerciseBtn;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        private final TextView nameOfExercise;
+        private final Button deleteExerciseBtn;
 
         public ViewHolder(@NonNull View view) {
             super(view);
@@ -37,7 +37,7 @@ public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercises
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        exerciseTypes = WorkoutManager.getInstance().getExerciseTypes();
+        exerciseTypes = BaseController.getController().getExerciseTypes();
         System.out.println(exerciseTypes.size());
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.exercise_list_item, parent, false);
@@ -50,7 +50,7 @@ public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercises
         holder.nameOfExercise.setText(exerciseTypes.get(position).getName());
 
         holder.deleteExerciseBtn.setOnClickListener(view -> {
-            WorkoutManager.getInstance().deleteExerciseType(exerciseTypes.get(position).getId());
+            BaseController.getController().deleteExerciseType(exerciseTypes.get(position).getId());
             exerciseTypes.remove(position);
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, getItemCount());

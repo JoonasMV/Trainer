@@ -1,6 +1,7 @@
 package com.example.trainer.workouts.workoutHistory;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
+import com.example.trainer.controllers.BaseController;
+import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.schemas.Workout;
 import com.example.trainer.util.Toaster;
-import com.example.trainer.controllers.WorkoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,21 +24,21 @@ import java.util.List;
 
 public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAdapter.ViewHolder> {
 
-    private ArrayList<Workout> workoutHistory;
+    private final ArrayList<Workout> workoutHistory;
 
-    private WorkoutManager workoutManager;
+    private final TrainerController workoutManager;
     private Context parentContext;
 
     public WorkoutHistoryAdapter(List<Workout> workoutHistory) {
         this.workoutHistory = new ArrayList<>(workoutHistory);
-        this.workoutManager = WorkoutManager.getInstance();
+        this.workoutManager = BaseController.getController();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView workoutTitle;
-        private Button saveAsPresetBtn;
+        private final Button saveAsPresetBtn;
 
-        private Button deleteButton;
+        private final Button deleteButton;
 
 
         public ViewHolder(View view) {
@@ -58,6 +60,7 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
         return new ViewHolder(v);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onBindViewHolder(@NonNull WorkoutHistoryAdapter.ViewHolder holder, int position) {
         Workout workout = workoutHistory.get(position);

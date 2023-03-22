@@ -12,17 +12,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.trainer.R;
+import com.example.trainer.controllers.BaseController;
+import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.schemas.Workout;
 import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
 import com.example.trainer.workouts.currentWorkout.SelectExercise;
-import com.example.trainer.controllers.WorkoutManager;
 
 import java.util.List;
 
 
 public class ListOfPresetWorkouts_fragment extends Fragment {
 
-    private WorkoutManager workoutManager;
+    private TrainerController workoutManager;
 
 
     public ListOfPresetWorkouts_fragment() {
@@ -31,26 +32,25 @@ public class ListOfPresetWorkouts_fragment extends Fragment {
 
 
     public static ListOfPresetWorkouts_fragment newInstance(String param1, String param2) {
-        ListOfPresetWorkouts_fragment fragment = new ListOfPresetWorkouts_fragment();
 
-        return fragment;
+        return new ListOfPresetWorkouts_fragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        workoutManager = WorkoutManager.getInstance();
+        workoutManager = BaseController.getController();
 
         if (workoutManager.workoutActive()) {
             getParentFragmentManager()
                     .beginTransaction()
                     .replace(R.id.mainContainer, new CurrentWorkoutFragment())
                     .commit();
-        };
+        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         if (container != null) {
@@ -59,7 +59,7 @@ public class ListOfPresetWorkouts_fragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_list_of_preset_workouts, container, false);
 
-        view.findViewById(R.id.newWorkoutBtn).setOnClickListener(v -> { startNewWorkout(); });
+        view.findViewById(R.id.newWorkoutBtn).setOnClickListener(v -> startNewWorkout());
 
         return view;
     }
