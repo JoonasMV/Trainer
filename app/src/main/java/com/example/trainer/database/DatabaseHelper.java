@@ -27,7 +27,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String[] basicExercises = {
             "squat", "front squat", "bench press", "incline bench press",
             "dumbbell press", "deadlift", "romanian deadlift", "barbell row",
-            "overhead press", "barbell curl", "dumbbell curl", "tricep extension"
+            "overhead press", "barbell curl", "dumbbell curl", "tricep extension",
+            "test", "test", "test"
     };
 
     public static void initialize(Context context){
@@ -47,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL(
                 "CREATE TABLE " + UserEntry.TABLE_USER + " (" +
-                        UserContract.UserEntry.USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        UserContract.UserEntry.USER_ID + " TEXT PRIMARY KEY, " +
                         UserContract.UserEntry.USERNAME + " TEXT);"
         );
 

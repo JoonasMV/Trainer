@@ -106,4 +106,17 @@ public class Workout implements Serializable {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "Workout{" +
+                "name='" + name + '\'' +
+                ", workoutStarted=" + workoutStarted +
+                ", workoutEnded=" + workoutEnded +
+                ", exList=" + exList +
+                ", id=" + id +
+                ", isPreset=" + isPreset +
+                ", userId=" + userId +
+                '}';
+    }
 }
