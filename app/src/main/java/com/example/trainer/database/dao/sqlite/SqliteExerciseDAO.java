@@ -3,12 +3,14 @@ package com.example.trainer.database.dao.sqlite;
 import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.TABLE_EXERCISE;
 import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.WORKOUT_ID;
 import static com.example.trainer.database.contracts.ExerciseTypeContract.ExerciseTypeEntry.TABLE_EXERCISETYPE;
+import static com.example.trainer.database.contracts.SetContract.ExerciseSetEntry.TABLE_SET;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.trainer.database.dao.entityCreators.ExerciseEntityCreator;
+import com.example.trainer.database.dao.entityCreators.ExerciseSetEntityCreator;
 import com.example.trainer.database.dao.framework.IExerciseDAO;
 import com.example.trainer.database.dao.framework.ISetDAO;
 import com.example.trainer.database.contracts.ExerciseContract;
@@ -22,12 +24,14 @@ import java.util.List;
 
 public class SqliteExerciseDAO extends DAOBase<Exercise> implements IExerciseDAO {
 
-    private final ISetDAO setDAO = new SetDAO();
+    private final ISetDAO setDAO;
+
 
     private final String columns = "exerciseType._id AS typeId, exerciseType.exerciseTypeName AS name, exercise.workoutId, exercise._id AS id";
-    private String whereQ = "SELECT " + columns + " FROM " + TABLE_EXERCISETYPE + " INNER JOIN " + TABLE_EXERCISE + " ON exercise.exerciseTypeId = exerciseType._id WHERE ";
+    private final String whereQ = "SELECT " + columns + " FROM " + TABLE_EXERCISETYPE + " INNER JOIN " + TABLE_EXERCISE + " ON exercise.exerciseTypeId = exerciseType._id WHERE ";
     public SqliteExerciseDAO(){
-        super(new ExerciseEntityCreator(new SetDAO()), ExerciseContract.ExerciseEntry.TABLE_EXERCISE);
+        super(new ExerciseEntityCreator(new SqliteSetDAO(new ExerciseSetEntityCreator(), TABLE_SET)), ExerciseContract.ExerciseEntry.TABLE_EXERCISE);
+        this.setDAO = new BetterSqliteDAOFactory().createSetDAO();
     }
     @Override
     public int save(Exercise exercise) {
