@@ -1,4 +1,4 @@
-package com.example.trainer.workouts.currentWorkout;
+package com.example.trainer.user_interface.workouts.currentWorkout;
 
 import android.os.Bundle;
 

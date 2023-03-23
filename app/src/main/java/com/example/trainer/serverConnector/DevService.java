@@ -1,6 +1,6 @@
 package com.example.trainer.serverConnector;
 
-import com.example.trainer.Settings;
+import com.example.trainer.util.Settings;
 
 import java.io.IOException;
 

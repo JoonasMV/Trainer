@@ -8,11 +8,10 @@ import android.os.Bundle;
 
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.exercises.ListOfExercises_fragment;
+import com.example.trainer.user_interface.exercises.ListOfExercises_fragment;
 import com.example.trainer.serverConnector.Server;
-import com.example.trainer.schemas.User;
-import com.example.trainer.workouts.ListOfPresetWorkouts_fragment;
-import com.example.trainer.workouts.workoutHistory.WorkoutHistory_fragment;
+import com.example.trainer.user_interface.workouts.ListOfPresetWorkouts_fragment;
+import com.example.trainer.user_interface.workouts.workoutHistory.WorkoutHistory_fragment;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;

@@ -1,4 +1,4 @@
-package com.example.trainer.workouts.workoutHistory;
+package com.example.trainer.user_interface.workouts.workoutHistory;
 
 import android.os.Bundle;
 

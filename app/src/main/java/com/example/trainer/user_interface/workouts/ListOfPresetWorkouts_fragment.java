@@ -1,4 +1,4 @@
-package com.example.trainer.workouts;
+package com.example.trainer.user_interface.workouts;
 
 import android.os.Bundle;
 
@@ -15,8 +15,8 @@ import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.schemas.Workout;
-import com.example.trainer.workouts.currentWorkout.CurrentWorkoutFragment;
-import com.example.trainer.workouts.currentWorkout.SelectExercise;
+import com.example.trainer.user_interface.workouts.currentWorkout.SelectExercise;
+import com.example.trainer.user_interface.workouts.currentWorkout.CurrentWorkoutFragment;
 
 import java.util.List;
 

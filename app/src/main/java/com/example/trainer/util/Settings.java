@@ -1,4 +1,4 @@
-package com.example.trainer;
+package com.example.trainer.util;
 
 public class Settings {
     public static String PROD_DB_URI = "http://87.92.15.218:8081";

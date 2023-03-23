@@ -1,4 +1,4 @@
-package com.example.trainer.workouts.currentWorkout;
+package com.example.trainer.user_interface.workouts.currentWorkout;
 
 import android.os.Bundle;
 
@@ -18,8 +18,8 @@ import com.example.trainer.R;
 import com.example.trainer.WelcomeScreen_fragment;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.workouts.ListOfPresetWorkouts_fragment;
-import com.example.trainer.workouts.currentWorkout.adapters.ExerciseAdapter;
+import com.example.trainer.user_interface.workouts.ListOfPresetWorkouts_fragment;
+import com.example.trainer.user_interface.workouts.currentWorkout.adapters.ExerciseAdapter;
 
 public class CurrentWorkoutFragment extends Fragment {
     private final TrainerController workoutManager = BaseController.getController();

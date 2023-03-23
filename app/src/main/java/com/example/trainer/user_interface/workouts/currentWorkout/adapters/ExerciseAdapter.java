@@ -1,4 +1,4 @@
-package com.example.trainer.workouts.currentWorkout.adapters;
+package com.example.trainer.user_interface.workouts.currentWorkout.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

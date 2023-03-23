@@ -1,4 +1,4 @@
-package com.example.trainer.exercises;
+package com.example.trainer.user_interface.exercises;
 
 import android.os.Bundle;
 
