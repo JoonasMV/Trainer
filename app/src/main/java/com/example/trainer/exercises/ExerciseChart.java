@@ -12,9 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.trainer.R;
-import com.example.trainer.database.schemas.Workout;
+
+import com.example.trainer.schemas.Workout;
 import com.example.trainer.workouts.PresetAdapter;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -34,11 +36,13 @@ import java.util.List;
 
 public class ExerciseChart extends Fragment {
 
-
-
+    TextView name;
+    RecyclerView presets;
     LineChart mpLineChart;
+    ExerciseManager exerciseManager;
+
     public ExerciseChart() {
-        // Required empty public constructor
+        exerciseManager = ExerciseManager.getInstance();
     }
 
 
@@ -80,6 +84,8 @@ public class ExerciseChart extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_exercise_chart, container, false);
         mpLineChart = (LineChart) v.findViewById(R.id.lineChart);
+        name = (TextView) v.findViewById(R.id.textView);
+        name.setText(exerciseManager.getExerciseType().getName());
         LineDataSet set1 = new LineDataSet(dataValues1(), "Weights");
         set1.setColor(Color.GREEN);
         set1.setCircleColor(Color.GREEN);
@@ -113,13 +119,13 @@ public class ExerciseChart extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
-        RecyclerView presets = view.findViewById(R.id.bestWeights);
+        presets = view.findViewById(R.id.bestWeights);
 
-       List<Workout> list = new ArrayList<>();
+        List<Workout> list = new ArrayList<>();
 
-       list.add(new Workout("workout", new Date(), new Date()));
-       list.add(new Workout("workout2", new Date(), new Date()));
-       list.add(new Workout("workout3", new Date(), new Date()));
+        list.add(new Workout("workout", new Date(), new Date()));
+        list.add(new Workout("workout2", new Date(), new Date()));
+        list.add(new Workout("workout3", new Date(), new Date()));
 
         ExerciseChartAdapter adapter = new ExerciseChartAdapter(list, getParentFragmentManager());
         presets.setLayoutManager(new LinearLayoutManager(getContext()));

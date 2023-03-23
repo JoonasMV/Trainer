@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainer.R;
 import com.example.trainer.schemas.ExerciseType;
 import com.example.trainer.workouts.currentWorkout.WorkoutManager;
+import com.example.trainer.workouts.mainActivity.MainActivity;
 
 import java.util.List;
 
@@ -22,8 +23,11 @@ public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercises
 
     private List<ExerciseType> exerciseTypes;
 
+    ExerciseManager exerciseManager;
+
     public ListOfExercisesAdapter() {
         exerciseTypes = WorkoutManager.getInstance().getExerciseTypes();
+        exerciseManager =ExerciseManager.getInstance();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -62,6 +66,7 @@ public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercises
 
             @Override
             public void onClick(View v) {
+                exerciseManager.setExerciseType(exerciseTypes.get(holder.getAdapterPosition()));
                 ExerciseChart exerciseChart = new ExerciseChart();
                 ((MainActivity)v.getContext()).getSupportFragmentManager().beginTransaction()
                         .replace(R.id.mainContainer, exerciseChart,"")

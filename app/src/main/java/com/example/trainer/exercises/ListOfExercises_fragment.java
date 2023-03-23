@@ -14,7 +14,6 @@ import com.example.trainer.R;
 
 public class ListOfExercises_fragment extends Fragment {
     RecyclerView exerciseList;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +26,6 @@ public class ListOfExercises_fragment extends Fragment {
         if (container != null) {
             container.removeAllViews();
         }
-
         return inflater.inflate(R.layout.list_of_exercises_fragment, container, false);
     }
 
