@@ -43,8 +43,7 @@ public abstract class BaseService<T> implements DatabaseService<T>{
             try {
                 Response res = okHttpClient.newCall(req).execute();
 
-                Type type = new TypeToken<T>() {
-                }.getType();
+                Type type = getType();
 
                 return gson.fromJson(res.body().string(), type);
             } catch (IOException e) {
@@ -78,8 +77,7 @@ public abstract class BaseService<T> implements DatabaseService<T>{
             try {
                 Response res = okHttpClient.newCall(req).execute();
 
-                Type type = new TypeToken<T>() {
-                }.getType();
+                Type type = getType();
 
                 return gson.fromJson(res.body().string(), type);
 
@@ -113,10 +111,9 @@ public abstract class BaseService<T> implements DatabaseService<T>{
                 Response res = okHttpClient.newCall(req).execute();
                 String resString = res.body().string();
 
-                Type listType = new TypeToken<List<T>>() {
-                }.getType();
+                Type type = getListType();
 
-                return gson.fromJson(resString, listType);
+                return gson.fromJson(resString, type);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -133,4 +130,7 @@ public abstract class BaseService<T> implements DatabaseService<T>{
             return null;
         }
     }
+
+    abstract Type getListType();
+    abstract Type getType();
 }

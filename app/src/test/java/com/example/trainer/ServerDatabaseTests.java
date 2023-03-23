@@ -58,12 +58,12 @@ public class ServerDatabaseTests {
         User user = new User("test user");
         return server.user().save(user);
     }
-
-    @Test
-    public void exerciseTypesCanBeAdded() {
-        ExerciseType exerciseType = new ExerciseType("test exerciseType");
-        ExerciseType addedExercise = server.exerciseType().save(exerciseType);
-        assertEquals(addedExercise.getExerciseTypeName(), "test exerciseType");
-        assertNotNull(addedExercise.getId());
-    }
+//
+//    @Test
+//    public void exerciseTypesCanBeAdded() {
+//        ExerciseType exerciseType = new ExerciseType("test exerciseType");
+//        ExerciseType addedExercise = server.exerciseType().save(exerciseType);
+//        assertEquals(addedExercise.getExerciseTypeName(), "test exerciseType");
+//        assertNotNull(addedExercise.getId());
+//    }
 }

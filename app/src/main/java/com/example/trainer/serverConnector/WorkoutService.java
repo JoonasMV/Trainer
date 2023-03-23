@@ -2,7 +2,9 @@ package com.example.trainer.serverConnector;
 
 import com.example.trainer.Settings;
 import com.example.trainer.schemas.Workout;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 public class WorkoutService extends BaseService<Workout> {
@@ -30,5 +32,15 @@ public class WorkoutService extends BaseService<Workout> {
     @Override
     public List<Workout> getAll() {
         return getAll(URI_PATH);
+    }
+
+    @Override
+    Type getListType() {
+        return new TypeToken<List<Workout>>() {}.getType();
+    }
+
+    @Override
+    Type getType() {
+        return new TypeToken<Workout>() {}.getType();
     }
 }

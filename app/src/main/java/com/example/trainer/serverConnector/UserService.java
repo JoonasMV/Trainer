@@ -2,7 +2,9 @@ package com.example.trainer.serverConnector;
 
 import com.example.trainer.Settings;
 import com.example.trainer.schemas.User;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 public class UserService extends BaseService<User> {
@@ -31,4 +33,15 @@ public class UserService extends BaseService<User> {
     public List<User> getAll() {
         return getAll(URI_PATH);
     }
+
+    @Override
+    Type getListType() {
+        return new TypeToken<List<User>>() {}.getType();
+    }
+
+    @Override
+    Type getType() {
+        return new TypeToken<User>() {}.getType();
+    }
 }
+

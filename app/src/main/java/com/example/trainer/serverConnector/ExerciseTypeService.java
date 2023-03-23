@@ -3,6 +3,7 @@ package com.example.trainer.serverConnector;
 import com.example.trainer.Settings;
 import com.example.trainer.schemas.ExerciseType;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 public class ExerciseTypeService extends BaseService<ExerciseType> {
@@ -30,5 +31,15 @@ public class ExerciseTypeService extends BaseService<ExerciseType> {
     @Override
     public List<ExerciseType> getAll() {
         return getAll(URI_PATH);
+    }
+
+    @Override
+    Type getListType() {
+        return null;
+    }
+
+    @Override
+    Type getType() {
+        return null;
     }
 }

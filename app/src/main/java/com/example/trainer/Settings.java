@@ -1,8 +1,8 @@
 package com.example.trainer;
 
 public class Settings {
-    public static String PROD_DB_URI = "http://192.168.1.103:8081";
-    public static String TEST_DB_URI = "http://192.168.1.103:8082";
+    public static String PROD_DB_URI = "http://87.92.15.218:8081";
+    public static String TEST_DB_URI = "http://87.92.15.218:8081";
 
     public static boolean isJUnitTest() {
         for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
