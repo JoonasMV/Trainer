@@ -1,7 +1,7 @@
 package com.example.trainer.serverConnector;
 
-import com.example.trainer.util.Settings;
 import com.example.trainer.schemas.User;
+import com.example.trainer.util.Settings;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;

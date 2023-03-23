@@ -14,9 +14,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
+import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.dao.framework.IExerciseDAO;
 import com.example.trainer.database.dao.framework.IWorkoutDAO;
-import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.Workout;
 

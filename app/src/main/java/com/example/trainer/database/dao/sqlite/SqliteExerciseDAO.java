@@ -9,13 +9,12 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.trainer.database.contracts.ExerciseContract;
 import com.example.trainer.database.dao.entityCreators.ExerciseEntityCreator;
 import com.example.trainer.database.dao.entityCreators.ExerciseSetEntityCreator;
+import com.example.trainer.database.dao.framework.DAOBase;
 import com.example.trainer.database.dao.framework.IExerciseDAO;
 import com.example.trainer.database.dao.framework.ISetDAO;
-import com.example.trainer.database.contracts.ExerciseContract;
-import com.example.trainer.database.dao.framework.DAOBase;
-import com.example.trainer.database.legacyDAO.SetDAO;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.ExerciseSet;
 

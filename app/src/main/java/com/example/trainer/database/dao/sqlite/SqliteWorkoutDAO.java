@@ -8,9 +8,9 @@ import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntr
 import android.content.ContentValues;
 
 import com.example.trainer.database.dao.entityCreators.EntityCreator;
+import com.example.trainer.database.dao.framework.DAOBase;
 import com.example.trainer.database.dao.framework.IExerciseDAO;
 import com.example.trainer.database.dao.framework.IWorkoutDAO;
-import com.example.trainer.database.dao.framework.DAOBase;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.Workout;
 

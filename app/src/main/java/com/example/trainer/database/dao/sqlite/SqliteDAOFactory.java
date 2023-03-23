@@ -2,11 +2,11 @@ package com.example.trainer.database.dao.sqlite;
 
 import com.example.trainer.database.dao.framework.DAOFactory;
 import com.example.trainer.database.dao.framework.IExerciseDAO;
+import com.example.trainer.database.dao.framework.IExerciseTypeDAO;
 import com.example.trainer.database.dao.framework.ISetDAO;
 import com.example.trainer.database.dao.framework.IUserDAO;
 import com.example.trainer.database.dao.framework.IWorkoutDAO;
 import com.example.trainer.database.legacyDAO.ExerciseDAO;
-import com.example.trainer.database.dao.framework.IExerciseTypeDAO;
 import com.example.trainer.database.legacyDAO.SetDAO;
 import com.example.trainer.database.legacyDAO.UserDAO;
 import com.example.trainer.database.legacyDAO.WorkoutDAO;

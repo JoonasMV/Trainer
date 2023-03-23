@@ -12,9 +12,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
-import com.example.trainer.database.dao.framework.ISetDAO;
 import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.contracts.SetContract;
+import com.example.trainer.database.dao.framework.ISetDAO;
 import com.example.trainer.schemas.ExerciseSet;
 
 import java.util.ArrayList;

@@ -1,11 +1,11 @@
 package com.example.trainer;
 
-import com.example.trainer.schemas.ExerciseType;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import com.example.trainer.schemas.User;
 import com.example.trainer.serverConnector.DevService;
 import com.example.trainer.serverConnector.Server;
-
-import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.BeforeClass;

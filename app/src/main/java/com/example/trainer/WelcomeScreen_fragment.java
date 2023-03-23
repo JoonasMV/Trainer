@@ -2,19 +2,16 @@ package com.example.trainer;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.schemas.User;
-
-import java.util.Objects;
 
 public class WelcomeScreen_fragment extends Fragment {
 

@@ -1,17 +1,14 @@
 package com.example.trainer;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.Workout;
-import com.example.trainer.controllers.WorkoutManager;
 
 import org.junit.Before;
 import org.junit.Test;

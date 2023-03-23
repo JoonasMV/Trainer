@@ -1,15 +1,15 @@
 package com.example.trainer;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.os.Bundle;
-
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.user_interface.exercises.ListOfExercises_fragment;
 import com.example.trainer.serverConnector.Server;
+import com.example.trainer.user_interface.exercises.ListOfExercises_fragment;
 import com.example.trainer.user_interface.workouts.ListOfPresetWorkouts_fragment;
 import com.example.trainer.user_interface.workouts.workoutHistory.WorkoutHistory_fragment;
 

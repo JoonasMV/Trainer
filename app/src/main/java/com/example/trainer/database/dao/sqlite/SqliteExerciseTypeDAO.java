@@ -6,10 +6,10 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.trainer.database.dao.entityCreators.EntityCreator;
-import com.example.trainer.database.dao.framework.IExerciseTypeDAO;
 import com.example.trainer.database.contracts.ExerciseTypeContract;
+import com.example.trainer.database.dao.entityCreators.EntityCreator;
 import com.example.trainer.database.dao.framework.DAOBase;
+import com.example.trainer.database.dao.framework.IExerciseTypeDAO;
 import com.example.trainer.schemas.ExerciseType;
 
 import java.util.ArrayList;

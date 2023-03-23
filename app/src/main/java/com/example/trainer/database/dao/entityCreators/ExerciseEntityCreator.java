@@ -6,7 +6,6 @@ import com.example.trainer.database.dao.framework.ISetDAO;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.ExerciseSet;
 
-
 import java.util.List;
 import java.util.Objects;
 

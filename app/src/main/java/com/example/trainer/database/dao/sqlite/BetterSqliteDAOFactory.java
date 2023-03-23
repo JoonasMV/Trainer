@@ -1,5 +1,8 @@
 package com.example.trainer.database.dao.sqlite;
 
+import com.example.trainer.database.contracts.ExerciseTypeContract;
+import com.example.trainer.database.contracts.SetContract;
+import com.example.trainer.database.contracts.WorkoutContract;
 import com.example.trainer.database.dao.entityCreators.EntityCreator;
 import com.example.trainer.database.dao.entityCreators.ExerciseSetEntityCreator;
 import com.example.trainer.database.dao.entityCreators.ExerciseTypeEntityCreator;
@@ -10,9 +13,6 @@ import com.example.trainer.database.dao.framework.IExerciseTypeDAO;
 import com.example.trainer.database.dao.framework.ISetDAO;
 import com.example.trainer.database.dao.framework.IUserDAO;
 import com.example.trainer.database.dao.framework.IWorkoutDAO;
-import com.example.trainer.database.contracts.ExerciseTypeContract;
-import com.example.trainer.database.contracts.SetContract;
-import com.example.trainer.database.contracts.WorkoutContract;
 import com.example.trainer.schemas.ExerciseSet;
 import com.example.trainer.schemas.ExerciseType;
 import com.example.trainer.schemas.Workout;

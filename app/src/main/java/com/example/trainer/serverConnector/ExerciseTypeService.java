@@ -1,7 +1,7 @@
 package com.example.trainer.serverConnector;
 
-import com.example.trainer.util.Settings;
 import com.example.trainer.schemas.ExerciseType;
+import com.example.trainer.util.Settings;
 
 import java.lang.reflect.Type;
 import java.util.List;
