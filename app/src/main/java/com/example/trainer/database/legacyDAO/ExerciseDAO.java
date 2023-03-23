@@ -1,4 +1,4 @@
-package com.example.trainer.database.dao;
+package com.example.trainer.database.legacyDAO;
 
 import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.EXERCISE_ID;
 import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.EXERCISE_TYPEID;

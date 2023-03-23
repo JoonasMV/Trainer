@@ -39,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(test);
         });
 
+        findViewById(R.id.testiBtn).setOnClickListener(view -> {
+            System.out.println("testi user");
+            BaseController.getController().createUser(new User("testi"));
+        });
+
         BaseController.getController().readFromPref(getApplicationContext());
     }
 

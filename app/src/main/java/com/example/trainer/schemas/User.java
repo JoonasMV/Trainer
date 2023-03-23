@@ -1,7 +1,5 @@
 package com.example.trainer.schemas;
 
-import java.util.UUID;
-
 public class User {
     private String username;
     private String _id;

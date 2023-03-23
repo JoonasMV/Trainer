@@ -1,6 +1,6 @@
 package com.example.trainer.schemas;
 
-import com.example.trainer.database.dao.ExerciseDAO;
+import com.example.trainer.database.legacyDAO.ExerciseDAO;
 
 import java.io.Serializable;
 import java.util.ArrayList;

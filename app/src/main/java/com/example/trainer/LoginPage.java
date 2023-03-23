@@ -27,6 +27,7 @@ public class LoginPage extends AppCompatActivity {
         startBtn.setOnClickListener(view -> {
             String username = nameInput.getText().toString();
             BaseController.getController().createUser(new User(username));
+
             startActivity(new Intent(this, MainActivity.class));
         });
     }

@@ -7,6 +7,7 @@ import com.example.trainer.database.dao.framework.IUserDAO;
 import com.example.trainer.database.contracts.UserContract;
 import com.example.trainer.database.dao.framework.DAOBase;
 import com.example.trainer.schemas.User;
+import com.example.trainer.serverConnector.Server;
 
 import java.util.List;
 
@@ -19,7 +20,10 @@ public class SqliteUserDao extends DAOBase<User> implements IUserDAO {
     @Override
     public void createUser(User user) {
         ContentValues cv = new ContentValues();
-        cv.put(UserContract.UserEntry.USERNAME, user.getUsername());
+
+        User createdUser = Server.getInstance().user().save(user);
+        cv.put(UserContract.UserEntry.USER_ID, createdUser.getId());
+        cv.put(UserContract.UserEntry.USERNAME, createdUser.getUsername());
         saveToDb(cv);
     }
 

@@ -5,11 +5,11 @@ import com.example.trainer.database.dao.framework.IExerciseDAO;
 import com.example.trainer.database.dao.framework.ISetDAO;
 import com.example.trainer.database.dao.framework.IUserDAO;
 import com.example.trainer.database.dao.framework.IWorkoutDAO;
-import com.example.trainer.database.dao.ExerciseDAO;
+import com.example.trainer.database.legacyDAO.ExerciseDAO;
 import com.example.trainer.database.dao.framework.IExerciseTypeDAO;
-import com.example.trainer.database.dao.SetDAO;
-import com.example.trainer.database.dao.UserDAO;
-import com.example.trainer.database.dao.WorkoutDAO;
+import com.example.trainer.database.legacyDAO.SetDAO;
+import com.example.trainer.database.legacyDAO.UserDAO;
+import com.example.trainer.database.legacyDAO.WorkoutDAO;
 
 public class SqliteDAOFactory implements DAOFactory {
 

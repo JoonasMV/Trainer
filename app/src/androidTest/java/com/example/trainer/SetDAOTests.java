@@ -8,7 +8,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.trainer.database.DatabaseHelper;
-import com.example.trainer.database.dao.SetDAO;
+import com.example.trainer.database.legacyDAO.SetDAO;
 import com.example.trainer.schemas.ExerciseSet;
 
 import org.junit.Before;

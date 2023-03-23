@@ -16,6 +16,7 @@ public abstract class BaseController implements TrainerController{
 
 
     public static TrainerController getController(){
+        System.out.println("baseController getController()");
         return WorkoutManager.getInstance();
     }
 

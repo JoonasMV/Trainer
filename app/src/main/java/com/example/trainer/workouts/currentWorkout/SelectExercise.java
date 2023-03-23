@@ -15,7 +15,7 @@ import android.widget.ListView;
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.database.dao.ExerciseDAO;
+import com.example.trainer.database.legacyDAO.ExerciseDAO;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.ExerciseType;
 

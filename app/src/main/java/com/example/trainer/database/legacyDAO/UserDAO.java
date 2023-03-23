@@ -1,4 +1,4 @@
-package com.example.trainer.database.dao;
+package com.example.trainer.database.legacyDAO;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -21,6 +21,7 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public void createUser(User newUser) {
+        System.out.println("userDao");
         SQLiteDatabase db = dbConnection.getWritableDatabase();
         ContentValues cv = new ContentValues();
 

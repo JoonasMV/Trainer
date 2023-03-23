@@ -1,4 +1,4 @@
-package com.example.trainer.database.dao;
+package com.example.trainer.database.legacyDAO;
 
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.PRESET;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.TABLE_WORKOUT;
