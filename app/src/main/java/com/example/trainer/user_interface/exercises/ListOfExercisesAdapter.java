@@ -7,8 +7,12 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.trainer.MainActivity;
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.schemas.ExerciseType;
@@ -19,8 +23,11 @@ public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercises
 
     private List<ExerciseType> exerciseTypes;
 
+    ExerciseManager exerciseManager;
+
     public ListOfExercisesAdapter() {
         exerciseTypes = BaseController.getController().getExerciseTypes();
+        exerciseManager = ExerciseManager.getInstance();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -58,6 +65,17 @@ public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercises
         });
         holder.ppMenu.show();
             return false;
+        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                exerciseManager.setExerciseType(exerciseTypes.get(holder.getAdapterPosition()));
+                ExerciseChart exerciseChart = new ExerciseChart();
+                ((MainActivity)v.getContext()).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.mainContainer, exerciseChart,"")
+                        .addToBackStack(null).commit();
+            }
         });
     }
 
