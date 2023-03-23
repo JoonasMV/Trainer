@@ -34,15 +34,6 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.progressBtn).setOnClickListener(view -> fragmentHandler(new WorkoutHistory_fragment()));
 
         Server server = Server.getInstance();
-        findViewById(R.id.testiBtn).setOnClickListener(v -> {
-            User test = server.user().getById("2c7d2cfd-1bb5-4791-a54f-20df978b7233");
-            System.out.println(test);
-        });
-
-        findViewById(R.id.testiBtn).setOnClickListener(view -> {
-            System.out.println("testi user");
-            BaseController.getController().createUser(new User("testi"));
-        });
 
         BaseController.getController().readFromPref(getApplicationContext());
     }

@@ -66,6 +66,7 @@ public class ListOfPresetWorkouts_fragment extends Fragment {
 
     private void startNewWorkout() {
         if (!workoutManager.workoutActive()) {
+            workoutManager.startWorkout("asd");
             getParentFragmentManager()
                     .beginTransaction()
                     .replace(R.id.mainContainer, new SelectExercise())
