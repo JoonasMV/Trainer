@@ -16,12 +16,10 @@
             style="@style/list_text"
             android:layout_weight="2"
             android:text="TextView"
+            android:layout_marginBottom="8dp"
+            android:textSize="24dp"
             />
 
-        <Button
-            android:id="@+id/deleteExerciseBtn"
-            style="@style/button_list"
-            android:layout_weight="1"
-            android:text="Delete" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,7 @@ package com.example.trainer.user_interface.exercises;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,12 +25,12 @@ public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercises
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameOfExercise;
-        private final Button deleteExerciseBtn;
+        private final PopupMenu ppMenu;
 
         public ViewHolder(@NonNull View view) {
             super(view);
             nameOfExercise = view.findViewById(R.id.nameOfExercise);
-            deleteExerciseBtn = view.findViewById(R.id.deleteExerciseBtn);
+            ppMenu = new PopupMenu(view.getContext(), nameOfExercise);
         }
     }
 
@@ -49,11 +49,15 @@ public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercises
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.nameOfExercise.setText(exerciseTypes.get(position).getName());
 
-        holder.deleteExerciseBtn.setOnClickListener(view -> {
-            BaseController.getController().deleteExerciseType(exerciseTypes.get(position).getId());
-            exerciseTypes.remove(position);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, getItemCount());
+        holder.nameOfExercise.setOnLongClickListener(view -> {
+        holder.ppMenu.getMenuInflater().inflate(R.menu.exercise_popup_menu, holder.ppMenu.getMenu());
+        holder.ppMenu.setOnMenuItemClickListener(menuItem -> {
+            int hPosition = holder.getLayoutPosition();
+            deleteExerciseType(hPosition);
+            return false;
+        });
+        holder.ppMenu.show();
+            return false;
         });
     }
 
@@ -61,4 +65,14 @@ public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercises
     public int getItemCount() {
         return exerciseTypes.size();
     }
+
+    private void deleteExerciseType(int position) {
+        BaseController.getController().deleteExerciseType(exerciseTypes.get(position).getId());
+        exerciseTypes.remove(position);
+        //TODO: change notifItemRangeChanged
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, getItemCount());
+    }
 }
+
+
