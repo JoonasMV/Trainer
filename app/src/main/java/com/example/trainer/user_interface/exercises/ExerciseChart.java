@@ -1,4 +1,4 @@
-package com.example.trainer.exercises;
+package com.example.trainer.user_interface.exercises;
 
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.example.trainer.R;
 
 import com.example.trainer.schemas.Workout;
-import com.example.trainer.workouts.PresetAdapter;
+
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
@@ -62,7 +62,7 @@ public class ExerciseChart extends Fragment {
 
 
     }
-
+    //placeholders
     private ArrayList<Entry> dataValues1(){
         ArrayList<Entry> dataVals = new ArrayList<Entry>();
         dataVals.add(new Entry(0,20));
@@ -87,23 +87,12 @@ public class ExerciseChart extends Fragment {
         name = (TextView) v.findViewById(R.id.textView);
         name.setText(exerciseManager.getExerciseType().getName());
         LineDataSet set1 = new LineDataSet(dataValues1(), "Weights");
-        set1.setColor(Color.GREEN);
-        set1.setCircleColor(Color.GREEN);
-        set1.setLineWidth(3f);
-        set1.setCircleRadius(5f);
-        set1.setDrawCircleHole(false);
-        set1.setValueTextSize(16f);
-        set1.setDrawFilled(true);
-        set1.setFillColor(Color.GREEN);
-        set1.setFormLineWidth(2f);
-
-        set1.setFormSize(15.f);
+        chartStyling(set1);
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
         LineData data = new LineData(dataSets);
         AxisBase yAxis = mpLineChart.getAxisLeft();
         AxisBase xAxis = mpLineChart.getXAxis();
-
         yAxis.setTextSize(14f);
         yAxis.setAxisLineWidth(2f);
         xAxis.setTextSize(14f);
@@ -117,12 +106,26 @@ public class ExerciseChart extends Fragment {
         return v;
     }
 
+    public void chartStyling(LineDataSet set1){
+        set1.setColor(Color.rgb(28, 52, 86));
+        set1.setCircleColor(Color.rgb(28, 52, 86));
+        set1.setLineWidth(3f);
+        set1.setCircleRadius(5f);
+        set1.setDrawCircleHole(false);
+        set1.setValueTextSize(16f);
+        set1.setDrawFilled(true);
+        set1.setFillColor(Color.rgb(28, 52, 86));
+        set1.setFormLineWidth(2f);
+
+        set1.setFormSize(15.f);
+    }
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
         presets = view.findViewById(R.id.bestWeights);
 
         List<Workout> list = new ArrayList<>();
 
+        //placeholders
         list.add(new Workout("workout", new Date(), new Date()));
         list.add(new Workout("workout2", new Date(), new Date()));
         list.add(new Workout("workout3", new Date(), new Date()));

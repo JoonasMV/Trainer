@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.trainer.MainActivity;
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.schemas.ExerciseType;
@@ -26,6 +27,7 @@ public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercises
 
     public ListOfExercisesAdapter() {
         exerciseTypes = BaseController.getController().getExerciseTypes();
+        exerciseManager = ExerciseManager.getInstance();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

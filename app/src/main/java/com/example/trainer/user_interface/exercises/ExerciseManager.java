@@ -1,8 +1,8 @@
-package com.example.trainer.exercises;
+package com.example.trainer.user_interface.exercises;
 
-import com.example.trainer.mainActivity.dao.sqlite.BetterSqliteDAOFactory;
+
 import com.example.trainer.schemas.ExerciseType;
-import com.example.trainer.workouts.currentWorkout.WorkoutManager;
+
 
 public class ExerciseManager {
 
