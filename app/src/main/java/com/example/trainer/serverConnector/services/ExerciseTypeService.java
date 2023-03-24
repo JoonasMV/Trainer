@@ -1,4 +1,4 @@
-package com.example.trainer.serverConnector;
+package com.example.trainer.serverConnector.services;
 
 import com.example.trainer.schemas.ExerciseType;
 import com.example.trainer.util.Settings;
@@ -34,6 +34,9 @@ public class ExerciseTypeService extends BaseService<ExerciseType> {
     }
 
     @Override
+    public ExerciseType getByName(String name) { return getByName(URI_PATH, name); }
+
+    @Override
     Type getListType() {
         return null;
     }
@@ -42,4 +45,5 @@ public class ExerciseTypeService extends BaseService<ExerciseType> {
     Type getType() {
         return null;
     }
+
 }

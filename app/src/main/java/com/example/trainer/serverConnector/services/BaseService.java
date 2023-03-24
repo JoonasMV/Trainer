@@ -1,4 +1,4 @@
-package com.example.trainer.serverConnector;
+package com.example.trainer.serverConnector.services;
 
 import com.google.gson.Gson;
 
@@ -45,7 +45,6 @@ public abstract class BaseService<T> implements DatabaseService<T>{
 
                 return gson.fromJson(res.body().string(), type);
             } catch (IOException e) {
-                System.out.println("UserService() - post()");
                 e.printStackTrace();
                 return null;
             }
@@ -54,7 +53,6 @@ public abstract class BaseService<T> implements DatabaseService<T>{
         try {
             return future.get();
         } catch (InterruptedException | ExecutionException e) {
-            System.out.println("UserService() - getById()");
             e.printStackTrace();
             return null;
         }
@@ -69,7 +67,7 @@ public abstract class BaseService<T> implements DatabaseService<T>{
     protected T getById(String id, String URI_PATH) {
         Future<T> future = executor.submit(() -> {
             Request req = new Request.Builder()
-                    .url(URI_PATH + "/" + id)
+                    .url(URI_PATH + "/id/" + id)
                     .build();
 
             try {
@@ -88,7 +86,6 @@ public abstract class BaseService<T> implements DatabaseService<T>{
         try {
             return future.get();
         } catch (InterruptedException | ExecutionException e) {
-            System.out.println("UserService() - getById()");
             e.printStackTrace();
             return null;
         }
@@ -115,7 +112,6 @@ public abstract class BaseService<T> implements DatabaseService<T>{
 
             } catch (IOException e) {
                 e.printStackTrace();
-                System.out.println("UserService - getAll()");
                 return null;
             }
         });
@@ -123,7 +119,34 @@ public abstract class BaseService<T> implements DatabaseService<T>{
         try {
             return future.get();
         } catch (InterruptedException | ExecutionException e) {
-            System.out.println("UserService() - getAll()");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    protected T getByName(String URI_PATH, String name) {
+        Future<T> future = executor.submit(() -> {
+            Request req = new Request.Builder()
+                    .url(URI_PATH + "/name/" + name)
+                    .build();
+
+            try {
+                Response res = okHttpClient.newCall(req).execute();
+                String resString = res.body().string();
+
+                Type type = getType();
+
+                return gson.fromJson(resString, type);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
+
+        try {
+            return future.get();
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
             return null;
         }

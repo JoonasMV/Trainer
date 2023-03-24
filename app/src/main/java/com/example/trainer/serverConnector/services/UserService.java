@@ -1,4 +1,4 @@
-package com.example.trainer.serverConnector;
+package com.example.trainer.serverConnector.services;
 
 import com.example.trainer.schemas.User;
 import com.example.trainer.util.Settings;
@@ -22,6 +22,11 @@ public class UserService extends BaseService<User> {
     @Override
     public User save(User item) {
         return save(item, URI_PATH);
+    }
+
+    @Override
+    public User getByName(String name) {
+        return null;
     }
 
     @Override

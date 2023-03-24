@@ -1,4 +1,4 @@
-package com.example.trainer.serverConnector;
+package com.example.trainer.serverConnector.services;
 
 import com.example.trainer.util.Settings;
 

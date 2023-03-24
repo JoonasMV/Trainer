@@ -3,6 +3,10 @@ package com.example.trainer.serverConnector;
 import com.example.trainer.schemas.ExerciseType;
 import com.example.trainer.schemas.User;
 import com.example.trainer.schemas.Workout;
+import com.example.trainer.serverConnector.services.DatabaseService;
+import com.example.trainer.serverConnector.services.ExerciseTypeService;
+import com.example.trainer.serverConnector.services.UserService;
+import com.example.trainer.serverConnector.services.WorkoutService;
 
 /**
  * Handles the requests and responses to database server

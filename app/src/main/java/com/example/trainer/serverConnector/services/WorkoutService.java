@@ -1,4 +1,4 @@
-package com.example.trainer.serverConnector;
+package com.example.trainer.serverConnector.services;
 
 import com.example.trainer.schemas.Workout;
 import com.example.trainer.util.Settings;
@@ -22,6 +22,11 @@ public class WorkoutService extends BaseService<Workout> {
     @Override
     public Workout save(Workout item) {
         return save(item, URI_PATH);
+    }
+
+    @Override
+    public Workout getByName(String name) {
+        return null;
     }
 
     @Override
