@@ -18,8 +18,6 @@ import java.util.List;
 public class WorkoutManager extends BaseController{
 
     private static WorkoutManager instance;
-
-    private Workout workout;
     private final IWorkoutDAO workoutDAO;
 
     private final IUserDAO userDAO;
@@ -41,21 +39,11 @@ public class WorkoutManager extends BaseController{
         return instance;
     }
 
-    public void startWorkout(String workoutName){
-        this.workout = new Workout(workoutName, new Date());
-    }
-
-    public void cancelWorkout(Context context) {
-
-        this.workout = null;
-        WorkoutSerializer.clearPrefs(context);
-    }
 
     public void saveWorkout() {
-        this.workout.setWorkoutEnded(new Date());
+        super.workout.setWorkoutEnded(new Date());
         workoutDAO.save(workout);
-        this.workout = null;
-
+        super.workout = null;
     }
     public List<ExerciseType> getExerciseTypes(){
         return exerciseTypeDAO.getAll();
@@ -83,28 +71,17 @@ public class WorkoutManager extends BaseController{
     @Override
     public void makePreset(Workout workout){
         workout.setPreset(true);
-        System.out.println("making preset" + workout.getName());
         workoutDAO.save(workout);
     }
 
-    @Override
-    public Workout getWorkout() {
-       return workout;
-    }
-
-    @Override
-    public void setWorkout(Workout workout) {
-        this.workout = workout;
-    }
 
     public void deleteWorkout(Workout workout){
         workoutDAO.delete(workout);
     }
 
-    public boolean exerciseTypeExists(String type){
-       String caseInsensitive = type.toLowerCase();
-       String found = exerciseTypeDAO.getExerciseTypeByName(type).getName().toLowerCase();
-       return caseInsensitive.equals(found);
+    public boolean exerciseTypeExists(String name){
+       ExerciseType type = exerciseTypeDAO.getExerciseTypeByName(name);
+       return type != null;
     }
 
     public void createExerciseType(ExerciseType type){

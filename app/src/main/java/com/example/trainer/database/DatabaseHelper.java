@@ -1,28 +1,30 @@
 package com.example.trainer.database;
 
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
-import androidx.annotation.Nullable;
-
 import com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry;
 import com.example.trainer.database.contracts.ExerciseTypeContract.ExerciseTypeEntry;
 import com.example.trainer.database.contracts.SetContract.ExerciseSetEntry;
-import com.example.trainer.database.contracts.UserContract;
 import com.example.trainer.database.contracts.UserContract.UserEntry;
 import com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry;
 
-;
+import android.content.Context;
+
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+
+import androidx.annotation.Nullable;
+
+import com.example.trainer.database.contracts.UserContract;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static String DATABASE_NAME = "trainer.db";
-    private static int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "trainer.db";
+    private static final int DATABASE_VERSION = 1;
     private static DatabaseHelper dbConnection;
 
-    private String[] basicExercises = {
+    private final String[] basicExercises = {
             "squat", "front squat", "bench press", "incline bench press",
             "dumbbell press", "deadlift", "romanian deadlift", "barbell row",
             "overhead press", "barbell curl", "dumbbell curl", "tricep extension",
@@ -30,10 +32,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     };
 
     public static void initialize(Context context){
-        dbConnection = new DatabaseHelper(context.getApplicationContext());
+        dbConnection = new DatabaseHelper(context);
     }
 
     public static DatabaseHelper getInstance() {
+        if(dbConnection == null){
+            throw new RuntimeException("DatabaseHelper not initialized");
+        }
         return dbConnection;
     }
 

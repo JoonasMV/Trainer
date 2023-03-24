@@ -16,7 +16,6 @@ public abstract class BaseController implements TrainerController{
 
 
     public static TrainerController getController(){
-        System.out.println("baseController getController()");
         return WorkoutManager.getInstance();
     }
 
@@ -63,6 +62,25 @@ public abstract class BaseController implements TrainerController{
         copy.setPreset(false);
         System.out.println("Starting workout exlist size: " + workout.getExList().size());
         this.workout = copy;
+    }
+
+    @Override
+    public Workout getWorkout() {
+        return this.workout;
+    }
+
+    @Override
+    public void setWorkout(Workout workout) {
+        this.workout = workout;
+    }
+
+    public void cancelWorkout(Context context) {
+        this.workout = null;
+        WorkoutSerializer.clearPrefs(context);
+    }
+
+    public void startWorkout(String workoutName){
+        this.workout = new Workout(workoutName, new Date());
     }
 
 }

@@ -1,11 +1,16 @@
 package com.example.trainer.database.dao.sqlite;
 
+import static com.example.trainer.database.contracts.ExerciseContract.ExerciseEntry.TABLE_EXERCISE;
+import static com.example.trainer.database.contracts.ExerciseTypeContract.ExerciseTypeEntry.TABLE_EXERCISETYPE;
+import static com.example.trainer.database.contracts.UserContract.UserEntry.TABLE_USER;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.PRESET;
+import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.TABLE_WORKOUT;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.WORKOUT_ENDED;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.WORKOUT_NAME;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.WORKOUT_STARTED;
 
 import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.example.trainer.database.dao.entityCreators.EntityCreator;
 import com.example.trainer.database.dao.framework.DAOBase;
@@ -28,8 +33,7 @@ public class SqliteWorkoutDAO extends DAOBase<Workout> implements IWorkoutDAO {
     @Override
     public List<Workout> getPresets() {
         String clause = String.format("%s=?", PRESET);
-        List<Workout> result = selectFromDb(clause, createArgs(1));
-        return result;
+        return selectFromDb(clause, createArgs(1));
     }
 
     @Override
@@ -90,5 +94,14 @@ public class SqliteWorkoutDAO extends DAOBase<Workout> implements IWorkoutDAO {
     @Override
     public void initPresets() {
         throw new RuntimeException("not implemented");
+    }
+
+    public void clearWholeDatabase(){
+        SQLiteDatabase db = writableDB();
+        db.delete(TABLE_WORKOUT, null, null);
+        db.delete(TABLE_EXERCISE, null, null);
+        db.delete(TABLE_EXERCISETYPE, null, null);
+        db.delete(TABLE_USER, null, null);
+        db.close();
     }
 }

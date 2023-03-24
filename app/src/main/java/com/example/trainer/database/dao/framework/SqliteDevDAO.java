@@ -1,40 +1,24 @@
 package com.example.trainer.database.dao.framework;
 
+import com.example.trainer.database.dao.sqlite.BetterSqliteDAOFactory;
+import com.example.trainer.database.dao.sqlite.SqliteExerciseDAO;
+import com.example.trainer.database.dao.sqlite.SqliteWorkoutDAO;
 import com.example.trainer.database.legacyDAO.ExerciseDAO;
 import com.example.trainer.database.legacyDAO.SetDAO;
 import com.example.trainer.database.legacyDAO.WorkoutDAO;
 
 public class SqliteDevDAO extends DevelopmentDAO {
 
-    private final ExerciseDAO exerciseDAO = new ExerciseDAO();
-    private final WorkoutDAO workoutDAO = new WorkoutDAO();
-    private final SetDAO setDAO = new SetDAO();
-//    private UserDAO userDAO = new UserDAO(); need to add method for deleting all users
+    private final SqliteWorkoutDAO workoutDAO;
 
-    protected SqliteDevDAO(){}
-
-    @Override
-    public void deleteAllExercises() {
-        exerciseDAO.deleteAll();
+    SqliteDevDAO(){
+        BetterSqliteDAOFactory factory = new BetterSqliteDAOFactory();
+        this.workoutDAO = (SqliteWorkoutDAO) factory.createWorkoutDAO();
     }
 
-    @Override
-    public void deleteAllWorkouts() {
-        workoutDAO.deleteAllWorkouts();
-    }
 
     @Override
-    public void deleteAllExerciseTypes() {
-        exerciseDAO.deleteAllExerciseTypes();
-    }
-
-    @Override
-    public void deleteAllUsers() {
-        throw new RuntimeException("NOT IMPLEMENTED");
-    }
-
-    @Override
-    public void deleteAllSets() {
-       setDAO.deleteAllSets();
+    public void clearDatabase() {
+        workoutDAO.clearWholeDatabase();
     }
 }

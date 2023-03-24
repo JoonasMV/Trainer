@@ -1,5 +1,7 @@
 package com.example.trainer.schemas;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,6 +47,10 @@ public class Workout implements Serializable {
         this.name = name;
         this.isPreset = isPreset;
         this.exList = new ArrayList<>();
+    }
+
+    public void ended(){
+        this.workoutEnded = new Date();
     }
 
     public String getName() {
@@ -107,6 +113,7 @@ public class Workout implements Serializable {
         this.userId = userId;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Workout{" +
