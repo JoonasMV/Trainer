@@ -51,7 +51,7 @@ public class PresetAdapter extends RecyclerView.Adapter<PresetAdapter.ViewHolder
     public PresetAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         parentContext = parent.getContext();
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.preset_item, parent, false);
+                .inflate(R.layout.preset_workout_item, parent, false);
 
         return new ViewHolder(v);
     }

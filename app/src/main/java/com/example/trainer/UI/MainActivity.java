@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         DatabaseHelper.initialize(this);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
 
         if(fragmentManager == null){
             createFragmentManager();

@@ -56,7 +56,7 @@ public class ListOfPresetWorkouts_fragment extends Fragment {
             container.removeAllViews();
         }
 
-        View view = inflater.inflate(R.layout.fragment_list_of_preset_workouts, container, false);
+        View view = inflater.inflate(R.layout.preset_workouts_fragment, container, false);
 
         view.findViewById(R.id.newWorkoutBtn).setOnClickListener(v -> startNewWorkout());
 

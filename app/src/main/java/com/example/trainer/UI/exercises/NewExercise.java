@@ -29,7 +29,7 @@ public class NewExercise extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_new_exercise, container, false);
+        View v = inflater.inflate(R.layout.create_exercise_fragment, container, false);
 
         workoutManager = BaseController.getController();
         TextView exerciseNameInput = v.findViewById(R.id.exerciseNameInput);

@@ -20,7 +20,7 @@ public class LoginPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_page);
+        setContentView(R.layout.login_page_activity);
 
         nameInput = findViewById(R.id.nameInput);
         startBtn = findViewById(R.id.startBtn);

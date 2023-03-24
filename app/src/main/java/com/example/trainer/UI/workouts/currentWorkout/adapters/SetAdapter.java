@@ -47,7 +47,7 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.ViewHolder> {
     @Override
     public SetAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context)
-                .inflate(R.layout.single_set, parent, false);
+                .inflate(R.layout.single_set_item, parent, false);
 
         return new ViewHolder(view);
     }

@@ -36,7 +36,7 @@ public class CurrentWorkoutFragment extends Fragment {
             container.removeAllViews();
         }
 
-        View v = inflater.inflate(R.layout.fragment_current_workout, container, false);
+        View v = inflater.inflate(R.layout.current_workout_fragment, container, false);
         if(!workoutManager.workoutActive()) {
             changeFragment(new ListOfPresetWorkouts_fragment());
             return v;

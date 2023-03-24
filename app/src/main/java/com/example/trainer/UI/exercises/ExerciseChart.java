@@ -74,7 +74,7 @@ public class ExerciseChart extends Fragment {
             container.removeAllViews();
         }
 
-        View v = inflater.inflate(R.layout.fragment_exercise_chart, container, false);
+        View v = inflater.inflate(R.layout.exercise_chart_fragment, container, false);
         mpLineChart = (LineChart) v.findViewById(R.id.lineChart);
         name = (TextView) v.findViewById(R.id.textView);
         name.setText(exerciseManager.getExerciseType().getName());

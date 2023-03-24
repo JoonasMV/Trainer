@@ -25,7 +25,7 @@ public class ListOfExercises_fragment extends Fragment {
         if (container != null) {
             container.removeAllViews();
         }
-        return inflater.inflate(R.layout.list_of_exercises_fragment, container, false);
+        return inflater.inflate(R.layout.exercise_list_fragment, container, false);
     }
 
     @Override

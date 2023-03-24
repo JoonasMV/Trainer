@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
 
-            tools:layout="@layout/fragment_welcome_screen" />
+            tools:layout="@layout/home_fragment" />
 
         <LinearLayout
             android:id="@+id/buttonHolder"

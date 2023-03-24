@@ -35,7 +35,7 @@ public class WorkoutHistory_fragment extends Fragment {
             container.removeAllViews();
         }
 
-        return inflater.inflate(R.layout.fragment_workout_history, container, false);
+        return inflater.inflate(R.layout.workout_history_fragment, container, false);
     }
 
     @Override
