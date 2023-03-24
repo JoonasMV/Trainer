@@ -1,4 +1,4 @@
-package com.example.trainer.user_interface.workouts;
+package com.example.trainer.UI.workouts;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -16,7 +16,7 @@ import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.schemas.Workout;
-import com.example.trainer.user_interface.workouts.currentWorkout.CurrentWorkoutFragment;
+import com.example.trainer.UI.workouts.currentWorkout.CurrentWorkoutFragment;
 import com.example.trainer.util.Toaster;
 
 import java.util.List;

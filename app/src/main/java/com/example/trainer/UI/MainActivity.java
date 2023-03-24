@@ -1,4 +1,4 @@
-package com.example.trainer;
+package com.example.trainer.UI;
 
 import android.os.Bundle;
 
@@ -6,12 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.serverConnector.Server;
-import com.example.trainer.user_interface.exercises.ListOfExercises_fragment;
-import com.example.trainer.user_interface.workouts.ListOfPresetWorkouts_fragment;
-import com.example.trainer.user_interface.workouts.workoutHistory.WorkoutHistory_fragment;
+import com.example.trainer.UI.exercises.ListOfExercises_fragment;
+import com.example.trainer.UI.workouts.ListOfPresetWorkouts_fragment;
+import com.example.trainer.UI.workouts.workoutHistory.WorkoutHistory_fragment;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;

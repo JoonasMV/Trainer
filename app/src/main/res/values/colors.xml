@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <!-- Base Colors -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="color4">#E63946</color>
-    <color name="color1">#F1FAEE</color>
-    <color name="color5">#A8DADC</color>
-    <color name="color2">#457B9D</color>
-    <color name="color3">#1D3557</color>
-    <color name="gray">#212529</color>
-    <color name="gray2">#373737</color>
-    <color name="border_color">#212529</color>
+    <color name="red">#ff0000</color>
+
+    <!-- Shared colors-->
+    <color name="icon_color">@color/white</color>
+
+    <!-- Light theme colors-->
+    <color name="background_light">@color/white</color>
+    <color name="menu_items_light">#1D3557</color>
+    <color name="text_color_light">#212529</color>
+
+    <!-- Dark theme colors-->
+    <color name="text_color_dark">@color/white</color>
+    <color name="underline_color">#33FFFFFF</color>
+    <color name="menu_items_dark">#373737</color>
+    <color name="background_dark">#121212</color>
 
 </resources>

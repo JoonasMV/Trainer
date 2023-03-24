@@ -1,4 +1,4 @@
-package com.example.trainer;
+package com.example.trainer.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.schemas.User;
 //import android.widget.Toast;

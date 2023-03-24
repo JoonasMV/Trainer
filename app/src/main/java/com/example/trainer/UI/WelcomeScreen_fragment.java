@@ -1,4 +1,4 @@
-package com.example.trainer;
+package com.example.trainer.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.schemas.User;
 

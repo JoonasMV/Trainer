@@ -1,4 +1,4 @@
-package com.example.trainer.user_interface.workouts;
+package com.example.trainer.UI.workouts;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,8 +14,8 @@ import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.schemas.Workout;
-import com.example.trainer.user_interface.workouts.currentWorkout.CurrentWorkoutFragment;
-import com.example.trainer.user_interface.workouts.currentWorkout.SelectExercise;
+import com.example.trainer.UI.workouts.currentWorkout.CurrentWorkoutFragment;
+import com.example.trainer.UI.workouts.currentWorkout.SelectExercise;
 
 import java.util.List;
 

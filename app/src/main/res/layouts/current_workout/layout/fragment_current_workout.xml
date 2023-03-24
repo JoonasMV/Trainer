@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
-    tools:context=".user_interface.workouts.currentWorkout.CurrentWorkoutFragment">
+    tools:context=".UI.workouts.currentWorkout.CurrentWorkoutFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

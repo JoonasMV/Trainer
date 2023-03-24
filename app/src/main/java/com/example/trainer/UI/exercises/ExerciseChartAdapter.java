@@ -1,4 +1,4 @@
-package com.example.trainer.user_interface.exercises;
+package com.example.trainer.UI.exercises;
 
 import android.view.LayoutInflater;
 import android.view.View;

@@ -1,4 +1,4 @@
-package com.example.trainer.user_interface.exercises;
+package com.example.trainer.UI.exercises;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.trainer.MainActivity;
+import com.example.trainer.UI.MainActivity;
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.schemas.ExerciseType;

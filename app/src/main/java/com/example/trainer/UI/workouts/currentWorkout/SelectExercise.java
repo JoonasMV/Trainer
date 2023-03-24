@@ -1,4 +1,4 @@
-package com.example.trainer.user_interface.workouts.currentWorkout;
+package com.example.trainer.UI.workouts.currentWorkout;
 
 import android.os.Bundle;
 import android.util.Log;

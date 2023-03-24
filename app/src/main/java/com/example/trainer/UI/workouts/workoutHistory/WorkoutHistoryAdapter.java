@@ -1,4 +1,4 @@
-package com.example.trainer.user_interface.workouts.workoutHistory;
+package com.example.trainer.UI.workouts.workoutHistory;
 
 
 import android.annotation.SuppressLint;

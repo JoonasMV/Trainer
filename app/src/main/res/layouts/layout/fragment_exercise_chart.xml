@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="user_interface.exercises.ExerciseChart">
+    tools:context="UI.exercises.ExerciseChart">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

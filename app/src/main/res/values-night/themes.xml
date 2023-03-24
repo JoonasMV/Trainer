@@ -1,36 +1,25 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Theme.Trainer" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/gray2</item>
-        <item name="colorPrimaryVariant">@color/gray2</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorPrimaryDark">@color/purple_200</item>
-        <!-- Secondary brand color. -->
-        <!--item name="android:background">@color/gray</item-->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/white</item>
-        <!-- Status bar color. -->
-        <item name="actionBarStyle">@style/MyCustomBar</item>
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <!-- Top bar and borders -->
+        <item name="colorPrimary">@color/menu_items_dark</item>
+        <item name="android:statusBarColor">@color/menu_items_dark</item>
+        <item name="backgroundColor">@color/background_dark</item>
+        <item name="actionBarStyle">@style/action_bar_dark</item>-->
+
+        <!-- Buttons -->
+        <item name="colorPrimaryVariant">@color/menu_items_dark</item>
+
+        <!-- Text color -->
+        <item name="android:textColor">@color/text_color_dark</item>
+
     </style>
 
-    <style name="Theme.Trainer.button" parent="button_basic">
-        <item name="backgroundTint">@color/gray2</item>
-    </style>
-
-    <style name="Theme.Trainer.button.listButton" parent="button_basic">
-        <item name="android:layout_margin">2dp</item>
-        <item name="backgroundTint">@color/gray2</item>
-    </style>
-
-    <style name="MyCustomBar" parent="Widget.MaterialComponents.ActionBar.Primary">
-        <item name="background">@color/gray2</item>
+    <style name="action_bar_dark" parent="Widget.MaterialComponents.ActionBar.Primary">
+        <item name="background">@color/background_dark</item>
     </style>
 
     <style name="image_style">
         <item name="android:tint">@color/white</item>
-</style>
+    </style>
 </resources>
