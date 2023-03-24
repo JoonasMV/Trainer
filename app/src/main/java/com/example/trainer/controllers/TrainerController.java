@@ -11,10 +11,21 @@ import java.util.List;
 
 public interface TrainerController {
 
+    /**
+     * Starts a new workout with given name
+     * @param workoutName name of workout
+     */
     void startWorkout(String workoutName);
 
+    /**
+     * Cancels workout and clears shared preferences. Context is required for clearing preferences.
+     * @param context App context
+     */
     void cancelWorkout(Context context);
 
+    /**
+     * Saves workout
+     */
     void saveWorkout();
 
     void changeWorkoutName(String name);

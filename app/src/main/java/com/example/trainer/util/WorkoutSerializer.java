@@ -16,7 +16,7 @@ public class WorkoutSerializer {
 
     }
 
-    /***
+    /**
      * Reads and deserializes workout from sharedPreferences
      * @param context Context of app
      * @return  Deserialized workout or null if workout was not found

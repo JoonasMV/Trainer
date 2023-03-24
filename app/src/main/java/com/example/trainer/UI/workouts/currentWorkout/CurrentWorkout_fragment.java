@@ -1,5 +1,6 @@
 package com.example.trainer.UI.workouts.currentWorkout;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,14 +20,16 @@ import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.UI.workouts.PresetWorkouts_fragment;
 import com.example.trainer.UI.workouts.currentWorkout.adapters.ExerciseAdapter;
+import com.example.trainer.schemas.Workout;
+
+import java.time.Duration;
+import java.util.Date;
 
 public class CurrentWorkout_fragment extends Fragment {
     private final TrainerController workoutManager = BaseController.getController();
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    private TextView workoutNameText;
+    private TextView workoutDurationText;
+    private WorkoutDurationUpdater updater;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -42,43 +45,81 @@ public class CurrentWorkout_fragment extends Fragment {
             return v;
         }
 
-        TextView workoutName = v.findViewById(R.id.workoutName);
+        workoutNameText = v.findViewById(R.id.workoutName);
+        workoutDurationText = v.findViewById(R.id.workoutDuration);
+        workoutNameText.setText(workoutManager.getWorkout().getName());
 
-            v.findViewById(R.id.cancelWorkoutBtn).setOnClickListener(view -> {
-            workoutManager.cancelWorkout(getContext());
-            changeFragment(new PresetWorkouts_fragment());
-        });
-
-        v.findViewById(R.id.addExerciseBtn).setOnClickListener(view -> changeFragment(new SelectExercise_fragment()));
-
-        v.findViewById(R.id.endWorkoutBtn).setOnClickListener(view -> {
-            workoutManager.saveWorkout();
-            changeFragment(new HomeScreen_fragment());
-        });
-
-
-        workoutName.setText(workoutManager.getWorkout().getName());
+        createListeners(v);
 
         initRecyclerView(v);
         return v;
     }
 
-
-    @Override public void onViewCreated(View view,
-                               Bundle savedInstanceState){
-        TextView text = view.findViewById(R.id.workoutName);
-        text.addTextChangedListener(new TextWatcher() {
+    private void createListeners(View v){
+        v.findViewById(R.id.cancelWorkoutBtn).setOnClickListener(view -> {
+            workoutManager.cancelWorkout(getContext());
+            changeFragment(new PresetWorkouts_fragment());
+        });
+        v.findViewById(R.id.addExerciseBtn).setOnClickListener(view -> changeFragment(new SelectExercise_fragment()));
+        v.findViewById(R.id.endWorkoutBtn).setOnClickListener(view -> {
+            workoutManager.saveWorkout();
+            changeFragment(new HomeScreen_fragment());
+        });
+        workoutNameText.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    workoutManager.changeWorkoutName(text.getText().toString());
+                workoutManager.changeWorkoutName(workoutNameText.getText().toString());
             }
 
             @Override public void afterTextChanged(Editable editable) {}
         });
-
     }
+
+
+    @Override public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
+        createAndStartDurationUpdater();
+    }
+
+    private void createAndStartDurationUpdater(){
+        Duration initialDuration = calculateInitialDuration();
+        String initialDurationString = getDurationString(initialDuration);
+        workoutDurationText.setText(initialDurationString);
+        updater = new WorkoutDurationUpdater(initialDuration, duration -> {
+            String durationString = getDurationString(duration);
+            workoutDurationText.setText(durationString);
+        });
+        updater.start();
+    }
+
+    @SuppressLint("DefaultLocale")
+    private String getDurationString(Duration duration){
+        long hours = duration.toHours();
+        long minutes = duration.toMinutes() - (hours * 60);
+        long seconds = duration.getSeconds() - (duration.toMinutes() * 60);
+        if(hours > 0){
+            return String.format("Duration: %d h %d min %d sec", hours, minutes, seconds);
+        }
+        return String.format("Duration: %d min %d sec", minutes, seconds);
+    }
+
+    private Duration calculateInitialDuration(){
+        Date now = new Date();
+        Workout active = workoutManager.getWorkout();
+        Date startTime = active.getWorkoutStarted();
+        long durationMs = now.getTime() - startTime.getTime();
+        return Duration.ofMillis(durationMs);
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        if(updater != null){
+            updater.stopUpdating();
+        }
+    }
+
     private void initRecyclerView(View v) {
         RecyclerView listOfWorkouts = v.findViewById(R.id.listOfExercises);
         ExerciseAdapter exerciseAdapter = new ExerciseAdapter(getContext());
@@ -87,14 +128,9 @@ public class CurrentWorkout_fragment extends Fragment {
     }
 
     private void changeFragment(Fragment fragment) {
-        //getParentFragmentManager().popBackStack(AddWorkoutName.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        //getView().setVisibility(View.GONE);
-
         getParentFragmentManager().beginTransaction()
                 .replace(R.id.mainContainer, fragment.getClass(), null)
                 .addToBackStack(null)
                 .commit();
     }
-
-
 }
