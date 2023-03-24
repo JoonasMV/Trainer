@@ -21,7 +21,7 @@ import com.example.trainer.schemas.ExerciseType;
 import java.util.ArrayList;
 
 
-public class SelectExercise extends Fragment {
+public class SelectExercise_fragment extends Fragment {
 
     private ExerciseDAO exerciseDAO;
     private ListView lv;
@@ -53,7 +53,7 @@ public class SelectExercise extends Fragment {
             if(!exercises.isEmpty()){
                 ExerciseType newExercise = exercises.get(i);
 
-                getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, new CurrentWorkoutFragment()).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, new CurrentWorkout_fragment()).commit();
                 //TODO: add workout id to exercise when saving workout
                 workoutManager.addExercise(new Exercise(newExercise.getId()));
             }

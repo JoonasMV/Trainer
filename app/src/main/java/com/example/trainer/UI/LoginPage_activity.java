@@ -13,7 +13,7 @@ import com.example.trainer.schemas.User;
 //import android.widget.Toast;
 
 
-public class LoginPage extends AppCompatActivity {
+public class LoginPage_activity extends AppCompatActivity {
     EditText nameInput;
     Button startBtn;
 

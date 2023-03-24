@@ -14,25 +14,25 @@ import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.schemas.Workout;
-import com.example.trainer.UI.workouts.currentWorkout.CurrentWorkoutFragment;
-import com.example.trainer.UI.workouts.currentWorkout.SelectExercise;
+import com.example.trainer.UI.workouts.currentWorkout.CurrentWorkout_fragment;
+import com.example.trainer.UI.workouts.currentWorkout.SelectExercise_fragment;
 
 import java.util.List;
 
 
-public class ListOfPresetWorkouts_fragment extends Fragment {
+public class PresetWorkouts_fragment extends Fragment {
 
     private TrainerController workoutManager;
 
 
-    public ListOfPresetWorkouts_fragment() {
+    public PresetWorkouts_fragment() {
         // Required empty public constructor
     }
 
 
-    public static ListOfPresetWorkouts_fragment newInstance(String param1, String param2) {
+    public static PresetWorkouts_fragment newInstance(String param1, String param2) {
 
-        return new ListOfPresetWorkouts_fragment();
+        return new PresetWorkouts_fragment();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ListOfPresetWorkouts_fragment extends Fragment {
         if (workoutManager.workoutActive()) {
             getParentFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.mainContainer, new CurrentWorkoutFragment())
+                    .replace(R.id.mainContainer, new CurrentWorkout_fragment())
                     .commit();
         }
     }
@@ -68,13 +68,13 @@ public class ListOfPresetWorkouts_fragment extends Fragment {
             workoutManager.startWorkout("asd");
             getParentFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.mainContainer, new SelectExercise())
+                    .replace(R.id.mainContainer, new SelectExercise_fragment())
                     .addToBackStack(null)
                     .commit();
         } else {
             getParentFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.mainContainer, new CurrentWorkoutFragment())
+                    .replace(R.id.mainContainer, new CurrentWorkout_fragment())
                     .addToBackStack(null)
                     .commit();
         }
@@ -87,7 +87,7 @@ public class ListOfPresetWorkouts_fragment extends Fragment {
 
         List<Workout> workouts = workoutManager.getPresetWorkouts();
 
-        PresetAdapter adapter = new PresetAdapter(workouts, getParentFragmentManager());
+        PresetWorkoutsAdapter adapter = new PresetWorkoutsAdapter(workouts, getParentFragmentManager());
         presets.setLayoutManager(new LinearLayoutManager(getContext()));
         presets.setAdapter(adapter);
 

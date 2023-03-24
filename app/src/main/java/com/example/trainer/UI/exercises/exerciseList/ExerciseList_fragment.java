@@ -1,4 +1,4 @@
-package com.example.trainer.UI.exercises;
+package com.example.trainer.UI.exercises.exerciseList;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
+import com.example.trainer.UI.exercises.CreateExercise_fragment;
 
-public class ListOfExercises_fragment extends Fragment {
+public class ExerciseList_fragment extends Fragment {
     RecyclerView exerciseList;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class ListOfExercises_fragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         exerciseList = getView().findViewById(R.id.listOfExercises);
-        ListOfExercisesAdapter adapter = new ListOfExercisesAdapter();
+        ExerciseListAdapter adapter = new ExerciseListAdapter();
         exerciseList.setAdapter(adapter);
         exerciseList.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -41,7 +42,7 @@ public class ListOfExercises_fragment extends Fragment {
 
     private void goToNewExerciseFragment() {
         getParentFragmentManager().beginTransaction()
-                .replace(R.id.mainContainer, NewExercise.class, null)
+                .replace(R.id.mainContainer, CreateExercise_fragment.class, null)
                 .addToBackStack(null)
                 .commit();
     }

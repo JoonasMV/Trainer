@@ -14,10 +14,10 @@ import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.schemas.ExerciseType;
 import com.example.trainer.util.Toaster;
 
-public class NewExercise extends Fragment {
+public class CreateExercise_fragment extends Fragment {
 
     private TrainerController workoutManager;
-    public NewExercise() {
+    public CreateExercise_fragment() {
     }
 
     @Override

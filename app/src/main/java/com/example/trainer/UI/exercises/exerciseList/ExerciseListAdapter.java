@@ -1,4 +1,4 @@
-package com.example.trainer.UI.exercises;
+package com.example.trainer.UI.exercises.exerciseList;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,18 +11,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.UI.MainActivity;
 import com.example.trainer.R;
+import com.example.trainer.UI.exercises.ExerciseManager;
+import com.example.trainer.UI.exercises.exerciseChart.ExerciseChart;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.schemas.ExerciseType;
 
 import java.util.List;
 
-public class ListOfExercisesAdapter extends RecyclerView.Adapter<ListOfExercisesAdapter.ViewHolder> {
+public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapter.ViewHolder> {
 
     private List<ExerciseType> exerciseTypes;
 
     ExerciseManager exerciseManager;
 
-    public ListOfExercisesAdapter() {
+    public ExerciseListAdapter() {
         exerciseTypes = BaseController.getController().getExerciseTypes();
         exerciseManager = ExerciseManager.getInstance();
     }

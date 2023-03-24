@@ -14,13 +14,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
-import com.example.trainer.UI.WelcomeScreen_fragment;
+import com.example.trainer.UI.HomeScreen_fragment;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.UI.workouts.ListOfPresetWorkouts_fragment;
+import com.example.trainer.UI.workouts.PresetWorkouts_fragment;
 import com.example.trainer.UI.workouts.currentWorkout.adapters.ExerciseAdapter;
 
-public class CurrentWorkoutFragment extends Fragment {
+public class CurrentWorkout_fragment extends Fragment {
     private final TrainerController workoutManager = BaseController.getController();
 
     @Override
@@ -38,7 +38,7 @@ public class CurrentWorkoutFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.current_workout_fragment, container, false);
         if(!workoutManager.workoutActive()) {
-            changeFragment(new ListOfPresetWorkouts_fragment());
+            changeFragment(new PresetWorkouts_fragment());
             return v;
         }
 
@@ -46,14 +46,14 @@ public class CurrentWorkoutFragment extends Fragment {
 
             v.findViewById(R.id.cancelWorkoutBtn).setOnClickListener(view -> {
             workoutManager.cancelWorkout(getContext());
-            changeFragment(new ListOfPresetWorkouts_fragment());
+            changeFragment(new PresetWorkouts_fragment());
         });
 
-        v.findViewById(R.id.addExerciseBtn).setOnClickListener(view -> changeFragment(new SelectExercise()));
+        v.findViewById(R.id.addExerciseBtn).setOnClickListener(view -> changeFragment(new SelectExercise_fragment()));
 
         v.findViewById(R.id.endWorkoutBtn).setOnClickListener(view -> {
             workoutManager.saveWorkout();
-            changeFragment(new WelcomeScreen_fragment());
+            changeFragment(new HomeScreen_fragment());
         });
 
 

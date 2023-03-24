@@ -14,7 +14,7 @@ import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.schemas.User;
 
-public class WelcomeScreen_fragment extends Fragment {
+public class HomeScreen_fragment extends Fragment {
 
 
     @Override
@@ -38,7 +38,7 @@ public class WelcomeScreen_fragment extends Fragment {
         User user = BaseController.getController().findUser();
 
         if(user == null){
-            startActivity(new Intent(this.getContext(), LoginPage.class));
+            startActivity(new Intent(this.getContext(), LoginPage_activity.class));
             return;
         }
         userGreetText.setText(String.format("Welcome back %s", user.getUsername()));

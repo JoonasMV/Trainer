@@ -1,4 +1,4 @@
-package com.example.trainer.UI.exercises;
+package com.example.trainer.UI.exercises.exerciseChart;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
+import com.example.trainer.UI.exercises.ExerciseManager;
 import com.example.trainer.schemas.Workout;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
