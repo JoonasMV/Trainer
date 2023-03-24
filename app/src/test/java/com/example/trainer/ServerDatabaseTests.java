@@ -3,6 +3,7 @@ package com.example.trainer;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import com.example.trainer.schemas.ExerciseType;
 import com.example.trainer.schemas.User;
 import com.example.trainer.serverConnector.services.DevService;
 import com.example.trainer.serverConnector.Server;
@@ -58,12 +59,17 @@ public class ServerDatabaseTests {
         User user = new User("test user");
         return server.user().save(user);
     }
-//
-//    @Test
-//    public void exerciseTypesCanBeAdded() {
-//        ExerciseType exerciseType = new ExerciseType("test exerciseType");
-//        ExerciseType addedExercise = server.exerciseType().save(exerciseType);
-//        assertEquals(addedExercise.getExerciseTypeName(), "test exerciseType");
-//        assertNotNull(addedExercise.getId());
-//    }
+
+    @Test
+    public void exerciseTypesCanBeAdded() {
+        ExerciseType exerciseType = new ExerciseType("test exerciseType");
+        ExerciseType addedExercise = server.exerciseType().save(exerciseType);
+        assertEquals(addedExercise.getExerciseTypeName(), "test exerciseType");
+        assertNotNull(addedExercise.get_id());
+    }
+
+    @Test
+    public void exerciseTypesCanBeGetByName() {
+
+    }
 }

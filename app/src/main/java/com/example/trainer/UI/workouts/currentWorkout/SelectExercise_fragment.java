@@ -56,7 +56,7 @@ public class SelectExercise_fragment extends Fragment {
 
                 getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, new CurrentWorkout_fragment()).commit();
                 //TODO: add workout id to exercise when saving workout
-                workoutManager.addExercise(new Exercise(newExercise.getId()));
+                workoutManager.addExercise(new Exercise(newExercise.get_id()));
             }
 
         });
@@ -75,7 +75,7 @@ public class SelectExercise_fragment extends Fragment {
 
         ArrayList<String> exercisesToDisplay = new ArrayList<>();
         for (ExerciseType exercise: listOfExercises) {
-            exercisesToDisplay.add(exercise.getName());
+            exercisesToDisplay.add(exercise.getExerciseTypeName());
         }
 
 //        ListView lv = getView().findViewById(R.id.lista);

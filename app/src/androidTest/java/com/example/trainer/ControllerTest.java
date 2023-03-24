@@ -8,8 +8,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
-import android.provider.ContactsContract;
-import android.util.Log;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -21,9 +19,7 @@ import com.example.trainer.database.dao.framework.DevelopmentDAO;
 import com.example.trainer.database.dao.framework.IExerciseTypeDAO;
 import com.example.trainer.database.dao.framework.IUserDAO;
 import com.example.trainer.database.dao.framework.IWorkoutDAO;
-import com.example.trainer.database.dao.framework.SqliteDevDAO;
 import com.example.trainer.database.dao.sqlite.BetterSqliteDAOFactory;
-import com.example.trainer.database.dao.sqlite.SqliteExerciseTypeDAO;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.ExerciseSet;
 import com.example.trainer.schemas.ExerciseType;
@@ -155,7 +151,7 @@ public class ControllerTest {
 
     private void createExercise(){
         ExerciseType type = exerciseTypeDAO.getExerciseTypeByName(EXERCISE_NAME);
-        Exercise exercise = new Exercise(type.getId());
+        Exercise exercise = new Exercise(type.get_id());
         workoutController.addExercise(exercise);
     }
 
@@ -193,7 +189,7 @@ public class ControllerTest {
     @Test
     public void deletes_exerciseType(){
         ExerciseType typeFromDb = exerciseTypeDAO.getExerciseTypeByName(EXERCISE_NAME);
-        workoutController.deleteExerciseType(typeFromDb.getId());
+        workoutController.deleteExerciseType(typeFromDb.get_id());
 
         List<ExerciseType> types = exerciseTypeDAO.getAll();
         assertEquals(0, types.size());

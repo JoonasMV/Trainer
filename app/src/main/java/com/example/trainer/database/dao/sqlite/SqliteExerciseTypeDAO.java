@@ -30,7 +30,8 @@ public class SqliteExerciseTypeDAO extends DAOBase<ExerciseType> implements IExe
 
     private ContentValues createCV(ExerciseType type){
         ContentValues cv = new ContentValues();
-        cv.put(ExerciseTypeContract.ExerciseTypeEntry.EXERCISETYPE_NAME, type.getName());
+        cv.put(ExerciseTypeContract.ExerciseTypeEntry.EXERCISETYPE_NAME, type.getExerciseTypeName());
+        cv.put(ExerciseTypeContract._ID, type.get_id());
         return cv;
     }
 

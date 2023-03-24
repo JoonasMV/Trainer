@@ -33,7 +33,7 @@ public class Exercise implements Serializable {
         this.typeId = exerciseTypeId;
         ExerciseType type = new BetterSqliteDAOFactory().createExerciseTypeDAO().getExerciseTypeById(exerciseTypeId);
         this.setList = new ArrayList<>();
-        this.exerciseName = type.getName();
+        this.exerciseName = type.getExerciseTypeName();
     }
 
 

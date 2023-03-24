@@ -7,7 +7,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 public class ExerciseTypeService extends BaseService<ExerciseType> {
-    private final String URI_PATH = Settings.DB_URI + "/exerciseType";
+    private final String URI_PATH = Settings.DB_URI + "/exerciseTypes";
 
     private static ExerciseTypeService instance = null;
 
