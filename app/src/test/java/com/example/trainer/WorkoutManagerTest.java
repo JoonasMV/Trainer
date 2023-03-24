@@ -9,6 +9,7 @@ import static org.junit.Assert.fail;
 
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
+import com.example.trainer.database.dao.framework.DevelopmentDAO;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.Workout;
 import com.example.trainer.controllers.WorkoutManager;

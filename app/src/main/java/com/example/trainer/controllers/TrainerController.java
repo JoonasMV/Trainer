@@ -45,7 +45,7 @@ public interface TrainerController {
 
     void deleteWorkout(Workout workout);
 
-    boolean exerciseTypeExists(String type);
+    boolean exerciseTypeExists(String name);
 
     void createExerciseType(ExerciseType type);
 

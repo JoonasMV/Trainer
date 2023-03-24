@@ -1,5 +1,6 @@
 package com.example.trainer.schemas;
 
+import com.example.trainer.database.dao.sqlite.BetterSqliteDAOFactory;
 import com.example.trainer.database.legacyDAO.ExerciseDAO;
 
 import java.io.Serializable;
@@ -31,11 +32,11 @@ public class Exercise implements Serializable {
 
     public Exercise(int exerciseTypeId){
         this.typeId = exerciseTypeId;
-        ExerciseDAO dao = new ExerciseDAO();
-        ExerciseType type = dao.getExerciseTypeById(exerciseTypeId);
+        ExerciseType type = new BetterSqliteDAOFactory().createExerciseTypeDAO().getExerciseTypeById(exerciseTypeId);
         this.setList = new ArrayList<>();
         this.exerciseName = type.getName();
     }
+
 
     public void addSet(ExerciseSet set) {
         setList.add(set);

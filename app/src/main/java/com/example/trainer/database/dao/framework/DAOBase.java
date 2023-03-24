@@ -9,6 +9,7 @@ import com.example.trainer.database.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class DAOBase<T> {
 
@@ -21,7 +22,7 @@ public abstract class DAOBase<T> {
     protected DAOBase(EntityCreator<T> entityCreator, String table){
         this.entityCreator = entityCreator;
         this.table = table;
-        dbCon = DatabaseHelper.getInstance();
+        dbCon = Objects.requireNonNull(DatabaseHelper.getInstance());
     }
 
     protected SQLiteDatabase readableDB(){
@@ -65,7 +66,9 @@ public abstract class DAOBase<T> {
         if (cursor != null) {
             cursor.moveToLast();
             db.close();
-            return cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+            cursor.close();
+            return id;
         }
         db.close();
         throw new IllegalStateException("Inserted row not found");

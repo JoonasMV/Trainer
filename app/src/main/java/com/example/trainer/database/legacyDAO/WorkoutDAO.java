@@ -1,5 +1,6 @@
 package com.example.trainer.database.legacyDAO;
 
+import static com.example.trainer.database.contracts.UserContract.UserEntry.TABLE_USER;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.PRESET;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.TABLE_WORKOUT;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.WORKOUT_ENDED;
@@ -7,6 +8,7 @@ import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntr
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.WORKOUT_NAME;
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.WORKOUT_STARTED;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -45,8 +47,7 @@ public class WorkoutDAO implements IWorkoutDAO {
     }
 
     public List<Workout> getNonPresets() {
-        List<Workout> results = selectFromDb(null, "isPreset=?", new String[] {Integer.toString(0)}, null, null, null);
-        return results;
+        return selectFromDb(null, "isPreset=?", new String[] {Integer.toString(0)}, null, null, null);
     }
     public List<Workout> getUserPresets(int userId) {
         return selectFromDb(null, "isPreset=? AND userId=?", new String[] {Integer.toString(1), Integer.toString(userId)}, null, null, null);
@@ -54,14 +55,12 @@ public class WorkoutDAO implements IWorkoutDAO {
 
 
     public List<Workout> getAll() {
-        List<Workout> results = selectFromDb(null, null, null, null, null, null);
-        return results;
+        return selectFromDb(null, null, null, null, null, null);
     }
 
 
     public List<Workout> getAllByUserId(int userId) {
-        List<Workout> results = selectFromDb(null, "userId=?", new String[] {Integer.toString(userId)}, null, null, null);
-        return results;
+        return selectFromDb(null, "userId=?", new String[] {Integer.toString(userId)}, null, null, null);
     }
 
     private Workout readWorkoutRow(Cursor cursor) throws ParseException {
@@ -92,6 +91,10 @@ public class WorkoutDAO implements IWorkoutDAO {
         String[] args = new String[] {Integer.toString(id)};
 
         List<Workout> results = selectFromDb(null, "_id=?", args, null, null, null);
+
+        if(results == null){
+            return null;
+        }
 
         if(results.isEmpty()) return null;
 
@@ -155,7 +158,7 @@ public class WorkoutDAO implements IWorkoutDAO {
             statement.executeInsert();
 
             SQLiteDatabase read = dbConnection.getReadableDatabase();
-            Cursor cursor = read.query(TABLE_WORKOUT, null, null, null, null, null, null);
+            @SuppressLint("Recycle") Cursor cursor = read.query(TABLE_WORKOUT, null, null, null, null, null, null);
 
             if(cursor != null) {
                 cursor.moveToLast();
@@ -209,13 +212,6 @@ public class WorkoutDAO implements IWorkoutDAO {
     }
 
 
-    public void deleteAllWorkouts(){
-        SQLiteDatabase db = dbConnection.getWritableDatabase();
-        db.delete("workout", null, null);
-        db.delete("exercise", null, null);
-        db.delete("exerciseSet", null, null);
-        db.close();
-    }
 
     public void initPresets() {
 //        Exercise squatExercise = new Exercise(exerciseDAO.getExerciseTypeByName("squat").getId());
