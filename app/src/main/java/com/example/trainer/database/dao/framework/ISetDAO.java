@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface ISetDAO {
 
-    void saveMany(List<ExerciseSet> sets, int exerciseId);
-    List<ExerciseSet> getSetsByExerciseId(int id);
+    void saveMany(List<ExerciseSet> sets, String exerciseId);
+    List<ExerciseSet> getSetsByExerciseId(String id);
 
-    void deleteAllSetsFromExercise(int id);
+    void deleteAllSetsFromExercise(String id);
 
-    void update(ExerciseSet set, int exerciseId);
+    void update(ExerciseSet set, String exerciseId);
 
 }

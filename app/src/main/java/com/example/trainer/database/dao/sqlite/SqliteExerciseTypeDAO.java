@@ -22,7 +22,7 @@ public class SqliteExerciseTypeDAO extends DAOBase<ExerciseType> implements IExe
     }
 
     @Override
-    public int save(ExerciseType exerciseType) {
+    public String save(ExerciseType exerciseType) {
         ContentValues cv = createCV(exerciseType);
         saveToDb(cv);
         return getIdOfLastInsertedRow();
@@ -35,7 +35,7 @@ public class SqliteExerciseTypeDAO extends DAOBase<ExerciseType> implements IExe
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(String id) {
        removeFromDb("_id=?", createArgs(id));
     }
 
@@ -53,7 +53,7 @@ public class SqliteExerciseTypeDAO extends DAOBase<ExerciseType> implements IExe
     }
 
     @Override
-    public ExerciseType getExerciseTypeById(int id) {
+    public ExerciseType getExerciseTypeById(String id) {
         List<ExerciseType> result = selectFromDb("_id=?", createArgs(id));
         return result.isEmpty() ? null : result.get(0);
     }

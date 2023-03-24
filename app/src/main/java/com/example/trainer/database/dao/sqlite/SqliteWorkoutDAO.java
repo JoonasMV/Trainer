@@ -48,7 +48,7 @@ public class SqliteWorkoutDAO extends DAOBase<Workout> implements IWorkoutDAO {
     }
 
     @Override
-    public Workout getById(int id) {
+    public Workout getById(String id) {
         List<Workout> result = selectFromDb("_id=?", createArgs(id));
         return result.isEmpty() ? null : result.get(0);
     }
@@ -75,17 +75,17 @@ public class SqliteWorkoutDAO extends DAOBase<Workout> implements IWorkoutDAO {
     }
 
     @Override
-    public int save(Workout workout) {
+    public String save(Workout workout) {
         ContentValues cv = createCV(workout);
         saveToDb(cv);
-        int id = getIdOfLastInsertedRow();
+        String id = getIdOfLastInsertedRow();
         List<Exercise> exercises = workout.getExList();
         addWorkoutIdToExercises(exercises, id);
         exerciseDAO.saveMany(exercises);
         return id;
     }
 
-    private void addWorkoutIdToExercises(List<Exercise> exercises, int id){
+    private void addWorkoutIdToExercises(List<Exercise> exercises, String id){
         for(Exercise e : exercises){
             e.setWorkoutId(id);
         }

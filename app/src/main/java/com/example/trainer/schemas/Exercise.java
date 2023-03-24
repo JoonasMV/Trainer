@@ -1,7 +1,6 @@
 package com.example.trainer.schemas;
 
 import com.example.trainer.database.dao.sqlite.BetterSqliteDAOFactory;
-import com.example.trainer.database.legacyDAO.ExerciseDAO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,15 +9,15 @@ import java.util.List;
 public class Exercise implements Serializable {
 
     private static final long serialVersionUID = 3L;
-    private int exerciseId;
+    private String exerciseId;
     private String exerciseName;
-    private int workoutId = -1;
+    private String workoutId;
 
-    private int typeId;
+    private String typeId;
 
     private List<ExerciseSet> setList;
 
-    public Exercise(String name, int exerciseId, int workoutId, int typeId, List<ExerciseSet> sets) {
+    public Exercise(String name, String exerciseId, String workoutId, String typeId, List<ExerciseSet> sets) {
         this.exerciseId = exerciseId;
         this.workoutId = workoutId;
         this.exerciseName = name;
@@ -30,7 +29,7 @@ public class Exercise implements Serializable {
         }
     }
 
-    public Exercise(int exerciseTypeId){
+    public Exercise(String exerciseTypeId){
         this.typeId = exerciseTypeId;
         ExerciseType type = new BetterSqliteDAOFactory().createExerciseTypeDAO().getExerciseTypeById(exerciseTypeId);
         this.setList = new ArrayList<>();
@@ -46,11 +45,11 @@ public class Exercise implements Serializable {
         return exerciseName;
     }
 
-    public int getWorkoutId() {
+    public String getWorkoutId() {
         return workoutId;
     }
 
-    public int getExerciseId() {
+    public String getExerciseId() {
         return exerciseId;
     }
 
@@ -58,7 +57,7 @@ public class Exercise implements Serializable {
         return setList;
     }
 
-    public void setExerciseId(int exerciseId) {
+    public void setExerciseId(String exerciseId) {
         this.exerciseId = exerciseId;
     }
 
@@ -66,7 +65,7 @@ public class Exercise implements Serializable {
         this.exerciseName = exerciseName;
     }
 
-    public void setWorkoutId(int workoutId) {
+    public void setWorkoutId(String workoutId) {
         this.workoutId = workoutId;
     }
 
@@ -74,11 +73,11 @@ public class Exercise implements Serializable {
         this.setList = setList;
     }
 
-    public int getTypeId() {
+    public String getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(int typeId) {
+    public void setTypeId(String typeId) {
         this.typeId = typeId;
     }
 

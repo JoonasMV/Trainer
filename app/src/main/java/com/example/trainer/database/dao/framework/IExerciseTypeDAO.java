@@ -5,9 +5,9 @@ import com.example.trainer.schemas.ExerciseType;
 import java.util.List;
 
 public interface IExerciseTypeDAO {
-    int save(ExerciseType exerciseType);
-    void deleteById(int id);
+    String save(ExerciseType exerciseType);
+    void deleteById(String id);
     List<ExerciseType> getAll();
-    ExerciseType getExerciseTypeById(int id);
+    ExerciseType getExerciseTypeById(String id);
     ExerciseType getExerciseTypeByName(String name);
 }

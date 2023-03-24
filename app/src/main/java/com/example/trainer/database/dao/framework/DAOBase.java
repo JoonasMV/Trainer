@@ -60,13 +60,13 @@ public abstract class DAOBase<T> {
         db.close();
     }
 
-    protected int getIdOfLastInsertedRow(){
+    protected String getIdOfLastInsertedRow(){
         SQLiteDatabase db = readableDB();
         Cursor cursor = db.query(table, null, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToLast();
             db.close();
-            int id = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+            String id = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
             cursor.close();
             return id;
         }

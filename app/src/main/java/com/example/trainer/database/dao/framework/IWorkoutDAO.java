@@ -11,13 +11,13 @@ public interface IWorkoutDAO {
 
     List<Workout> getAll();
 
-    Workout getById(int id);
+    Workout getById(String id);
 
     void update(Workout workout);
 
     void delete(Workout workout);
 
-    int save(Workout workout);
+    String save(Workout workout);
 
     void initPresets();
 }

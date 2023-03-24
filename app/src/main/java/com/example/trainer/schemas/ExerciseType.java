@@ -3,7 +3,7 @@ package com.example.trainer.schemas;
 public class ExerciseType {
     private String name;
 
-    private int id;
+    private String id;
 
     public ExerciseType(String name){
         this.name = name;
@@ -17,11 +17,11 @@ public class ExerciseType {
         this.name = name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

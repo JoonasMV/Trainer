@@ -9,7 +9,7 @@ public class ExerciseSet implements Serializable {
 
     private int reps;
 
-    private int id;
+    private String id;
 
 
 
@@ -39,11 +39,11 @@ public class ExerciseSet implements Serializable {
         this.reps = amount;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

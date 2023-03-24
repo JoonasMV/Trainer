@@ -39,7 +39,7 @@ public class WorkoutEntityCreator implements EntityCreator<Workout> {
             workout = new Workout(name, start, end);
 
         }
-        int id = (int) cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+        String id = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
         workout.setUserId(user);
         workout.setId(id);
         List<Exercise> exerciseList = exerciseDAO.getByWorkoutId(workout.getId());

@@ -3,9 +3,6 @@ package com.example.trainer.database.dao.framework;
 import com.example.trainer.database.dao.sqlite.BetterSqliteDAOFactory;
 import com.example.trainer.database.dao.sqlite.SqliteExerciseDAO;
 import com.example.trainer.database.dao.sqlite.SqliteWorkoutDAO;
-import com.example.trainer.database.legacyDAO.ExerciseDAO;
-import com.example.trainer.database.legacyDAO.SetDAO;
-import com.example.trainer.database.legacyDAO.WorkoutDAO;
 
 public class SqliteDevDAO extends DevelopmentDAO {
 

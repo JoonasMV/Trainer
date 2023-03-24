@@ -14,7 +14,8 @@ import androidx.fragment.app.Fragment;
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.database.legacyDAO.ExerciseDAO;
+import com.example.trainer.database.dao.framework.IExerciseTypeDAO;
+import com.example.trainer.database.dao.sqlite.BetterSqliteDAOFactory;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.ExerciseType;
 
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 
 public class SelectExercise_fragment extends Fragment {
 
-    private ExerciseDAO exerciseDAO;
+    private IExerciseTypeDAO exerciseTypeDAO;
     private ListView lv;
     private final TrainerController workoutManager = BaseController.getController();
 
@@ -42,14 +43,14 @@ public class SelectExercise_fragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_select_exercise, container, false);
 
-        exerciseDAO = new ExerciseDAO();
+        exerciseTypeDAO = new BetterSqliteDAOFactory().createExerciseTypeDAO();
 
         lv = v.findViewById(R.id.lista);
         handleExercisesToDisplay();
 
         lv.setOnItemClickListener((adapterView, view, i, l) -> {
             Log.d("tag", "onclick");
-            ArrayList<ExerciseType> exercises = new ArrayList<>(exerciseDAO.getAllExerciseTypes());
+            ArrayList<ExerciseType> exercises = new ArrayList<>(exerciseTypeDAO.getAll());
             if(!exercises.isEmpty()){
                 ExerciseType newExercise = exercises.get(i);
 
@@ -69,7 +70,7 @@ public class SelectExercise_fragment extends Fragment {
     }
 
     private void handleExercisesToDisplay() {
-        ArrayList<ExerciseType> listOfExercises = new ArrayList<>(exerciseDAO.getAllExerciseTypes());
+        ArrayList<ExerciseType> listOfExercises = new ArrayList<>(exerciseTypeDAO.getAll());
         if (listOfExercises.size() <= 0) return;
 
         ArrayList<String> exercisesToDisplay = new ArrayList<>();

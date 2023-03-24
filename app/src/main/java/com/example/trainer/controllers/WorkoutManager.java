@@ -49,7 +49,7 @@ public class WorkoutManager extends BaseController{
         return exerciseTypeDAO.getAll();
     }
 
-    public void deleteExerciseType(int id){
+    public void deleteExerciseType(String id){
        exerciseTypeDAO.deleteById(id);
     }
 

@@ -44,7 +44,7 @@ public interface TrainerController {
 
     List<ExerciseType> getExerciseTypes();
 
-    void deleteExerciseType(int id);
+    void deleteExerciseType(String id);
 
     void createUser(User user);
 

@@ -57,9 +57,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL(
                 "CREATE TABLE " + ExerciseEntry.TABLE_EXERCISE + " (" +
-                        ExerciseEntry.EXERCISE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        ExerciseEntry.WORKOUT_ID + " INTEGER," +
-                        ExerciseEntry.EXERCISE_TYPEID + " INTEGER," +
+                        ExerciseEntry.EXERCISE_ID + " TEXT PRIMARY KEY, " +
+                        ExerciseEntry.WORKOUT_ID + " TEXT," +
+                        ExerciseEntry.EXERCISE_TYPEID + " TEXT," +
                         "FOREIGN KEY(" + ExerciseEntry.EXERCISE_TYPEID + ") REFERENCES " + ExerciseTypeEntry.TABLE_EXERCISETYPE + "(" + ExerciseTypeEntry.EXERCISETYPE_ID + ")," +
                         "FOREIGN KEY(" + ExerciseEntry.WORKOUT_ID + ") REFERENCES " + WorkoutEntry.TABLE_WORKOUT + "(" + WorkoutEntry.WORKOUT_ID + "));"
 
@@ -67,27 +67,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL(
                 "CREATE TABLE " + ExerciseTypeEntry.TABLE_EXERCISETYPE + " (" +
-                        ExerciseTypeEntry.EXERCISETYPE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        ExerciseTypeEntry.EXERCISETYPE_ID + " TEXT PRIMARY KEY, " +
                         ExerciseTypeEntry.EXERCISETYPE_NAME + " TEXT" + ");"
 
         );
 
         sqLiteDatabase.execSQL(
                 "CREATE TABLE " + ExerciseSetEntry.TABLE_SET + " (" +
-                        ExerciseSetEntry.SET_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        ExerciseSetEntry.SET_ID + " TEXT PRIMARY KEY," +
                         ExerciseSetEntry.SET_REPS + " INTEGER," +
                         ExerciseSetEntry.SET_WEIGHT + " DOUBLE," +
-                        ExerciseSetEntry.EXERCISE_ID + " INTEGER," +
+                        ExerciseSetEntry.EXERCISE_ID + " TEXT," +
                         "FOREIGN KEY(" + ExerciseSetEntry.EXERCISE_ID + ") REFERENCES " + ExerciseEntry.TABLE_EXERCISE + "(" + ExerciseEntry.EXERCISE_ID + "));"
         );
 
         sqLiteDatabase.execSQL(
                 "CREATE TABLE " + WorkoutEntry.TABLE_WORKOUT + " (" +
-                        WorkoutEntry.WORKOUT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        WorkoutEntry.WORKOUT_ID + " TEXT PRIMARY KEY, " +
                         WorkoutEntry.WORKOUT_NAME + " TEXT, " +
                         WorkoutEntry.WORKOUT_STARTED + " TEXT, " +
                         WorkoutEntry.WORKOUT_ENDED + " TEXT, " +
-                        WorkoutEntry.USER_ID + " INTEGER,  " +
+                        WorkoutEntry.USER_ID + " TEXT,  " +
                         WorkoutEntry.PRESET + " INTEGER, " +
                         "FOREIGN KEY(" + UserContract.UserEntry.USER_ID + ") REFERENCES " + UserContract.UserEntry.TABLE_USER + "(" + UserContract.UserEntry.USER_ID + "));"
         );

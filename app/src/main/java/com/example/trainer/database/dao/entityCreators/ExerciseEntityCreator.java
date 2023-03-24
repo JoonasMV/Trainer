@@ -18,9 +18,9 @@ public class ExerciseEntityCreator implements EntityCreator<Exercise> {
     }
     @Override
     public Exercise createFrom(Cursor cursor) {
-        int id = (int) cursor.getLong(cursor.getColumnIndexOrThrow("id"));
-        int typeId = (int) cursor.getLong(cursor.getColumnIndexOrThrow("typeId"));
-        int workoutId = (int) cursor.getLong(cursor.getColumnIndexOrThrow("workoutId"));
+        String id = cursor.getString(cursor.getColumnIndexOrThrow("id"));
+        String typeId = cursor.getString(cursor.getColumnIndexOrThrow("typeId"));
+        String workoutId = cursor.getString(cursor.getColumnIndexOrThrow("workoutId"));
         String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
         List<ExerciseSet> sets = setDAO.getSetsByExerciseId(id);
         return new Exercise(name, id, workoutId, typeId, sets);

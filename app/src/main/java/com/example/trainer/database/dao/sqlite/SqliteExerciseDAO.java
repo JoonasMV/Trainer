@@ -33,11 +33,11 @@ public class SqliteExerciseDAO extends DAOBase<Exercise> implements IExerciseDAO
         this.setDAO = new BetterSqliteDAOFactory().createSetDAO();
     }
     @Override
-    public int save(Exercise exercise) {
+    public String save(Exercise exercise) {
         List<ExerciseSet> sets = exercise.getSetList();
         ContentValues cv = createCV(exercise);
         saveToDb(cv);
-        int id = getIdOfLastInsertedRow();
+        String id = getIdOfLastInsertedRow();
         setDAO.saveMany(sets, id);
         return id;
     }
@@ -51,7 +51,7 @@ public class SqliteExerciseDAO extends DAOBase<Exercise> implements IExerciseDAO
     }
 
     @Override
-    public Exercise getById(int id) {
+    public Exercise getById(String id) {
         SQLiteDatabase db = readableDB();
         String clause = "_id=?";
         Cursor cursor = db.rawQuery(String.format("%s%s", whereQ, clause), createArgs(id));
@@ -71,7 +71,7 @@ public class SqliteExerciseDAO extends DAOBase<Exercise> implements IExerciseDAO
 
     @Override
     public void delete(Exercise exercise) {
-        int id = exercise.getExerciseId();
+        String id = exercise.getExerciseId();
         removeFromDb("_id=?", createArgs(id));
         setDAO.deleteAllSetsFromExercise(id);
     }
@@ -88,7 +88,7 @@ public class SqliteExerciseDAO extends DAOBase<Exercise> implements IExerciseDAO
     }
 
     @Override
-    public List<Exercise> getByWorkoutId(int id) {
+    public List<Exercise> getByWorkoutId(String id) {
         SQLiteDatabase db = readableDB();
         String clause = String.format("%s=?", WORKOUT_ID);
         Cursor cursor = db.rawQuery(String.format("%s%s", whereQ, clause), createArgs(id));
