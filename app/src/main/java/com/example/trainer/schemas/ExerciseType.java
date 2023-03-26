@@ -1,8 +1,8 @@
 package com.example.trainer.schemas;
 
 public class ExerciseType {
-    private String exerciseTypeName;
     private String _id;
+    private String exerciseTypeName;
 
     public ExerciseType(String name) {
         this.exerciseTypeName = name;
@@ -20,9 +20,9 @@ public class ExerciseType {
         this.exerciseTypeName = exerciseTypeName;
     }
 
-//    public void set_id(String _id) {
-//        this._id = _id;
-//    }
+    public void set_id(String _id) {
+        this._id = _id;
+    }
 
 
     @Override

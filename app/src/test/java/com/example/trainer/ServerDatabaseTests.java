@@ -64,12 +64,12 @@ public class ServerDatabaseTests {
     public void exerciseTypesCanBeAdded() {
         ExerciseType exerciseType = new ExerciseType("test exerciseType");
         ExerciseType addedExercise = server.exerciseType().save(exerciseType);
-        assertEquals(addedExercise.getExerciseTypeName(), "test exerciseType");
+        assertEquals("test exerciseType", addedExercise.getExerciseTypeName());
         assertNotNull(addedExercise.get_id());
     }
 
-    @Test
-    public void exerciseTypesCanBeGetByName() {
-
-    }
+//    @Test
+//    public void exerciseTypesCanBeGetByName() {
+//
+//    }
 }

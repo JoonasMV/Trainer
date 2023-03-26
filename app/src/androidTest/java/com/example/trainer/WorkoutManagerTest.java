@@ -5,13 +5,17 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import androidx.test.platform.app.InstrumentationRegistry;
+
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
+import com.example.trainer.database.DatabaseHelper;
 import com.example.trainer.database.dao.framework.DevelopmentDAO;
 import com.example.trainer.schemas.Exercise;
 import com.example.trainer.schemas.Workout;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -23,6 +27,7 @@ public class WorkoutManagerTest {
 
     @Before
     public void beforeTest(){
+        DatabaseHelper.initialize(InstrumentationRegistry.getInstrumentation().getTargetContext());
         manager.cancelWorkout(null);
         manager.startWorkout("MOCK");
     }
@@ -52,7 +57,7 @@ public class WorkoutManagerTest {
 
     @Test
     public void workoutManager_addExercise(){
-        Exercise exercise = new Exercise("mock", 1, 1, 1, new ArrayList<>());
+        Exercise exercise = new Exercise("mock", "1", "1", "1", new ArrayList<>());
         manager.addExercise(exercise);
 
         assertEquals("mock", manager.getWorkout().getExList().get(0).getExerciseName());
@@ -60,7 +65,7 @@ public class WorkoutManagerTest {
 
     @Test
     public void workoutManager_addSet() {
-        Exercise exercise = new Exercise("mock", 1, 1, 1, new ArrayList<>());
+        Exercise exercise = new Exercise("mock", "1", "1", "1", new ArrayList<>());
 
         manager.addExercise(exercise);
 

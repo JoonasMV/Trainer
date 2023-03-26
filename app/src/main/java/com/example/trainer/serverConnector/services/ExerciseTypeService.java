@@ -1,7 +1,9 @@
 package com.example.trainer.serverConnector.services;
 
 import com.example.trainer.schemas.ExerciseType;
+import com.example.trainer.schemas.User;
 import com.example.trainer.util.Settings;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -38,12 +40,12 @@ public class ExerciseTypeService extends BaseService<ExerciseType> {
 
     @Override
     Type getListType() {
-        return null;
+        return new TypeToken<List<ExerciseType>>() {}.getType();
     }
 
     @Override
     Type getType() {
-        return null;
+        return new TypeToken<ExerciseType>() {}.getType();
     }
 
 }

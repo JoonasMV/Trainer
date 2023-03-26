@@ -24,6 +24,7 @@ public class UserService extends BaseService<User> {
         return save(item, URI_PATH);
     }
 
+    //TODO: add method
     @Override
     public User getByName(String name) {
         return null;

@@ -40,6 +40,8 @@ public abstract class BaseService<T> implements DatabaseService<T>{
 
             try {
                 Response res = okHttpClient.newCall(req).execute();
+                System.out.println(res);
+                System.out.println(getType());
 
                 Type type = getType();
 
