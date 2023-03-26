@@ -24,13 +24,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static DatabaseHelper dbConnection;
 
-    private final String[] basicExercises = {
-            "squat", "front squat", "bench press", "incline bench press",
-            "dumbbell press", "deadlift", "romanian deadlift", "barbell row",
-            "overhead press", "barbell curl", "dumbbell curl", "tricep extension",
-            "test", "test", "test"
-    };
-
     public static void initialize(Context context){
         dbConnection = new DatabaseHelper(context);
     }
@@ -91,12 +84,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         WorkoutEntry.PRESET + " INTEGER, " +
                         "FOREIGN KEY(" + UserContract.UserEntry.USER_ID + ") REFERENCES " + UserContract.UserEntry.TABLE_USER + "(" + UserContract.UserEntry.USER_ID + "));"
         );
-
-        for (String exercise: basicExercises) {
-            sqLiteDatabase.execSQL("INSERT INTO " + ExerciseTypeEntry.TABLE_EXERCISETYPE + " (" + ExerciseTypeEntry.EXERCISETYPE_NAME + ") VALUES (\"" + exercise + "\");");
-        }
-
-
     }
 
 
