@@ -13,8 +13,8 @@ public class ExerciseTypeEntityCreator implements EntityCreator<ExerciseType>{
     public ExerciseType createFrom(Cursor cursor) {
         String name = cursor.getString(cursor.getColumnIndexOrThrow("exerciseTypeName"));
         ExerciseType exerciseType = new ExerciseType(name);
-//        String id = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
-//        exerciseType.set_id(id);
+        String id = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
+        exerciseType.set_id(id);
         return exerciseType;
     }
 }

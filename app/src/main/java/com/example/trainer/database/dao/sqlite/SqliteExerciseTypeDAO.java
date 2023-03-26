@@ -55,7 +55,8 @@ public class SqliteExerciseTypeDAO extends DAOBase<ExerciseType> implements IExe
 
     @Override
     public ExerciseType getExerciseTypeById(String id) {
-        List<ExerciseType> result = selectFromDb("_id=?", createArgs(id));
+        //TODO: String[] args
+        List<ExerciseType> result = selectFromDb(ExerciseTypeContract._ID+"=?", new String[]{id});
         return result.isEmpty() ? null : result.get(0);
     }
 

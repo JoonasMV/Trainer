@@ -10,15 +10,19 @@ import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntr
 import static com.example.trainer.database.contracts.WorkoutContract.WorkoutEntry.WORKOUT_STARTED;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.trainer.database.contracts.WorkoutContract;
 import com.example.trainer.database.dao.entityCreators.EntityCreator;
 import com.example.trainer.database.dao.framework.DAOBase;
 import com.example.trainer.database.dao.framework.IExerciseDAO;
 import com.example.trainer.database.dao.framework.IWorkoutDAO;
 import com.example.trainer.schemas.Exercise;
+import com.example.trainer.schemas.ExerciseType;
 import com.example.trainer.schemas.Workout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SqliteWorkoutDAO extends DAOBase<Workout> implements IWorkoutDAO {
@@ -44,23 +48,36 @@ public class SqliteWorkoutDAO extends DAOBase<Workout> implements IWorkoutDAO {
 
     @Override
     public List<Workout> getAll() {
-        return selectFromDb(null, null);
+        SQLiteDatabase db = readableDB();
+        //TODO: sort by date
+        String query = "SELECT * FROM " + TABLE_WORKOUT;
+        System.out.println("QUERY ---- " +query);
+        Cursor cursor = db.rawQuery(query, null);
+        List<Workout> result = new ArrayList<>();
+        while(cursor.moveToNext()){
+            Workout type = readRow(cursor);
+            result.add(type);
+        }
+        return result;
+
+//        return selectFromDb(null, null);
     }
 
     @Override
     public Workout getById(String id) {
-        List<Workout> result = selectFromDb("_id=?", createArgs(id));
+        List<Workout> result = selectFromDb(WorkoutContract._ID + "=?", createArgs(id));
         return result.isEmpty() ? null : result.get(0);
     }
 
     @Override
     public void update(Workout workout) {
         ContentValues cv = createCV(workout);
-        updateInDb(cv, "_id=?", createArgs(workout.getId()));
+        updateInDb(cv, WorkoutContract._ID + "=?", createArgs(workout.getId()));
     }
 
     private ContentValues createCV(Workout workout){
         ContentValues cv = new ContentValues();
+        cv.put(WorkoutContract._ID, workout.getId());
         cv.put(WORKOUT_NAME, workout.getName());
         cv.put(WORKOUT_ENDED, workout.getWorkoutEnded().toString());
         cv.put(WORKOUT_STARTED, workout.getWorkoutStarted().toString());
@@ -71,7 +88,7 @@ public class SqliteWorkoutDAO extends DAOBase<Workout> implements IWorkoutDAO {
 
     @Override
     public void delete(Workout workout) {
-        removeFromDb("_id=?", createArgs(workout.getId()));
+        removeFromDb(WorkoutContract._ID + "=?", createArgs(workout.getId()));
     }
 
     @Override

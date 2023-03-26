@@ -10,6 +10,7 @@ import com.example.trainer.database.dao.sqlite.BetterSqliteDAOFactory;
 import com.example.trainer.schemas.ExerciseType;
 import com.example.trainer.schemas.User;
 import com.example.trainer.schemas.Workout;
+import com.example.trainer.serverConnector.Server;
 import com.example.trainer.util.WorkoutSerializer;
 
 import java.util.Date;
@@ -42,6 +43,7 @@ public class WorkoutManager extends BaseController{
 
     public void saveWorkout() {
         super.workout.setWorkoutEnded(new Date());
+        //TODO: create server save method to get id
         workoutDAO.save(workout);
         super.workout = null;
     }

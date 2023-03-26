@@ -39,6 +39,7 @@ public abstract class BaseController implements TrainerController{
     @Override
     public void addExercise(Exercise exercise) {
         if (workout == null) {
+            //TODO: testing leftover
             this.workout = new Workout("Workout", new Date());
         }
         exercise.addSet(new ExerciseSet());

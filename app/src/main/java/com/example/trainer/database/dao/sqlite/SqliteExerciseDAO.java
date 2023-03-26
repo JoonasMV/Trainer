@@ -91,7 +91,8 @@ public class SqliteExerciseDAO extends DAOBase<Exercise> implements IExerciseDAO
     public List<Exercise> getByWorkoutId(String id) {
         SQLiteDatabase db = readableDB();
         String clause = String.format("%s=?", WORKOUT_ID);
-        Cursor cursor = db.rawQuery(String.format("%s%s", whereQ, clause), createArgs(id));
+        //TODO: args param
+        Cursor cursor = db.rawQuery(String.format("%s%s", whereQ, clause), new String[]{ id });
         List<Exercise> results = new ArrayList<>();
         while(cursor.moveToNext()){
             Exercise e = readRow(cursor);

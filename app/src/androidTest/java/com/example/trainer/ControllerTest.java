@@ -40,7 +40,10 @@ public class ControllerTest {
 
     private static TrainerController workoutController;
     private static final String WORKOUT_NAME = "TEST";
+    private static final String WORKOUT_ID = "workoutId";
+    private static final String EXERCISE_ID = "exerciseId";
     private static final String EXERCISE_NAME = "squat";
+    private static final String DUMMY_EXTYPE_ID = "exerciseTypeId";
     private static final int SET_REPS = 10;
     private static final double SET_WEIGHT = 50;
 
@@ -80,6 +83,7 @@ public class ControllerTest {
 
     private void createMockExerciseTypes(){
         ExerciseType mockType = new ExerciseType(EXERCISE_NAME);
+        mockType.set_id(DUMMY_EXTYPE_ID);
         exerciseTypeDAO.save(mockType);
     }
 
@@ -102,9 +106,12 @@ public class ControllerTest {
     @Test
     public void workout_is_saved(){
         workoutController.startWorkout(WORKOUT_NAME);
+        Workout workoutToBeSaved = workoutController.getWorkout();
+        workoutToBeSaved.setId(WORKOUT_ID);
         workoutController.saveWorkout();
         IWorkoutDAO dao = daoFactory.createWorkoutDAO();
         List<Workout> workouts = dao.getAll();
+        System.out.println("WORKOUTS --- " + workouts);
         assertEquals(1, workouts.size());
         Workout workout = workouts.get(0);
         assertEquals(WORKOUT_NAME, workout.getName());
@@ -152,6 +159,8 @@ public class ControllerTest {
     private void createExercise(){
         ExerciseType type = exerciseTypeDAO.getExerciseTypeByName(EXERCISE_NAME);
         Exercise exercise = new Exercise(type.get_id());
+        exercise.setExerciseId(EXERCISE_ID);
+        System.out.println(exercise);
         workoutController.addExercise(exercise);
     }
 
@@ -169,6 +178,7 @@ public class ControllerTest {
     @Test
     public void start_from_preset(){
         Workout workout = new Workout(WORKOUT_NAME);
+        workout.setId(WORKOUT_ID);
         workout.setPreset(true);
         workoutController.startWorkoutFromPreset(workout);
         assertTrue(workoutController.workoutActive());
@@ -226,6 +236,7 @@ public class ControllerTest {
 
     private void createPresetWorkout(){
         Workout workout = new Workout("preset", new Date());
+        workout.setId(WORKOUT_ID);
         workout.ended();
         workout.setPreset(true);
         workoutDAO.save(workout);
@@ -242,6 +253,7 @@ public class ControllerTest {
 
     private void createNonPresetWorkout(){
         Workout workout = new Workout("nonPreset", new Date());
+        workout.setId(WORKOUT_ID);
         workout.ended();
         workoutDAO.save(workout);
     }
@@ -275,6 +287,7 @@ public class ControllerTest {
     @Test
     public void makes_preset_workout(){
         Workout workout = new Workout("BEST", new Date());
+        workout.setId(WORKOUT_ID);
         workout.ended();
         workoutController.makePreset(workout);
         List<Workout> workouts = workoutDAO.getPresets();
