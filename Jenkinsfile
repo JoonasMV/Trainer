@@ -16,6 +16,9 @@ pipeline {
         step([$class: 'JacocoPublisher'])
       }
     }
+    stage {
+        sh "chmod +x gradlew && ./gradlew connectedAndroidTest"
+    }
   }
 }
 
