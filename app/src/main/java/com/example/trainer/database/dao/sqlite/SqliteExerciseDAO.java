@@ -35,6 +35,7 @@ public class SqliteExerciseDAO extends DAOBase<Exercise> implements IExerciseDAO
     @Override
     public String save(Exercise exercise) {
         List<ExerciseSet> sets = exercise.getSetList();
+        exercise.setExerciseId(0);
         ContentValues cv = createCV(exercise);
         saveToDb(cv);
         String id = getIdOfLastInsertedRow();

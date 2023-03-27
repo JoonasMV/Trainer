@@ -11,8 +11,6 @@ public class ExerciseSet implements Serializable {
 
     private String id;
 
-
-
     public ExerciseSet (double weight, int reps) {
         this.weight = weight;
         this.reps = reps;

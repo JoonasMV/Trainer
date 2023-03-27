@@ -9,6 +9,7 @@ import com.example.trainer.util.WorkoutSerializer;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public abstract class BaseController implements TrainerController{
 
@@ -61,9 +62,25 @@ public abstract class BaseController implements TrainerController{
         Workout copy = new Workout(workout.getName(), new Date());
         copy.setExList(new ArrayList<>(workout.getExList()));
         copy.setPreset(false);
-        System.out.println("Starting workout exlist size: " + workout.getExList().size());
         this.workout = copy;
     }
+
+//    private void resetIds(Workout workout){
+//        List<Exercise> exercises = workout.getExList();
+//        for(Exercise e : exercises){
+//            e.setExerciseId(0);
+//            e.setWorkoutId(0);
+//            resetSetIds(e.getSetList());
+//        }
+//    }
+//
+//    private void resetSetIds(List<ExerciseSet> sets){
+//        for(ExerciseSet set : sets){
+//            set.setId(0);
+//        }
+//    }
+
+
 
     @Override
     public Workout getWorkout() {

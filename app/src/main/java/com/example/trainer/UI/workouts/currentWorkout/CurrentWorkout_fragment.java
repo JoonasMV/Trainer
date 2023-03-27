@@ -65,15 +65,11 @@ public class CurrentWorkout_fragment extends Fragment {
             workoutManager.saveWorkout();
             changeFragment(new HomeScreen_fragment());
         });
-        workoutNameText.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
+        workoutNameText.addTextChangedListener(new WorkoutNameTextWatcher() {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 workoutManager.changeWorkoutName(workoutNameText.getText().toString());
             }
-
-            @Override public void afterTextChanged(Editable editable) {}
         });
     }
 

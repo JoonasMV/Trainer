@@ -78,7 +78,9 @@ public class ControllerTest {
     public void clear_database(){
         devdao.clearDatabase();
         List<ExerciseType> types = exerciseTypeDAO.getAll();
+        List<Workout> workouts = workoutDAO.getAll();
         assertEquals(0, types.size());
+        assertEquals(0, workouts.size());
     }
 
     private void createMockExerciseTypes(){
@@ -293,6 +295,34 @@ public class ControllerTest {
         List<Workout> workouts = workoutDAO.getPresets();
         assertEquals(1, workouts.size());
         assertEquals("BEST", workouts.get(0).getName());
+    }
+
+    @Test
+    public void sets_get_copied(){
+        Workout workout = new Workout(WORKOUT_NAME, new Date());
+        ExerciseType type = exerciseTypeDAO.getExerciseTypeByName(EXERCISE_NAME);
+        Exercise exercise = new Exercise(type.getId());
+
+        ExerciseSet set = new ExerciseSet(SET_WEIGHT, SET_REPS);
+        exercise.addSet(set);
+        workout.addExerciseToList(exercise);
+        workoutController.setWorkout(workout);
+        workoutController.saveWorkout();
+
+        workoutController.makePreset(workout);
+        List<Workout> presets = workoutController.getPresetWorkouts();
+
+        assertEquals(1, presets.size());
+
+        workoutController.startWorkoutFromPreset(presets.get(0));
+
+        Workout workoutWithSetsCopied = workoutController.getWorkout();
+        List<Exercise> exercises = workoutWithSetsCopied.getExList();
+        List<ExerciseSet> sets = exercises.get(0).getSetList();
+
+        assertEquals(1, exercises.size());
+        assertEquals(1, sets.size());
+        assertEquals(SET_WEIGHT, sets.get(0).getWeight(), 0);
     }
 
 }

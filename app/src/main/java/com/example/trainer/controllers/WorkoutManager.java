@@ -47,6 +47,7 @@ public class WorkoutManager extends BaseController{
         workoutDAO.save(workout);
         super.workout = null;
     }
+
     public List<ExerciseType> getExerciseTypes(){
         return exerciseTypeDAO.getAll();
     }

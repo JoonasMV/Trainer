@@ -60,7 +60,6 @@ public class PresetWorkoutsAdapter extends RecyclerView.Adapter<PresetWorkoutsAd
     @Override
     public void onBindViewHolder(@NonNull PresetWorkoutsAdapter.ViewHolder holder, int position) {
         Workout workout = presets.get(position);
-        System.out.println(workout.getExList().size());
 
         holder.workoutTitle.setText(workout.getName());
         holder.workoutTitle.setOnClickListener(view -> {
