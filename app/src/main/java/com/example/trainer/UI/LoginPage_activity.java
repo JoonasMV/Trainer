@@ -9,15 +9,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
-import com.example.trainer.model.ExerciseType;
+import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.model.User;
 import com.example.trainer.serverConnector.Server;
-import com.example.trainer.util.AppInitiation;
 //import android.widget.Toast;
 
 
 public class LoginPage_activity extends AppCompatActivity {
     EditText nameInput;
+    EditText passwordInput;
     Button startBtn;
     Server server;
 
@@ -29,11 +29,17 @@ public class LoginPage_activity extends AppCompatActivity {
         server = Server.getInstance();
 
         nameInput = findViewById(R.id.nameInput);
+        passwordInput = findViewById(R.id.passwordInput);
         startBtn = findViewById(R.id.startBtn);
 
         startBtn.setOnClickListener(view -> {
             String username = nameInput.getText().toString();
-            BaseController.getController().createUser(new User(username));
+            String password = passwordInput.getText().toString();
+            User user = new User(username, password);
+
+            TrainerController controller = BaseController.getController();
+            controller.registerUser(user);
+
 //            for (String exerciseName: AppInitiation.basicExercises) {
 //                ExerciseType exerciseType = server.exerciseType().getByName(exerciseName);
 //                exerciseTypeDAO.save(exerciseType);

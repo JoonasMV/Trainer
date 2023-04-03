@@ -20,7 +20,6 @@ public class Workout implements Serializable {
 
     private boolean preset;
 
-    private int userId;
 
     public Workout (String name, Date workoutStarted, Date workoutEnded) {
         this.name = name;
@@ -47,6 +46,14 @@ public class Workout implements Serializable {
         this.name = name;
         this.preset = preset;
         this.exercises = new ArrayList<>();
+    }
+
+    public Workout(Workout workout){
+        this.name = workout.getName();
+        this.workoutStarted = workout.getWorkoutStarted();
+        this.workoutEnded = workout.getWorkoutEnded();
+        this.preset = workout.preset();
+        this.exercises = workout.getExercises();
     }
 
     public void ended(){
@@ -105,14 +112,6 @@ public class Workout implements Serializable {
         exercises.add(exercise);
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     @NonNull
     @Override
     public String toString() {
@@ -123,7 +122,6 @@ public class Workout implements Serializable {
                 ", exList=" + exercises +
                 ", id=" + id +
                 ", preset=" + preset +
-                ", userId=" + userId +
                 '}';
     }
 }

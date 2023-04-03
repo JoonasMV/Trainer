@@ -3,13 +3,14 @@ package com.example.trainer.controllers.services;
 import com.example.trainer.api.ExerciseTypeOperations;
 import com.example.trainer.model.ExerciseType;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ExerciseTypeService {
 
-    private List<ExerciseType> exerciseTypes;
+    private List<ExerciseType> exerciseTypes = new ArrayList<>();
     private final ExerciseTypeOperations api;
 
     public ExerciseTypeService(ExerciseTypeOperations api){
@@ -17,7 +18,7 @@ public class ExerciseTypeService {
     }
 
     public List<ExerciseType> getAll() {
-        if(exerciseTypes == null){
+        if(exerciseTypes.isEmpty()){
             exerciseTypes = api.getAllExerciseTypes();
         }
         return  exerciseTypes;
@@ -36,7 +37,7 @@ public class ExerciseTypeService {
     }
 
     public boolean exerciseTypeExists(String name) {
-        if(exerciseTypes == null){
+        if(exerciseTypes.isEmpty()){
             exerciseTypes = api.getAllExerciseTypes();
         }
         Optional<ExerciseType> found = exerciseTypes
