@@ -29,11 +29,11 @@ public class ExerciseSet implements Serializable {
         this.weight = weight;
     }
 
-    public int getAmount() {
+    public int getReps() {
         return reps;
     }
 
-    public void setAmount(int amount) {
+    public void setReps(int amount) {
         this.reps = amount;
     }
 

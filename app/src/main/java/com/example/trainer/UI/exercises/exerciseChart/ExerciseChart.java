@@ -78,7 +78,7 @@ public class ExerciseChart extends Fragment {
         View v = inflater.inflate(R.layout.exercise_chart_fragment, container, false);
         mpLineChart = (LineChart) v.findViewById(R.id.lineChart);
         name = (TextView) v.findViewById(R.id.textView);
-        name.setText(exerciseManager.getExerciseType().getExerciseTypeName());
+        name.setText(exerciseManager.getExerciseType().getName());
         LineDataSet set1 = new LineDataSet(dataValues1(), "Weights");
         chartStyling(set1);
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();

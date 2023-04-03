@@ -43,7 +43,7 @@ public class WorkoutEntityCreator implements EntityCreator<Workout> {
         workout.setUserId(user);
         workout.setId(id);
         List<Exercise> exerciseList = exerciseDAO.getByWorkoutId(workout.getId());
-        workout.setExList(exerciseList);
+        workout.setExercises(exerciseList);
         return workout;
     }
 

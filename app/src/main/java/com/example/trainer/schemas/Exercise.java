@@ -1,6 +1,5 @@
 package com.example.trainer.schemas;
 
-import com.example.trainer.database.dao.sqlite.BetterSqliteDAOFactory;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,76 +8,48 @@ import java.util.List;
 public class Exercise implements Serializable {
 
     private static final long serialVersionUID = 3L;
-    private String exerciseId;
-    private String exerciseName;
-    private String workoutId;
+    private String id;
+    private ExerciseType exerciseType;
+    private List<ExerciseSet> sets = new ArrayList<>();
 
-    private String typeId;
+    public Exercise(){
 
-    private List<ExerciseSet> setList;
-
-    public Exercise(String name, String exerciseId, String workoutId, String typeId, List<ExerciseSet> sets) {
-        this.exerciseId = exerciseId;
-        this.workoutId = workoutId;
-        this.exerciseName = name;
-        this.typeId = typeId;
-        if(sets == null) {
-            this.setList = new ArrayList<>();
-        } else {
-            this.setList = sets;
-        }
     }
 
-    public Exercise(String exerciseTypeId){
-        this.typeId = exerciseTypeId;
-        ExerciseType type = new BetterSqliteDAOFactory().createExerciseTypeDAO().getExerciseTypeById(exerciseTypeId);
-        this.setList = new ArrayList<>();
-        this.exerciseName = type.getExerciseTypeName();
+    public String getId() {
+        return id;
     }
 
-
-    public void addSet(ExerciseSet set) {
-        setList.add(set);
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getExerciseName() {
-        return exerciseName;
+    public ExerciseType getExerciseType() {
+        return exerciseType;
     }
 
-    public String getWorkoutId() {
-        return workoutId;
+    public void setExerciseType(ExerciseType exerciseType) {
+        this.exerciseType = exerciseType;
     }
 
-    public String getExerciseId() {
-        return exerciseId;
+    public List<ExerciseSet> getSets() {
+        return sets;
     }
 
-    public List<ExerciseSet> getSetList() {
-        return setList;
+    public void setSets(List<ExerciseSet> sets) {
+        this.sets = sets;
     }
 
-    public void setExerciseId(String exerciseId) {
-        this.exerciseId = exerciseId;
+    public void addSet(ExerciseSet set){
+        sets.add(set);
     }
 
-    public void setExerciseName(String exerciseName) {
-        this.exerciseName = exerciseName;
+    public String getExerciseName(){
+        return exerciseType.getName();
     }
 
-    public void setWorkoutId(String workoutId) {
-        this.workoutId = workoutId;
+    @Override
+    public String toString(){
+        return "Exercise " + exerciseType.getName() + " contains " + sets.size() + " sets";
     }
-
-    public void setSetList(List<ExerciseSet> setList) {
-        this.setList = setList;
-    }
-
-    public String getTypeId() {
-        return typeId;
-    }
-
-    public void setTypeId(String typeId) {
-        this.typeId = typeId;
-    }
-
 }

@@ -1,35 +1,35 @@
 package com.example.trainer.schemas;
 
 public class ExerciseType {
-    private String _id;
-    private String exerciseTypeName;
+    private String id;
+    private String name;
 
     public ExerciseType(String name) {
-        this.exerciseTypeName = name;
+        this.name = name;
     }
 
-    public String getExerciseTypeName() {
-        return exerciseTypeName;
+    public String getName() {
+        return name;
     }
 
-    public String get_id() {
-        return _id;
+    public String getId() {
+        return id;
     }
 
-    public void setExerciseTypeName(String exerciseTypeName) {
-        this.exerciseTypeName = exerciseTypeName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setId(String id) {
+        this.id = id;
     }
 
 
     @Override
     public String toString() {
         return "ExerciseType{" +
-                "exerciseTypeName='" + exerciseTypeName + '\'' +
-                ", _id='" + _id + '\'' +
+                "exerciseTypeName='" + name + '\'' +
+                ", _id='" + id + '\'' +
                 '}';
     }
 }

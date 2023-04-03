@@ -14,11 +14,11 @@ public class Workout implements Serializable {
     private Date workoutStarted;
     private Date workoutEnded;
 
-    private List<Exercise> exList;
+    private List<Exercise> exercises;
 
     private String id;
 
-    private boolean isPreset;
+    private boolean preset;
 
     private int userId;
 
@@ -26,27 +26,27 @@ public class Workout implements Serializable {
         this.name = name;
         this.workoutStarted = workoutStarted;
         this.workoutEnded = workoutEnded;
-        this.isPreset = false;
-        this.exList = new ArrayList<>();
+        this.preset= false;
+        this.exercises = new ArrayList<>();
     }
 
     public Workout (String name, Date workoutStarted) {
         this.name = name;
         this.workoutStarted = workoutStarted;
-        this.isPreset = false;
-        this.exList = new ArrayList<>();
+        this.preset = false;
+        this.exercises = new ArrayList<>();
     }
 
     public Workout (String name) {
         this.name = name;
-        this.isPreset = false;
-        this.exList = new ArrayList<>();
+        this.preset = false;
+        this.exercises = new ArrayList<>();
     }
 
-    public Workout (String name, boolean isPreset) {
+    public Workout (String name, boolean preset) {
         this.name = name;
-        this.isPreset = isPreset;
-        this.exList = new ArrayList<>();
+        this.preset = preset;
+        this.exercises = new ArrayList<>();
     }
 
     public void ended(){
@@ -85,24 +85,24 @@ public class Workout implements Serializable {
         this.id = id;
     }
 
-    public boolean isPreset() {
-        return isPreset;
+    public boolean preset() {
+        return preset;
     }
 
     public void setPreset(boolean preset) {
-        isPreset = preset;
+        this.preset = preset;
     }
 
-    public List<Exercise> getExList() {
-        return exList;
+    public List<Exercise> getExercises() {
+        return exercises;
     }
 
-    public void setExList(List<Exercise> exList) {
-        this.exList = exList;
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
     }
 
     public void addExerciseToList(Exercise exercise){
-        exList.add(exercise);
+        exercises.add(exercise);
     }
 
     public int getUserId() {
@@ -120,9 +120,9 @@ public class Workout implements Serializable {
                 "name='" + name + '\'' +
                 ", workoutStarted=" + workoutStarted +
                 ", workoutEnded=" + workoutEnded +
-                ", exList=" + exList +
+                ", exList=" + exercises +
                 ", id=" + id +
-                ", isPreset=" + isPreset +
+                ", preset=" + preset +
                 ", userId=" + userId +
                 '}';
     }

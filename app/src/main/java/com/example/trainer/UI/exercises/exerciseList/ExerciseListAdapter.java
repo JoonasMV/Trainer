@@ -53,7 +53,7 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.nameOfExercise.setText(exerciseTypes.get(position).getExerciseTypeName());
+        holder.nameOfExercise.setText(exerciseTypes.get(position).getName());
 
         holder.nameOfExercise.setOnLongClickListener(view -> {
         holder.ppMenu.getMenuInflater().inflate(R.menu.exercise_popup_menu, holder.ppMenu.getMenu());
@@ -84,7 +84,7 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
     }
 
     private void deleteExerciseType(int position) {
-        BaseController.getController().deleteExerciseType(exerciseTypes.get(position).get_id());
+        BaseController.getController().deleteExerciseType(exerciseTypes.get(position).getId());
         exerciseTypes.remove(position);
         //TODO: change notifItemRangeChanged
         notifyItemRemoved(position);

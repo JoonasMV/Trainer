@@ -32,7 +32,7 @@ public class SqliteSetDAO extends DAOBase<ExerciseSet> implements ISetDAO {
         ContentValues cv = new ContentValues();
 
         cv.put(SetContract.ExerciseSetEntry.EXERCISE_ID, exerciseId);
-        cv.put(SetContract.ExerciseSetEntry.SET_REPS, set.getAmount());
+        cv.put(SetContract.ExerciseSetEntry.SET_REPS, set.getReps());
         cv.put(SetContract.ExerciseSetEntry.SET_WEIGHT, set.getWeight());
         return cv;
     }
