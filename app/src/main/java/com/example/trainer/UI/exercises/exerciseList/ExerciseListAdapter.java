@@ -57,7 +57,7 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.nameOfExercise.setText(exerciseTypes.get(position).getExerciseTypeName());
+        holder.nameOfExercise.setText(exerciseTypes.get(position).getName());
 
         // Short click to view diagram
         holder.nameOfExercise.setOnClickListener(view -> {
@@ -103,7 +103,7 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
     }
 
     private void deleteExerciseType(int position) {
-        BaseController.getController().deleteExerciseType(exerciseTypes.get(position).get_id());
+        BaseController.getController().deleteExerciseType(exerciseTypes.get(position).getId());
         exerciseTypes.remove(position);
         notifyItemRemoved(position);
     }

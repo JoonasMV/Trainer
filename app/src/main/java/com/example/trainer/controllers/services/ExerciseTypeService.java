@@ -31,7 +31,7 @@ public class ExerciseTypeService {
     private void filterOutId(String id){
         this.exerciseTypes = exerciseTypes
                 .stream()
-                .filter(type -> !type.get_id().equals(id))
+                .filter(type -> !type.getId().equals(id))
                 .collect(Collectors.toList());
     }
 
@@ -41,7 +41,7 @@ public class ExerciseTypeService {
         }
         Optional<ExerciseType> found = exerciseTypes
                 .stream()
-                .filter(type -> type.getExerciseTypeName().equals(name))
+                .filter(type -> type.getName().equals(name))
                 .findFirst();
         return found.isPresent();
     }

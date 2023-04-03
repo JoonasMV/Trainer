@@ -56,11 +56,11 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull SetAdapter.ViewHolder holder, int position) {
         holder.setCounter.setText(Integer.toString(position + 1));
 
-        ExerciseSet valuePosition = exercise.getSetList().get(holder.getAdapterPosition());
+        ExerciseSet valuePosition = exercise.getSets().get(holder.getAdapterPosition());
 
         try {
-            holder.setRepField.setText(String.valueOf(valuePosition.getAmount()));
-            if (valuePosition.getAmount() <= -1) {
+            holder.setRepField.setText(String.valueOf(valuePosition.getReps()));
+            if (valuePosition.getReps() <= -1) {
                 holder.setRepField.setText(null);
                 holder.setRepField.setHint(context.getString(R.string.reps));
             }
@@ -85,9 +85,9 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.ViewHolder> {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 try {
-                    valuePosition.setAmount(Integer.parseInt(holder.setRepField.getText().toString()));
+                    valuePosition.setReps(Integer.parseInt(holder.setRepField.getText().toString()));
                 } catch (NumberFormatException e) {
-                    valuePosition.setAmount(-1);
+                    valuePosition.setReps(-1);
 //                    holder.setRepField.setError("Invalid rep amount");
                 }
             }
@@ -114,6 +114,6 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return exercise.getSetList().size();
+        return exercise.getSets().size();
     }
 }

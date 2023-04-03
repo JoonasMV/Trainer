@@ -42,7 +42,7 @@ public class APIWorkoutManager extends BaseController{
         exerciseTypeDAO.deleteById(id);
         exerciseTypes = exerciseTypes
                 .stream()
-                .filter(type -> !type.get_id().equals(id))
+                .filter(type -> !type.getId().equals(id))
                 .collect(Collectors.toList());
     }
 
@@ -60,7 +60,7 @@ public class APIWorkoutManager extends BaseController{
     public List<Workout> getPresetWorkouts() {
         return workouts
                 .stream()
-                .filter(Workout::isPreset)
+                .filter(Workout::preset)
                 .collect(Collectors.toList());
     }
 
@@ -68,7 +68,7 @@ public class APIWorkoutManager extends BaseController{
     public List<Workout> getNonPresetWorkouts() {
         return workouts
                 .stream()
-                .filter(workout -> !workout.isPreset())
+                .filter(workout -> !workout.preset())
                 .collect(Collectors.toList());
     }
 
@@ -84,7 +84,7 @@ public class APIWorkoutManager extends BaseController{
     @Override
     public boolean exerciseTypeExists(String name) {
         Optional<ExerciseType> result = exerciseTypes.stream()
-                .filter(type -> type.getExerciseTypeName().equals(name))
+                .filter(type -> type.getName().equals(name))
                 .findFirst();
         return result.isPresent();
     }

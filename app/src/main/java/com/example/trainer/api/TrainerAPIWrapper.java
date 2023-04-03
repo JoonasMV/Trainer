@@ -3,6 +3,7 @@ package com.example.trainer.api;
 import android.content.Context;
 
 import com.example.trainer.schemas.ExerciseType;
+import com.example.trainer.schemas.User;
 import com.example.trainer.schemas.Workout;
 import com.example.trainer.util.TokenManager;
 
@@ -10,7 +11,6 @@ import java.util.List;
 
 public class TrainerAPIWrapper implements AuthOperations, ExerciseTypeOperations, WorkoutOperations {
 
-    private static TrainerAPIWrapper instance;
     private final TokenManager tokenManager;
 
     public TrainerAPIWrapper(Context context){
@@ -20,6 +20,11 @@ public class TrainerAPIWrapper implements AuthOperations, ExerciseTypeOperations
     @Override
     public List<ExerciseType> getAllExerciseTypes() {
         return null;
+    }
+
+    @Override
+    public void deleteExerciseType(String id) {
+
     }
 
     @Override
@@ -38,7 +43,22 @@ public class TrainerAPIWrapper implements AuthOperations, ExerciseTypeOperations
     }
 
     @Override
+    public User getUser() {
+        return null;
+    }
+
+    @Override
     public void saveWorkout(Workout workout) {
+
+    }
+
+    @Override
+    public List<Workout> getWorkouts() {
+        return null;
+    }
+
+    @Override
+    public void deleteWorkout(String id) {
 
     }
 }

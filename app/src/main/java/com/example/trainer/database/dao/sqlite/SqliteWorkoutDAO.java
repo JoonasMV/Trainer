@@ -19,7 +19,6 @@ import com.example.trainer.database.dao.framework.DAOBase;
 import com.example.trainer.database.dao.framework.IExerciseDAO;
 import com.example.trainer.database.dao.framework.IWorkoutDAO;
 import com.example.trainer.schemas.Exercise;
-import com.example.trainer.schemas.ExerciseType;
 import com.example.trainer.schemas.Workout;
 
 import java.util.ArrayList;
@@ -81,7 +80,7 @@ public class SqliteWorkoutDAO extends DAOBase<Workout> implements IWorkoutDAO {
         cv.put(WORKOUT_NAME, workout.getName());
         cv.put(WORKOUT_ENDED, workout.getWorkoutEnded().toString());
         cv.put(WORKOUT_STARTED, workout.getWorkoutStarted().toString());
-        cv.put(PRESET, workout.isPreset());
+        cv.put(PRESET, workout.preset());
 
         return cv;
     }
@@ -96,17 +95,11 @@ public class SqliteWorkoutDAO extends DAOBase<Workout> implements IWorkoutDAO {
         ContentValues cv = createCV(workout);
         saveToDb(cv);
         String id = getIdOfLastInsertedRow();
-        List<Exercise> exercises = workout.getExList();
-        addWorkoutIdToExercises(exercises, id);
+        List<Exercise> exercises = workout.getExercises();
         exerciseDAO.saveMany(exercises);
         return id;
     }
 
-    private void addWorkoutIdToExercises(List<Exercise> exercises, String id){
-        for(Exercise e : exercises){
-            e.setWorkoutId(id);
-        }
-    }
 
     @Override
     public void initPresets() {
