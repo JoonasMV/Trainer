@@ -5,7 +5,7 @@ import com.example.trainer.model.Workout;
 import java.util.List;
 
 public interface WorkoutOperations {
-    void saveWorkout(Workout workout);
+    Workout saveWorkout(Workout workout);
 
     List<Workout> getWorkouts();
 

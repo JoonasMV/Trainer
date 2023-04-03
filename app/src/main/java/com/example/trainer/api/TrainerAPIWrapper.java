@@ -48,8 +48,8 @@ public class TrainerAPIWrapper implements AuthOperations, ExerciseTypeOperations
     }
 
     @Override
-    public void saveWorkout(Workout workout) {
-
+    public Workout saveWorkout(Workout workout) {
+        return null;
     }
 
     @Override

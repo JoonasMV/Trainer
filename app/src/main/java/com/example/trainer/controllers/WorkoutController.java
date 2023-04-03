@@ -96,6 +96,6 @@ public class WorkoutController extends BaseController {
 
     @Override
     public void makePreset(Workout workout) {
-
+        workoutService.makePreset(workout);
     }
 }
