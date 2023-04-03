@@ -1,5 +1,6 @@
 package com.example.trainer.UI.exercises.exerciseChart;
 
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -57,8 +58,8 @@ public class ExerciseChart extends Fragment {
 
     }
     //placeholders
-    private ArrayList<Entry> dataValues1(){
-        ArrayList<Entry> dataVals = new ArrayList<Entry>();
+    private List<Entry> dataValues1(){
+        List<Entry> dataVals = new ArrayList<Entry>();
         dataVals.add(new Entry(0,20));
         dataVals.add(new Entry(1,24));
         dataVals.add(new Entry(2,2));
@@ -77,41 +78,72 @@ public class ExerciseChart extends Fragment {
         }
 
         View v = inflater.inflate(R.layout.exercise_chart_fragment, container, false);
+
         mpLineChart = (LineChart) v.findViewById(R.id.lineChart);
+        mpLineChart.getDescription().setEnabled(false);
         name = (TextView) v.findViewById(R.id.textView);
         name.setText(exerciseManager.getExerciseType().getExerciseTypeName());
+
         LineDataSet set1 = new LineDataSet(dataValues1(), getString(R.string.weight));
         chartStyling(set1);
-        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+        List<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
         LineData data = new LineData(dataSets);
+
         AxisBase yAxis = mpLineChart.getAxisLeft();
         AxisBase xAxis = mpLineChart.getXAxis();
-        yAxis.setTextSize(14f);
-        yAxis.setAxisLineWidth(2f);
-        xAxis.setTextSize(14f);
-        xAxis.setAxisLineWidth(2f);
+        axisStyling(yAxis);
+        axisStyling(xAxis);
+
         mpLineChart.getAxisRight().setEnabled(false);
-        mpLineChart.setExtraOffsets(10,15,5,5);
+        //mpLineChart.setBorderColor(MaterialColors.getColor(getContext(), androidx.appcompat.R.attr.color, Color.BLACK));
+
+        mpLineChart.setExtraOffsets(7,10,7,5);
         mpLineChart.setData(data);
+
         mpLineChart.animateY(1000);
 
         mpLineChart.invalidate();
         return v;
     }
 
-    public void chartStyling(LineDataSet set1){
-        set1.setColor(MaterialColors.getColor(getContext(), androidx.appcompat.R.attr.colorPrimary, Color.BLACK));
-        set1.setCircleColor(Color.rgb(28, 52, 86));
+    private void chartStyling(LineDataSet set1){
+        switch (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) {
+            case Configuration.UI_MODE_NIGHT_YES:
+                set1.setValueTextColor(getContext().getColor(R.color.text_color_dark));
+                set1.setColor(getContext().getColor(R.color.diagram_fill_color_dark));
+                set1.setCircleColor(getContext().getColor(R.color.diagram_fill_color_dark));
+                set1.setFillColor(getContext().getColor(R.color.diagram_fill_color_dark));
+                break;
+            case Configuration.UI_MODE_NIGHT_NO:
+                set1.setValueTextColor(getContext().getColor(R.color.text_color_light));
+                set1.setColor(getContext().getColor(R.color.diagram_fill_color_light));
+                set1.setFillColor(getContext().getColor(R.color.diagram_fill_color_light));
+                set1.setCircleColor(getContext().getColor(R.color.diagram_fill_color_light));
+                break;
+        }
         set1.setLineWidth(3f);
         set1.setCircleRadius(5f);
         set1.setDrawCircleHole(false);
         set1.setValueTextSize(16f);
         set1.setDrawFilled(true);
-        set1.setFillColor(Color.rgb(28, 52, 86));
         set1.setFormLineWidth(2f);
-
         set1.setFormSize(15.f);
+
+    }
+    private void axisStyling(AxisBase axis){
+        axis.setTextSize(16f);
+        axis.setAxisLineWidth(2f);
+        switch (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) {
+            case Configuration.UI_MODE_NIGHT_YES:
+                axis.setTextColor(getContext().getColor(R.color.text_color_dark));
+                axis.setAxisLineColor(getContext().getColor(R.color.diagram_fill_color_dark));
+                break;
+            case Configuration.UI_MODE_NIGHT_NO:
+                axis.setTextColor(getContext().getColor(R.color.text_color_light));
+                axis.setAxisLineColor(getContext().getColor(R.color.text_color_light));
+                break;
+        }
     }
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 

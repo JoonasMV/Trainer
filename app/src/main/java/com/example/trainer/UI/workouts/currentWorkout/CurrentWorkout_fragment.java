@@ -95,9 +95,9 @@ public class CurrentWorkout_fragment extends Fragment {
         long minutes = duration.toMinutes() - (hours * 60);
         long seconds = duration.getSeconds() - (duration.toMinutes() * 60);
         if(hours > 0){
-            return String.format("Duration: %d h %d min %d sec", hours, minutes, seconds);
+            return String.format(getContext().getString(R.string.durationHourMinSec), hours, minutes, seconds);
         }
-        return String.format("Duration: %d min %d sec", minutes, seconds);
+        return String.format(getContext().getString(R.string.durationMinSec), minutes, seconds);
     }
 
     private Duration calculateInitialDuration(){

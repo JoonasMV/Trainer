@@ -62,20 +62,20 @@ public class SetAdapter extends RecyclerView.Adapter<SetAdapter.ViewHolder> {
             holder.setRepField.setText(String.valueOf(valuePosition.getAmount()));
             if (valuePosition.getAmount() <= -1) {
                 holder.setRepField.setText(null);
-                holder.setRepField.setHint("Reps");
+                holder.setRepField.setHint(context.getString(R.string.reps));
             }
         } catch (NumberFormatException e) {
-            holder.setRepField.setHint("Reps");
+            holder.setRepField.setHint(context.getString(R.string.reps));
         }
 
         try {
             holder.setWeightField.setText(String.valueOf(valuePosition.getWeight()));
             if (valuePosition.getWeight() <= -1) {
                 holder.setWeightField.setText(null);
-                holder.setWeightField.setHint("Weight");
+                holder.setWeightField.setHint(context.getString(R.string.weight));
             }
         } catch (NumberFormatException e) {
-            holder.setWeightField.setHint("Weight");
+            holder.setWeightField.setHint(context.getString(R.string.weight));
         }
 
 

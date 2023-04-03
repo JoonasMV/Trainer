@@ -70,7 +70,7 @@ public class PresetWorkoutsAdapter extends RecyclerView.Adapter<PresetWorkoutsAd
         holder.deleteButton.setOnClickListener(view -> {
             workoutManager.deleteWorkout(workout);
             presets.remove(workout);
-            Toaster.toast(parentContext, "Preset removed!");
+            Toaster.toast(parentContext, parentContext.getString(R.string.presetRemoved));
             notifyDataSetChanged();
         });
 

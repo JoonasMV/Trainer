@@ -39,7 +39,7 @@ public class CreateExercise_fragment extends Fragment {
                 workoutManager.createExerciseType(new ExerciseType(name));
                 getParentFragmentManager().popBackStack();
             } else{
-                Toaster.toast(getContext(),"Exercise already added");
+                Toaster.toast(getContext(), getContext().getString(R.string.exerciseToast));
             }
         });
         return v;

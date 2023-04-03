@@ -55,16 +55,7 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.nameOfExercise.setText(exerciseTypes.get(position).getExerciseTypeName());
 
-        holder.nameOfExercise.setOnLongClickListener(view -> {
-        holder.ppMenu.getMenuInflater().inflate(R.menu.exercise_popup_menu, holder.ppMenu.getMenu());
-        holder.ppMenu.setOnMenuItemClickListener(menuItem -> {
-            int hPosition = holder.getLayoutPosition();
-            deleteExerciseType(hPosition);
-            return false;
-        });
-        holder.ppMenu.show();
-            return false;
-        });
+
 
         holder.itemView.setOnClickListener(v -> {
             exerciseManager.setExerciseType(exerciseTypes.get(holder.getAdapterPosition()));

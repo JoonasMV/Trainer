@@ -68,16 +68,16 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
         holder.workoutTitle.setText(workout.getName());
         holder.saveAsPresetBtn.setOnClickListener(view -> {
             if(workout.isPreset()){
-                Toaster.toast(parentContext, String.format("%s is already a preset", workout.getName()));
+                Toaster.toast(parentContext, String.format(parentContext.getString(R.string.alreadyPreset), workout.getName()));
             } else {
                 workoutManager.makePreset(workout);
-                Toaster.toast(parentContext, String.format("%s is now a preset", workout.getName()));
+                Toaster.toast(parentContext, String.format(parentContext.getString(R.string.nowPreset), workout.getName()));
             }
         });
         holder.deleteButton.setOnClickListener(view -> {
             workoutManager.deleteWorkout(workout);
             workoutHistory.remove(workout);
-            Toaster.toast(parentContext, "Workout removed!");
+            Toaster.toast(parentContext, parentContext.getString(R.string.workoutRemoved));
             notifyDataSetChanged();
         });
     }

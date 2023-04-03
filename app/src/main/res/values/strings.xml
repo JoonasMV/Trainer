@@ -25,12 +25,20 @@
     <string name="presetText">Presets</string>
     <string name="cancelWorkout">Cancel Workout</string>
     <string name="endWorkout">End Workout</string>
-    <string name="welcomeBack">Welcome back {user}</string>
+    <string name="welcomeBack">Welcome back %s</string>
     <string name="drawingAltText">muscular hand holding a dumbbell</string>
     <string name="name">Name</string>
     <string name="newWorkout">New Workout</string>
-    <string name="reps">reps</string>
-    <string name="weight">weight</string>
+    <string name="reps">Reps</string>
+    <string name="weight">Weight</string>
     <string name="addSet">add set</string>
+    <string name="exerciseToast">Exercise type already added</string>
+    <string name="presetRemoved">Preset removed</string>
+    <string name="alreadyPreset">%s is already a preset</string>
+    <string name="nowPreset">%s is now a preset</string>
+    <string name="workoutRemoved">Workout removed</string>
+    <string name="durationHourMinSec">Duration: %d h %d min %d sec</string>
+    <string name="durationMinSec">Duration: %d min %d sec</string>
+
 
 </resources>

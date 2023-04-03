@@ -13,10 +13,14 @@
     <color name="menu_items_light">#1D3557</color>
     <color name="text_color_light">#212529</color>
 
+    <color name="diagram_fill_color_light">@color/menu_items_light</color>
+
     <!-- Dark theme colors-->
     <color name="text_color_dark">@color/white</color>
     <color name="underline_color">#33FFFFFF</color>
     <color name="menu_items_dark">#373737</color>
     <color name="background_dark">#121212</color>
+
+    <color name="diagram_fill_color_dark">@color/underline_color</color>
 
 </resources>

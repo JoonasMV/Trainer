@@ -10,6 +10,7 @@
 
         <!-- Text color -->
         <item name="android:textColor">@color/text_color_light</item>
+        <item name="color">@color/menu_items_light</item>
 
 
 <!--        <item name="colorOnPrimary">@color/red</item>-->
@@ -20,6 +21,7 @@
         <!-- Status bar color. -->
         <!-- Customize your theme here. -->
     </style>
+
 
 
 <!--    <style name="Theme.Trainer.button.bigButton" parent="button_basic">-->

@@ -25,11 +25,18 @@
     <string name="delete">Poista</string>
     <string name="cancelWorkout">Peru Treeni</string>
     <string name="endWorkout">Lopeta Treeni</string>
-    <string name="welcomeBack">Tervetuloa {user]</string>
+    <string name="welcomeBack">Tervetuloa %s</string>
     <string name="drawingAltText">Lihaksikas käsi pitää punttia</string>
     <string name="name">Nimi</string>
     <string name="newWorkout">Uusi Treeni</string>
-    <string name="reps">toistot</string>
-    <string name="weight">painot</string>
+    <string name="reps">Toistot</string>
+    <string name="weight">Paino</string>
     <string name="addSet">lisää setti</string>
+    <string name="exerciseToast">Liiketyyppi jo lisätty</string>
+    <string name="presetRemoved">Treenipohja poistettu</string>
+    <string name="alreadyPreset">%s on jo treenipohja</string>
+    <string name="nowPreset">%s on nyt treenipohja</string>
+    <string name="workoutRemoved">Treeni poistettu</string>
+    <string name="durationHourMinSec">Kesto: %d h %d min %d s</string>
+    <string name="durationMinSec">Kesto: %d min %d s</string>
 </resources>

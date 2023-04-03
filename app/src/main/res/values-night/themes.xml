@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/menu_items_dark</item>
         <item name="android:statusBarColor">@color/menu_items_dark</item>
         <item name="backgroundColor">@color/background_dark</item>
-        <item name="actionBarStyle">@style/action_bar_dark</item>-->
+
 
         <!-- Buttons -->
         <item name="colorPrimaryVariant">@color/menu_items_dark</item>
@@ -13,10 +13,8 @@
         <!-- Text color -->
         <item name="android:textColor">@color/text_color_dark</item>
 
-    </style>
+        <item name="color">@color/underline_color</item>
 
-    <style name="action_bar_dark" parent="Widget.MaterialComponents.ActionBar.Primary">
-        <item name="background">@color/background_dark</item>
     </style>
 
     <style name="image_style">
