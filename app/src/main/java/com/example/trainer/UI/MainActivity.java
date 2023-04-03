@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
-import com.example.trainer.database.DatabaseHelper;
+import com.example.trainer.controllers.WorkoutController;
 import com.example.trainer.serverConnector.Server;
 import com.example.trainer.UI.exercises.exerciseList.ExerciseList_fragment;
 import com.example.trainer.UI.workouts.PresetWorkouts_fragment;
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DatabaseHelper.initialize(this);
+        WorkoutController.initController(this);
 
         setContentView(R.layout.main_activity);
 

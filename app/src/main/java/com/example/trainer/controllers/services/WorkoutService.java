@@ -15,7 +15,8 @@ public class WorkoutService {
     }
 
     public void save(Workout workout) {
-        api.saveWorkout(workout);
+        Workout saved = api.saveWorkout(workout);
+        workouts.add(saved);
     }
 
     public List<Workout> getPresetWorkouts() {
@@ -56,5 +57,11 @@ public class WorkoutService {
                .stream()
                .filter(workout -> workout.getId().equals(id))
                .collect(Collectors.toList());
+    }
+
+    public void makePreset(Workout workout) {
+        workout.setPreset(true);
+        Workout saved = api.saveWorkout(workout);
+        workouts.add(saved);
     }
 }
