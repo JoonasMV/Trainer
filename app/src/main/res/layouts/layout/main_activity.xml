@@ -46,7 +46,7 @@
                 android:layout_weight="1"
                 android:drawableTop="@drawable/home"
                 android:drawableTint="@color/white"
-                android:text="home" />
+                android:text="@string/home" />
 
             <Button
                 android:id="@+id/workoutsBtn"

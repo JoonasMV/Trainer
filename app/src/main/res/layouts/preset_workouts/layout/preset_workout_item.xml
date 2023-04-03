@@ -22,7 +22,7 @@
             android:id="@+id/deletePresetButton"
             style="@style/button_list"
             android:layout_weight="1"
-            android:text="Delete" />
+            android:text="@string/delete" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,7 +31,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
-                android:text="@string/delete_workout" />
+                android:text="@string/delete" />
 
             <Button
                 android:id="@+id/saveAsPresetBtn"

@@ -38,7 +38,8 @@
                 android:id="@+id/workoutDuration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="TextView"
+                android:gravity="right"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listOfExercises"
@@ -70,7 +71,7 @@
                     android:layout_marginVertical="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cancel workout" />
+                    android:text="@string/cancelWorkout" />
 
 
                 <Button
@@ -79,7 +80,7 @@
                     android:layout_marginBottom="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="End workout" />
+                    android:text="@string/endWorkout" />
 
             </LinearLayout>
 

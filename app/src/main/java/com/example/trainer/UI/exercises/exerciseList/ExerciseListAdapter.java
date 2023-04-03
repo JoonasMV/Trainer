@@ -65,16 +65,13 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
         holder.ppMenu.show();
             return false;
         });
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                exerciseManager.setExerciseType(exerciseTypes.get(holder.getAdapterPosition()));
-                ExerciseChart exerciseChart = new ExerciseChart();
-                ((MainActivity)v.getContext()).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.mainContainer, exerciseChart,"")
-                        .addToBackStack(null).commit();
-            }
+        holder.itemView.setOnClickListener(v -> {
+            exerciseManager.setExerciseType(exerciseTypes.get(holder.getAdapterPosition()));
+            ExerciseChart exerciseChart = new ExerciseChart();
+            ((MainActivity)v.getContext()).getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.mainContainer, exerciseChart,"")
+                    .addToBackStack(null).commit();
         });
     }
 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Trainer</string>
+    <string name="addExerciseButton">Lisää liike</string>
+    <string name="hello_blank_fragment">Hei blank fragment</string>
+    <string name="workout_name_field">Treenin nimi</string>
+    <string name="back">takaisin</string>
+    <string name="save">tallenna</string>
+    <string name="progress">Kehitys</string>
+    <string name="workouts">Treeni</string>
+    <string name="history">Historia</string>
+    <string name="home">Koti</string>
+    <string name="workoutNameHint">Lisää treenin nimi</string>
+    <string name="add_new_exercise_button">Lisää uusi liike</string>
+    <string name="exercises">Liikkeet</string>
+    <string name="workoutHistory_title">Treeni historia</string>
+    <string name="makePreset">Tallenna pohjaksi</string>
+    <string name="addWorkoutName">Tallenna nimi</string>
+    <string name="workoutName">Treeni</string>
+    <string name="preference_file_key">workouts_pref</string>
+    <string name="login_button_text">Luo käyttäjä</string>
+    <string name="saveExercise">Tallenna liike</string>
+    <string name="exerciseName">Liikkeen nimi</string>
+    <string name="presetText">Treenipohjat</string>
+    <string name="delete">Poista</string>
+    <string name="cancelWorkout">Peru Treeni</string>
+    <string name="endWorkout">Lopeta Treeni</string>
+    <string name="welcomeBack">Tervetuloa {user]</string>
+    <string name="drawingAltText">Lihaksikas käsi pitää punttia</string>
+    <string name="name">Nimi</string>
+    <string name="newWorkout">Uusi Treeni</string>
+    <string name="reps">toistot</string>
+    <string name="weight">painot</string>
+    <string name="addSet">lisää setti</string>
+</resources>

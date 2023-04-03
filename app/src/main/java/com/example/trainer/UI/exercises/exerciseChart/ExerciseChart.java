@@ -21,6 +21,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.google.android.material.color.MaterialColors;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -79,7 +80,7 @@ public class ExerciseChart extends Fragment {
         mpLineChart = (LineChart) v.findViewById(R.id.lineChart);
         name = (TextView) v.findViewById(R.id.textView);
         name.setText(exerciseManager.getExerciseType().getExerciseTypeName());
-        LineDataSet set1 = new LineDataSet(dataValues1(), "Weights");
+        LineDataSet set1 = new LineDataSet(dataValues1(), getString(R.string.weight));
         chartStyling(set1);
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
@@ -100,7 +101,7 @@ public class ExerciseChart extends Fragment {
     }
 
     public void chartStyling(LineDataSet set1){
-        set1.setColor(Color.rgb(28, 52, 86));
+        set1.setColor(MaterialColors.getColor(getContext(), androidx.appcompat.R.attr.colorPrimary, Color.BLACK));
         set1.setCircleColor(Color.rgb(28, 52, 86));
         set1.setLineWidth(3f);
         set1.setCircleRadius(5f);

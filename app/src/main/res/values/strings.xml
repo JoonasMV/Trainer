@@ -19,9 +19,18 @@
     <string name="workoutName">Workout</string>
     <string name="preference_file_key">workouts_pref</string>
     <string name="login_button_text">Create user</string>
-    <string name="delete_workout">Delete</string>
+    <string name="delete">Delete</string>
     <string name="saveExercise">Save Exercise</string>
     <string name="exerciseName">Exercise name</string>
     <string name="presetText">Presets</string>
+    <string name="cancelWorkout">Cancel Workout</string>
+    <string name="endWorkout">End Workout</string>
+    <string name="welcomeBack">Welcome back {user}</string>
+    <string name="drawingAltText">muscular hand holding a dumbbell</string>
+    <string name="name">Name</string>
+    <string name="newWorkout">New Workout</string>
+    <string name="reps">reps</string>
+    <string name="weight">weight</string>
+    <string name="addSet">add set</string>
 
 </resources>
