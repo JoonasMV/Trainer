@@ -1,12 +1,16 @@
 package com.example.trainer.util;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+
+import com.example.trainer.model.Workout;
+import com.google.gson.Gson;
 
 import java.util.Objects;
 
 public class TokenManager {
     private String token;
-    private Context context;
+    private final Context context;
 
     public TokenManager(Context context){
         this.context = Objects.requireNonNull(context);
@@ -20,7 +24,8 @@ public class TokenManager {
     }
 
     private String readFromPref(){
-        return null;
+        SharedPreferences pref = context.getSharedPreferences("trainer", Context.MODE_PRIVATE);
+        return pref.getString("token", null);
     }
 
     public void saveToken(String token){
@@ -28,7 +33,9 @@ public class TokenManager {
         writeToPref(token);
     }
 
-    private void writeToPref(String token){
 
+    private void writeToPref(String token){
+        SharedPreferences pref = context.getSharedPreferences("trainer", Context.MODE_PRIVATE);
+        pref.edit().putString("token", token).commit();
     }
 }

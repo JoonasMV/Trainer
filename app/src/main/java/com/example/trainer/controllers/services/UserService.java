@@ -12,12 +12,12 @@ public class UserService {
         this.api = api;
     }
 
-    public void register(String username, String password) throws IllegalArgumentException {
-        api.registerUser(username, password);
+    public void register(User user) throws IllegalArgumentException {
+        api.registerUser(user);
     }
 
-    public void authenticate(String username, String password) throws IllegalArgumentException {
-        api.authenticateUser(username, password);
+    public void authenticate(User user) throws IllegalArgumentException {
+        api.authenticateUser(user);
     }
 
     public void refresh() throws AuthenticationException {

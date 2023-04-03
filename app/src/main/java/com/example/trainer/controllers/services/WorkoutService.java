@@ -3,12 +3,13 @@ package com.example.trainer.controllers.services;
 import com.example.trainer.api.WorkoutOperations;
 import com.example.trainer.model.Workout;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class WorkoutService {
 
-    private List<Workout> workouts;
+    private List<Workout> workouts = new ArrayList<>();
     private final WorkoutOperations api;
     public WorkoutService(WorkoutOperations api){
         this.api = api;
@@ -20,7 +21,7 @@ public class WorkoutService {
     }
 
     public List<Workout> getPresetWorkouts() {
-        if(workouts == null){
+        if(workouts.isEmpty()){
             workouts = api.getWorkouts();
         }
         return filterPresets();
@@ -34,7 +35,7 @@ public class WorkoutService {
     }
 
     public List<Workout> getNonPresetWorkouts() {
-        if(workouts == null){
+        if(workouts.isEmpty()){
             workouts = api.getWorkouts();
         }
         return filterNonPresets();
@@ -55,13 +56,14 @@ public class WorkoutService {
     private void removeFromList(String id){
        this.workouts = workouts
                .stream()
-               .filter(workout -> workout.getId().equals(id))
+               .filter(workout ->  !workout.getId().equals(id))
                .collect(Collectors.toList());
     }
 
     public void makePreset(Workout workout) {
-        workout.setPreset(true);
-        Workout saved = api.saveWorkout(workout);
+        Workout preset = new Workout(workout);
+        preset.setPreset(true);
+        Workout saved = api.saveWorkout(preset);
         workouts.add(saved);
     }
 }

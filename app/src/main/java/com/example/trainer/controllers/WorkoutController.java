@@ -47,6 +47,7 @@ public class WorkoutController extends BaseController {
     @Override
     public void saveWorkout() {
         workoutService.save(super.workout);
+        super.workout = null;
     }
 
     @Override
@@ -57,11 +58,6 @@ public class WorkoutController extends BaseController {
     @Override
     public void deleteExerciseType(String id) {
         exerciseTypeService.deleteExerciseType(id);
-    }
-
-    @Override
-    public void createUser(User user) {
-
     }
 
     @Override
@@ -97,5 +93,10 @@ public class WorkoutController extends BaseController {
     @Override
     public void makePreset(Workout workout) {
         workoutService.makePreset(workout);
+    }
+
+    @Override
+    public void registerUser(User user) {
+        userService.register(user);
     }
 }

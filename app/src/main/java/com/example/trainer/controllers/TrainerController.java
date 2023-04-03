@@ -46,8 +46,6 @@ public interface TrainerController {
 
     void deleteExerciseType(String id);
 
-    void createUser(User user);
-
     User findUser();
 
     List<Workout> getPresetWorkouts();
@@ -65,4 +63,6 @@ public interface TrainerController {
     Workout getWorkout();
 
     void setWorkout(Workout workout);
+
+    void registerUser(User user);
 }
