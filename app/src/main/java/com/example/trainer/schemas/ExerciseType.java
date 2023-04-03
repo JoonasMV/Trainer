@@ -1,6 +1,10 @@
 package com.example.trainer.schemas;
 
-public class ExerciseType {
+import java.io.Serializable;
+
+public class ExerciseType implements Serializable {
+
+    private static final long serialVersionUID = 4L;
     private String _id;
     private String exerciseTypeName;
 
