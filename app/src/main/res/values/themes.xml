@@ -10,16 +10,22 @@
 
         <!-- Text color -->
         <item name="android:textColor">@color/text_color_light</item>
+    </style>
+        <!-- Other colors -->
+        <style name="underline_color">
+            <item name="android:background">@color/underline_color_light</item>
+        </style>
 
 
-<!--        <item name="colorOnPrimary">@color/red</item>-->
+
+        <!--        <item name="colorOnPrimary">@color/red</item>-->
         <!-- Secondary brand color. -->
 <!--        <item name="colorSecondary">@color/teal_200</item>-->
 <!--        <item name="colorSecondaryVariant">@color/teal_700</item>-->
 <!--        <item name="colorOnSecondary">@color/black</item>-->
         <!-- Status bar color. -->
         <!-- Customize your theme here. -->
-    </style>
+
 
 
 <!--    <style name="Theme.Trainer.button.bigButton" parent="button_basic">-->
