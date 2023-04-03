@@ -9,12 +9,16 @@ import com.example.trainer.util.TokenManager;
 
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+
 public class TrainerAPIWrapper implements AuthOperations, ExerciseTypeOperations, WorkoutOperations {
 
+    private final OkHttpClient client;
     private final TokenManager tokenManager;
 
     public TrainerAPIWrapper(Context context){
         this.tokenManager = new TokenManager(context);
+        this.client = new OkHttpClient();
     }
 
     @Override
