@@ -10,7 +10,7 @@ import com.google.gson.Gson;
 public class WorkoutSerializer {
 
     private final static String key = "workout_key";
-    private static final String fileKey = "workout_file_key";
+    private static final String fileKey = "trainer";
 
     private WorkoutSerializer(){
 
