@@ -14,7 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
-import com.example.trainer.UI.exercises.ExerciseManager;
+import com.example.trainer.schemas.Exercise;
+import com.example.trainer.schemas.ExerciseType;
 import com.example.trainer.schemas.Workout;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -29,23 +30,20 @@ import java.util.Date;
 import java.util.List;
 
 
-public class ExerciseChart extends Fragment {
+public class ExerciseChart_fragment extends Fragment {
 
     TextView name;
     RecyclerView presets;
     LineChart mpLineChart;
-    ExerciseManager exerciseManager;
+    ExerciseType exerciseType;
 
-    public ExerciseChart() {
-        exerciseManager = ExerciseManager.getInstance();
-    }
+    public static ExerciseChart_fragment newInstance(ExerciseType exerciseType) {
+        ExerciseChart_fragment fragment = new ExerciseChart_fragment();
 
-
-    public static ExerciseChart newInstance() {
-        ExerciseChart fragment = new ExerciseChart();
         Bundle args = new Bundle();
-
+        args.putSerializable(null, exerciseType);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -77,19 +75,19 @@ public class ExerciseChart extends Fragment {
             container.removeAllViews();
         }
 
-        View v = inflater.inflate(R.layout.exercise_chart_fragment, container, false);
+        exerciseType = (ExerciseType) getArguments().get(null);
+        System.out.println("EX TYPE " + exerciseType);
 
+        View v = inflater.inflate(R.layout.exercise_chart_fragment, container, false);
         mpLineChart = (LineChart) v.findViewById(R.id.lineChart);
         mpLineChart.getDescription().setEnabled(false);
         name = (TextView) v.findViewById(R.id.textView);
-        name.setText(exerciseManager.getExerciseType().getExerciseTypeName());
-
+        name.setText(exerciseType.getExerciseTypeName());
         LineDataSet set1 = new LineDataSet(dataValues1(), getString(R.string.weight));
         chartStyling(set1);
         List<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
         LineData data = new LineData(dataSets);
-
         AxisBase yAxis = mpLineChart.getAxisLeft();
         AxisBase xAxis = mpLineChart.getXAxis();
         axisStyling(yAxis);

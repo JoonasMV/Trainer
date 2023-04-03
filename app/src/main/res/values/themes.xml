@@ -10,7 +10,12 @@
 
         <!-- Text color -->
         <item name="android:textColor">@color/text_color_light</item>
-        <item name="color">@color/menu_items_light</item>
+    </style>
+        <!-- Other colors -->
+        <style name="underline_color">
+            <item name="android:background">@color/underline_color_light</item>
+        </style>
+
 
 
 <!--        <item name="colorOnPrimary">@color/red</item>-->
@@ -20,7 +25,6 @@
 <!--        <item name="colorOnSecondary">@color/black</item>-->
         <!-- Status bar color. -->
         <!-- Customize your theme here. -->
-    </style>
 
 
 

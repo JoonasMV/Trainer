@@ -5,12 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
 import com.example.trainer.UI.exercises.CreateExercise_fragment;
+
+import java.util.Objects;
 
 public class ExerciseList_fragment extends Fragment {
     RecyclerView exerciseList;
@@ -20,7 +23,7 @@ public class ExerciseList_fragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         if (container != null) {
@@ -30,14 +33,13 @@ public class ExerciseList_fragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
-        exerciseList = getView().findViewById(R.id.listOfExercises);
-        ExerciseListAdapter adapter = new ExerciseListAdapter();
-        exerciseList.setAdapter(adapter);
+        exerciseList = requireView().findViewById(R.id.listOfExercises);
+        exerciseList.setAdapter(new ExerciseListAdapter());
         exerciseList.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        getView().findViewById(R.id.addExercise).setOnClickListener(v -> goToNewExerciseFragment());
+        requireView().findViewById(R.id.addExercise).setOnClickListener(v -> goToNewExerciseFragment());
     }
 
     private void goToNewExerciseFragment() {
