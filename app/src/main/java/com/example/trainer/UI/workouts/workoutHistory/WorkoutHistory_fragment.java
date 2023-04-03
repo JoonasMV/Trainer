@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
-import com.example.trainer.schemas.Workout;
+import com.example.trainer.model.Workout;
 
 import java.util.ArrayList;
 

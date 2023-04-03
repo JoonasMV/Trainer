@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-import com.example.trainer.schemas.Workout;
+import com.example.trainer.model.Workout;
 import com.google.gson.Gson;
 
 public class WorkoutSerializer {

@@ -1,4 +1,4 @@
-package com.example.trainer.schemas;
+package com.example.trainer.model;
 
 public class User {
     private String username;

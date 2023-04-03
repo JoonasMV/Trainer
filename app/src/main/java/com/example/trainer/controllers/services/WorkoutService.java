@@ -1,7 +1,7 @@
 package com.example.trainer.controllers.services;
 
 import com.example.trainer.api.WorkoutOperations;
-import com.example.trainer.schemas.Workout;
+import com.example.trainer.model.Workout;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,7 +28,7 @@ public class WorkoutService {
     private List<Workout> filterPresets(){
         return workouts
                 .stream()
-                .filter(Workout::isPreset)
+                .filter(Workout::preset)
                 .collect(Collectors.toList());
     }
 
@@ -42,7 +42,7 @@ public class WorkoutService {
     private List<Workout> filterNonPresets(){
         return workouts
                 .stream()
-                .filter(workout -> !workout.isPreset())
+                .filter(workout -> !workout.preset())
                 .collect(Collectors.toList());
     }
 

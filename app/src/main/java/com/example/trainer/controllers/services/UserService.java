@@ -2,7 +2,7 @@ package com.example.trainer.controllers.services;
 
 import com.example.trainer.api.AuthOperations;
 import com.example.trainer.api.AuthenticationException;
-import com.example.trainer.schemas.User;
+import com.example.trainer.model.User;
 
 public class UserService {
 

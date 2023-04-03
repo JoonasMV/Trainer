@@ -1,4 +1,4 @@
-package com.example.trainer.schemas;
+package com.example.trainer.model;
 
 
 import java.io.Serializable;

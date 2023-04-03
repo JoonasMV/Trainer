@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
-import com.example.trainer.schemas.User;
+import com.example.trainer.model.User;
 
 public class HomeScreen_fragment extends Fragment {
 

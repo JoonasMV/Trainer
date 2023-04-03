@@ -14,11 +14,9 @@ import androidx.fragment.app.Fragment;
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.database.dao.sqlite.BetterSqliteDAOFactory;
-import com.example.trainer.schemas.Exercise;
-import com.example.trainer.schemas.ExerciseType;
+import com.example.trainer.model.Exercise;
+import com.example.trainer.model.ExerciseType;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
