@@ -83,9 +83,7 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
     private void deleteExerciseType(int position) {
         BaseController.getController().deleteExerciseType(exerciseTypes.get(position).get_id());
         exerciseTypes.remove(position);
-        //TODO: change notifItemRangeChanged
         notifyItemRemoved(position);
-        notifyItemRangeChanged(position, getItemCount());
     }
 }
 
