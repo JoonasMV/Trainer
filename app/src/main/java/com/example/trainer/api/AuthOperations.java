@@ -1,6 +1,6 @@
 package com.example.trainer.api;
 
-import com.example.trainer.schemas.User;
+import com.example.trainer.model.User;
 
 public interface AuthOperations {
     void registerUser(String username, String password);

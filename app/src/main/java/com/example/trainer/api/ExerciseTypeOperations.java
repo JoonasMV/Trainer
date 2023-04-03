@@ -1,6 +1,6 @@
 package com.example.trainer.api;
 
-import com.example.trainer.schemas.ExerciseType;
+import com.example.trainer.model.ExerciseType;
 
 import java.util.List;
 

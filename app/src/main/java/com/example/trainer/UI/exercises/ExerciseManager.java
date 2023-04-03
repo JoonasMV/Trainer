@@ -1,7 +1,7 @@
 package com.example.trainer.UI.exercises;
 
 
-import com.example.trainer.schemas.ExerciseType;
+import com.example.trainer.model.ExerciseType;
 
 
 public class ExerciseManager {

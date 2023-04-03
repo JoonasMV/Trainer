@@ -1,4 +1,4 @@
-package com.example.trainer.schemas;
+package com.example.trainer.model;
 
 public class ExerciseType {
     private String id;

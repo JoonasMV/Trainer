@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.schemas.Workout;
+import com.example.trainer.model.Workout;
 import com.example.trainer.util.Toaster;
 
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
 
         holder.workoutTitle.setText(workout.getName());
         holder.saveAsPresetBtn.setOnClickListener(view -> {
-            if(workout.isPreset()){
+            if(workout.preset()){
                 Toaster.toast(parentContext, String.format("%s is already a preset", workout.getName()));
             } else {
                 workoutManager.makePreset(workout);

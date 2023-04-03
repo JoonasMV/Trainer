@@ -14,7 +14,7 @@ import com.example.trainer.R;
 import com.example.trainer.UI.exercises.ExerciseManager;
 import com.example.trainer.UI.exercises.exerciseChart.ExerciseChart;
 import com.example.trainer.controllers.BaseController;
-import com.example.trainer.schemas.ExerciseType;
+import com.example.trainer.model.ExerciseType;
 
 import java.util.List;
 

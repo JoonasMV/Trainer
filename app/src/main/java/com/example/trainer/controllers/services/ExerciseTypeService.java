@@ -1,7 +1,7 @@
 package com.example.trainer.controllers.services;
 
 import com.example.trainer.api.ExerciseTypeOperations;
-import com.example.trainer.schemas.ExerciseType;
+import com.example.trainer.model.ExerciseType;
 
 import java.util.List;
 import java.util.Optional;

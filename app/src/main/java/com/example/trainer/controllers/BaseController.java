@@ -2,9 +2,9 @@ package com.example.trainer.controllers;
 
 import android.content.Context;
 
-import com.example.trainer.schemas.Exercise;
-import com.example.trainer.schemas.ExerciseSet;
-import com.example.trainer.schemas.Workout;
+import com.example.trainer.model.Exercise;
+import com.example.trainer.model.ExerciseSet;
+import com.example.trainer.model.Workout;
 import com.example.trainer.util.WorkoutSerializer;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public abstract class BaseController implements TrainerController{
 
 
     public static TrainerController getController(){
-        return WorkoutManager.getInstance();
+        return WorkoutController.getInstance();
     }
 
     @Override

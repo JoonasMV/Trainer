@@ -3,8 +3,8 @@ package com.example.trainer;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import com.example.trainer.schemas.ExerciseType;
-import com.example.trainer.schemas.User;
+import com.example.trainer.model.ExerciseType;
+import com.example.trainer.model.User;
 import com.example.trainer.serverConnector.services.DevService;
 import com.example.trainer.serverConnector.Server;
 

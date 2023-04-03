@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.schemas.ExerciseType;
+import com.example.trainer.model.ExerciseType;
 import com.example.trainer.util.Toaster;
 
 public class CreateExercise_fragment extends Fragment {
