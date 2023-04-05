@@ -65,4 +65,8 @@ public interface TrainerController {
     void setWorkout(Workout workout);
 
     void registerUser(User user);
+
+    void authenticateUser(User user);
+
+    boolean sessionValid();
 }

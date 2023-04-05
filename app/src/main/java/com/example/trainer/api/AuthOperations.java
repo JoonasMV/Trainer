@@ -10,4 +10,6 @@ public interface AuthOperations {
     void refreshToken();
 
     User getUser();
+
+    boolean sessionValid();
 }

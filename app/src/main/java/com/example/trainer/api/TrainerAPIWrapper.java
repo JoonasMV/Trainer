@@ -15,6 +15,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -70,8 +71,8 @@ public final class TrainerAPIWrapper extends API implements AuthOperations, Exer
         try {
             tokenManager.saveToken(result.get().getToken());
             userManager.setUser(user);
-        } catch (InterruptedException | ExecutionException e) {
-            userManager.logout();
+        } catch (InterruptedException | ExecutionException | IllegalStateException e) {
+            stopSession();
             e.printStackTrace();
         }
     }
@@ -97,8 +98,8 @@ public final class TrainerAPIWrapper extends API implements AuthOperations, Exer
         try {
             tokenManager.saveToken(result.get().getToken());
             userManager.setUser(user);
-        } catch (InterruptedException | ExecutionException e) {
-            userManager.logout();
+        } catch (InterruptedException | ExecutionException | IllegalStateException e) {
+            stopSession();
             e.printStackTrace();
         }
     }
@@ -111,6 +112,11 @@ public final class TrainerAPIWrapper extends API implements AuthOperations, Exer
     @Override
     public User getUser() {
         return userManager.getUser();
+    }
+
+    @Override
+    public boolean sessionValid() {
+        return tokenManager.getToken() != null;
     }
 
     @Override
@@ -136,7 +142,8 @@ public final class TrainerAPIWrapper extends API implements AuthOperations, Exer
 
         try {
             return result.get();
-        } catch (InterruptedException | ExecutionException e) {
+        } catch (InterruptedException | ExecutionException | IllegalStateException e) {
+            stopSession();
             e.printStackTrace();
             return null;
         }
@@ -156,14 +163,15 @@ public final class TrainerAPIWrapper extends API implements AuthOperations, Exer
                 return gson.fromJson(res.body().string(), type);
             } catch (IOException e) {
                 e.printStackTrace();
-                return null;
+                return Collections.emptyList();
             }
         });
         try {
             return result.get();
-        } catch (InterruptedException | ExecutionException e) {
+        } catch (InterruptedException | ExecutionException | IllegalStateException e) {
             e.printStackTrace();
-            return null;
+            stopSession();
+            return Collections.emptyList();
         }
     }
 
@@ -180,7 +188,7 @@ public final class TrainerAPIWrapper extends API implements AuthOperations, Exer
             try {
                 client.newCall(req).execute();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                stopSession();
             }
         });
     }
@@ -199,14 +207,15 @@ public final class TrainerAPIWrapper extends API implements AuthOperations, Exer
                 return gson.fromJson(res.body().string(), type);
             } catch (IOException e) {
                 e.printStackTrace();
-                return null;
+                return Collections.emptyList();
             }
         });
         try {
             return result.get();
-        } catch (InterruptedException | ExecutionException e) {
+        } catch (InterruptedException | ExecutionException | IllegalStateException e) {
             e.printStackTrace();
-            return null;
+            stopSession();
+            return Collections.emptyList();
         }
     }
 
@@ -223,9 +232,14 @@ public final class TrainerAPIWrapper extends API implements AuthOperations, Exer
             try {
                 client.newCall(req).execute();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                stopSession();
             }
         });
 
+    }
+
+    private void stopSession(){
+        tokenManager.deleteToken();
+        userManager.logout();
     }
 }

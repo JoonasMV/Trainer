@@ -38,4 +38,10 @@ public class TokenManager {
         SharedPreferences pref = context.getSharedPreferences("trainer", Context.MODE_PRIVATE);
         pref.edit().putString("token", token).commit();
     }
+
+    public void deleteToken() {
+        this.token = null;
+        SharedPreferences pref = context.getSharedPreferences("trainer", Context.MODE_PRIVATE);
+        pref.edit().remove("token").commit();
+    }
 }
