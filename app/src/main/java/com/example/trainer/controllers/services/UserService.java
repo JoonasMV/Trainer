@@ -27,4 +27,8 @@ public class UserService {
     public User getUser() {
         return api.getUser();
     }
+
+    public boolean sessionValid() {
+        return api.sessionValid();
+    }
 }

@@ -107,4 +107,14 @@ public class WorkoutController extends BaseController {
     public void registerUser(User user) {
         userService.register(user);
     }
+
+    @Override
+    public void authenticateUser(User user) {
+        userService.authenticate(user);
+    }
+
+    @Override
+    public boolean sessionValid() {
+        return userService.sessionValid();
+    }
 }
