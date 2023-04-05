@@ -27,7 +27,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public final class TrainerAPIWrapper implements AuthOperations, ExerciseTypeOperations, WorkoutOperations {
+public final class TrainerAPIWrapper extends API implements AuthOperations, ExerciseTypeOperations, WorkoutOperations {
 
     private final OkHttpClient client;
     private final TokenManager tokenManager;

@@ -2,6 +2,7 @@ package com.example.trainer.controllers;
 
 import android.content.Context;
 
+import com.example.trainer.api.API;
 import com.example.trainer.api.TrainerAPIWrapper;
 import com.example.trainer.controllers.services.ExerciseTypeService;
 import com.example.trainer.controllers.services.UserService;
@@ -20,7 +21,14 @@ public class WorkoutController extends BaseController {
     private static WorkoutController instance;
 
     private WorkoutController(Context context){
-        TrainerAPIWrapper api = new TrainerAPIWrapper(context);
+        API api = new TrainerAPIWrapper(context);
+        this.workoutService = new WorkoutService(api);
+        this.exerciseTypeService = new ExerciseTypeService(api);
+        this.userService = new UserService(api);
+    }
+
+    // DO NOT USE, ONLY FOR TESTING
+    public WorkoutController(API api){
         this.workoutService = new WorkoutService(api);
         this.exerciseTypeService = new ExerciseTypeService(api);
         this.userService = new UserService(api);

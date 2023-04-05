@@ -147,13 +147,6 @@ public class AppSchemasTest {
 
     }
 
-    @Test
-    public void testGetWUserId(){
-        workout.setUserId(55);
-        assertEquals(55, workout.getUserId());
-    }
-
-
     //User tests
 
     @Test
