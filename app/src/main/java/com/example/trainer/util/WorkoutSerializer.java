@@ -23,6 +23,9 @@ public class WorkoutSerializer {
      */
 
     public static Workout readWorkoutFromPref(Context context){
+        if(context == null){
+            return null;
+        }
         SharedPreferences pref = context.getSharedPreferences(fileKey, Context.MODE_PRIVATE);
         String value = pref.getString(key, null);
         if(value == null){
@@ -38,6 +41,9 @@ public class WorkoutSerializer {
 
 
     public static void writeWorkoutToPref(Workout workout, Context context){
+        if(context == null){
+            return;
+        }
         String json = serialize(workout);
         Editor prefsEditor = context.getSharedPreferences(fileKey, Context.MODE_PRIVATE).edit();
         prefsEditor.putString(key, json).commit();
@@ -49,6 +55,9 @@ public class WorkoutSerializer {
     }
 
     public static void clearPrefs(Context context){
+        if (context == null) {
+            return;
+        }
         SharedPreferences pref = context.getSharedPreferences(fileKey, Context.MODE_PRIVATE);
         pref.edit().clear().commit();
     }
