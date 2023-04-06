@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Trainer</string>
+    <string name="addExerciseButton">Ավելացնել մարմնական գործիք</string>
+    <string name="hello_blank_fragment">բարև դատարկ ֆրագմենտ</string>
+    <string name="workout_name_field">աշխատանքի անուն</string>
+    <string name="back">ետ</string>
+    <string name="save">պահպանել</string>
+    <string name="progress">առաջադրանք</string>
+    <string name="workouts">աշխատանք</string>
+    <string name="history">պատմություն</string>
+    <string name="home">Տուն</string>
+    <string name="workoutNameHint">Մուտքագրեք աշխատանքի անունը</string>
+    <string name="add_new_exercise_button">Ավելացնել նոր մարմնական գործիք</string>
+    <string name="exercises">Մարմնական գործիքներ</string>
+    <string name="workoutHistory_title">Աշխատանքի պատմություն</string>
+    <string name="makePreset">Սահմանել նախագծի կարգավորումները</string>
+    <string name="addWorkoutName">Անունը պահպանել</string>
+    <string name="workoutName">Աշխատանք</string>
+    <string name="login_button_text">Օգտատեր ստեղծել</string>
+    <string name="saveExercise">Գործիքը պահպանել</string>
+    <string name="exerciseName">Մարմնական գործիքի անունը</string>
+    <string name="presetText">Նախագծեր</string>
+    <string name="delete">Ջնջել</string>
+    <string name="cancelWorkout">Աշխատանքը չեղյալ թարմացված չէ</string>
+    <string name="endWorkout">Աշխատանքը ավարտվել է</string>
+    <string name="welcomeBack">Վերադարձիր շուտով</string>
+    <string name="drawingAltText">մարմնաբարձր անձի ձեռքը, որը պարունակում է ծխախոտի կամ հացի ամենաքաշ միջոցները</string>
+    <string name="name">Անուն</string>
+    <string name="newWorkout">Նոր աշխատանք</string>
+    <string name="reps">Անցումներ</string>
+    <string name="weight">Քաշը</string>
+    <string name="addSet">Ավելացնել շեղում</string>
+    <string name="exerciseToast">Գործիքի տեսակը արդեն ավելացված է</string>
+    <string name="presetRemoved">Նախագծը հեռացված է</string>
+    <string name="alreadyPreset">%s արդեն նախագծված է</string>
+    <string name="nowPreset">%s հիմա նախագծվել էէ</string>
+    <string name="workoutRemoved">Աշխատանքը ջնջվել է</string>
+    <string name="durationHourMinSec">Տևողություն: %d h %d min %d sec</string>
+    <string name="durationMinSec">Տևողություն: %d min %d sec</string>
+</resources>
