@@ -56,6 +56,7 @@ public class ExerciseChart_fragment extends Fragment {
 
     }
     //placeholders
+    //TODO: real values
     private List<Entry> dataValues1(){
         List<Entry> dataVals = new ArrayList<Entry>();
         dataVals.add(new Entry(0,20));
@@ -74,7 +75,6 @@ public class ExerciseChart_fragment extends Fragment {
         if (container != null) {
             container.removeAllViews();
         }
-
         exerciseType = (ExerciseType) getArguments().get(null);
         System.out.println("EX TYPE " + exerciseType);
 
@@ -83,24 +83,22 @@ public class ExerciseChart_fragment extends Fragment {
         mpLineChart.getDescription().setEnabled(false);
         name = (TextView) v.findViewById(R.id.textView);
         name.setText(exerciseType.getExerciseTypeName());
+
         LineDataSet set1 = new LineDataSet(dataValues1(), getString(R.string.weight));
         chartStyling(set1);
         List<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
         LineData data = new LineData(dataSets);
+
         AxisBase yAxis = mpLineChart.getAxisLeft();
         AxisBase xAxis = mpLineChart.getXAxis();
         axisStyling(yAxis);
         axisStyling(xAxis);
 
         mpLineChart.getAxisRight().setEnabled(false);
-        //mpLineChart.setBorderColor(MaterialColors.getColor(getContext(), androidx.appcompat.R.attr.color, Color.BLACK));
-
         mpLineChart.setExtraOffsets(7,10,7,5);
         mpLineChart.setData(data);
-
         mpLineChart.animateY(1000);
-
         mpLineChart.invalidate();
         return v;
     }
@@ -146,10 +144,9 @@ public class ExerciseChart_fragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
         presets = view.findViewById(R.id.bestWeights);
-
         List<Workout> list = new ArrayList<>();
-
         //placeholders
+        //TODO: real values
         list.add(new Workout("workout", new Date(), new Date()));
         list.add(new Workout("workout2", new Date(), new Date()));
         list.add(new Workout("workout3", new Date(), new Date()));
