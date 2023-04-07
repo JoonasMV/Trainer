@@ -3,6 +3,8 @@ package com.example.trainer.schemas;
 import androidx.annotation.NonNull;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -111,6 +113,19 @@ public class Workout implements Serializable {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getDuration(){
+        Date start = this.getWorkoutStarted();
+        Date end = this.getWorkoutEnded();
+        SimpleDateFormat Format = new SimpleDateFormat("HH:mm:ss");
+
+        Date dif = new Date(end.getTime()-start.getTime());
+        String str3 = Format.format(dif);
+        System.out.println(dif);
+        System.out.println(str3);
+
+        return str3;
     }
 
     @NonNull

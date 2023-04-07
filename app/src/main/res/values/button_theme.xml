@@ -15,4 +15,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+    <style name="three_dots_button" parent="ThemeOverlay.AppCompat">
+        <item name="backgroundTint">@style/underline_color</item>
+    </style>
 </resources>

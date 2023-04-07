@@ -4,7 +4,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_margin">4dp</item>
     </style>
 
     <style name="list_text">
@@ -12,6 +12,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">6dp</item>
     </style>
 
     <style name="recyclerView_basic">
@@ -24,6 +25,4 @@
         <item name="android:layout_marginVertical">8dp</item>
     </style>
 
-    <style name="list_item">
-    </style>
 </resources>

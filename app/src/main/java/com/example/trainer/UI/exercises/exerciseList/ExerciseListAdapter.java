@@ -2,8 +2,10 @@ package com.example.trainer.UI.exercises.exerciseList;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -21,19 +23,24 @@ import java.util.List;
 public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapter.ViewHolder> {
 
     private List<ExerciseType> exerciseTypes;
-
+    private PopupMenu ppMenu;
     public ExerciseListAdapter() {
         exerciseTypes = BaseController.getController().getExerciseTypes();
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameOfExercise;
-        private final PopupMenu ppMenu;
+
+
+        private final ImageButton threeDots;
 
         public ViewHolder(@NonNull View view) {
             super(view);
             nameOfExercise = view.findViewById(R.id.nameOfExercise);
-            ppMenu = new PopupMenu(view.getContext(), nameOfExercise);
+            threeDots = view.findViewById(R.id.threedots_button);
+
+
         }
     }
 
@@ -64,16 +71,31 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
         });
 
         // long click to open menu
-        holder.nameOfExercise.setOnLongClickListener(view -> {
-            holder.ppMenu.getMenuInflater().inflate(R.menu.exercise_popup_menu, holder.ppMenu.getMenu());
-            holder.ppMenu.setOnMenuItemClickListener(menuItem -> {
-                deleteExerciseType(holder.getLayoutPosition());
-                return true;
-            });
-            holder.ppMenu.show();
-            return false;
+        holder.threeDots.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ppMenu = new PopupMenu(view.getContext(), holder.threeDots );
+                ppMenu.getMenuInflater().inflate(R.menu.exercise_popup_menu, ppMenu.getMenu());
+                ppMenu.setOnMenuItemClickListener(menuItem -> {
+                    switch (menuItem.getItemId()) {
+                        case R.id.show_chart:
+                            Bundle args = new Bundle();
+                            args.putSerializable(null, exerciseTypes.get(holder.getAdapterPosition()));
+                            ((MainActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.mainContainer, ExerciseChart_fragment.newInstance(exerciseTypes.get(holder.getAdapterPosition())), null)
+                                    .addToBackStack(null).commit();
+                            break;
+                        case R.id.delete_exercise:
+                            deleteExerciseType(holder.getLayoutPosition());
+                            break;
+                    }
+                    return true;
+                });
+                ppMenu.show();
+            }
         });
     }
+
 
     @Override
     public int getItemCount() {

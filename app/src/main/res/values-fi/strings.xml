@@ -38,4 +38,5 @@
     <string name="workoutRemoved">Treeni poistettu</string>
     <string name="durationHourMinSec">Kesto: %d h %d min %d s</string>
     <string name="durationMinSec">Kesto: %d min %d s</string>
+    <string name="showChart">Näytä kuvaaja</string>
 </resources>

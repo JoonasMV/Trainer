@@ -38,4 +38,5 @@
     <string name="workoutRemoved">Աշխատանքը ջնջվել է</string>
     <string name="durationHourMinSec">Տևողություն: %d h %d min %d sec</string>
     <string name="durationMinSec">Տևողություն: %d min %d sec</string>
+    <string name="showChart">ցուցադրել ձեռնարկը</string>
 </resources>

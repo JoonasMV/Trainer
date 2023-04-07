@@ -3,6 +3,7 @@ package com.example.trainer.UI.workouts.workoutHistory;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
+import com.example.trainer.UI.MainActivity;
+import com.example.trainer.UI.exercises.exerciseChart.ExerciseChart_fragment;
+import com.example.trainer.UI.workouts.WorkoutStatsExerciseAdapter;
+import com.example.trainer.UI.workouts.WorkoutStats_fragment;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.schemas.Workout;
@@ -79,6 +84,14 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
             workoutHistory.remove(workout);
             Toaster.toast(parentContext, parentContext.getString(R.string.workoutRemoved));
             notifyDataSetChanged();
+        });
+
+        holder.workoutTitle.setOnClickListener(view -> {
+            Bundle args = new Bundle();
+            args.putSerializable(null, workout);
+            ((MainActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.mainContainer, WorkoutStats_fragment.newInstance(workout), null)
+                    .addToBackStack(null).commit();
         });
     }
 

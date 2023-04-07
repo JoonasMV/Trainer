@@ -39,6 +39,6 @@
     <string name="workoutRemoved">Workout removed</string>
     <string name="durationHourMinSec">Duration: %d h %d min %d sec</string>
     <string name="durationMinSec">Duration: %d min %d sec</string>
-
+    <string name="showChart">Show Chart</string>
 
 </resources>
