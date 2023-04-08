@@ -139,7 +139,7 @@ public class AppSchemasTest {
         ArrayList<Exercise> e = new ArrayList<>();
         e.add(exercise);
         workout.setExercises(e);
-        assertEquals("ex", workout.getExercises().get(0).getExerciseName());
+        assertEquals("test", workout.getExercises().get(0).getExerciseName());
         Exercise exercise1 = new Exercise();
         exercise1.setExerciseType(new ExerciseType("ex2"));
         workout.addExerciseToList(exercise1);

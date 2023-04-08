@@ -31,6 +31,11 @@ public class MockAPI extends API {
     }
 
     @Override
+    public boolean sessionValid() {
+       return true;
+    }
+
+    @Override
     public List<ExerciseType> getAllExerciseTypes() {
         List<ExerciseType> list = new ArrayList<>();
         list.add(new ExerciseType("test"));
@@ -40,6 +45,12 @@ public class MockAPI extends API {
     @Override
     public void deleteExerciseType(String id) {
         recentParam = id;
+    }
+
+    @Override
+    public ExerciseType saveExerciseType(ExerciseType exerciseType) {
+        recentParam = exerciseType;
+        return exerciseType;
     }
 
     @Override

@@ -9,4 +9,6 @@ public interface ExerciseTypeOperations {
     List<ExerciseType> getAllExerciseTypes();
 
     void deleteExerciseType(String id);
+
+    ExerciseType saveExerciseType(ExerciseType exerciseType);
 }
