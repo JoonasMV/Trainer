@@ -8,6 +8,7 @@ import com.example.trainer.model.ExerciseType;
 import com.example.trainer.model.User;
 import com.example.trainer.model.Workout;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,7 +17,12 @@ import java.util.List;
 
 public class ControllerTest {
     private final MockAPI api = new MockAPI();
-    private final TrainerController controller = new WorkoutController(api);
+    private TrainerController controller = new WorkoutController(api);
+
+    @Before
+    public void beforeEach(){
+        controller = new WorkoutController(api);
+    }
 
     @Test
     public void startsWorkout() {
@@ -74,7 +80,7 @@ public class ControllerTest {
         controller.addExercise(new Exercise());
         controller.addSet(0);
         Workout workout = controller.getWorkout();
-        assertThat(workout.getExercises().get(0).getSets().size()).isEqualTo(1);
+        assertThat(workout.getExercises().get(0).getSets().size()).isEqualTo(2);
     }
 
     @Test
@@ -124,10 +130,9 @@ public class ControllerTest {
     @Test
     public void deletesWorkout(){
         Workout workout = new Workout("test");
+        workout.setId("test-id");
         controller.deleteWorkout(workout);
-        assertThat(api.getRecentParam()).isInstanceOf(Workout.class);
-        Workout workoutFromAPI = (Workout) api.getRecentParam();
-        assertThat(workoutFromAPI.getName()).isEqualTo("test");
+        assertThat(api.getRecentParam()).isEqualTo("test-id");
     }
 
     @Test
@@ -145,8 +150,36 @@ public class ControllerTest {
         assertThat(typeFromAPI.getName()).isEqualTo("test2");
     }
 
+    @Test
+    public void makesWorkoutPreset(){
+        Workout workout = new Workout("test");
+        workout.setId("test-id");
+        controller.makePreset(workout);
+        assertThat(api.getRecentParam()).isInstanceOf(Workout.class);
+        List<Workout> workouts = controller.getPresetWorkouts();
+        assertThat(workouts.size()).isEqualTo(1);
+        Workout preset = workouts.get(0);
+        assertThat(preset.preset()).isTrue();
+    }
 
+    @Test
+    public void registersUser(){
+        User user = new User("test", "password");
+        controller.registerUser(user);
+        assertThat(api.getRecentParam()).isInstanceOf(User.class);
+        User userFromAPI = (User) api.getRecentParam();
+        assertThat(userFromAPI.getUsername()).isEqualTo("test");
+        assertThat(userFromAPI.getPassword()).isEqualTo("password");
+    }
 
-
+    @Test
+    public void authenticateUser() {
+        User user = new User("test", "password");
+        controller.authenticateUser(user);
+        assertThat(api.getRecentParam()).isInstanceOf(User.class);
+        User userFromAPI = (User) api.getRecentParam();
+        assertThat(userFromAPI.getUsername()).isEqualTo("test");
+        assertThat(userFromAPI.getPassword()).isEqualTo("password");
+    }
 
 }

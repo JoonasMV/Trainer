@@ -138,8 +138,6 @@ public final class TrainerAPIWrapper extends API implements AuthOperations, Exer
                 return null;
             }
         });
-
-
         try {
             return result.get();
         } catch (InterruptedException | ExecutionException | IllegalStateException e) {
@@ -236,6 +234,34 @@ public final class TrainerAPIWrapper extends API implements AuthOperations, Exer
             }
         });
 
+    }
+
+    @Override
+    public ExerciseType saveExerciseType(ExerciseType exerciseType) {
+        Future<ExerciseType> result = executor.submit(() -> {
+            RequestBody reqBody = RequestBody.create(gson.toJson(exerciseType), JSON);
+            String token = tokenManager.getToken();
+
+            Request req = new Request.Builder()
+                    .url(APIEndpoints.USER_URL + "/workouts")
+                    .post(reqBody)
+                    .header("Authorization", "Bearer " + token)
+                    .build();
+
+            try (Response res = client.newCall(req).execute()) {
+                return gson.fromJson(res.body().string(), ExerciseType.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
+        try {
+            return result.get();
+        } catch (InterruptedException | ExecutionException | IllegalStateException e) {
+            stopSession();
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private void stopSession(){

@@ -51,6 +51,9 @@ public class ExerciseTypeService {
         if(exerciseTypes == null){
             exerciseTypes = api.getAllExerciseTypes();
         }
-
+        ExerciseType saved = api.saveExerciseType(exerciseType);
+        if(saved != null){
+            exerciseTypes.add(saved);
+        }
     }
 }

@@ -17,7 +17,9 @@ public class WorkoutService {
 
     public void save(Workout workout) {
         Workout saved = api.saveWorkout(workout);
-        workouts.add(saved);
+        if(saved != null) {
+            workouts.add(saved);
+        }
     }
 
     public List<Workout> getPresetWorkouts() {
@@ -64,6 +66,8 @@ public class WorkoutService {
         Workout preset = new Workout(workout);
         preset.setPreset(true);
         Workout saved = api.saveWorkout(preset);
-        workouts.add(saved);
+        if(saved != null){
+            workouts.add(saved);
+        }
     }
 }
