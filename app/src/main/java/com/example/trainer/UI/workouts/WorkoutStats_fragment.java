@@ -67,7 +67,7 @@ public class WorkoutStats_fragment extends Fragment {
 
         TextView workoutName = (TextView) view.findViewById(R.id.workoutName);
         TextView workoutTime = (TextView) view.findViewById(R.id.workoutTime);
-        TextView workoutDuration = (TextView) view.findViewById(R.id.doris);
+        TextView workoutDuration = (TextView) view.findViewById(R.id.wDuration);
         workoutName.setText(workout.getName());
 
         SimpleDateFormat DateFormat = new SimpleDateFormat("dd.MM.yyyy");
