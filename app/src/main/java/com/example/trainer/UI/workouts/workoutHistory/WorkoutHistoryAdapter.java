@@ -15,12 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
 import com.example.trainer.UI.MainActivity;
-import com.example.trainer.UI.exercises.exerciseChart.ExerciseChart_fragment;
-import com.example.trainer.UI.workouts.WorkoutStatsExerciseAdapter;
 import com.example.trainer.UI.workouts.WorkoutStats_fragment;
+import com.example.trainer.UI.workouts.workoutStats.WorkoutStats_fragment;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.schemas.Workout;
+import com.example.trainer.model.Workout;
 import com.example.trainer.util.Toaster;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ import java.util.List;
 
 public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAdapter.ViewHolder> {
 
-    private final ArrayList<Workout> workoutHistory;
+    private final List<Workout> workoutHistory;
 
     private final TrainerController workoutManager;
     private Context parentContext;
@@ -72,7 +71,7 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
 
         holder.workoutTitle.setText(workout.getName());
         holder.saveAsPresetBtn.setOnClickListener(view -> {
-            if(workout.isPreset()){
+            if(workout.preset()){
                 Toaster.toast(parentContext, String.format(parentContext.getString(R.string.alreadyPreset), workout.getName()));
             } else {
                 workoutManager.makePreset(workout);

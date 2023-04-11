@@ -60,4 +60,5 @@ dependencies {
     implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '5.0.0-alpha.11'
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    testImplementation("org.assertj:assertj-core:3.24.2")
 }

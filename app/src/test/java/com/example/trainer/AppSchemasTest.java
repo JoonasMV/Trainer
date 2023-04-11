@@ -4,11 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import com.example.trainer.schemas.Exercise;
-import com.example.trainer.schemas.ExerciseSet;
-import com.example.trainer.schemas.ExerciseType;
-import com.example.trainer.schemas.User;
-import com.example.trainer.schemas.Workout;
+import com.example.trainer.model.Exercise;
+import com.example.trainer.model.ExerciseSet;
+import com.example.trainer.model.ExerciseType;
+import com.example.trainer.model.User;
+import com.example.trainer.model.Workout;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +27,9 @@ public class AppSchemasTest {
     @Before
     public void init(){
 //        exercise = new Exercise()
-        exercise = new Exercise("ex", "1", "2", "3", new ArrayList<>());
+        exercise = new Exercise();
+        exercise.setExerciseType(new ExerciseType("test"));
+        exercise.setId("123");
         type = new ExerciseType("tyyppi");
         set = new ExerciseSet();
         user = new User("user");
@@ -43,7 +45,7 @@ public class AppSchemasTest {
 
     @Test
     public void exerciseTypeTests(){
-        assertEquals("tyyppi", type.getExerciseTypeName());
+        assertEquals("tyyppi", type.getName());
     }
 
 
@@ -57,8 +59,8 @@ public class AppSchemasTest {
 
     @Test
     public void testGetAmount(){
-        set.setAmount(10);
-        assertEquals(10, set.getAmount(), 0);
+        set.setReps(10);
+        assertEquals(10, set.getReps(), 0);
     }
     @Test
     public void testGetId(){
@@ -71,43 +73,32 @@ public class AppSchemasTest {
     public void testToString(){
         set = new ExerciseSet();
         set.setId("1");
-        set.setAmount(5);
+        set.setReps(5);
         set.setWeight(4);
         assertEquals("ExerciseSet{, weight=4.0, amount=5, id=1}", set.toString());
     }
 
 
     //Exercise tests
-
-    @Test
-    public void testGetName(){
-        exercise.setExerciseName("name");
-        assertEquals("name", exercise.getExerciseName());
-    }
-    @Test
-    public void testGetWorkoutId(){
-        exercise.setWorkoutId("3");
-        assertEquals("3", exercise.getWorkoutId());
-    }
     @Test
     public void testGetExId(){
-        exercise.setExerciseId("55");
-        assertEquals("55", exercise.getExerciseId());
+        exercise.setId("55");
+        assertEquals("55", exercise.getId());
     }
     @Test
     public void testGetSetList(){
         ExerciseSet set1 = new ExerciseSet();
         set1.setWeight(44);
-        set1.setAmount(10);
-        exercise.setSetList(new ArrayList<>());
+        set1.setReps(10);
+        exercise.setSets(new ArrayList<>());
         exercise.addSet(set1);
-        assertEquals(44, exercise.getSetList().get(0).getWeight(), 0);
-        assertEquals(10, exercise.getSetList().get(0).getAmount(), 0);
+        assertEquals(44, exercise.getSets().get(0).getWeight(), 0);
+        assertEquals(10, exercise.getSets().get(0).getReps(), 0);
     }
     @Test
     public void testGetTypeId(){
-        exercise.setTypeId("33");
-        assertEquals("33", exercise.getTypeId());
+        exercise.setExerciseType(new ExerciseType("jotain"));
+        assertEquals("jotain", exercise.getExerciseType().getName());
     }
 
 
@@ -137,9 +128,9 @@ public class AppSchemasTest {
 
     @Test
     public void testIsPreset(){
-        assertFalse(workout.isPreset());
+        assertFalse(workout.preset());
         workout.setPreset(true);
-        assertTrue(workout.isPreset());
+        assertTrue(workout.preset());
     }
 
 
@@ -147,19 +138,14 @@ public class AppSchemasTest {
     public void testExList(){
         ArrayList<Exercise> e = new ArrayList<>();
         e.add(exercise);
-        workout.setExList(e);
-        assertEquals("ex", workout.getExList().get(0).getExerciseName());
-        workout.addExerciseToList(new Exercise("ex2", "2", "3", "4", new ArrayList<>()));
-        assertEquals("ex2", workout.getExList().get(1).getExerciseName());
+        workout.setExercises(e);
+        assertEquals("test", workout.getExercises().get(0).getExerciseName());
+        Exercise exercise1 = new Exercise();
+        exercise1.setExerciseType(new ExerciseType("ex2"));
+        workout.addExerciseToList(exercise1);
+        assertEquals("ex2", workout.getExercises().get(1).getExerciseName());
 
     }
-
-    @Test
-    public void testGetWUserId(){
-        workout.setUserId(55);
-        assertEquals(55, workout.getUserId());
-    }
-
 
     //User tests
 

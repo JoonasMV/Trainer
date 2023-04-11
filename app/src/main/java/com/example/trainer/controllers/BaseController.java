@@ -2,14 +2,13 @@ package com.example.trainer.controllers;
 
 import android.content.Context;
 
-import com.example.trainer.schemas.Exercise;
-import com.example.trainer.schemas.ExerciseSet;
-import com.example.trainer.schemas.Workout;
+import com.example.trainer.model.Exercise;
+import com.example.trainer.model.ExerciseSet;
+import com.example.trainer.model.Workout;
 import com.example.trainer.util.WorkoutSerializer;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public abstract class BaseController implements TrainerController{
 
@@ -17,7 +16,7 @@ public abstract class BaseController implements TrainerController{
 
 
     public static TrainerController getController(){
-        return WorkoutManager.getInstance();
+        return WorkoutController.getInstance();
     }
 
     @Override
@@ -34,7 +33,7 @@ public abstract class BaseController implements TrainerController{
 
     @Override
     public void addSet(int exercisePosition){
-        this.workout.getExList().get(exercisePosition).getSetList().add(new ExerciseSet());
+        this.workout.getExercises().get(exercisePosition).getSets().add(new ExerciseSet());
     }
 
     @Override
@@ -60,7 +59,7 @@ public abstract class BaseController implements TrainerController{
     @Override
     public void startWorkoutFromPreset(Workout workout){
         Workout copy = new Workout(workout.getName(), new Date());
-        copy.setExList(new ArrayList<>(workout.getExList()));
+        copy.setExercises(new ArrayList<>(workout.getExercises()));
         copy.setPreset(false);
         this.workout = copy;
     }

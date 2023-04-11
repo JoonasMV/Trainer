@@ -1,5 +1,6 @@
 package com.example.trainer.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,10 +9,11 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
-import com.example.trainer.database.DatabaseHelper;
+import com.example.trainer.controllers.TrainerController;
+import com.example.trainer.controllers.WorkoutController;
 import com.example.trainer.serverConnector.Server;
 import com.example.trainer.UI.exercises.exerciseList.ExerciseList_fragment;
-import com.example.trainer.UI.workouts.PresetWorkouts_fragment;
+import com.example.trainer.UI.workouts.presetWorkouts.PresetWorkouts_fragment;
 import com.example.trainer.UI.workouts.workoutHistory.WorkoutHistory_fragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DatabaseHelper.initialize(this);
+        WorkoutController.initController(this);
 
         setContentView(R.layout.main_activity);
 
@@ -32,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.homeBtn).setOnClickListener(view -> fragmentHandler(new HomeScreen_fragment()));
         findViewById(R.id.workoutsBtn).setOnClickListener(view -> fragmentHandler(new PresetWorkouts_fragment()));
         findViewById(R.id.progressBtn).setOnClickListener(view -> fragmentHandler(new WorkoutHistory_fragment()));
-
-        Server server = Server.getInstance();
 
         BaseController.getController().readFromPref(getApplicationContext());
     }
@@ -50,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void fragmentHandler(Fragment fragment) {
         Fragment currentFragment = fragmentManager.findFragmentById(R.id.mainContainer);
+        TrainerController controller = BaseController.getController();
+
+        if(!controller.sessionValid()){
+            startActivity(new Intent(this, LoginPage_activity.class));
+        }
 
         assert currentFragment != null;
         if(currentFragment.getClass().equals(fragment.getClass())) return;
