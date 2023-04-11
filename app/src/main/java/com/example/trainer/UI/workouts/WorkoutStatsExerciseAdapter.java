@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
@@ -24,8 +25,8 @@ public class WorkoutStatsExerciseAdapter extends RecyclerView.Adapter<WorkoutSta
     private final List<Exercise> exercises;
     private final FragmentManager fManager;
 
-
     private Context parentContext;
+
 
     public WorkoutStatsExerciseAdapter(List<Exercise> exercises, FragmentManager fManager) {
         this.fManager = fManager;
@@ -35,11 +36,12 @@ public class WorkoutStatsExerciseAdapter extends RecyclerView.Adapter<WorkoutSta
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView exerciseTypeTitle;
 
-
+        public RecyclerView setRecyclerView;
         public ViewHolder(View view) {
             super(view);
 
             exerciseTypeTitle = view.findViewById(R.id.exerciseType);
+            setRecyclerView = view.findViewById(R.id.listOfSets);
         }
     }
 
@@ -60,6 +62,11 @@ public class WorkoutStatsExerciseAdapter extends RecyclerView.Adapter<WorkoutSta
         Exercise exercise = exercises.get(position);
 
         holder.exerciseTypeTitle.setText(exercise.getExerciseName());
+
+        System.out.println(exercise.getSetList());
+        WorkoutStatsSetAdapter adapter = new WorkoutStatsSetAdapter(exercise.getSetList(), fManager);
+        holder.setRecyclerView.setLayoutManager(new LinearLayoutManager(parentContext));
+        holder.setRecyclerView.setAdapter(adapter);
 
     }
 
