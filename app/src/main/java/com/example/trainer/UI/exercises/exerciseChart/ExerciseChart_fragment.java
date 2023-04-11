@@ -1,7 +1,6 @@
 package com.example.trainer.UI.exercises.exerciseChart;
 
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,16 +13,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
-import com.example.trainer.schemas.Exercise;
-import com.example.trainer.schemas.ExerciseType;
-import com.example.trainer.schemas.Workout;
+import com.example.trainer.model.ExerciseType;
+import com.example.trainer.model.Workout;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.google.android.material.color.MaterialColors;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -82,7 +79,7 @@ public class ExerciseChart_fragment extends Fragment {
         mpLineChart = (LineChart) v.findViewById(R.id.lineChart);
         mpLineChart.getDescription().setEnabled(false);
         name = (TextView) v.findViewById(R.id.textView);
-        name.setText(exerciseType.getExerciseTypeName());
+        name.setText(exerciseType.getName());
 
         LineDataSet set1 = new LineDataSet(dataValues1(), getString(R.string.weight));
         chartStyling(set1);

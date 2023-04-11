@@ -1,8 +1,8 @@
 package com.example.trainer.serverConnector;
 
-import com.example.trainer.schemas.ExerciseType;
-import com.example.trainer.schemas.User;
-import com.example.trainer.schemas.Workout;
+import com.example.trainer.model.ExerciseType;
+import com.example.trainer.model.User;
+import com.example.trainer.model.Workout;
 import com.example.trainer.serverConnector.services.DatabaseService;
 import com.example.trainer.serverConnector.services.ExerciseTypeService;
 import com.example.trainer.serverConnector.services.UserService;

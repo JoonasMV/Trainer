@@ -2,10 +2,10 @@ package com.example.trainer.controllers;
 
 import android.content.Context;
 
-import com.example.trainer.schemas.Exercise;
-import com.example.trainer.schemas.ExerciseType;
-import com.example.trainer.schemas.User;
-import com.example.trainer.schemas.Workout;
+import com.example.trainer.model.Exercise;
+import com.example.trainer.model.ExerciseType;
+import com.example.trainer.model.User;
+import com.example.trainer.model.Workout;
 
 import java.util.List;
 
@@ -46,8 +46,6 @@ public interface TrainerController {
 
     void deleteExerciseType(String id);
 
-    void createUser(User user);
-
     User findUser();
 
     List<Workout> getPresetWorkouts();
@@ -65,4 +63,10 @@ public interface TrainerController {
     Workout getWorkout();
 
     void setWorkout(Workout workout);
+
+    void registerUser(User user);
+
+    void authenticateUser(User user);
+
+    boolean sessionValid();
 }

@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.schemas.ExerciseType;
+import com.example.trainer.model.ExerciseType;
 import com.example.trainer.util.Toaster;
 
 public class CreateExercise_fragment extends Fragment {
@@ -35,7 +35,7 @@ public class CreateExercise_fragment extends Fragment {
         TextView exerciseNameInput = v.findViewById(R.id.exerciseNameInput);
         v.findViewById(R.id.newExerciseBtn).setOnClickListener(view -> {
             String name = exerciseNameInput.getText().toString();
-            if (workoutManager.exerciseTypeExists(name)) {
+            if (!workoutManager.exerciseTypeExists(name)) {
                 workoutManager.createExerciseType(new ExerciseType(name));
                 getParentFragmentManager().popBackStack();
             } else{

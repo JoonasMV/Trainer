@@ -18,7 +18,7 @@ import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.UI.workouts.presetWorkouts.PresetWorkouts_fragment;
 import com.example.trainer.UI.workouts.currentWorkout.adapters.ExerciseAdapter;
-import com.example.trainer.schemas.Workout;
+import com.example.trainer.model.Workout;
 
 import java.time.Duration;
 import java.util.Date;

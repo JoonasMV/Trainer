@@ -13,8 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
-
-import com.example.trainer.schemas.Exercise;
+import com.example.trainer.model.Exercise;
 
 
 import java.util.List;

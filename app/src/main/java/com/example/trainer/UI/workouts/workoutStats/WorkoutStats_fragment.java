@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.trainer.R;
-import com.example.trainer.schemas.Exercise;
-import com.example.trainer.schemas.Workout;
+import com.example.trainer.model.Exercise;
+import com.example.trainer.model.Workout;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -75,7 +75,7 @@ public class WorkoutStats_fragment extends Fragment {
         workoutDuration.setText(workout.getDuration());
         RecyclerView exercises = view.findViewById(R.id.exerciseRecyclerView);
 
-        List<Exercise> exerciseTypes = workout.getExList();
+        List<Exercise> exerciseTypes = workout.getExercises();
 
 
         WorkoutStatsExerciseAdapter adapter = new WorkoutStatsExerciseAdapter(exerciseTypes, getParentFragmentManager());
