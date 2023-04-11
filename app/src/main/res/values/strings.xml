@@ -17,15 +17,31 @@
     <string name="makePreset">Make preset</string>
     <string name="addWorkoutName">Save name</string>
     <string name="workoutName">Workout</string>
-    <string name="preference_file_key">workouts_pref</string>
-    <string name="login_button_text">Log In</string>
-    <string name="delete_workout">Delete</string>
+    <string name="preference_file_key" translatable="false">workouts_pref</string>
+    <string name="login_button_text">Create user</string>
+    <string name="delete">Delete</string>
     <string name="saveExercise">Save Exercise</string>
     <string name="exerciseName">Exercise name</string>
     <string name="presetText">Presets</string>
+    <string name="cancelWorkout">Cancel Workout</string>
+    <string name="endWorkout">End Workout</string>
+    <string name="welcomeBack">Welcome back %s</string>
+    <string name="drawingAltText">muscular hand holding a dumbbell</string>
+    <string name="name">Name</string>
+    <string name="newWorkout">New Workout</string>
+    <string name="reps">Reps</string>
+    <string name="weight">Weight</string>
+    <string name="addSet">add set</string>
+    <string name="exerciseToast">Exercise type already added</string>
+    <string name="presetRemoved">Preset removed</string>
+    <string name="alreadyPreset">%s is already a preset</string>
+    <string name="nowPreset">%s is now a preset</string>
+    <string name="workoutRemoved">Workout removed</string>
+    <string name="durationHourMinSec">Duration: %d h %d min %d sec</string>
+    <string name="durationMinSec">Duration: %d min %d sec</string>
     <string name="signup_button">Sign Up</string>
     <string name="password_hint">Password</string>
     <string name="username_hint">Username</string>
     <string name="registerInstead">Sign up instead</string>
-
+    <string name="showChart">Show Chart</string>
 </resources>

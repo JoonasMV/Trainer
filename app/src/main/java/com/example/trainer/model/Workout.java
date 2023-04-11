@@ -51,6 +51,14 @@ public class Workout implements Serializable {
         this.exercises = new ArrayList<>();
     }
 
+    public Workout(Workout workout){
+        this.name = workout.getName();
+        this.workoutStarted = workout.getWorkoutStarted();
+        this.workoutEnded = workout.getWorkoutEnded();
+        this.preset = workout.preset();
+        this.exercises = workout.getExercises();
+    }
+
     public void ended(){
         this.workoutEnded = new Date();
     }
