@@ -30,6 +30,9 @@ public class WorkoutService {
     }
 
     private List<Workout> filterPresets(){
+        if(workouts.isEmpty()){
+            return workouts;
+        }
         return workouts
                 .stream()
                 .filter(Workout::preset)
@@ -44,6 +47,9 @@ public class WorkoutService {
     }
 
     private List<Workout> filterNonPresets(){
+        if(workouts.isEmpty()){
+            return workouts;
+        }
         return workouts
                 .stream()
                 .filter(workout -> !workout.preset())

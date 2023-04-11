@@ -35,7 +35,7 @@ public class CreateExercise_fragment extends Fragment {
         TextView exerciseNameInput = v.findViewById(R.id.exerciseNameInput);
         v.findViewById(R.id.newExerciseBtn).setOnClickListener(view -> {
             String name = exerciseNameInput.getText().toString();
-            if (workoutManager.exerciseTypeExists(name)) {
+            if (!workoutManager.exerciseTypeExists(name)) {
                 workoutManager.createExerciseType(new ExerciseType(name));
                 getParentFragmentManager().popBackStack();
             } else{
