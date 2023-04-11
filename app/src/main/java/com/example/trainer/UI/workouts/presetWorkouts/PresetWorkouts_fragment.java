@@ -1,4 +1,4 @@
-package com.example.trainer.UI.workouts;
+package com.example.trainer.UI.workouts.presetWorkouts;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

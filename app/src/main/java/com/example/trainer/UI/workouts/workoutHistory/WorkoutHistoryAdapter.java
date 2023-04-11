@@ -15,9 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
 import com.example.trainer.UI.MainActivity;
-import com.example.trainer.UI.exercises.exerciseChart.ExerciseChart_fragment;
-import com.example.trainer.UI.workouts.WorkoutStatsExerciseAdapter;
-import com.example.trainer.UI.workouts.WorkoutStats_fragment;
+import com.example.trainer.UI.workouts.workoutStats.WorkoutStats_fragment;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.schemas.Workout;

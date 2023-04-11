@@ -2,8 +2,6 @@ package com.example.trainer.UI.workouts.currentWorkout;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,7 @@ import com.example.trainer.R;
 import com.example.trainer.UI.HomeScreen_fragment;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.UI.workouts.PresetWorkouts_fragment;
+import com.example.trainer.UI.workouts.presetWorkouts.PresetWorkouts_fragment;
 import com.example.trainer.UI.workouts.currentWorkout.adapters.ExerciseAdapter;
 import com.example.trainer.schemas.Workout;
 

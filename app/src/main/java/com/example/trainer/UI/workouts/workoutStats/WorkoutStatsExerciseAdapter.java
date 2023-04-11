@@ -1,4 +1,4 @@
-package com.example.trainer.UI.workouts;
+package com.example.trainer.UI.workouts.workoutStats;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

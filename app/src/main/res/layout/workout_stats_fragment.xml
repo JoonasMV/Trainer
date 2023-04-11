@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    tools:context=".UI.workouts.WorkoutStats_fragment">
+    tools:context=".UI.workouts.workoutStats.WorkoutStats_fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -53,7 +53,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/wDuration"
-            app:layout_constraintTop_toToBottomOf="@id/wDuration" />
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -1,4 +1,4 @@
-package com.example.trainer.UI.workouts;
+package com.example.trainer.UI.workouts.workoutStats;
 
 import android.os.Bundle;
 
@@ -13,9 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.trainer.R;
-import com.example.trainer.UI.exercises.exerciseChart.ExerciseChart_fragment;
 import com.example.trainer.schemas.Exercise;
-import com.example.trainer.schemas.ExerciseType;
 import com.example.trainer.schemas.Workout;
 
 import java.text.SimpleDateFormat;
