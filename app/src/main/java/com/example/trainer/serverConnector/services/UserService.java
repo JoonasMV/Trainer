@@ -1,6 +1,6 @@
 package com.example.trainer.serverConnector.services;
 
-import com.example.trainer.schemas.User;
+import com.example.trainer.model.User;
 import com.example.trainer.util.Settings;
 import com.google.gson.reflect.TypeToken;
 

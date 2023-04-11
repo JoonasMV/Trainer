@@ -52,9 +52,9 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.nameOfTheExercise.setText(workoutManager.getWorkout().getExList().get(position).getExerciseName());
+        holder.nameOfTheExercise.setText(workoutManager.getWorkout().getExercises().get(position).getExerciseName());
 
-        SetAdapter setAdapter = new SetAdapter(workoutManager.getWorkout().getExList().get(position), context);
+        SetAdapter setAdapter = new SetAdapter(workoutManager.getWorkout().getExercises().get(position), context);
         holder.listOfSets.setAdapter(setAdapter);
         holder.listOfSets.setLayoutManager(new LinearLayoutManager(context));
 
@@ -67,6 +67,6 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
     }
     @Override
     public int getItemCount() {
-        return workoutManager.getWorkout().getExList().size();
+        return workoutManager.getWorkout().getExercises().size();
     }
 }
