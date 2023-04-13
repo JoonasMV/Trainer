@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
 import com.example.trainer.model.Exercise;
+import com.example.trainer.model.ExerciseSet;
 
 
 import java.util.List;
@@ -22,33 +25,35 @@ import java.util.List;
 public class WorkoutStatsExerciseAdapter extends RecyclerView.Adapter<WorkoutStatsExerciseAdapter.ViewHolder> {
 
     private final List<Exercise> exercises;
-    private final FragmentManager fManager;
+
 
     private Context parentContext;
 
 
-    public WorkoutStatsExerciseAdapter(List<Exercise> exercises, FragmentManager fManager) {
-        this.fManager = fManager;
+
+    public WorkoutStatsExerciseAdapter(List<Exercise> exercises, Context parentContext) {
         this.exercises = exercises;
+        this.parentContext = parentContext;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView exerciseTypeTitle;
 
+        public ImageButton button;
         public RecyclerView setRecyclerView;
         public ViewHolder(View view) {
             super(view);
 
             exerciseTypeTitle = view.findViewById(R.id.exerciseType);
-            setRecyclerView = view.findViewById(R.id.listOfSets);
+            setRecyclerView = view.findViewById(R.id.setList);
+            button = view.findViewById(R.id.toggleButton);
         }
     }
 
     @NonNull
     @Override
     public WorkoutStatsExerciseAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        parentContext = parent.getContext();
-        View v = LayoutInflater.from(parent.getContext())
+        View v = LayoutInflater.from(parentContext)
                 .inflate(R.layout.exercise_type_item, parent, false);
 
         return new ViewHolder(v);
@@ -62,12 +67,29 @@ public class WorkoutStatsExerciseAdapter extends RecyclerView.Adapter<WorkoutSta
 
         holder.exerciseTypeTitle.setText(exercise.getExerciseName());
 
-        System.out.println(exercise.getSetList());
-        WorkoutStatsSetAdapter adapter = new WorkoutStatsSetAdapter(exercise.getSetList(), fManager);
+
+        List<ExerciseSet> setList = exercise.getSets();
+        System.out.println(exercise.getSets());
+        WorkoutStatsSetAdapter adapter = new WorkoutStatsSetAdapter(setList, parentContext);
         holder.setRecyclerView.setLayoutManager(new LinearLayoutManager(parentContext));
         holder.setRecyclerView.setAdapter(adapter);
 
+        holder.setRecyclerView.setVisibility(View.GONE);
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            boolean isPressed;
+            @Override
+            public void onClick(View v) {
+                if(isPressed){
+                    holder.setRecyclerView.setVisibility(View.GONE);
+                }else{
+                    holder.setRecyclerView.setVisibility(View.VISIBLE);
+                }
+                isPressed = !isPressed; // reverse
+            }
+        });
     }
+
+
 
     @Override
     public int getItemCount() {
