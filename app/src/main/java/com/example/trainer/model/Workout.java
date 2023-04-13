@@ -129,6 +129,8 @@ public class Workout implements Serializable {
         Date end = this.getWorkoutEnded();
         SimpleDateFormat Format = new SimpleDateFormat("HH:mm:ss");
 
+        System.out.println(end.getTime());
+        System.out.println(start.getTime());
         Date dif = new Date(end.getTime()-start.getTime());
         String str3 = Format.format(dif);
         System.out.println(dif);

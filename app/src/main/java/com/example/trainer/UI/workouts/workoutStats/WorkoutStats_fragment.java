@@ -72,13 +72,13 @@ public class WorkoutStats_fragment extends Fragment {
         String str = DateFormat.format(time);
         workoutTime.setText(str);
 
-        workoutDuration.setText(workout.getDuration());
+        //workoutDuration.setText(workout.getDuration());
         RecyclerView exercises = view.findViewById(R.id.exerciseRecyclerView);
 
         List<Exercise> exerciseTypes = workout.getExercises();
 
 
-        WorkoutStatsExerciseAdapter adapter = new WorkoutStatsExerciseAdapter(exerciseTypes, getParentFragmentManager());
+        WorkoutStatsExerciseAdapter adapter = new WorkoutStatsExerciseAdapter(exerciseTypes, getContext());
         exercises.setLayoutManager(new LinearLayoutManager(getContext()));
         exercises.setAdapter(adapter);
 

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
 import com.example.trainer.UI.MainActivity;
-import com.example.trainer.UI.workouts.WorkoutStats_fragment;
+
 import com.example.trainer.UI.workouts.workoutStats.WorkoutStats_fragment;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
@@ -68,6 +68,7 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
     @Override
     public void onBindViewHolder(@NonNull WorkoutHistoryAdapter.ViewHolder holder, int position) {
         Workout workout = workoutHistory.get(position);
+        System.out.println(workout);
 
         holder.workoutTitle.setText(workout.getName());
         holder.saveAsPresetBtn.setOnClickListener(view -> {
@@ -86,6 +87,7 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
         });
 
         holder.workoutTitle.setOnClickListener(view -> {
+            System.out.println(workout);
             Bundle args = new Bundle();
             args.putSerializable(null, workout);
             ((MainActivity) view.getContext()).getSupportFragmentManager().beginTransaction()

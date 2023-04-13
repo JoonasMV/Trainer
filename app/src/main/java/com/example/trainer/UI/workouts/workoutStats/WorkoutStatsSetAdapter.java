@@ -1,6 +1,5 @@
 package com.example.trainer.UI.workouts.workoutStats;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,31 +11,32 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
-import com.example.trainer.schemas.Exercise;
+import com.example.trainer.model.ExerciseSet;
+
 
 import java.util.List;
 
 public class WorkoutStatsSetAdapter extends RecyclerView.Adapter<WorkoutStatsSetAdapter.ViewHolder> {
 
-    private final List<Exercise> exercises;
-    private final FragmentManager fManager;
+    private final List<ExerciseSet> sets;
 
 
     private Context parentContext;
 
-    public WorkoutStatsSetAdapter(List<Exercise> exercises, FragmentManager fManager) {
-        this.fManager = fManager;
-        this.exercises = exercises;
+    public WorkoutStatsSetAdapter(List<ExerciseSet> sets, Context parentContext) {
+        this.parentContext = parentContext;
+        this.sets = sets;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView exerciseTypeTitle;
-
+        public TextView Reps;
+        public TextView Weight;
 
         public ViewHolder(View view) {
             super(view);
 
-            exerciseTypeTitle = view.findViewById(R.id.exerciseType);
+            Reps = view.findViewById(R.id.textReps);
+            Weight = view.findViewById(R.id.textWeight);
         }
     }
 
@@ -45,25 +45,29 @@ public class WorkoutStatsSetAdapter extends RecyclerView.Adapter<WorkoutStatsSet
     public WorkoutStatsSetAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         parentContext = parent.getContext();
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.exercise_type_item, parent, false);
+                .inflate(R.layout.exercise_set_item, parent, false);
 
         return new WorkoutStatsSetAdapter.ViewHolder(v);
     }
 
 
-    @SuppressLint("NotifyDataSetChanged")
+
     @Override
     public void onBindViewHolder(@NonNull WorkoutStatsSetAdapter.ViewHolder holder, int position) {
-        Exercise exercise = exercises.get(position);
+        ExerciseSet set = sets.get(position);
+        System.out.println("Toistot "+set.getReps());
+        System.out.println("Paino "+set.getWeight());
 
-        holder.exerciseTypeTitle.setText(exercise.getExerciseName());
+        String reps = String.valueOf(set.getReps());
+        String weight = String.valueOf(set.getWeight());
+        holder.Reps.setText(reps);
+        holder.Weight.setText(weight);
 
     }
 
     @Override
     public int getItemCount() {
-        return exercises.size();
+        return sets.size();
     }
 
 }
-
