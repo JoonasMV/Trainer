@@ -20,7 +20,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="22sp"
+                android:layout_margin="8dp"/>
 
             <ImageButton
                 android:id="@+id/toggleButton"
@@ -33,6 +35,14 @@
                 style="@style/image_style"/>
 
         </LinearLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_weight="2"
+            style="@style/underline_color"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/setList"

@@ -41,6 +41,8 @@ public class WorkoutStatsExerciseAdapter extends RecyclerView.Adapter<WorkoutSta
 
         public ImageButton button;
         public RecyclerView setRecyclerView;
+
+        boolean isPressed;
         public ViewHolder(View view) {
             super(view);
 
@@ -63,29 +65,36 @@ public class WorkoutStatsExerciseAdapter extends RecyclerView.Adapter<WorkoutSta
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         Exercise exercise = exercises.get(position);
 
-        holder.exerciseTypeTitle.setText(exercise.getExerciseName());
-
+        String str = exercise.getExerciseName();
+        String cap = str.substring(0, 1).toUpperCase() + str.substring(1);
+        holder.exerciseTypeTitle.setText(cap);
 
         List<ExerciseSet> setList = exercise.getSets();
-        System.out.println(exercise.getSets());
+
         WorkoutStatsSetAdapter adapter = new WorkoutStatsSetAdapter(setList, parentContext);
         holder.setRecyclerView.setLayoutManager(new LinearLayoutManager(parentContext));
         holder.setRecyclerView.setAdapter(adapter);
 
         holder.setRecyclerView.setVisibility(View.GONE);
-        holder.button.setOnClickListener(new View.OnClickListener() {
-            boolean isPressed;
-            @Override
-            public void onClick(View v) {
-                if(isPressed){
-                    holder.setRecyclerView.setVisibility(View.GONE);
-                }else{
-                    holder.setRecyclerView.setVisibility(View.VISIBLE);
-                }
-                isPressed = !isPressed; // reverse
+        holder.button.setOnClickListener(v -> {
+            if(holder.isPressed){
+                holder.setRecyclerView.setVisibility(v.GONE);
+            }else{
+                holder.setRecyclerView.setVisibility(v.VISIBLE);
             }
+            holder.isPressed = !holder.isPressed; // reverse
+        });
+
+        holder.exerciseTypeTitle.setOnClickListener(v -> {
+            if(holder.isPressed){
+                holder.setRecyclerView.setVisibility(v.GONE);
+            }else{
+                holder.setRecyclerView.setVisibility(v.VISIBLE);
+            }
+            holder.isPressed = !holder.isPressed; // reverse
         });
     }
 
