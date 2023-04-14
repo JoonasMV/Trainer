@@ -37,7 +37,7 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
 
         public ViewHolder(@NonNull View view) {
             super(view);
-            nameOfExercise = view.findViewById(R.id.nameOfExercise);
+            nameOfExercise = view.findViewById(R.id.nameOfType);
             threeDots = view.findViewById(R.id.threedots_button);
 
 
@@ -48,7 +48,7 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         exerciseTypes = BaseController.getController().getExerciseTypes();
-        System.out.println(exerciseTypes.size());
+        System.out.println("size" + exerciseTypes.size());
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.exercise_list_item, parent, false);
 

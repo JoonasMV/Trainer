@@ -38,7 +38,9 @@ public class CreateExercise_fragment extends Fragment {
             if (!workoutManager.exerciseTypeExists(name)) {
                 workoutManager.createExerciseType(new ExerciseType(name));
                 getParentFragmentManager().popBackStack();
-            } else{
+            } else if (name.isEmpty()){
+                Toaster.toast(getContext(), "Give name that's not empty");
+            }else {
                 Toaster.toast(getContext(), getContext().getString(R.string.exerciseToast));
             }
         });

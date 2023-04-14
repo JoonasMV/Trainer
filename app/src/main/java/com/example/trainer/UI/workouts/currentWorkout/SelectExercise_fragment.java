@@ -10,8 +10,12 @@ import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
+import com.example.trainer.UI.workouts.currentWorkout.adapters.SelectExerciseAdapter;
+import com.example.trainer.UI.workouts.workoutStats.WorkoutStatsExerciseAdapter;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.model.Exercise;
@@ -23,7 +27,6 @@ import java.util.stream.Collectors;
 
 public class SelectExercise_fragment extends Fragment {
 
-    private ListView lv;
     private final TrainerController workoutManager = BaseController.getController();
 
     @Override
@@ -31,52 +34,35 @@ public class SelectExercise_fragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         if (container != null) {
             container.removeAllViews();
         }
-        // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_select_exercise, container, false);
+
+        return inflater.inflate(R.layout.fragment_select_exercise, container, false);
 
 
-        lv = v.findViewById(R.id.lista);
-        handleDisplayExerciseTypes();
-
-        lv.setOnItemClickListener((adapterView, view, i, l) -> {
-            Log.d("tag", "onclick");
-            List<ExerciseType> exerciseTypes = workoutManager.getExerciseTypes();
-            if(!exerciseTypes.isEmpty()){
-                ExerciseType type = exerciseTypes.get(i);
-                Exercise newExercise = new Exercise();
-                newExercise.setExerciseType(type);
-                getParentFragmentManager().beginTransaction().replace(R.id.mainContainer, new CurrentWorkout_fragment()).commit();
-                //TODO: add workout id to exercise when saving workout
-                workoutManager.addExercise(newExercise);
-            }
-
-        });
-
-        return v;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+        RecyclerView exerciseTypes = view.findViewById(R.id.typeList);
+
+        List<ExerciseType> typesFromDb = workoutManager.getExerciseTypes();
+
+        SelectExerciseAdapter adapter = new SelectExerciseAdapter(typesFromDb, getContext(), workoutManager);
+        exerciseTypes.setLayoutManager(new LinearLayoutManager(getContext()));
+        exerciseTypes.setAdapter(adapter);
+
     }
 
-    private void handleDisplayExerciseTypes() {
-        List<ExerciseType> exerciseTypes = workoutManager.getExerciseTypes();
-        List<String> exerciseTypesAsStrings = exerciseTypes
-                .stream()
-                .map(ExerciseType::getName)
-                .collect(Collectors.toList());
-        lv.setAdapter(new ArrayAdapter<>(
-                this.getContext(),
-                android.R.layout.simple_list_item_1,
-                exerciseTypesAsStrings
-        ));
-    }
+
 }

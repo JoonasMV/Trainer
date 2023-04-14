@@ -25,24 +25,14 @@
                 android:text="TextView"
                 android:textSize="24sp" />
 
-            <ImageButton
-                android:id="@+id/threedots_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="?android:attr/colorBackground"
-                android:contentDescription="TODO"
-                android:src="@drawable/baseline_more_horiz_24"
-                style="@style/image_style"/>
-
 
         </LinearLayout>
 
         <View
             android:id="@+id/view"
+            style="@style/underline_color"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_weight="2"
-            style="@style/underline_color"
-            />
+            android:layout_weight="2" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

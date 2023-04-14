@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
 import com.example.trainer.UI.HomeScreen_fragment;
+import com.example.trainer.UI.workouts.currentWorkout.adapters.ExerciseAdapter;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.UI.workouts.presetWorkouts.PresetWorkouts_fragment;
-import com.example.trainer.UI.workouts.currentWorkout.adapters.ExerciseAdapter;
 import com.example.trainer.model.Workout;
 
 import java.time.Duration;

@@ -10,66 +10,92 @@
         android:id="@+id/mainContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
 
-        app:layout_constraintBottom_toTopOf="@id/buttonHolder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/home_fragment" />
 
-    <LinearLayout
-        android:id="@+id/buttonHolder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="10"
+    <Button
+        android:id="@+id/exercisesBtn"
+        style="@style/button_basic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:drawableTop="@drawable/exercises"
+        android:drawableTint="@color/white"
+        android:text="@string/exercises"
+        android:textAlignment="inherit"
+        android:textDirection="locale"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <Button
+        android:id="@+id/homeBtn"
+        style="@style/button_basic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:drawableTop="@drawable/home"
+        android:drawableTint="@color/white"
+        android:text="@string/home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline10"
+        app:layout_constraintStart_toEndOf="@+id/exercisesBtn"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <Button
+        android:id="@+id/workoutsBtn"
+        style="@style/button_basic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:drawableTop="@drawable/workout3"
+        android:drawableTint="@color/white"
+        android:text="@string/workouts"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <Button
+        android:id="@+id/progressBtn"
+        style="@style/button_basic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:drawableTop="@drawable/progress"
+        android:drawableTint="@color/white"
+        android:text="@string/history"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mainContainer">
+        app:layout_constraintStart_toEndOf="@+id/workoutsBtn"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
-        <Button
-            android:id="@+id/exercisesBtn"
-            style="@style/button_basic"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/exercises"
-            android:drawableTint="@color/white"
-            android:text="@string/exercises"
-            android:textAlignment="inherit"
-            android:textDirection="locale" />
-        <!--                app:layout_constraintStart_toStartOf="parent" -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
 
-        <Button
-            android:id="@+id/homeBtn"
-            style="@style/button_basic"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/home"
-            android:drawableTint="@color/white"
-            android:text="@string/home" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
 
-        <Button
-            android:id="@+id/workoutsBtn"
-            style="@style/button_basic"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/workout3"
-            android:drawableTint="@color/white"
-            android:text="@string/workouts" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
-        <Button
-            android:id="@+id/progressBtn"
-            style="@style/button_basic"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/progress"
-            android:drawableTint="@color/white"
-            android:text="@string/history" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
 
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

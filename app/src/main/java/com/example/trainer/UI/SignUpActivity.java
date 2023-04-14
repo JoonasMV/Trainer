@@ -37,7 +37,14 @@ public class SignUpActivity extends AppCompatActivity {
             controller.registerUser(user);
 
             startActivity(new Intent(this, MainActivity.class));
+            finish();
         });
+    }
+
+    @Override
+    public void onBackPressed(){
+        startActivity(new Intent(this, LoginPage_activity.class));
+        finish();
     }
 
 

@@ -47,5 +47,16 @@ public class LoginPage_activity extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
         });
     }
+    @Override
+    public void onStop() {
+        super.onStop();
+        finish();
+    }
+    @Override
+    public void onBackPressed(){
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
+    }
 
 }
