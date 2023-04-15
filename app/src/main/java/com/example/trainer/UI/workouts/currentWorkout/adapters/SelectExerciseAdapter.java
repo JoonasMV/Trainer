@@ -5,24 +5,18 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
 import com.example.trainer.UI.MainActivity;
 import com.example.trainer.UI.workouts.currentWorkout.CurrentWorkout_fragment;
-import com.example.trainer.UI.workouts.currentWorkout.SelectExercise_fragment;
-import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.model.Exercise;
 import com.example.trainer.model.ExerciseType;
-import com.example.trainer.UI.workouts.currentWorkout.SelectExercise_fragment;
 
 import java.util.List;
 

@@ -44,6 +44,7 @@
             style="@style/recyclerView_basic"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:layout_constrainedHeight="true"
             app:layout_constraintBottom_toTopOf="@+id/guideline7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +68,7 @@
         <Button
             android:id="@+id/addExerciseBtn"
             style="@style/button_list"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
@@ -79,9 +81,10 @@
         <Button
             android:id="@+id/cancelWorkoutBtn"
             style="@style/button_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:layout_height="0dp"
             android:text="@string/cancelWorkout"
             app:layout_constraintBottom_toTopOf="@+id/guideline6"
             app:layout_constraintEnd_toEndOf="parent"

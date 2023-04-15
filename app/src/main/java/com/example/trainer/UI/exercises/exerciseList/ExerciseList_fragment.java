@@ -12,7 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
 import com.example.trainer.UI.exercises.CreateExercise_fragment;
+import com.example.trainer.controllers.BaseController;
+import com.example.trainer.controllers.TrainerController;
+import com.example.trainer.model.ExerciseType;
 
+import java.util.List;
 import java.util.Objects;
 
 public class ExerciseList_fragment extends Fragment {
@@ -35,8 +39,10 @@ public class ExerciseList_fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
+        List<ExerciseType> typesFromDb = BaseController.getController().getExerciseTypes();
+
         exerciseList = requireView().findViewById(R.id.listOfExercises);
-        exerciseList.setAdapter(new ExerciseListAdapter());
+        exerciseList.setAdapter(new ExerciseListAdapter(typesFromDb));
         exerciseList.setLayoutManager(new LinearLayoutManager(getContext()));
 
         requireView().findViewById(R.id.addExercise).setOnClickListener(v -> goToNewExerciseFragment());

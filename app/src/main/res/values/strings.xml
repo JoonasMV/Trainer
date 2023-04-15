@@ -14,7 +14,7 @@
     <string name="add_new_exercise_button">Add new exercise</string>
     <string name="exercises">Exercises</string>
     <string name="workoutHistory_title">Workout history</string>
-    <string name="makePreset">Make preset</string>
+    <string name="makePreset">Save</string>
     <string name="addWorkoutName">Save name</string>
     <string name="workoutName">Workout</string>
     <string name="preference_file_key" translatable="false">workouts_pref</string>

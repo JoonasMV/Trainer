@@ -41,7 +41,7 @@ public class CreateExercise_fragment extends Fragment {
             } else if (name.isEmpty()){
                 Toaster.toast(getContext(), "Give name that's not empty");
             }else {
-                Toaster.toast(getContext(), getContext().getString(R.string.exerciseToast));
+                Toaster.toast(getContext(),  "Exercise already exists");
             }
         });
         return v;

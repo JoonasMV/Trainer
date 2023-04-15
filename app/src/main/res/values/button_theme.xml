@@ -14,7 +14,9 @@
     <style name="button_list" parent="button_round">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_margin">3dp</item>
-        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
     </style>
     <style name="three_dots_button" parent="ThemeOverlay.AppCompat">
         <item name="backgroundTint">@style/underline_color</item>

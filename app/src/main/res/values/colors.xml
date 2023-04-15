@@ -12,6 +12,9 @@
     <color name="background_light">@color/white</color>
     <color name="underline_color_light">#33000000</color>
     <color name="menu_items_light">#1D3557</color>
+    <color name="color2_light">#a8dadc</color>
+    <color name="color3_light">#e63946</color>
+    <color name="color4_light">#f1faee</color>
     <color name="text_color_light">#212529</color>
 
     <color name="diagram_fill_color_light">@color/menu_items_light</color>
@@ -19,6 +22,9 @@
     <!-- Dark theme colors-->
     <color name="text_color_dark">@color/white</color>
     <color name="underline_color_dark">#33FFFFFF</color>
+    <color name="color2_dark">#a8dadc</color>
+    <color name="color3_dark">#e63946</color>
+    <color name="color4_dark">#f1faee</color>
     <color name="menu_items_dark">#373737</color>
     <color name="background_dark">#121212</color>
 

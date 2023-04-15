@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -16,9 +21,9 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/nameOfType"
+                android:id="@+id/typeName"
                 style="@style/list_text"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:layout_weight="1"
@@ -27,22 +32,23 @@
 
             <ImageButton
                 android:id="@+id/threedots_button"
+                style="@style/image_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?android:attr/colorBackground"
                 android:contentDescription="TODO"
-                android:src="@drawable/baseline_more_horiz_24"
-                style="@style/image_style"/>
+                android:src="@drawable/baseline_more_horiz_24" />
 
 
         </LinearLayout>
 
         <View
-            android:id="@+id/view"
+            android:id="@+id/view2"
+            style="@style/underline_color"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_weight="2"
-            style="@style/underline_color"
-            />
+            android:layout_weight="2" />
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

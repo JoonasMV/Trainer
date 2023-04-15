@@ -41,7 +41,7 @@ public class HomeScreen_fragment extends Fragment {
             startActivity(new Intent(this.getContext(), LoginPage_activity.class));
             return;
         }
-        userGreetText.setText(String.format(getContext().getString(R.string.welcomeBack), user.getUsername()));
+        userGreetText.setText(String.format("Welcome back %s", user.getUsername()));
     }
 
 

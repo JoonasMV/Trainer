@@ -1,8 +1,9 @@
 package com.example.trainer.UI.exercises.exerciseList;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -24,20 +25,21 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
 
     private List<ExerciseType> exerciseTypes;
     private PopupMenu ppMenu;
-    public ExerciseListAdapter() {
-        exerciseTypes = BaseController.getController().getExerciseTypes();
+
+    public ExerciseListAdapter(List<ExerciseType> types) {
+        this.exerciseTypes = types;
+        Log.d("types", Integer.toString(exerciseTypes.size()));
 
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameOfExercise;
 
-
         private final ImageButton threeDots;
 
         public ViewHolder(@NonNull View view) {
             super(view);
-            nameOfExercise = view.findViewById(R.id.nameOfType);
+            nameOfExercise = view.findViewById(R.id.typeName);
             threeDots = view.findViewById(R.id.threedots_button);
 
 
@@ -47,8 +49,7 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        exerciseTypes = BaseController.getController().getExerciseTypes();
-        System.out.println("size" + exerciseTypes.size());
+        Log.d("onCreate", "jee");
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.exercise_list_item, parent, false);
 
@@ -57,7 +58,7 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
+        Log.d("onBind", "jee");
         holder.nameOfExercise.setText(exerciseTypes.get(position).getName());
 
         // Short click to view diagram
@@ -73,6 +74,7 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
 
         // long click to open menu
         holder.threeDots.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public void onClick(View view) {
                 ppMenu = new PopupMenu(view.getContext(), holder.threeDots );

@@ -6,7 +6,7 @@
         <item name="android:statusBarColor">@color/menu_items_light</item>
 
         <!-- Buttons -->
-        <item name="colorPrimaryVariant">@color/menu_items_light</item>
+        <item name="colorPrimaryVariant">@color/color2_light</item>
 
         <!-- Text color -->
         <item name="android:textColor">@color/text_color_light</item>
