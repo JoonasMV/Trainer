@@ -1,5 +1,7 @@
 package com.example.trainer.controllers.services;
 
+import android.util.Log;
+
 import com.example.trainer.api.ExerciseTypeOperations;
 import com.example.trainer.model.ExerciseType;
 
@@ -55,5 +57,15 @@ public class ExerciseTypeService {
         if(saved != null){
             exerciseTypes.add(saved);
         }
+    }
+
+    public void fetchOnBackground(){
+        Runnable runnable = () -> {
+            Log.d("ExerciseTypeService", "Fetching on background...");
+            exerciseTypes = api.getAllExerciseTypes();
+            Log.d("ExerciseTypeService", "Fetched exercise types");
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 }

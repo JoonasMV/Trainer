@@ -117,4 +117,15 @@ public class WorkoutController extends BaseController {
     public boolean sessionValid() {
         return userService.sessionValid();
     }
+
+    @Override
+    public void refreshSession() {
+        userService.refresh();
+    }
+
+    @Override
+    public void fetchWorkoutsAndExerciseTypesOnBackground() {
+        workoutService.fetchOnBackground();
+        exerciseTypeService.fetchOnBackground();
+    }
 }

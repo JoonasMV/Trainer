@@ -10,4 +10,5 @@ public interface WorkoutOperations {
     List<Workout> getWorkouts();
 
     void deleteWorkout(String id);
+
 }
