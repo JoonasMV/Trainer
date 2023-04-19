@@ -38,5 +38,9 @@
     <string name="workoutRemoved">Աշխատանքը ջնջվել է</string>
     <string name="durationHourMinSec">Տևողություն: %d h %d min %d sec</string>
     <string name="durationMinSec">Տևողություն: %d min %d sec</string>
+    <string name="signup_button">Օգտագործող ստեղծել</string>
+    <string name="password_hint">Գաղտնաբառ</string>
+    <string name="username_hint">Օգտվողական անուն</string>
+    <string name="registerInstead">Օգտագործող ստեղծել</string>
     <string name="showChart">ցուցադրել ձեռնարկը</string>
 </resources>
