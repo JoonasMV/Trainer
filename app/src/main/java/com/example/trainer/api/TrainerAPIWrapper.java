@@ -105,7 +105,23 @@ public final class TrainerAPIWrapper extends API implements AuthOperations, Exer
 
     @Override
     public void refreshToken() {
-        throw new RuntimeException("Not implemented yet!");
+        executor.submit(() -> {
+            RequestBody body = RequestBody.create("", JSON);
+            String token = tokenManager.getToken();
+            Request req = new Request.Builder()
+                    .url(APIEndpoints.AUTH_URL + "/refresh")
+                    .header("Authorization", "Bearer " + token)
+                    .post(body)
+                    .build();
+            try (Response res = client.newCall(req).execute()) {
+                Token responseToken = gson.fromJson(res.body().string(), Token.class);
+                tokenManager.saveToken(responseToken.getToken());
+            } catch (IOException e) {
+                e.printStackTrace();
+                stopSession();
+            }
+        });
+
     }
 
     @Override
@@ -265,4 +281,5 @@ public final class TrainerAPIWrapper extends API implements AuthOperations, Exer
         tokenManager.deleteToken();
         userManager.logout();
     }
+
 }

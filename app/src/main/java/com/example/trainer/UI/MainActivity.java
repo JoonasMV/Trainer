@@ -11,20 +11,25 @@ import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.controllers.WorkoutController;
-import com.example.trainer.serverConnector.Server;
 import com.example.trainer.UI.exercises.exerciseList.ExerciseList_fragment;
 import com.example.trainer.UI.workouts.presetWorkouts.PresetWorkouts_fragment;
 import com.example.trainer.UI.workouts.workoutHistory.WorkoutHistory_fragment;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
+    private TrainerController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         WorkoutController.initController(this);
-
+        controller = BaseController.getController();
         setContentView(R.layout.main_activity);
+
+        if(controller.sessionValid()){
+            controller.refreshSession();
+            controller.fetchWorkoutsAndExerciseTypesOnBackground();
+        }
 
         if(fragmentManager == null){
             createFragmentManager();
@@ -50,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void fragmentHandler(Fragment fragment) {
         Fragment currentFragment = fragmentManager.findFragmentById(R.id.mainContainer);
-        TrainerController controller = BaseController.getController();
 
         if(!controller.sessionValid()){
             startActivity(new Intent(this, LoginPage_activity.class));

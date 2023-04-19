@@ -1,5 +1,7 @@
 package com.example.trainer.controllers.services;
 
+import android.util.Log;
+
 import com.example.trainer.api.WorkoutOperations;
 import com.example.trainer.model.Workout;
 
@@ -76,4 +78,16 @@ public class WorkoutService {
             workouts.add(saved);
         }
     }
+
+    public void fetchOnBackground(){
+        Runnable runnable = () -> {
+            Log.d("WorkoutService", "Fetching workouts in background...");
+            workouts = api.getWorkouts();
+            Log.d("WorkoutService", "Workouts fetched: " + workouts.size());
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
+    }
+
+
 }
