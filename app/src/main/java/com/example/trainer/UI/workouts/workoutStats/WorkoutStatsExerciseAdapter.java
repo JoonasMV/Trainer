@@ -80,24 +80,24 @@ public class WorkoutStatsExerciseAdapter extends RecyclerView.Adapter<WorkoutSta
 
         holder.setRecyclerView.setVisibility(View.GONE);
         holder.button.setOnClickListener(v -> {
-            if(holder.isPressed){
-                holder.setRecyclerView.setVisibility(v.GONE);
-            }else{
-                holder.setRecyclerView.setVisibility(v.VISIBLE);
-            }
-            holder.isPressed = !holder.isPressed; // reverse
+          showSets(holder);
         });
 
         holder.exerciseTypeTitle.setOnClickListener(v -> {
-            if(holder.isPressed){
-                holder.setRecyclerView.setVisibility(v.GONE);
-            }else{
-                holder.setRecyclerView.setVisibility(v.VISIBLE);
-            }
-            holder.isPressed = !holder.isPressed; // reverse
+           showSets(holder);
         });
     }
 
+    private void showSets(ViewHolder holder){
+        if(holder.isPressed){
+            holder.setRecyclerView.setVisibility(View.GONE);
+            holder.button.setImageResource(R.drawable.baseline_keyboard_arrow_down_24);
+        }else{
+            holder.setRecyclerView.setVisibility(View.VISIBLE);
+            holder.button.setImageResource(R.drawable.baseline_keyboard_arrow_up_24);
+        }
+        holder.isPressed = !holder.isPressed; // reverse
+    }
 
 
     @Override
