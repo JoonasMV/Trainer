@@ -11,6 +11,7 @@ import com.example.trainer.model.ExerciseType;
 import com.example.trainer.model.User;
 import com.example.trainer.model.Workout;
 
+import java.util.Date;
 import java.util.List;
 
 public class WorkoutController extends BaseController {
@@ -54,6 +55,7 @@ public class WorkoutController extends BaseController {
 
     @Override
     public void saveWorkout() {
+        super.workout.setWorkoutEnded(new Date());
         workoutService.save(super.workout);
         super.workout = null;
     }

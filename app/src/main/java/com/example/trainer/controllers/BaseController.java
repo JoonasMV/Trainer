@@ -38,10 +38,6 @@ public abstract class BaseController implements TrainerController{
 
     @Override
     public void addExercise(Exercise exercise) {
-        if (workout == null) {
-            //TODO: testing leftover
-            this.workout = new Workout("Workout", new Date());
-        }
         exercise.addSet(new ExerciseSet());
         workout.addExerciseToList(exercise);
     }
@@ -63,23 +59,6 @@ public abstract class BaseController implements TrainerController{
         copy.setPreset(false);
         this.workout = copy;
     }
-
-//    private void resetIds(Workout workout){
-//        List<Exercise> exercises = workout.getExList();
-//        for(Exercise e : exercises){
-//            e.setExerciseId(0);
-//            e.setWorkoutId(0);
-//            resetSetIds(e.getSetList());
-//        }
-//    }
-//
-//    private void resetSetIds(List<ExerciseSet> sets){
-//        for(ExerciseSet set : sets){
-//            set.setId(0);
-//        }
-//    }
-
-
 
     @Override
     public Workout getWorkout() {

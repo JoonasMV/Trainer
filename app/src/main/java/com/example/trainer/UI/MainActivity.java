@@ -15,6 +15,9 @@ import com.example.trainer.UI.exercises.exerciseList.ExerciseList_fragment;
 import com.example.trainer.UI.workouts.presetWorkouts.PresetWorkouts_fragment;
 import com.example.trainer.UI.workouts.workoutHistory.WorkoutHistory_fragment;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private TrainerController controller;
