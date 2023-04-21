@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="button_basic" parent="Widget.MaterialComponents.Button.TextButton.Icon">
-        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorSecondary</item>
         <item name="android:textSize">12sp</item>
         <item name="android:background">@drawable/no_margin_button</item>
         <item name="backgroundTint">?attr/colorPrimaryVariant</item>

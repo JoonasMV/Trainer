@@ -5,6 +5,8 @@
         <item name="colorPrimary">@color/menu_items_light</item>
         <item name="android:statusBarColor">@color/menu_items_light</item>
 
+        <item name="colorSecondary">@color/menu_items_light</item>
+
         <!-- Buttons -->
         <item name="colorPrimaryVariant">@color/color2_light</item>
 
