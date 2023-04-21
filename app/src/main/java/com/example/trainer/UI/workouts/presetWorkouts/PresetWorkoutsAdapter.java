@@ -2,10 +2,12 @@ package com.example.trainer.UI.workouts.presetWorkouts;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,12 +39,12 @@ public class PresetWorkoutsAdapter extends RecyclerView.Adapter<PresetWorkoutsAd
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView workoutTitle;
 
-        private final Button deleteButton;
+        private final ImageButton deleteButton;
         public ViewHolder(View view) {
             super(view);
 
             workoutTitle = view.findViewById(R.id.preset);
-            deleteButton = view.findViewById(R.id.deletePresetButton);
+            deleteButton = view.findViewById(R.id.button);
         }
     }
 

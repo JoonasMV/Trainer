@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,7 +43,7 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
         public TextView workoutTitle;
         private final Button saveAsPresetBtn;
 
-        private final Button deleteButton;
+        private final ImageButton deleteButton;
 
 
         public ViewHolder(View view) {
