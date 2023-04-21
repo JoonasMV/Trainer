@@ -43,4 +43,6 @@
     <string name="username_hint">Օգտվողական անուն</string>
     <string name="registerInstead">Օգտագործող ստեղծել</string>
     <string name="showChart">ցուցադրել ձեռնարկը</string>
+    <string name="share">կիսվել</string>
+    <string name="showWorkout">բացահայտել</string>
 </resources>

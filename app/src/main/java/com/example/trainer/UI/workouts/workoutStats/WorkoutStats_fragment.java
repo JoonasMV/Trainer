@@ -23,6 +23,10 @@ import java.util.List;
 
 public class WorkoutStats_fragment extends Fragment {
 
+    private TextView workoutName;
+    private TextView workoutTime;
+    private TextView workoutDuration;
+    private RecyclerView exercises;
     Workout workout;
 
     public WorkoutStats_fragment() {
@@ -52,31 +56,27 @@ public class WorkoutStats_fragment extends Fragment {
         if (container != null) {
             container.removeAllViews();
         }
-        return inflater.inflate(R.layout.workout_stats_fragment, container, false);
+        View view = inflater.inflate(R.layout.workout_stats_fragment, container, false);
+        workoutName = view.findViewById(R.id.workoutName);
+        workoutTime = view.findViewById(R.id.workoutTime);
+        workoutDuration = view.findViewById(R.id.wDuration);
+        exercises = view.findViewById(R.id.exerciseRecyclerView);
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
-
         workout = (Workout) getArguments().get(null);
 
         Date time = workout.getWorkoutStarted();
-
-        TextView workoutName = view.findViewById(R.id.workoutName);
-        TextView workoutTime = view.findViewById(R.id.workoutTime);
-        TextView workoutDuration = view.findViewById(R.id.wDuration);
         workoutName.setText(workout.getName());
-
         SimpleDateFormat DateFormat = new SimpleDateFormat("dd.MM.yyyy");
         String str = DateFormat.format(time);
         workoutTime.setText(str);
-
         workoutDuration.setText(workout.getDuration());
-        RecyclerView exercises = view.findViewById(R.id.exerciseRecyclerView);
 
         List<Exercise> exerciseTypes = workout.getExercises();
-
 
         WorkoutStatsExerciseAdapter adapter = new WorkoutStatsExerciseAdapter(exerciseTypes, getContext());
         exercises.setLayoutManager(new LinearLayoutManager(getContext()));

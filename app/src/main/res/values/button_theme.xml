@@ -20,8 +20,21 @@
 
     <style name="button_delete" parent="Widget.AppCompat.ImageButton">
         <item name="android:background">@drawable/button_round</item>
-        <item name="android:backgroundTint">@color/color2_light</item>
+        <item name="android:backgroundTint">?attr/colorPrimaryVariant</item>
         <item name="android:src">@drawable/button_delete</item>
+        <item name="android:tint">?attr/colorTertiary</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:inset">0dp</item>
+        <item name="android:layout_margin">5dp</item>
+
+    </style>
+    <style name="button_three_dots" parent="Widget.AppCompat.ImageButton">
+        <item name="android:background">@drawable/button_round</item>
+        <item name="android:backgroundTint">?attr/colorPrimaryVariant</item>
+        <item name="android:src">@drawable/baseline_more_horiz_24</item>
+        <item name="android:tint">?attr/colorSecondary</item>
         <item name="android:scaleType">centerInside</item>
         <item name="android:adjustViewBounds">true</item>
         <item name="android:padding">5dp</item>

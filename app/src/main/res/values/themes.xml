@@ -7,11 +7,17 @@
 
         <item name="colorSecondary">@color/menu_items_light</item>
 
+        <item name="colorSecondaryVariant">@color/color2_light</item>
         <!-- Buttons -->
         <item name="colorPrimaryVariant">@color/color2_light</item>
 
         <!-- Text color -->
         <item name="android:textColor">@color/text_color_light</item>
+
+        <item name="colorTertiary">@color/red</item>
+
+
+        <item name="android:itemTextAppearance">@style/itemTextStyle</item>
     </style>
         <!-- Other colors -->
         <style name="underline_color">

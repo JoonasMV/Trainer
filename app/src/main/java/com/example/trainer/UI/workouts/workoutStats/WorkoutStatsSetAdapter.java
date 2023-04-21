@@ -57,9 +57,17 @@ public class WorkoutStatsSetAdapter extends RecyclerView.Adapter<WorkoutStatsSet
         ExerciseSet set = sets.get(position);
         System.out.println("Toistot "+set.getReps());
         System.out.println("Paino "+set.getWeight());
+        int repsInt = set.getReps();
+        double weightDouble = set.getWeight();;
+        if(repsInt < 0){
+            repsInt = 0;
+        }
+        if(weightDouble < 0){
+            weightDouble = 0;
+        }
 
-        String reps = String.valueOf(set.getReps());
-        String weight = String.valueOf(set.getWeight());
+        String reps = String.valueOf(repsInt);
+        String weight = String.valueOf(weightDouble);
         holder.Reps.setText(reps);
         holder.Weight.setText(weight);
 

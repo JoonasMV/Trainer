@@ -58,7 +58,7 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Log.d("onBind", "jee");
+
         holder.nameOfExercise.setText(exerciseTypes.get(position).getName());
 
         // Short click to view diagram

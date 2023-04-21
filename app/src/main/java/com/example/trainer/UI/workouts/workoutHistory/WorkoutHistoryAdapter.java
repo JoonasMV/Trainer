@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,6 +34,8 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
     private final TrainerController workoutManager;
     private Context parentContext;
 
+    private PopupMenu ppMenu;
+
     public WorkoutHistoryAdapter(List<Workout> workoutHistory) {
         this.workoutHistory = new ArrayList<>(workoutHistory);
         this.workoutManager = BaseController.getController();
@@ -41,17 +43,16 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView workoutTitle;
-        private final Button saveAsPresetBtn;
-
         private final ImageButton deleteButton;
 
+        private final ImageButton options;
 
         public ViewHolder(View view) {
             super(view);
 
             workoutTitle = view.findViewById(R.id.workoutHistoryItem);
-            saveAsPresetBtn = view.findViewById(R.id.saveAsPresetBtn);
             deleteButton = view.findViewById(R.id.deleteButton);
+            options = view.findViewById(R.id.optionsButton);
         }
     }
 
@@ -72,14 +73,7 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
         System.out.println(workout);
 
         holder.workoutTitle.setText(workout.getName());
-        holder.saveAsPresetBtn.setOnClickListener(view -> {
-            if(workout.preset()){
-                Toaster.toast(parentContext, String.format(parentContext.getString(R.string.alreadyPreset), workout.getName()));
-            } else {
-                workoutManager.makePreset(workout);
-                Toaster.toast(parentContext, String.format(parentContext.getString(R.string.nowPreset), workout.getName()));
-            }
-        });
+
         holder.deleteButton.setOnClickListener(view -> {
             workoutManager.deleteWorkout(workout);
             workoutHistory.remove(workout);
@@ -94,6 +88,39 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
             ((MainActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
                     .replace(R.id.mainContainer, WorkoutStats_fragment.newInstance(workout), null)
                     .addToBackStack(null).commit();
+        });
+
+        holder.options.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public void onClick(View view) {
+                ppMenu = new PopupMenu(view.getContext(), holder.options );
+                ppMenu.getMenuInflater().inflate(R.menu.workout_popup_menu, ppMenu.getMenu());
+                ppMenu.setOnMenuItemClickListener(menuItem -> {
+                    switch (menuItem.getItemId()) {
+                        case R.id.showWorkout:
+                            Bundle args = new Bundle();
+                            args.putSerializable(null, workout);
+                            ((MainActivity) view.getContext()).getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.mainContainer, WorkoutStats_fragment.newInstance(workout), null)
+                                    .addToBackStack(null).commit();
+                            break;
+                        case R.id.saveAsPreset:
+                            if(workout.preset()){
+                                Toaster.toast(parentContext, String.format(parentContext.getString(R.string.alreadyPreset), workout.getName()));
+                            } else {
+                                workoutManager.makePreset(workout);
+                                Toaster.toast(parentContext, String.format(parentContext.getString(R.string.nowPreset), workout.getName()));
+                            }
+                            break;
+                        case R.id.share:
+                            //TODO: sharing is coming
+                            break;
+                    }
+                    return true;
+                });
+                ppMenu.show();
+            }
         });
     }
 
