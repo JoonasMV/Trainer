@@ -14,9 +14,15 @@ public abstract class BaseController implements TrainerController{
 
     protected Workout workout;
 
+    // For testing purposes
+    private static TrainerController controller = null;
+
+    public static void setController(TrainerController controller){
+        BaseController.controller = controller;
+    }
 
     public static TrainerController getController(){
-        return WorkoutController.getInstance();
+        return controller == null ? WorkoutController.getInstance() : controller;
     }
 
     @Override

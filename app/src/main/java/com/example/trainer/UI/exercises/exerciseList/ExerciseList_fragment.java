@@ -30,9 +30,9 @@ public class ExerciseList_fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        if (container != null) {
-            container.removeAllViews();
-        }
+//        if (container != null) {
+//            container.removeAllViews();
+//        }
         return inflater.inflate(R.layout.exercise_list_fragment, container, false);
     }
 

@@ -46,6 +46,12 @@ android {
             ]
         }
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -61,4 +67,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     testImplementation("org.assertj:assertj-core:3.24.2")
+    testImplementation 'org.robolectric:robolectric:4.9'
+    testImplementation "org.mockito:mockito-core:3.+"
 }
