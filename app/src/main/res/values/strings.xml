@@ -5,7 +5,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="workout_name_field">Workout name</string>
     <string name="back">back</string>
-    <string name="save">save</string>
+    <string name="save">Save</string>
     <string name="progress">Progress</string>
     <string name="workouts">Workout</string>
     <string name="history">History</string>
