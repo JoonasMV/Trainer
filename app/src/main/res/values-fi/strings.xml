@@ -38,5 +38,9 @@
     <string name="workoutRemoved">Treeni poistettu</string>
     <string name="durationHourMinSec">Kesto: %d h %d min %d s</string>
     <string name="durationMinSec">Kesto: %d min %d s</string>
+    <string name="signup_button">Tee käyttäjä</string>
+    <string name="password_hint">Salasana</string>
+    <string name="username_hint">Käyttäjänimi</string>
+    <string name="registerInstead">Tee käyttäjä</string>
     <string name="showChart">Näytä kuvaaja</string>
 </resources>

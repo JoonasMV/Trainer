@@ -2,6 +2,8 @@ package com.example.trainer.model;
 
 import androidx.annotation.NonNull;
 
+import com.example.trainer.R;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -127,16 +129,16 @@ public class Workout implements Serializable {
     public String getDuration(){
         Date start = this.getWorkoutStarted();
         Date end = this.getWorkoutEnded();
-        SimpleDateFormat Format = new SimpleDateFormat("HH:mm:ss");
+        long durationInMs = end.getTime() - start.getTime();
+        Duration duration = Duration.ofMillis(durationInMs);
 
-        System.out.println(end.getTime());
-        System.out.println(start.getTime());
-        Date dif = new Date(end.getTime()-start.getTime());
-        String str3 = Format.format(dif);
-        System.out.println(dif);
-        System.out.println(str3);
-
-        return str3;
+        long hours = duration.toHours();
+        long minutes = duration.toMinutes() - (hours * 60);
+        long seconds = duration.getSeconds() - (duration.toMinutes() * 60);
+        if(hours > 0){
+            return String.format("%d:%d:%d", hours, minutes, seconds);
+        }
+        return String.format("00:%d:%d", minutes, seconds);
     }
 
 

@@ -63,16 +63,16 @@ public class WorkoutStats_fragment extends Fragment {
 
         Date time = workout.getWorkoutStarted();
 
-        TextView workoutName = (TextView) view.findViewById(R.id.workoutName);
-        TextView workoutTime = (TextView) view.findViewById(R.id.workoutTime);
-        TextView workoutDuration = (TextView) view.findViewById(R.id.wDuration);
+        TextView workoutName = view.findViewById(R.id.workoutName);
+        TextView workoutTime = view.findViewById(R.id.workoutTime);
+        TextView workoutDuration = view.findViewById(R.id.wDuration);
         workoutName.setText(workout.getName());
 
         SimpleDateFormat DateFormat = new SimpleDateFormat("dd.MM.yyyy");
         String str = DateFormat.format(time);
         workoutTime.setText(str);
 
-        //workoutDuration.setText(workout.getDuration());
+        workoutDuration.setText(workout.getDuration());
         RecyclerView exercises = view.findViewById(R.id.exerciseRecyclerView);
 
         List<Exercise> exerciseTypes = workout.getExercises();

@@ -69,4 +69,8 @@ public interface TrainerController {
     void authenticateUser(User user);
 
     boolean sessionValid();
+
+    void refreshSession();
+
+    void fetchWorkoutsAndExerciseTypesOnBackground();
 }

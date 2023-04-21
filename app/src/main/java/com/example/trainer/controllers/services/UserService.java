@@ -20,7 +20,7 @@ public class UserService {
         api.authenticateUser(user);
     }
 
-    public void refresh() throws AuthenticationException {
+    public void refresh() {
         api.refreshToken();
     }
 
