@@ -19,7 +19,8 @@
     </style>
 
     <style name="button_delete" parent="Widget.AppCompat.ImageButton">
-        <item name="android:background">@color/color2_light</item>
+        <item name="android:background">@drawable/button_round</item>
+        <item name="android:backgroundTint">@color/color2_light</item>
         <item name="android:src">@drawable/button_delete</item>
         <item name="android:scaleType">centerInside</item>
         <item name="android:adjustViewBounds">true</item>
