@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.trainer.R;
+import com.example.trainer.UI.users.userSearch.User_seach_fragment;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.model.User;
 
@@ -42,6 +43,14 @@ public class HomeScreen_fragment extends Fragment {
             return;
         }
         userGreetText.setText(String.format("Welcome back %s", user.getUsername()));
+
+        view.findViewById(R.id.usersBtn).setOnClickListener(v -> {
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .addToBackStack(null)
+                    .replace(R.id.mainContainer, new User_seach_fragment())
+                    .commit();
+        });
     }
 
 

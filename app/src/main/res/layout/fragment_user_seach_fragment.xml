@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.users.user_seach_fragment">
+    tools:context=".UI.users.userSearch.User_seach_fragment">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,31 +14,56 @@
         <TextView
             android:id="@+id/userSearchTitle"
             style="@style/title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/user_search_title"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textView5"
+            />
+
+        <TextView
+            android:id="@+id/textView5"
+            style="@style/basic_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/search_for_users"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userSearchTitle"
+            app:layout_constraintBottom_toTopOf="@id/editTextTextPersonName"
             />
 
         <EditText
             android:id="@+id/editTextTextPersonName"
             style="@style/basic_text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Name"
+            app:layout_constraintBottom_toTopOf="@+id/userNameList"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-        <TextView
-            android:id="@+id/textView5"
-            style="@style/basic_text"
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/userNameList"
+            style="@style/recyclerView_basic"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/search_for_users"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userSearchTitle" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.7" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
