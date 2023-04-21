@@ -40,7 +40,6 @@
         <item name="android:padding">5dp</item>
         <item name="android:inset">0dp</item>
         <item name="android:layout_margin">5dp</item>
-
     </style>
 
     <style name="button_list" parent="button_round">
