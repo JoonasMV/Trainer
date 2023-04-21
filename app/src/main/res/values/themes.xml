@@ -8,6 +8,8 @@
         <item name="colorSecondary">@color/menu_items_light</item>
 
         <item name="colorSecondaryVariant">@color/color2_light</item>
+        <item name="colorOnTertiary">@color/black</item>
+
         <!-- Buttons -->
         <item name="colorPrimaryVariant">@color/color2_light</item>
 

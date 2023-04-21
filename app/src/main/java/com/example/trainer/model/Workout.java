@@ -2,15 +2,11 @@ package com.example.trainer.model;
 
 import androidx.annotation.NonNull;
 
-import com.example.trainer.R;
-
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 public class Workout implements Serializable {
 
