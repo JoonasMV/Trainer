@@ -36,6 +36,11 @@ public class MockAPI extends API {
     }
 
     @Override
+    public List<String> getUsernames() {
+        return null;
+    }
+
+    @Override
     public List<ExerciseType> getAllExerciseTypes() {
         List<ExerciseType> list = new ArrayList<>();
         list.add(new ExerciseType("test"));

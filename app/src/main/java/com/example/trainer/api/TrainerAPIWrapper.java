@@ -28,7 +28,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public final class TrainerAPIWrapper extends API implements AuthOperations, ExerciseTypeOperations, WorkoutOperations {
+public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTypeOperations, WorkoutOperations {
 
     private final OkHttpClient client;
     private final TokenManager tokenManager;
@@ -132,6 +132,32 @@ public final class TrainerAPIWrapper extends API implements AuthOperations, Exer
     @Override
     public boolean sessionValid() {
         return tokenManager.getToken() != null;
+    }
+
+    @Override
+    public List<String> getUsernames() {
+        Future<List<String>> result = executor.submit(() -> {
+            String token = tokenManager.getToken();
+            Request req = new Request.Builder()
+                    .url(APIEndpoints.USERS_URL)
+                    .header("Authorization", "Bearer " + token)
+                    .build();
+
+            Type type = new TypeToken<List<String>>() {}.getType();
+            try (Response res = client.newCall(req).execute()) {
+                return gson.fromJson(res.body().string(), type);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return Collections.emptyList();
+            }
+        });
+        try {
+            return result.get();
+        } catch (InterruptedException | ExecutionException | IllegalStateException e) {
+            e.printStackTrace();
+            stopSession();
+            return Collections.emptyList();
+        }
     }
 
     @Override

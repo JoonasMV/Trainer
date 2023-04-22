@@ -2,7 +2,9 @@ package com.example.trainer.api;
 
 import com.example.trainer.model.User;
 
-public interface AuthOperations {
+import java.util.List;
+
+public interface UserOperations {
     void registerUser(User user);
 
     void authenticateUser(User user);
@@ -12,4 +14,6 @@ public interface AuthOperations {
     User getUser();
 
     boolean sessionValid();
+
+    List<String> getUsernames();
 }

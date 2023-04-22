@@ -73,4 +73,6 @@ public interface TrainerController {
     void refreshSession();
 
     void fetchWorkoutsAndExerciseTypesOnBackground();
+
+    List<String> getUsernames();
 }

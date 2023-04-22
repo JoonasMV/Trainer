@@ -130,4 +130,9 @@ public class WorkoutController extends BaseController {
         workoutService.fetchOnBackground();
         exerciseTypeService.fetchOnBackground();
     }
+
+    @Override
+    public List<String> getUsernames() {
+       return userService.getUsernames();
+    }
 }

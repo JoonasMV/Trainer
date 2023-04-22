@@ -1,5 +1,6 @@
 package com.example.trainer;
 
+import com.example.trainer.api.TrainerAPIWrapper;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.controllers.WorkoutController;
 import com.example.trainer.mock.MockAPI;
@@ -8,11 +9,14 @@ import com.example.trainer.model.ExerciseType;
 import com.example.trainer.model.User;
 import com.example.trainer.model.Workout;
 
+import static org.mockito.Mockito.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ControllerTest {
@@ -180,6 +184,18 @@ public class ControllerTest {
         User userFromAPI = (User) api.getRecentParam();
         assertThat(userFromAPI.getUsername()).isEqualTo("test");
         assertThat(userFromAPI.getPassword()).isEqualTo("password");
+    }
+
+    @Test
+    public void getUsers(){
+        TrainerAPIWrapper mockApi = mock(TrainerAPIWrapper.class);
+        TrainerController mockController = new WorkoutController(mockApi);
+        when(mockApi.getUsernames()).thenReturn(Arrays.asList("test", "test2"));
+
+        List<String> users = mockController.getUsernames();
+
+        assertThat(users.size()).isEqualTo(2);
+        verify(mockApi, times(1)).getUsernames();
     }
 
 }
