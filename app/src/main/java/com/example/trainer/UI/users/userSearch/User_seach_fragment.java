@@ -12,6 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.trainer.R;
+import com.example.trainer.controllers.BaseController;
+import com.example.trainer.controllers.TrainerController;
+import com.example.trainer.model.User;
+
+import java.util.List;
 
 public class User_seach_fragment extends Fragment {
 
@@ -39,9 +44,12 @@ public class User_seach_fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
+        TrainerController controller = BaseController.getController();
+        List<User> userList = controller.findAllUsers();
+
         // Creation of username list recyclerView
         RecyclerView listOfUsers = view.findViewById(R.id.userNameList);
-        UserSearchAdapter adapter = new UserSearchAdapter(null);
+        UserSearchAdapter adapter = new UserSearchAdapter(userList);
         listOfUsers.setAdapter(adapter);
         listOfUsers.setLayoutManager(new LinearLayoutManager(getContext()));
 

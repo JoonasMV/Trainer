@@ -2,7 +2,10 @@ package com.example.trainer.controllers.services;
 
 import com.example.trainer.api.AuthOperations;
 import com.example.trainer.api.AuthenticationException;
+import com.example.trainer.api.UserOperations;
 import com.example.trainer.model.User;
+
+import java.util.List;
 
 public class UserService {
 
