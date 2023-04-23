@@ -1,9 +1,11 @@
 package com.example.trainer.UI;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,6 +29,8 @@ public class UserWorkoutStats_fragment extends Fragment {
     private TextView workoutTime;
     private TextView workoutDuration;
     private RecyclerView exercises;
+
+    private Button save;
     Workout workout;
 
     public UserWorkoutStats_fragment() {
@@ -49,6 +53,7 @@ public class UserWorkoutStats_fragment extends Fragment {
 
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,6 +66,7 @@ public class UserWorkoutStats_fragment extends Fragment {
         workoutTime = view.findViewById(R.id.workoutTime);
         workoutDuration = view.findViewById(R.id.wDuration);
         exercises = view.findViewById(R.id.exerciseRecyclerView);
+        save = view.findViewById(R.id.save);
         return view;
     }
 
@@ -68,11 +74,11 @@ public class UserWorkoutStats_fragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
         workout = (Workout) getArguments().get(null);
-
         Date time = workout.getWorkoutStarted();
-        workoutName.setText(workout.getName());
         SimpleDateFormat DateFormat = new SimpleDateFormat("dd.MM.yyyy");
         String str = DateFormat.format(time);
+
+        workoutName.setText(workout.getName());
         workoutTime.setText(str);
         workoutDuration.setText(workout.getDuration());
 
@@ -82,5 +88,8 @@ public class UserWorkoutStats_fragment extends Fragment {
         exercises.setLayoutManager(new LinearLayoutManager(getContext()));
         exercises.setAdapter(adapter);
 
+        save.setOnClickListener(v -> {
+            //TODO: to be continued
+        });
     }
 }
