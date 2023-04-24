@@ -138,26 +138,15 @@ public class Workout implements Serializable {
         long hours = duration.toHours();
         long minutes = duration.toMinutes() - (hours * 60);
         long seconds = duration.getSeconds() - (duration.toMinutes() * 60);
-        if(hours > 0){
-            return String.format("%d:%d:%d", hours, minutes, seconds);
-        }
-        return String.format("00:%d:%d", minutes, seconds);
+        String h = String.format("%d", hours);
+        String m = String.format("%d", minutes);;
+        String s = String.format("%d", seconds);;
+        if(hours < 10) {h = "0"+h;}
+        if (minutes < 10) {m = "0"+m;}
+        if (seconds < 10) {s = "0"+s; }
+        return h+":"+m+":"+s;
+
     }
-
-
-    public String getDuration2(){
-        Date start = this.getWorkoutStarted();
-        Date end = this.getWorkoutEnded();
-        SimpleDateFormat Format = new SimpleDateFormat("HH:mm:ss");
-
-        Date dif = new Date(end.getTime()-start.getTime());
-        String str3 = Format.format(dif);
-        System.out.println(dif);
-        System.out.println(str3);
-
-        return str3;
-    }
-
 
     @NonNull
     @Override

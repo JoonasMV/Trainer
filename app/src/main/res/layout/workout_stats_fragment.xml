@@ -65,6 +65,7 @@
 
         <Button
             android:id="@+id/makePresetBtn"
+            style="@style/button_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/makePreset"
@@ -75,6 +76,7 @@
 
         <Button
             android:id="@+id/shareBtn"
+            style="@style/button_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/share"
