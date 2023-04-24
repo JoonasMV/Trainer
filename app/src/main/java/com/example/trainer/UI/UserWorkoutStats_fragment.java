@@ -61,7 +61,7 @@ public class UserWorkoutStats_fragment extends Fragment {
         if (container != null) {
             container.removeAllViews();
         }
-        View view = inflater.inflate(R.layout.workout_stats_fragment, container, false);
+        View view = inflater.inflate(R.layout.user_workout_stats_fragment, container, false);
         workoutName = view.findViewById(R.id.workoutName);
         workoutTime = view.findViewById(R.id.workoutTime);
         workoutDuration = view.findViewById(R.id.wDuration);
@@ -88,8 +88,8 @@ public class UserWorkoutStats_fragment extends Fragment {
         exercises.setLayoutManager(new LinearLayoutManager(getContext()));
         exercises.setAdapter(adapter);
 
-        save.setOnClickListener(v -> {
+        //save.setOnClickListener(v -> {
             //TODO: to be continued
-        });
+        //});
     }
 }
