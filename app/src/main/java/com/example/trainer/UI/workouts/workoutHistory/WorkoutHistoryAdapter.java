@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainer.R;
 import com.example.trainer.UI.MainActivity;
 
+import com.example.trainer.UI.UpdatableAdapter;
 import com.example.trainer.UI.workouts.workoutStats.WorkoutStats_fragment;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
@@ -24,21 +25,28 @@ import com.example.trainer.model.Workout;
 import com.example.trainer.util.Toaster;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
-public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAdapter.ViewHolder> {
+public class WorkoutHistoryAdapter extends UpdatableAdapter<List<Workout>, WorkoutHistoryAdapter.ViewHolder> {
 
-    private final List<Workout> workoutHistory;
+    private List<Workout> workoutHistory;
 
     private final TrainerController workoutManager;
     private Context parentContext;
 
     private PopupMenu ppMenu;
 
-    public WorkoutHistoryAdapter(List<Workout> workoutHistory) {
-        this.workoutHistory = new ArrayList<>(workoutHistory);
+    public WorkoutHistoryAdapter() {
+        this.workoutHistory = Collections.emptyList();
         this.workoutManager = BaseController.getController();
+    }
+
+    @Override
+    public void update(List<Workout> data) {
+        workoutHistory = data;
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -49,7 +57,6 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
 
         public ViewHolder(View view) {
             super(view);
-
             workoutTitle = view.findViewById(R.id.workoutHistoryItem);
             deleteButton = view.findViewById(R.id.deleteButton);
             options = view.findViewById(R.id.optionsButton);
@@ -65,6 +72,7 @@ public class WorkoutHistoryAdapter extends RecyclerView.Adapter<WorkoutHistoryAd
 
         return new ViewHolder(v);
     }
+
 
     @SuppressLint("NotifyDataSetChanged")
     @Override

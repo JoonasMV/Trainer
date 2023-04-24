@@ -16,6 +16,7 @@ import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.model.Workout;
 import com.example.trainer.UI.workouts.currentWorkout.CurrentWorkout_fragment;
 import com.example.trainer.UI.workouts.currentWorkout.SelectExercise_fragment;
+import com.example.trainer.util.Toaster;
 
 import java.util.List;
 
@@ -84,10 +85,15 @@ public class PresetWorkouts_fragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
         RecyclerView presets = view.findViewById(R.id.workoutList);
+        PresetWorkoutsAdapter adapter = new PresetWorkoutsAdapter(getParentFragmentManager());
 
-        List<Workout> workouts = workoutManager.getPresetWorkouts();
+        workoutManager.getPresetWorkouts(result -> {
+            getActivity().runOnUiThread(() -> {
+                adapter.update(result);
+            });
+        });
 
-        PresetWorkoutsAdapter adapter = new PresetWorkoutsAdapter(workouts, getParentFragmentManager());
+
         presets.setLayoutManager(new LinearLayoutManager(getContext()));
         presets.setAdapter(adapter);
 

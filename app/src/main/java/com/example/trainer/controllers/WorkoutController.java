@@ -10,6 +10,7 @@ import com.example.trainer.controllers.services.WorkoutService;
 import com.example.trainer.model.ExerciseType;
 import com.example.trainer.model.User;
 import com.example.trainer.model.Workout;
+import com.example.trainer.util.Toaster;
 
 import java.util.Date;
 import java.util.List;
@@ -81,8 +82,26 @@ public class WorkoutController extends BaseController {
     }
 
     @Override
+    public void getPresetWorkouts(Callback<List<Workout>> callback) {
+       Runnable runnable = () -> {
+           List<Workout> workouts = workoutService.getPresetWorkouts();
+           callback.onComplete(workouts);
+       };
+       new Thread(runnable).start();
+    }
+
+    @Override
     public List<Workout> getNonPresetWorkouts() {
         return workoutService.getNonPresetWorkouts();
+    }
+
+    @Override
+    public void getNonPresetWorkouts(Callback<List<Workout>> callback) {
+        Runnable runnable = () -> {
+            List<Workout> workouts = workoutService.getNonPresetWorkouts();
+            callback.onComplete(workouts);
+        };
+        new Thread(runnable).start();
     }
 
     @Override
@@ -127,8 +146,8 @@ public class WorkoutController extends BaseController {
 
     @Override
     public void fetchWorkoutsAndExerciseTypesOnBackground() {
-        workoutService.fetchOnBackground();
         exerciseTypeService.fetchOnBackground();
+        workoutService.fetchOnBackground();
     }
 
     @Override

@@ -50,7 +50,11 @@ public interface TrainerController {
 
     List<Workout> getPresetWorkouts();
 
+    void getPresetWorkouts(Callback<List<Workout>> callback);
+
     List<Workout> getNonPresetWorkouts();
+
+    void getNonPresetWorkouts(Callback<List<Workout>> callback);
 
     void deleteWorkout(Workout workout);
 

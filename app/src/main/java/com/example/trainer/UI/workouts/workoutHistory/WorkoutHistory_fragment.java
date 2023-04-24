@@ -11,10 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
+import com.example.trainer.UI.UpdatableAdapter;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.model.Workout;
+import com.example.trainer.util.Toaster;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WorkoutHistory_fragment extends Fragment {
 
@@ -44,9 +47,13 @@ public class WorkoutHistory_fragment extends Fragment {
 
         RecyclerView workoutHistory = view.findViewById(R.id.workoutHistoryRV);
 
-        ArrayList<Workout> list = new ArrayList<>(BaseController.getController().getNonPresetWorkouts());
+        WorkoutHistoryAdapter adapter = new WorkoutHistoryAdapter();
 
-        WorkoutHistoryAdapter adapter = new WorkoutHistoryAdapter(list);
+        BaseController.getController().getNonPresetWorkouts(result -> {
+            getActivity().runOnUiThread(() -> {
+                adapter.update(result);
+            });
+        });
         workoutHistory.setLayoutManager(new LinearLayoutManager(getContext()));
         workoutHistory.setAdapter(adapter);
     }

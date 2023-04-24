@@ -15,6 +15,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -28,6 +29,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+// TODO TESTS FOR ALL METHODS
 public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTypeOperations, WorkoutOperations {
 
     private final OkHttpClient client;
@@ -48,6 +50,13 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
         this.gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX").create();
     }
 
+    public TrainerAPIWrapper(OkHttpClient client, TokenManager tokenManager, Gson gson, UserManager userManager) {
+        this.client = client;
+        this.tokenManager = tokenManager;
+        this.gson = gson;
+        this.userManager = userManager;
+    }
+
 
     @Override
     public void registerUser(User user) {
@@ -63,7 +72,6 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
             try (Response res = client.newCall(req).execute()) {
                 return gson.fromJson(res.body().string(), Token.class);
             } catch (IOException e) {
-                e.printStackTrace();
                 return null;
             }
         });
@@ -73,7 +81,6 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
             userManager.setUser(user);
         } catch (InterruptedException | ExecutionException | IllegalStateException e) {
             stopSession();
-            e.printStackTrace();
         }
     }
 
@@ -117,7 +124,6 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
                 Token responseToken = gson.fromJson(res.body().string(), Token.class);
                 tokenManager.saveToken(responseToken.getToken());
             } catch (IOException e) {
-                e.printStackTrace();
                 stopSession();
             }
         });
@@ -147,16 +153,14 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
             try (Response res = client.newCall(req).execute()) {
                 return gson.fromJson(res.body().string(), type);
             } catch (IOException e) {
-                e.printStackTrace();
-                return Collections.emptyList();
+                return new ArrayList<>();
             }
         });
         try {
             return result.get();
         } catch (InterruptedException | ExecutionException | IllegalStateException e) {
-            e.printStackTrace();
             stopSession();
-            return Collections.emptyList();
+            return new ArrayList<>();
         }
     }
 
@@ -183,7 +187,6 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
             return result.get();
         } catch (InterruptedException | ExecutionException | IllegalStateException e) {
             stopSession();
-            e.printStackTrace();
             return null;
         }
     }
@@ -202,7 +205,7 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
                 return gson.fromJson(res.body().string(), type);
             } catch (IOException e) {
                 e.printStackTrace();
-                return Collections.emptyList();
+                return new ArrayList<>();
             }
         });
         try {
@@ -210,7 +213,7 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
         } catch (InterruptedException | ExecutionException | IllegalStateException e) {
             e.printStackTrace();
             stopSession();
-            return Collections.emptyList();
+            return new ArrayList<>();
         }
     }
 
@@ -245,16 +248,14 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
             try (Response res = client.newCall(req).execute()) {
                 return gson.fromJson(res.body().string(), type);
             } catch (IOException e) {
-                e.printStackTrace();
-                return Collections.emptyList();
+                return new ArrayList<>();
             }
         });
         try {
             return result.get();
         } catch (InterruptedException | ExecutionException | IllegalStateException e) {
-            e.printStackTrace();
             stopSession();
-            return Collections.emptyList();
+            return new ArrayList<>();
         }
     }
 
