@@ -12,6 +12,16 @@
         android:layout_height="match_parent"
         tools:context=".workouts.WorkoutListActivity">
 
+        <ProgressBar
+            android:id="@+id/presetsProgressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/workoutsText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/workoutsText"
             style="@style/title"
@@ -32,6 +42,7 @@
             app:layout_constrainedHeight="true"
             app:layout_constraintBottom_toTopOf="@+id/newWorkoutBtn"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/workoutsText" />
 

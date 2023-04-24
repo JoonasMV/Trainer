@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".UI.workouts.workoutHistory.WorkoutHistory_fragment" >
 
+    <ProgressBar
+        android:id="@+id/historyProgresBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/workoutHistoryRV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/workoutHistoryRV"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/workoutHistoryTitle"
         style="@style/title"

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,6 +38,7 @@ public class WorkoutHistoryAdapter extends UpdatableAdapter<List<Workout>, Worko
     private Context parentContext;
 
     private PopupMenu ppMenu;
+
 
     public WorkoutHistoryAdapter() {
         this.workoutHistory = Collections.emptyList();

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -24,6 +25,8 @@ import java.util.List;
 public class PresetWorkouts_fragment extends Fragment {
 
     private TrainerController workoutManager;
+
+    private ProgressBar progressBar;
 
 
     public PresetWorkouts_fragment() {
@@ -87,8 +90,11 @@ public class PresetWorkouts_fragment extends Fragment {
         RecyclerView presets = view.findViewById(R.id.workoutList);
         PresetWorkoutsAdapter adapter = new PresetWorkoutsAdapter(getParentFragmentManager());
 
+        ProgressBar progressBar = view.findViewById(R.id.presetsProgressBar);
+        progressBar.setProgress(0);
         workoutManager.getPresetWorkouts(result -> {
             getActivity().runOnUiThread(() -> {
+                progressBar.setVisibility(View.GONE);
                 adapter.update(result);
             });
         });

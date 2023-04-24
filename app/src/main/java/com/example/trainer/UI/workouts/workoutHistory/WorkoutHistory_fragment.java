@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,6 +23,7 @@ import java.util.List;
 public class WorkoutHistory_fragment extends Fragment {
 
 
+    private ProgressBar progressBar;
     public WorkoutHistory_fragment() {
         // Required empty public constructor
     }
@@ -45,13 +47,16 @@ public class WorkoutHistory_fragment extends Fragment {
     public void onViewCreated (View view,
                                Bundle savedInstanceState) {
 
+        progressBar = view.findViewById(R.id.historyProgresBar);
         RecyclerView workoutHistory = view.findViewById(R.id.workoutHistoryRV);
 
         WorkoutHistoryAdapter adapter = new WorkoutHistoryAdapter();
 
+        progressBar.setProgress(0);
         BaseController.getController().getNonPresetWorkouts(result -> {
             getActivity().runOnUiThread(() -> {
                 adapter.update(result);
+                progressBar.setVisibility(View.GONE);
             });
         });
         workoutHistory.setLayoutManager(new LinearLayoutManager(getContext()));
