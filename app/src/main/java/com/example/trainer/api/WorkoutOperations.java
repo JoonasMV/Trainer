@@ -11,4 +11,6 @@ public interface WorkoutOperations {
 
     void deleteWorkout(String id);
 
+    List<Workout> getSharedWorkouts(String username);
+
 }

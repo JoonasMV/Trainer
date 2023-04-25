@@ -189,6 +189,34 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
     }
 
     @Override
+    public List<Workout> getSharedWorkouts(String username) {
+
+        Future<List<Workout>> result = executor.submit(() -> {
+            String token = tokenManager.getToken();
+            Request req = new Request.Builder()
+                    .url(APIEndpoints.USER_URL + String.format("/%s/workouts", username))
+                    .header("Authorization", "Bearer " + token)
+                    .build();
+            Type type = new TypeToken<List<Workout>>() {}.getType();
+            try (Response res = client.newCall(req).execute()) {
+                return gson.fromJson(res.body().string(), type);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return Collections.emptyList();
+            }
+        });
+        try {
+            return result.get();
+
+        } catch (InterruptedException | ExecutionException | IllegalStateException e) {
+            e.printStackTrace();
+            stopSession();
+            return Collections.emptyList();
+        }
+    }
+
+
+    @Override
     public List<Workout> getWorkouts() {
         Future<List<Workout>> result = executor.submit(() -> {
             String token = tokenManager.getToken();
@@ -257,6 +285,8 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
             return Collections.emptyList();
         }
     }
+
+
 
     @Override
     public void deleteExerciseType(String id) {
