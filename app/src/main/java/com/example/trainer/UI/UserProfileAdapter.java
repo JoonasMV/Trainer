@@ -25,9 +25,9 @@ import com.example.trainer.util.Toaster;
 
 import java.util.List;
 
-public class UserProfileAdapter extends RecyclerView.Adapter<UserProfileAdapter.ViewHolder> {
+public class UserProfileAdapter extends UpdatableAdapter<List<Workout>, UserProfileAdapter.ViewHolder> {
 
-    private final List<Workout> workouts;
+    private List<Workout> workouts;
 
     private Context parentContext;
 
@@ -52,6 +52,12 @@ public class UserProfileAdapter extends RecyclerView.Adapter<UserProfileAdapter.
             workoutTitle = view.findViewById(R.id.workoutText);
             button = view.findViewById(R.id.optionsButton);
         }
+    }
+
+    @Override
+    public void update(List<Workout> data) {
+        this.workouts = data;
+        notifyDataSetChanged();
     }
 
     @NonNull

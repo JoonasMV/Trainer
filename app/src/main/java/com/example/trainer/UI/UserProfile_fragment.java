@@ -16,13 +16,17 @@ import android.widget.TextView;
 
 import com.example.trainer.R;
 import com.example.trainer.UI.exercises.exerciseChart.ExerciseChartAdapter;
+import com.example.trainer.UI.workouts.presetWorkouts.PresetWorkoutsAdapter;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.model.User;
 import com.example.trainer.model.Workout;
+import com.example.trainer.util.Toaster;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 
 public class UserProfile_fragment extends Fragment {
@@ -76,14 +80,32 @@ public class UserProfile_fragment extends Fragment {
         //TODO: real values
 
 
+
+        /*
         list.add(new Workout("workout", new Date(), new Date()));
         list.add(new Workout("workout2", new Date(), new Date()));
         list.add(new Workout("workout3", new Date(), new Date()));
-
+        */
 
 
         UserProfileAdapter adapter = new UserProfileAdapter(list, getContext());
+        handleWorkoutFetching(adapter);
+
         workoutList.setLayoutManager(new LinearLayoutManager(getContext()));
         workoutList.setAdapter(adapter);
+    }
+
+    private void handleWorkoutFetching(UserProfileAdapter adapter){
+        new Thread(() -> {
+            Future<List<Workout>> result = BaseController.getController().getSharedWorkoutsAsync("mikko");
+            try {
+                List<Workout> workouts = result.get();
+                getActivity().runOnUiThread(() -> {
+                    adapter.update(workouts);
+                });
+            } catch (InterruptedException | ExecutionException e) {
+                Toaster.toast(getContext(), "Failed to load workouts");
+            }
+        }).start();
     }
 }
