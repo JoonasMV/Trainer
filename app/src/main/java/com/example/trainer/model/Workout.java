@@ -3,6 +3,7 @@ package com.example.trainer.model;
 import androidx.annotation.NonNull;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
@@ -137,14 +138,15 @@ public class Workout implements Serializable {
         long hours = duration.toHours();
         long minutes = duration.toMinutes() - (hours * 60);
         long seconds = duration.getSeconds() - (duration.toMinutes() * 60);
-        if(hours > 0){
-            return String.format("%d:%d:%d", hours, minutes, seconds);
-        }
-        return String.format("00:%d:%d", minutes, seconds);
+        String h = String.format("%d", hours);
+        String m = String.format("%d", minutes);;
+        String s = String.format("%d", seconds);;
+        if(hours < 10) {h = "0"+h;}
+        if (minutes < 10) {m = "0"+m;}
+        if (seconds < 10) {s = "0"+s; }
+        return h+":"+m+":"+s;
+
     }
-
-
-
 
     @NonNull
     @Override

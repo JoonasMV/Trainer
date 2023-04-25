@@ -17,7 +17,7 @@
     <string name="makePreset">Tallenna pohjaksi</string>
     <string name="addWorkoutName">Tallenna nimi</string>
     <string name="workoutName">Treeni</string>
-    <string name="login_button_text">Luo käyttäjä</string>
+    <string name="login_button_text">Kirjaudu</string>
     <string name="saveExercise">Tallenna liike</string>
     <string name="exerciseName">Liikkeen nimi</string>
     <string name="presetText">Treenipohjat</string>
@@ -38,10 +38,10 @@
     <string name="workoutRemoved">Treeni poistettu</string>
     <string name="durationHourMinSec">Kesto: %d h %d min %d s</string>
     <string name="durationMinSec">Kesto: %d min %d s</string>
-    <string name="signup_button">Tee käyttäjä</string>
+    <string name="signup_button">Luo käyttäjä</string>
     <string name="password_hint">Salasana</string>
     <string name="username_hint">Käyttäjänimi</string>
-    <string name="registerInstead">Tee käyttäjä</string>
+    <string name="registerInstead">Luo käyttäjä</string>
     <string name="showChart">Näytä kuvaaja</string>
     <string name="share">Jaa</string>
     <string name="showWorkout">Näytä tiedot</string>
