@@ -80,4 +80,6 @@ public interface TrainerController {
     List<String> getUsernames();
 
     Future<List<ExerciseType>> getExerciseTypesAsync();
+
+    Future<List<Workout>> getSharedWorkoutsAsync(String username);
 }

@@ -96,6 +96,11 @@ public class WorkoutController extends BaseController {
     }
 
     @Override
+    public Future<List<Workout>> getSharedWorkoutsAsync(String username) {
+        return executor.submit(() -> workoutService.getSharedWorkouts(username));
+    }
+
+    @Override
     public Future<List<Workout>> getNonPresetWorkoutsAsync() {
         return executor.submit(workoutService::getNonPresetWorkouts);
     }

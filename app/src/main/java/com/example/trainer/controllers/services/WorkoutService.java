@@ -55,6 +55,10 @@ public class WorkoutService {
         return filterNonPresets();
     }
 
+    public List<Workout> getSharedWorkouts(String username){
+        return api.getSharedWorkouts(username);
+    }
+
     private List<Workout> filterNonPresets(){
         if(workouts.isEmpty()){
             return workouts;
