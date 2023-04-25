@@ -19,6 +19,8 @@ import com.example.trainer.util.Toaster;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 public class WorkoutHistory_fragment extends Fragment {
 
@@ -47,19 +49,29 @@ public class WorkoutHistory_fragment extends Fragment {
     public void onViewCreated (View view,
                                Bundle savedInstanceState) {
 
-        progressBar = view.findViewById(R.id.historyProgresBar);
         RecyclerView workoutHistory = view.findViewById(R.id.workoutHistoryRV);
+        progressBar = view.findViewById(R.id.historyProgresBar);
 
         WorkoutHistoryAdapter adapter = new WorkoutHistoryAdapter();
-
-        progressBar.setProgress(0);
-        BaseController.getController().getNonPresetWorkouts(result -> {
-            getActivity().runOnUiThread(() -> {
-                adapter.update(result);
-                progressBar.setVisibility(View.GONE);
-            });
-        });
+        handleWorkoutFetching(adapter);
         workoutHistory.setLayoutManager(new LinearLayoutManager(getContext()));
         workoutHistory.setAdapter(adapter);
+    }
+
+    private void handleWorkoutFetching(WorkoutHistoryAdapter adapter){
+        progressBar.setProgress(0);
+        new Thread(() -> {
+            Future<List<Workout>> result = BaseController.getController().getNonPresetWorkoutsAsync();
+            try {
+                List<Workout> workouts = result.get();
+                getActivity().runOnUiThread(() -> {
+                    adapter.update(workouts);
+                    progressBar.setVisibility(View.GONE);
+                });
+            } catch (InterruptedException | ExecutionException e) {
+                Toaster.toast(getContext(), "Failed to load workouts");
+            }
+        }).start();
+
     }
 }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
+import com.example.trainer.UI.workouts.workoutHistory.WorkoutHistoryAdapter;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.model.Workout;
@@ -20,6 +21,8 @@ import com.example.trainer.UI.workouts.currentWorkout.SelectExercise_fragment;
 import com.example.trainer.util.Toaster;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 
 public class PresetWorkouts_fragment extends Fragment {
@@ -90,18 +93,26 @@ public class PresetWorkouts_fragment extends Fragment {
         RecyclerView presets = view.findViewById(R.id.workoutList);
         PresetWorkoutsAdapter adapter = new PresetWorkoutsAdapter(getParentFragmentManager());
 
-        ProgressBar progressBar = view.findViewById(R.id.presetsProgressBar);
-        progressBar.setProgress(0);
-        workoutManager.getPresetWorkouts(result -> {
-            getActivity().runOnUiThread(() -> {
-                progressBar.setVisibility(View.GONE);
-                adapter.update(result);
-            });
-        });
-
-
+        progressBar = view.findViewById(R.id.presetsProgressBar);
+        handleWorkoutFetching(adapter);
         presets.setLayoutManager(new LinearLayoutManager(getContext()));
         presets.setAdapter(adapter);
 
+    }
+
+    private void handleWorkoutFetching(PresetWorkoutsAdapter adapter){
+        progressBar.setProgress(0);
+        new Thread(() -> {
+            Future<List<Workout>> result = BaseController.getController().getPresetWorkoutsAsync();
+            try {
+                List<Workout> workouts = result.get();
+                getActivity().runOnUiThread(() -> {
+                    adapter.update(workouts);
+                    progressBar.setVisibility(View.GONE);
+                });
+            } catch (InterruptedException | ExecutionException e) {
+                Toaster.toast(getContext(), "Failed to load workouts");
+            }
+        }).start();
     }
 }

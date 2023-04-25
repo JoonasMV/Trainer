@@ -8,6 +8,7 @@ import com.example.trainer.model.User;
 import com.example.trainer.model.Workout;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
 public interface TrainerController {
 
@@ -50,12 +51,10 @@ public interface TrainerController {
 
     List<Workout> getPresetWorkouts();
 
-    void getPresetWorkouts(Callback<List<Workout>> callback);
-
     List<Workout> getNonPresetWorkouts();
 
-    void getNonPresetWorkouts(Callback<List<Workout>> callback);
-
+    Future<List<Workout>> getPresetWorkoutsAsync();
+    Future<List<Workout>> getNonPresetWorkoutsAsync();
     void deleteWorkout(Workout workout);
 
     boolean exerciseTypeExists(String name);
@@ -79,4 +78,6 @@ public interface TrainerController {
     void fetchWorkoutsAndExerciseTypesOnBackground();
 
     List<String> getUsernames();
+
+    Future<List<ExerciseType>> getExerciseTypesAsync();
 }

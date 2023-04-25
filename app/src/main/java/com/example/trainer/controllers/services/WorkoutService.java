@@ -7,6 +7,10 @@ import com.example.trainer.model.Workout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 
 public class WorkoutService {
@@ -17,7 +21,10 @@ public class WorkoutService {
         this.api = api;
     }
 
+    private final String TAG = "WorkoutService";
+
     public void save(Workout workout) {
+        Log.d(TAG, "save: " + workout);
         Workout saved = api.saveWorkout(workout);
         if(saved != null) {
             workouts.add(saved);
@@ -88,6 +95,4 @@ public class WorkoutService {
         Thread thread = new Thread(runnable);
         thread.start();
     }
-
-
 }

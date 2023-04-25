@@ -10,10 +10,12 @@ import com.example.trainer.controllers.services.WorkoutService;
 import com.example.trainer.model.ExerciseType;
 import com.example.trainer.model.User;
 import com.example.trainer.model.Workout;
-import com.example.trainer.util.Toaster;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class WorkoutController extends BaseController {
 
@@ -21,6 +23,7 @@ public class WorkoutController extends BaseController {
     private final ExerciseTypeService exerciseTypeService;
     private final UserService userService;
     private static WorkoutController instance;
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
     private WorkoutController(Context context){
         API api = new TrainerAPIWrapper(context);
@@ -57,7 +60,8 @@ public class WorkoutController extends BaseController {
     @Override
     public void saveWorkout() {
         super.workout.setWorkoutEnded(new Date());
-        workoutService.save(super.workout);
+        Workout copy = new Workout(super.workout);
+        executor.submit(() -> workoutService.save(copy));
         super.workout = null;
     }
 
@@ -68,7 +72,7 @@ public class WorkoutController extends BaseController {
 
     @Override
     public void deleteExerciseType(String id) {
-        exerciseTypeService.deleteExerciseType(id);
+        executor.submit(() -> exerciseTypeService.deleteExerciseType(id));
     }
 
     @Override
@@ -82,31 +86,23 @@ public class WorkoutController extends BaseController {
     }
 
     @Override
-    public void getPresetWorkouts(Callback<List<Workout>> callback) {
-       Runnable runnable = () -> {
-           List<Workout> workouts = workoutService.getPresetWorkouts();
-           callback.onComplete(workouts);
-       };
-       new Thread(runnable).start();
-    }
-
-    @Override
     public List<Workout> getNonPresetWorkouts() {
         return workoutService.getNonPresetWorkouts();
     }
 
     @Override
-    public void getNonPresetWorkouts(Callback<List<Workout>> callback) {
-        Runnable runnable = () -> {
-            List<Workout> workouts = workoutService.getNonPresetWorkouts();
-            callback.onComplete(workouts);
-        };
-        new Thread(runnable).start();
+    public Future<List<Workout>> getPresetWorkoutsAsync() {
+        return executor.submit(workoutService::getPresetWorkouts);
+    }
+
+    @Override
+    public Future<List<Workout>> getNonPresetWorkoutsAsync() {
+        return executor.submit(workoutService::getNonPresetWorkouts);
     }
 
     @Override
     public void deleteWorkout(Workout workout) {
-        workoutService.deleteWorkout(workout);
+        executor.submit(() -> workoutService.deleteWorkout(workout));
     }
 
     @Override
@@ -116,22 +112,22 @@ public class WorkoutController extends BaseController {
 
     @Override
     public void createExerciseType(ExerciseType type) {
-        exerciseTypeService.createExerciseType(type);
+        executor.submit(() -> exerciseTypeService.createExerciseType(type));
     }
 
     @Override
     public void makePreset(Workout workout) {
-        workoutService.makePreset(workout);
+        executor.submit(() -> workoutService.makePreset(workout));
     }
 
     @Override
     public void registerUser(User user) {
-        userService.register(user);
+        executor.submit(() -> userService.register(user));
     }
 
     @Override
     public void authenticateUser(User user) {
-        userService.authenticate(user);
+        executor.submit(() -> userService.authenticate(user));
     }
 
     @Override
@@ -141,7 +137,7 @@ public class WorkoutController extends BaseController {
 
     @Override
     public void refreshSession() {
-        userService.refresh();
+        executor.submit(userService::refresh);
     }
 
     @Override
@@ -153,5 +149,10 @@ public class WorkoutController extends BaseController {
     @Override
     public List<String> getUsernames() {
        return userService.getUsernames();
+    }
+
+    @Override
+    public Future<List<ExerciseType>> getExerciseTypesAsync() {
+        return executor.submit(exerciseTypeService::getAll);
     }
 }
