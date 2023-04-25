@@ -130,10 +130,13 @@ public class Workout implements Serializable {
     }
 
     public String getDuration(){
+
         Date start = this.getWorkoutStarted();
         Date end = this.getWorkoutEnded();
+
         long durationInMs = end.getTime() - start.getTime();
         Duration duration = Duration.ofMillis(durationInMs);
+
 
         long hours = duration.toHours();
         long minutes = duration.toMinutes() - (hours * 60);

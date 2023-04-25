@@ -67,9 +67,9 @@ public interface TrainerController {
 
     void setWorkout(Workout workout);
 
-    void registerUser(User user);
+    Future<Boolean> registerUserAsync(User user);
 
-    void authenticateUser(User user);
+    Future<Boolean> authenticateUserAsync(User user);
 
     boolean sessionValid();
 
@@ -80,6 +80,8 @@ public interface TrainerController {
     List<String> getUsernames();
 
     Future<List<ExerciseType>> getExerciseTypesAsync();
+
+    void makeShared(Workout workout);
 
     Future<List<Workout>> getSharedWorkoutsAsync(String username);
 }

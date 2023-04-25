@@ -12,13 +12,15 @@ public class MockAPI extends API {
 
     private Object recentParam;
     @Override
-    public void registerUser(User user) {
+    public boolean registerUser(User user) {
         recentParam = user;
+        return false;
     }
 
     @Override
-    public void authenticateUser(User user) {
+    public boolean authenticateUser(User user) {
         recentParam = user;
+        return false;
     }
 
     @Override

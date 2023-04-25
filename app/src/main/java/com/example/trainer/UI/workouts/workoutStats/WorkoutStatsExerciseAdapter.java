@@ -25,11 +25,7 @@ import java.util.List;
 public class WorkoutStatsExerciseAdapter extends RecyclerView.Adapter<WorkoutStatsExerciseAdapter.ViewHolder> {
 
     private final List<Exercise> exercises;
-
-
     private Context parentContext;
-
-
 
     public WorkoutStatsExerciseAdapter(List<Exercise> exercises, Context parentContext) {
         this.exercises = exercises;
@@ -38,17 +34,18 @@ public class WorkoutStatsExerciseAdapter extends RecyclerView.Adapter<WorkoutSta
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView exerciseTypeTitle;
-
         public ImageButton button;
         public RecyclerView setRecyclerView;
-
+        public TextView reps;
+        public TextView weight;
         boolean isPressed;
         public ViewHolder(View view) {
             super(view);
-
             exerciseTypeTitle = view.findViewById(R.id.exerciseType);
             setRecyclerView = view.findViewById(R.id.setList);
             button = view.findViewById(R.id.toggleButton);
+            reps = view.findViewById(R.id.repsText);
+            weight = view.findViewById(R.id.weightText);
         }
     }
 
@@ -57,7 +54,6 @@ public class WorkoutStatsExerciseAdapter extends RecyclerView.Adapter<WorkoutSta
     public WorkoutStatsExerciseAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parentContext)
                 .inflate(R.layout.exercise_type_item, parent, false);
-
         return new ViewHolder(v);
     }
 
@@ -79,6 +75,8 @@ public class WorkoutStatsExerciseAdapter extends RecyclerView.Adapter<WorkoutSta
         holder.setRecyclerView.setAdapter(adapter);
 
         holder.setRecyclerView.setVisibility(View.GONE);
+        holder.reps.setVisibility(View.GONE);
+        holder.weight.setVisibility(View.GONE);
         holder.button.setOnClickListener(v -> {
           showSets(holder);
         });
@@ -91,9 +89,13 @@ public class WorkoutStatsExerciseAdapter extends RecyclerView.Adapter<WorkoutSta
     private void showSets(ViewHolder holder){
         if(holder.isPressed){
             holder.setRecyclerView.setVisibility(View.GONE);
+            holder.reps.setVisibility(View.GONE);
+            holder.weight.setVisibility(View.GONE);
             holder.button.setImageResource(R.drawable.baseline_keyboard_arrow_down_24);
         }else{
             holder.setRecyclerView.setVisibility(View.VISIBLE);
+            holder.reps.setVisibility(View.VISIBLE);
+            holder.weight.setVisibility(View.VISIBLE);
             holder.button.setImageResource(R.drawable.baseline_keyboard_arrow_up_24);
         }
         holder.isPressed = !holder.isPressed; // reverse

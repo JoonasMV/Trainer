@@ -13,12 +13,12 @@ public class UserService {
         this.api = api;
     }
 
-    public void register(User user) throws IllegalArgumentException {
-        api.registerUser(user);
+    public boolean register(User user) {
+        return api.registerUser(user);
     }
 
-    public void authenticate(User user) throws IllegalArgumentException {
-        api.authenticateUser(user);
+    public boolean authenticate(User user) {
+        return api.authenticateUser(user);
     }
 
     public void refresh() {

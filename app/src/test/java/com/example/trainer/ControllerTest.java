@@ -169,7 +169,7 @@ public class ControllerTest {
     @Test
     public void registersUser(){
         User user = new User("test", "password");
-        controller.registerUser(user);
+        controller.registerUserAsync(user);
         assertThat(api.getRecentParam()).isInstanceOf(User.class);
         User userFromAPI = (User) api.getRecentParam();
         assertThat(userFromAPI.getUsername()).isEqualTo("test");
@@ -179,7 +179,7 @@ public class ControllerTest {
     @Test
     public void authenticateUser() {
         User user = new User("test", "password");
-        controller.authenticateUser(user);
+        controller.authenticateUserAsync(user);
         assertThat(api.getRecentParam()).isInstanceOf(User.class);
         User userFromAPI = (User) api.getRecentParam();
         assertThat(userFromAPI.getUsername()).isEqualTo("test");

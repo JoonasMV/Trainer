@@ -99,4 +99,9 @@ public class WorkoutService {
         Thread thread = new Thread(runnable);
         thread.start();
     }
+
+    public void makeShared(Workout workout) {
+        workout.setShared(true);
+        api.updateWorkout(workout);
+    }
 }

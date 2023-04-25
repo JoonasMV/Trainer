@@ -11,6 +11,9 @@ import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.model.User;
+import com.example.trainer.util.Toaster;
+
+import java.util.concurrent.Future;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -32,13 +35,28 @@ public class SignUpActivity extends AppCompatActivity {
             String username = nameInput.getText().toString();
             String password = passwordInput.getText().toString();
             User user = new User(username, password);
-
-            TrainerController controller = BaseController.getController();
-            controller.registerUser(user);
-
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
+            registerUserOnBackground(user);
+            //finish();
         });
+    }
+
+    private void registerUserOnBackground(User user){
+        TrainerController controller = BaseController.getController();
+        new Thread(() -> {
+            Future<Boolean> result = controller.registerUserAsync(user);
+            try {
+                if(result.get()){
+                    runOnUiThread(() -> {
+                        startActivity(new Intent(this, MainActivity.class));
+                    });
+                } else {
+                    Toaster.toast(getApplicationContext(), "Registering failed");
+                }
+            } catch (Exception e) {
+                Toaster.toast(getApplicationContext(), "Registering failed");
+            }
+        }).start();
+
     }
 
     @Override

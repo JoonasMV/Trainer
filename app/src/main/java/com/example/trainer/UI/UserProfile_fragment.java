@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.trainer.R;
 import com.example.trainer.UI.exercises.exerciseChart.ExerciseChartAdapter;
+import com.example.trainer.controllers.BaseController;
 import com.example.trainer.model.User;
 import com.example.trainer.model.Workout;
 
@@ -73,9 +74,13 @@ public class UserProfile_fragment extends Fragment {
         List<Workout> list = new ArrayList<>();
         //placeholders
         //TODO: real values
+
+
         list.add(new Workout("workout", new Date(), new Date()));
         list.add(new Workout("workout2", new Date(), new Date()));
         list.add(new Workout("workout3", new Date(), new Date()));
+
+
 
         UserProfileAdapter adapter = new UserProfileAdapter(list, getContext());
         workoutList.setLayoutManager(new LinearLayoutManager(getContext()));

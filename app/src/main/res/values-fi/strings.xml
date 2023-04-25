@@ -45,4 +45,5 @@
     <string name="showChart">Näytä kuvaaja</string>
     <string name="share">Jaa</string>
     <string name="showWorkout">Näytä tiedot</string>
+    <string name="arrowBtnText">Näytä liikkeen toistot ja painot</string>
 </resources>

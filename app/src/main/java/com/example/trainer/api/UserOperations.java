@@ -5,9 +5,9 @@ import com.example.trainer.model.User;
 import java.util.List;
 
 public interface UserOperations {
-    void registerUser(User user);
+    boolean registerUser(User user);
 
-    void authenticateUser(User user);
+    boolean authenticateUser(User user);
 
     void refreshToken();
 
