@@ -10,10 +10,21 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginVertical="5dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
             <TextView
                 android:id="@+id/exerciseType"
@@ -21,28 +32,51 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView"
-                android:textSize="22sp"
+                android:textSize="24sp"
                 android:layout_margin="8dp"/>
 
             <ImageButton
                 android:id="@+id/toggleButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
                 android:checked="true"
+                android:contentDescription="show exercises reps and weights"
                 android:hint="more"
                 android:src="@drawable/baseline_keyboard_arrow_down_24"
-                android:backgroundTint="?android:attr/colorBackground"
+                android:backgroundTint="?attr/colorPrimary"
+                app:tint="@color/white"
                 style="@style/image_style"/>
 
         </LinearLayout>
 
-        <View
-            android:id="@+id/view"
+        </androidx.cardview.widget.CardView>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_weight="2"
-            style="@style/underline_color"
-            />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/repsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/reps"
+                android:textSize="20sp"
+                android:layout_margin="8dp"/>
+
+            <TextView
+                android:id="@+id/weightText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/weight"
+                android:textSize="20sp"
+                android:layout_margin="8dp"/>
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/setList"
