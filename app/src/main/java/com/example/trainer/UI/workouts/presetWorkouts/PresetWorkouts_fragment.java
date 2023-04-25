@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -11,18 +12,24 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
+import com.example.trainer.UI.workouts.workoutHistory.WorkoutHistoryAdapter;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.model.Workout;
 import com.example.trainer.UI.workouts.currentWorkout.CurrentWorkout_fragment;
 import com.example.trainer.UI.workouts.currentWorkout.SelectExercise_fragment;
+import com.example.trainer.util.Toaster;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 
 public class PresetWorkouts_fragment extends Fragment {
 
     private TrainerController workoutManager;
+
+    private ProgressBar progressBar;
 
 
     public PresetWorkouts_fragment() {
@@ -84,12 +91,28 @@ public class PresetWorkouts_fragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
         RecyclerView presets = view.findViewById(R.id.workoutList);
+        PresetWorkoutsAdapter adapter = new PresetWorkoutsAdapter(getParentFragmentManager());
 
-        List<Workout> workouts = workoutManager.getPresetWorkouts();
-
-        PresetWorkoutsAdapter adapter = new PresetWorkoutsAdapter(workouts, getParentFragmentManager());
+        progressBar = view.findViewById(R.id.presetsProgressBar);
+        handleWorkoutFetching(adapter);
         presets.setLayoutManager(new LinearLayoutManager(getContext()));
         presets.setAdapter(adapter);
 
+    }
+
+    private void handleWorkoutFetching(PresetWorkoutsAdapter adapter){
+        progressBar.setProgress(0);
+        new Thread(() -> {
+            Future<List<Workout>> result = BaseController.getController().getPresetWorkoutsAsync();
+            try {
+                List<Workout> workouts = result.get();
+                getActivity().runOnUiThread(() -> {
+                    adapter.update(workouts);
+                    progressBar.setVisibility(View.GONE);
+                });
+            } catch (InterruptedException | ExecutionException e) {
+                Toaster.toast(getContext(), "Failed to load workouts");
+            }
+        }).start();
     }
 }

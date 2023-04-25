@@ -15,25 +15,33 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
+import com.example.trainer.UI.UpdatableAdapter;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.model.Workout;
 import com.example.trainer.UI.workouts.currentWorkout.CurrentWorkout_fragment;
 import com.example.trainer.util.Toaster;
 
+import java.util.Collections;
 import java.util.List;
 
-public class PresetWorkoutsAdapter extends RecyclerView.Adapter<PresetWorkoutsAdapter.ViewHolder> {
+public class PresetWorkoutsAdapter extends UpdatableAdapter<List<Workout>, PresetWorkoutsAdapter.ViewHolder> {
 
-    private final List<Workout> presets;
+    private List<Workout> presets;
     private final FragmentManager fManager;
     private final TrainerController workoutManager = BaseController.getController();
 
     private Context parentContext;
 
-    public PresetWorkoutsAdapter(List<Workout> presets, FragmentManager fManager) {
+    public PresetWorkoutsAdapter(FragmentManager fManager) {
         this.fManager = fManager;
-        this.presets = presets;
+        this.presets = Collections.emptyList();
+    }
+
+    @Override
+    public void update(List<Workout> data) {
+        this.presets = data;
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -42,7 +50,6 @@ public class PresetWorkoutsAdapter extends RecyclerView.Adapter<PresetWorkoutsAd
         private final ImageButton deleteButton;
         public ViewHolder(View view) {
             super(view);
-
             workoutTitle = view.findViewById(R.id.preset);
             deleteButton = view.findViewById(R.id.button);
         }
