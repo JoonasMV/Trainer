@@ -121,13 +121,13 @@ public class WorkoutController extends BaseController {
     }
 
     @Override
-    public void registerUser(User user) {
-        executor.submit(() -> userService.register(user));
+    public Future<Boolean> registerUserAsync(User user) {
+        return executor.submit(() -> userService.register(user));
     }
 
     @Override
-    public void authenticateUser(User user) {
-        executor.submit(() -> userService.authenticate(user));
+    public Future<Boolean> authenticateUserAsync(User user) {
+        return executor.submit(() -> userService.authenticate(user));
     }
 
     @Override

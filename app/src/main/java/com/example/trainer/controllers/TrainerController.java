@@ -67,9 +67,9 @@ public interface TrainerController {
 
     void setWorkout(Workout workout);
 
-    void registerUser(User user);
+    Future<Boolean> registerUserAsync(User user);
 
-    void authenticateUser(User user);
+    Future<Boolean> authenticateUserAsync(User user);
 
     boolean sessionValid();
 
