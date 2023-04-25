@@ -155,4 +155,9 @@ public class WorkoutController extends BaseController {
     public Future<List<ExerciseType>> getExerciseTypesAsync() {
         return executor.submit(exerciseTypeService::getAll);
     }
+
+    @Override
+    public void makeShared(Workout workout){
+        workoutService.makeShared(workout);
+    }
 }

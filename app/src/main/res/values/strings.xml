@@ -47,4 +47,6 @@
     <string name="share">Share</string>
     <string name="showWorkout">Show</string>
     <string name="arrowBtnText">Show exercise\'s reps and weight</string>
+    <string name="alreadyShared">\"%s is already shared\"</string>
+    <string name="nowShared">\"%s is now shared!\"</string>
 </resources>

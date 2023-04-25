@@ -252,6 +252,28 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
         }
     }
 
+    @Override
+    public Workout updateWorkout(Workout workout) {
+        RequestBody reqBody = RequestBody.create(gson.toJson(workout), JSON);
+        String token = tokenManager.getToken();
+
+        Request req = new Request.Builder()
+                .url(APIEndpoints.USER_URL + "/workouts/" + workout.getId())
+                .post(reqBody)
+                .header("Authorization", "Bearer " + token)
+                .build();
+
+        try (Response res = client.newCall(req).execute()) {
+            return gson.fromJson(res.body().string(), Workout.class);
+        } catch (IOException e) {
+            Log.d("API", "Error while updating workout: " + e.getMessage());
+            stopSession();
+            return null;
+        }
+    }
+
+
+
     private void stopSession() {
         tokenManager.deleteToken();
         userManager.logout();

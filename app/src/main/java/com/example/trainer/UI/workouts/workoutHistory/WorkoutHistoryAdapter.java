@@ -124,7 +124,12 @@ public class WorkoutHistoryAdapter extends UpdatableAdapter<List<Workout>, Worko
                             }
                             break;
                         case R.id.share:
-                            //TODO: sharing is coming
+                            if(workout.isShared()){
+                                Toaster.toast(parentContext, String.format(parentContext.getString(R.string.alreadyShared), workout.getName()));
+                            } else {
+                                workoutManager.makeShared(workout);
+                                Toaster.toast(parentContext, String.format(parentContext.getString(R.string.nowShared), workout.getName()));
+                            }
                             break;
                     }
                     return true;
