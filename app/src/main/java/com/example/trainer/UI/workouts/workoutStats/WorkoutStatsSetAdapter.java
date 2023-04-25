@@ -20,7 +20,6 @@ public class WorkoutStatsSetAdapter extends RecyclerView.Adapter<WorkoutStatsSet
 
     private final List<ExerciseSet> sets;
 
-
     private Context parentContext;
 
     public WorkoutStatsSetAdapter(List<ExerciseSet> sets, Context parentContext) {
@@ -55,24 +54,17 @@ public class WorkoutStatsSetAdapter extends RecyclerView.Adapter<WorkoutStatsSet
     @Override
     public void onBindViewHolder(@NonNull WorkoutStatsSetAdapter.ViewHolder holder, int position) {
         ExerciseSet set = sets.get(position);
-        System.out.println("Toistot "+set.getReps());
-        System.out.println("Paino "+set.getWeight());
 
         int repsInt = set.getReps();
         double weightDouble = set.getWeight();
 
         String reps;
         String weight;
-        if(repsInt < 0){
-            reps = "-";
-        } else {
-            reps = String.valueOf(repsInt);
-        }
-        if(weightDouble < 0){
-            weight = "-";
-        } else{
-            weight = String.valueOf(weightDouble);
-        }
+        if(repsInt < 0){reps = "-";}
+        else {reps = String.valueOf(repsInt);}
+        if(weightDouble < 0){weight = "-";}
+        else{weight = String.valueOf(weightDouble);}
+
         holder.Reps.setText(reps);
         holder.Weight.setText(weight);
     }

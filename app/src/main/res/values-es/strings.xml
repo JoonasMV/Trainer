@@ -45,4 +45,5 @@
     <string name="login_button_text">Iniciar sesión</string>
     <string name="share">compartir</string>
     <string name="showWorkout">mostrar</string>
+    <string name="arrowBtnText">Mostrar las repeticiones y el peso del ejercicio</string>
 </resources>
