@@ -10,10 +10,21 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginVertical="5dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
             <TextView
                 android:id="@+id/exerciseType"
@@ -21,33 +32,76 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView"
-                android:textSize="22sp"
-                android:layout_margin="8dp"/>
+                android:textSize="24sp"
+                android:layout_marginStart="8dp"
+                android:layout_marginVertical="6dp"
+                />
 
             <ImageButton
                 android:id="@+id/toggleButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
                 android:checked="true"
-                android:hint="more"
+                android:contentDescription="@string/arrowBtnText"
                 android:src="@drawable/baseline_keyboard_arrow_down_24"
-                android:backgroundTint="?android:attr/colorBackground"
+                android:backgroundTint="?attr/colorPrimary"
+                app:tint="@color/white"
                 style="@style/image_style"/>
 
         </LinearLayout>
 
-        <View
-            android:id="@+id/view"
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_weight="2"
-            style="@style/underline_color"
-            />
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp">
+
+            <TextView
+                android:id="@+id/repsText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/reps"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline19"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="8dp"
+                />
+
+            <TextView
+                android:id="@+id/weightText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/weight"
+                android:textSize="20sp"
+                android:layout_marginStart="8dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/guideline19"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/setList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="6dp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,4 +45,5 @@
     <string name="showChart">ցուցադրել ձեռնարկը</string>
     <string name="share">կիսվել</string>
     <string name="showWorkout">բացահայտել</string>
+    <string name="arrowBtnText">" Ցույց տալ վարժությունների կրկնողությունները և քաշը"</string>
 </resources>
