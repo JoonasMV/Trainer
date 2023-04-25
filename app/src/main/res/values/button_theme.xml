@@ -12,6 +12,10 @@
         <item name="android:background">@drawable/button_round</item>
     </style>
 
+    <style name="button_workout" parent="button_round">
+        <item name="android:background">@drawable/button_round</item>
+    </style>
+
     <style name="button_menu" parent="button_basic">
         <item name="backgroundTint">?attr/colorPrimary</item>
         <item name="android:layout_margin">0dp</item>
