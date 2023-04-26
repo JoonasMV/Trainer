@@ -17,7 +17,7 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class TokenManagerTest {
 
-    private Context context = InstrumentationRegistry.getInstrumentation().getContext();
+    private final Context context = InstrumentationRegistry.getInstrumentation().getContext();
     private TokenManager tokenManager;
 
     @Before

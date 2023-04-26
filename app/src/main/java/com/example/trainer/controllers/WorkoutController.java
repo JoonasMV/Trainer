@@ -76,18 +76,6 @@ public class WorkoutController extends BaseController {
     }
 
     /**
-     * Gets the instance of the controller, can be called any time.
-     * @param context the context of the application
-     * @return the instance of the controller
-     */
-    public static WorkoutController getInstance(Context context){
-        if(instance == null){
-            instance = new WorkoutController(context);
-        }
-        return instance;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override

@@ -20,7 +20,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(AndroidJUnit4.class)
 public class UserManagerTest {
 
-    private Context context = InstrumentationRegistry.getInstrumentation().getContext();
+    private final Context context = InstrumentationRegistry.getInstrumentation().getContext();
     private UserManager userManager;
 
     @Before

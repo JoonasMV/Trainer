@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.workouts.workoutHistory.WorkoutHistory_fragment" >
+    tools:context=".ui.workouts.workoutHistory.WorkoutHistory_fragment" >
 
     <ProgressBar
         android:id="@+id/historyProgresBar"

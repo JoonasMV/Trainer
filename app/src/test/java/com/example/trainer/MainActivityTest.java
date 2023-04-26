@@ -1,7 +1,7 @@
 package com.example.trainer;
 
-import com.example.trainer.UI.LoginPage_activity;
-import com.example.trainer.UI.MainActivity;
+import com.example.trainer.ui.LoginPage_activity;
+import com.example.trainer.ui.MainActivity;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.controllers.WorkoutController;

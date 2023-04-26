@@ -1,14 +1,16 @@
 package com.example.trainer.model;
 
+import android.annotation.SuppressLint;
+
 import androidx.annotation.NonNull;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@SuppressLint("DefaultLocale")
 public class Workout implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,8 +28,6 @@ public class Workout implements Serializable {
      * If the workout is shared or not
      */
     private boolean shared;
-
-    private String userId;
 
     public Workout (String name, Date workoutStarted, Date workoutEnded) {
         this.name = name;
@@ -63,10 +63,7 @@ public class Workout implements Serializable {
         this.preset = workout.preset;
         this.exercises = workout.exercises;
         this.shared = workout.shared;
-    }
-
-    public void ended(){
-        this.workoutEnded = new Date();
+        this.id = workout.id;
     }
 
     public String getName() {
@@ -142,8 +139,8 @@ public class Workout implements Serializable {
         long minutes = duration.toMinutes() - (hours * 60);
         long seconds = duration.getSeconds() - (duration.toMinutes() * 60);
         String h = String.format("%d", hours);
-        String m = String.format("%d", minutes);;
-        String s = String.format("%d", seconds);;
+        String m = String.format("%d", minutes);
+        String s = String.format("%d", seconds);
         if(hours < 10) {h = "0"+h;}
         if (minutes < 10) {m = "0"+m;}
         if (seconds < 10) {s = "0"+s; }
@@ -161,7 +158,6 @@ public class Workout implements Serializable {
                 ", exList=" + exercises +
                 ", id=" + id +
                 ", preset=" + preset +
-                ", userId=" + userId +
                 '}';
     }
 }

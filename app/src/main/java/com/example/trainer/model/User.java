@@ -1,12 +1,14 @@
 package com.example.trainer.model;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
+@SuppressWarnings("unused")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 4L;
     private String username;
-    private String id;
 
     private String password;
 
@@ -23,8 +25,6 @@ public class User implements Serializable {
         return username;
     }
 
-    public String getId() { return id; }
-
     public String getPassword() {
         return password;
     }
@@ -33,11 +33,11 @@ public class User implements Serializable {
         this.username = username;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
-                ", id=" +id +
                 '}';
     }
 }

@@ -15,20 +15,15 @@ import static org.mockito.Mockito.*;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.trainer.UI.MainActivity;
+import com.example.trainer.ui.MainActivity;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.controllers.WorkoutController;
-import com.example.trainer.model.ExerciseType;
 import com.example.trainer.model.User;
-
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RunWith(RobolectricTestRunner.class)
 public class LoggedInTest {
 
+    @SuppressWarnings("FieldCanBeLocal")
     private TrainerController mockController;
 
     @Before
@@ -73,38 +68,5 @@ public class LoggedInTest {
             assertThat(progressBtn.getText().toString()).isEqualTo("History");
         }
     }
-
-//    @Test
-//    public void exerciseTypesAreRendered() {
-//        when(mockController.getExerciseTypes()).thenReturn(getMockTypes());
-//
-//
-//
-//        try (ActivityController<MainActivity> controller = Robolectric.buildActivity(MainActivity.class)) {
-//            controller.setup();
-//            MainActivity activity = controller.get();
-//            boolean onClickCalled = activity.findViewById(R.id.exercisesBtn).performClick();
-//
-//            assertThat(onClickCalled).isTrue();
-//
-//            verify(mockController, times(1)).getExerciseTypes();
-//
-//            TextView title = activity.findViewById(R.id.exerciseTitle);
-//
-//            assertThat(title.getText().toString()).isEqualTo("Exercises");
-//
-//            TextView userGreetText = activity.findViewById(R.id.userGreetText);
-//
-//            assertThat(userGreetText).isNull();
-//        }
-//    }
-//
-//    private List<ExerciseType> getMockTypes(){
-//        List<ExerciseType> types = new ArrayList<>();
-//        types.add(new ExerciseType("test"));
-//        types.add(new ExerciseType("test2"));
-//        types.add(new ExerciseType("test3"));
-//        return types;
-//    }
 
 }

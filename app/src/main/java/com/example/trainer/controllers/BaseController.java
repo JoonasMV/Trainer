@@ -10,6 +10,7 @@ import com.example.trainer.util.WorkoutSerializer;
 import java.util.ArrayList;
 import java.util.Date;
 
+@SuppressWarnings("unused")
 public abstract class BaseController implements TrainerController{
 
     protected Workout workout;

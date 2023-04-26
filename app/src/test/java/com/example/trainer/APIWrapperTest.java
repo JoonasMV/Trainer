@@ -21,10 +21,10 @@ import okhttp3.OkHttpClient;
 public class APIWrapperTest {
 
     private static TrainerAPIWrapper api;
-    private static OkHttpClient client = mock(OkHttpClient.class);
-    private static TokenManager tokenManager = mock(TokenManager.class);
-    private static Gson gson = mock(Gson.class);
-    private static UserManager userManager = mock(UserManager.class);
+    private static final OkHttpClient client = mock(OkHttpClient.class);
+    private static final TokenManager tokenManager = mock(TokenManager.class);
+    private static final Gson gson = mock(Gson.class);
+    private static final UserManager userManager = mock(UserManager.class);
 
     @BeforeClass
     public static void setup(){

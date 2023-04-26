@@ -46,7 +46,7 @@ public class WorkoutSerializer {
         }
         String json = serialize(workout);
         Editor prefsEditor = context.getSharedPreferences(fileKey, Context.MODE_PRIVATE).edit();
-        prefsEditor.putString(key, json).commit();
+        prefsEditor.putString(key, json).apply();
     }
 
     private static String serialize(Workout workout){
@@ -59,7 +59,7 @@ public class WorkoutSerializer {
             return;
         }
         SharedPreferences pref = context.getSharedPreferences(fileKey, Context.MODE_PRIVATE);
-        pref.edit().clear().commit();
+        pref.edit().clear().apply();
     }
 
 }

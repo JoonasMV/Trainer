@@ -1,5 +1,7 @@
 package com.example.trainer.model;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class ExerciseSet implements Serializable {
@@ -10,11 +12,6 @@ public class ExerciseSet implements Serializable {
     private int reps;
 
     private String id;
-
-    public ExerciseSet (double weight, int reps) {
-        this.weight = weight;
-        this.reps = reps;
-    }
 
     public ExerciseSet() {
         this.weight = -1;
@@ -45,6 +42,7 @@ public class ExerciseSet implements Serializable {
         this.id = id;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "ExerciseSet{" +

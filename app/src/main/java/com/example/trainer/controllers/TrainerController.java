@@ -10,6 +10,7 @@ import com.example.trainer.model.Workout;
 import java.util.List;
 import java.util.concurrent.Future;
 
+@SuppressWarnings("unused")
 public interface TrainerController {
 
     /**
@@ -115,7 +116,7 @@ public interface TrainerController {
     void deleteWorkout(Workout workout);
 
     /**
-     * Tells if a exercise type with a given name exists. This method is synchronous but can be called from UI thread..
+     * Tells if a exercise type with a given name exists. This method is synchronous but can be called from UI thread.
      * @param name the name of the exercise type
      * @return true if the exercise type exists, false otherwise
      */

@@ -1,6 +1,8 @@
 package com.example.trainer.model;
 
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +50,7 @@ public class Exercise implements Serializable {
         return exerciseType.getName();
     }
 
+    @NonNull
     @Override
     public String toString(){
         return "Exercise " + exerciseType.getName() + " contains " + sets.size() + " sets";

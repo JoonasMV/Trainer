@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.users.userSearch.User_search_fragment">
+    tools:context=".ui.users.userSearch.User_seach_fragment">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,8 +41,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Username"
             android:inputType="textPersonName"
+            android:text="Name"
             app:layout_constraintBottom_toTopOf="@+id/userNameList"
             app:layout_constraintEnd_toStartOf="@+id/guideline8"
             app:layout_constraintStart_toStartOf="parent"

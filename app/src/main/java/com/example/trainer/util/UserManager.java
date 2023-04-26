@@ -41,7 +41,7 @@ public class UserManager {
 
     public void writeUserToPref(User user){
         String json = serialize(user);
-        context.getSharedPreferences(fileKey, Context.MODE_PRIVATE).edit().putString("user", json).commit();
+        context.getSharedPreferences(fileKey, Context.MODE_PRIVATE).edit().putString("user", json).apply();
     }
 
     private String serialize(User user){
@@ -61,7 +61,7 @@ public class UserManager {
     }
 
     public void clearUserPref(){
-        context.getSharedPreferences(fileKey, Context.MODE_PRIVATE).edit().putString("user", null).commit();
+        context.getSharedPreferences(fileKey, Context.MODE_PRIVATE).edit().putString("user", null).apply();
     }
 
 

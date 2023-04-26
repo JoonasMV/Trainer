@@ -3,9 +3,6 @@ package com.example.trainer.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.trainer.model.Workout;
-import com.google.gson.Gson;
-
 import java.util.Objects;
 
 public class TokenManager {
@@ -36,12 +33,12 @@ public class TokenManager {
 
     private void writeToPref(String token){
         SharedPreferences pref = context.getSharedPreferences("trainer", Context.MODE_PRIVATE);
-        pref.edit().putString("token", token).commit();
+        pref.edit().putString("token", token).apply();
     }
 
     public void deleteToken() {
         this.token = null;
         SharedPreferences pref = context.getSharedPreferences("trainer", Context.MODE_PRIVATE);
-        pref.edit().remove("token").commit();
+        pref.edit().remove("token").apply();
     }
 }

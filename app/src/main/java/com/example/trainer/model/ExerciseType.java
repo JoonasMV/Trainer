@@ -1,12 +1,15 @@
 package com.example.trainer.model;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class ExerciseType implements Serializable {
 
     public static final long serialVersionUID = 5L;
+    @SuppressWarnings("unused")
     private String id;
-    private String name;
+    private final String name;
 
     public ExerciseType(String name) {
         this.name = name;
@@ -20,15 +23,8 @@ public class ExerciseType implements Serializable {
         return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-
+    @NonNull
     @Override
     public String toString() {
         return "ExerciseType{" +

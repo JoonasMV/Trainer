@@ -5,7 +5,7 @@
     android:id="@+id/lista"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.workouts.currentWorkout.SelectExercise_fragment">
+    tools:context=".ui.workouts.currentWorkout.SelectExercise_fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
