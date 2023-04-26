@@ -49,11 +49,9 @@ public class SignUpActivity extends AppCompatActivity {
                     runOnUiThread(() -> {
                         startActivity(new Intent(this, MainActivity.class));
                     });
-                } else {
-                    Toaster.toast(getApplicationContext(), "Registering failed");
                 }
             } catch (Exception e) {
-                Toaster.toast(getApplicationContext(), "Registering failed");
+                e.printStackTrace();
             }
         }).start();
 

@@ -56,11 +56,9 @@ public class LoginPage_activity extends AppCompatActivity {
                     runOnUiThread(() -> {
                         startActivity(new Intent(this, MainActivity.class));
                     });
-                } else {
-                    Toaster.toast(getBaseContext(), "Login failed");
                 }
             } catch (Exception e) {
-                Toaster.toast(getApplicationContext(), "Authentication failed");
+                e.printStackTrace();
             }
         }).start();
     }
