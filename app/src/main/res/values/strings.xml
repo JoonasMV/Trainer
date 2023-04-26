@@ -49,4 +49,6 @@
     <string name="arrowBtnText">Show exercise\'s reps and weight</string>
     <string name="alreadyShared">\"%s is already shared\"</string>
     <string name="nowShared">\"%s is now shared!\"</string>
+    <string name="user_search_title">Users</string>
+    <string name="search_for_users">Search for users</string>
 </resources>
