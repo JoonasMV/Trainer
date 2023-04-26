@@ -1,9 +1,10 @@
-package com.example.trainer.ui.users.userSearch;
+package com.example.trainer.UI.users.userSearch;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +15,7 @@ import android.widget.EditText;
 
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
+import com.example.trainer.ui.users.userSearch.UsernameTextWatcher;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -76,7 +78,9 @@ public class User_search_fragment extends Fragment {
     private void handleWorkoutFetching(UserSearchAdapter adapter){
         new Thread(() -> {
             usernames = BaseController.getController().getUsernames();
-            getActivity().runOnUiThread(UIRunnable(adapter, usernames));
+            FragmentActivity activity = getActivity();
+            if (activity == null) return;
+            activity.runOnUiThread(UIRunnable(adapter, usernames));
         }).start();
 
     }

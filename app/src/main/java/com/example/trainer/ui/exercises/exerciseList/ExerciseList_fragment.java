@@ -8,6 +8,7 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -66,7 +67,9 @@ public class ExerciseList_fragment extends Fragment {
         progressBar.setProgress(0);
         new Thread(() -> {
             List<ExerciseType> types = BaseController.getController().getExerciseTypes();
-            getActivity().runOnUiThread(UIRunnable(adapter, types));
+            FragmentActivity activity = getActivity();
+            if (activity == null) return;
+            activity.runOnUiThread(UIRunnable(adapter, types));
         }).start();
     }
 

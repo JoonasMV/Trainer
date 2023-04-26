@@ -13,12 +13,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.trainer.ui.MainActivity;
 import com.example.trainer.R;
 import com.example.trainer.ui.UpdatableAdapter;
 import com.example.trainer.ui.exercises.exerciseChart.ExerciseChart_fragment;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.model.ExerciseType;
+import com.example.trainer.ui.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;

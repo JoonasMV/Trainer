@@ -1,4 +1,4 @@
-package com.example.trainer.ui.workouts.presetWorkouts;
+package com.example.trainer.UI.workouts.presetWorkouts;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +18,7 @@ import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.model.Workout;
 import com.example.trainer.ui.workouts.currentWorkout.CurrentWorkout_fragment;
 import com.example.trainer.ui.workouts.currentWorkout.SelectExercise_fragment;
+import com.example.trainer.ui.workouts.presetWorkouts.PresetWorkoutsAdapter;
 
 import java.util.List;
 
@@ -107,7 +109,9 @@ public class PresetWorkouts_fragment extends Fragment {
         progressBar.setProgress(0);
         new Thread(() -> {
             List<Workout> workouts = workoutManager.getPresetWorkouts();
-            getActivity().runOnUiThread(UIRunnable(adapter, workouts));
+            FragmentActivity activity = getActivity();
+            if (activity == null) return;
+            activity.runOnUiThread(UIRunnable(adapter, workouts));
         }).start();
     }
 

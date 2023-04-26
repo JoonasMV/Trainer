@@ -11,9 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.trainer.R;
-import com.example.trainer.ui.users.userSearch.User_search_fragment;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.model.User;
+import com.example.trainer.UI.users.userSearch.User_search_fragment;
 
 public class HomeScreen_fragment extends Fragment {
 

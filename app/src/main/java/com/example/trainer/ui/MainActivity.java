@@ -12,8 +12,8 @@ import com.example.trainer.ui.exercises.exerciseList.ExerciseList_fragment;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.controllers.WorkoutController;
-import com.example.trainer.ui.workouts.presetWorkouts.PresetWorkouts_fragment;
 import com.example.trainer.ui.workouts.workoutHistory.WorkoutHistory_fragment;
+import com.example.trainer.UI.workouts.presetWorkouts.PresetWorkouts_fragment;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.homeBtn).setOnClickListener(view -> fragmentHandler(new HomeScreen_fragment()));
         findViewById(R.id.workoutsBtn).setOnClickListener(view -> fragmentHandler(new PresetWorkouts_fragment()));
         findViewById(R.id.progressBtn).setOnClickListener(view -> fragmentHandler(new WorkoutHistory_fragment()));
-        findViewById(R.id.button2).setOnClickListener(view -> fragmentHandler(new UserProfile_fragment()));
         BaseController.getController().readFromPref(getApplicationContext());
     }
 

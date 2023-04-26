@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,7 +33,7 @@ public class UserProfile_fragment extends Fragment {
 
     private RecyclerView workoutList;
 
-    private User user;
+    private String username;
 
 
     public UserProfile_fragment() {
@@ -40,11 +41,13 @@ public class UserProfile_fragment extends Fragment {
     }
 
 
-    public static UserProfile_fragment newInstance(User user) {
+    public static UserProfile_fragment newInstance(String username) {
         UserProfile_fragment fragment = new UserProfile_fragment();
+
         Bundle args = new Bundle();
-        args.putSerializable(null, user);
+        args.putString(null, username);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -70,7 +73,7 @@ public class UserProfile_fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        userName.setText("Nimi");
+        userName.setText(getArguments().getString(null));
 
         List<Workout> list = new ArrayList<>();
         //placeholders
@@ -97,7 +100,9 @@ public class UserProfile_fragment extends Fragment {
             Future<List<Workout>> result = BaseController.getController().getSharedWorkoutsAsync("mikko");
             try {
                 List<Workout> workouts = result.get();
-                getActivity().runOnUiThread(() -> {
+                FragmentActivity activity = getActivity();
+                if (activity == null) return;
+                activity.runOnUiThread(() -> {
                     adapter.update(workouts);
                 });
             } catch (InterruptedException | ExecutionException e) {

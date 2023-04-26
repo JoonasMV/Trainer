@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainer.R;
 import com.example.trainer.ui.HomeScreen_fragment;
 import com.example.trainer.ui.workouts.currentWorkout.adapters.ExerciseAdapter;
+import com.example.trainer.UI.workouts.presetWorkouts.PresetWorkouts_fragment;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.ui.workouts.presetWorkouts.PresetWorkouts_fragment;
 import com.example.trainer.model.Workout;
 
 import java.time.Duration;
@@ -27,7 +27,7 @@ public class CurrentWorkout_fragment extends Fragment {
     private final TrainerController workoutManager = BaseController.getController();
     private TextView workoutNameText;
     private TextView workoutDurationText;
-    private WorkoutDurationUpdater updater;
+    private com.example.trainer.ui.workouts.currentWorkout.WorkoutDurationUpdater updater;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
