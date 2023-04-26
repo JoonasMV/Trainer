@@ -163,6 +163,6 @@ public class WorkoutController extends BaseController {
 
     @Override
     public void makeShared(Workout workout){
-        workoutService.makeShared(workout);
+        executor.submit(() -> workoutService.makeShared(workout));
     }
 }
