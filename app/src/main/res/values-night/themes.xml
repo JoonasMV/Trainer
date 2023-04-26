@@ -10,9 +10,14 @@
         <!-- Buttons -->
         <item name="colorPrimaryVariant">@color/menu_items_dark</item>
 
+        <item name="colorSecondaryVariant">@color/menu_items_dark</item>
         <!-- Text color -->
         <item name="android:textColor">@color/text_color_dark</item>
         <item name="colorSecondary">@color/text_color_dark</item>
+        <item name="colorTertiary">@color/color3_dark</item>
+
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
+        <item name="android:itemTextAppearance">@style/itemTextStyle</item>
         <item name="colorOnTertiary">@color/white</item>
     </style>
 

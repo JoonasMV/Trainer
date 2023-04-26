@@ -1,7 +1,5 @@
 package com.example.trainer.controllers.services;
 
-import com.example.trainer.api.AuthOperations;
-import com.example.trainer.api.AuthenticationException;
 import com.example.trainer.api.UserOperations;
 import com.example.trainer.model.User;
 
@@ -9,18 +7,18 @@ import java.util.List;
 
 public class UserService {
 
-    private final AuthOperations api;
+    private final UserOperations api;
 
-    public UserService(AuthOperations api){
+    public UserService(UserOperations api){
         this.api = api;
     }
 
-    public void register(User user) throws IllegalArgumentException {
-        api.registerUser(user);
+    public boolean register(User user) {
+        return api.registerUser(user);
     }
 
-    public void authenticate(User user) throws IllegalArgumentException {
-        api.authenticateUser(user);
+    public boolean authenticate(User user) {
+        return api.authenticateUser(user);
     }
 
     public void refresh() {
@@ -33,5 +31,9 @@ public class UserService {
 
     public boolean sessionValid() {
         return api.sessionValid();
+    }
+
+    public List<String> getUsernames() {
+        return api.getUsernames();
     }
 }

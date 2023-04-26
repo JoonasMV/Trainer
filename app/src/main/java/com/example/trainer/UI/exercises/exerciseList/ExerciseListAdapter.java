@@ -15,21 +15,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.UI.MainActivity;
 import com.example.trainer.R;
+import com.example.trainer.UI.UpdatableAdapter;
 import com.example.trainer.UI.exercises.exerciseChart.ExerciseChart_fragment;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.model.ExerciseType;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapter.ViewHolder> {
+public class ExerciseListAdapter extends UpdatableAdapter<List<ExerciseType>, ExerciseListAdapter.ViewHolder> {
 
     private List<ExerciseType> exerciseTypes;
     private PopupMenu ppMenu;
 
-    public ExerciseListAdapter(List<ExerciseType> types) {
-        this.exerciseTypes = types;
+    public ExerciseListAdapter() {
+        this.exerciseTypes = new ArrayList<>();
         Log.d("types", Integer.toString(exerciseTypes.size()));
 
+    }
+
+    @Override
+    public void update(List<ExerciseType> data) {
+        exerciseTypes = data;
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -41,15 +49,12 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
             super(view);
             nameOfExercise = view.findViewById(R.id.typeName);
             threeDots = view.findViewById(R.id.threedots_button);
-
-
         }
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.d("onCreate", "jee");
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.exercise_list_item, parent, false);
 
@@ -58,7 +63,7 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Log.d("onBind", "jee");
+
         holder.nameOfExercise.setText(exerciseTypes.get(position).getName());
 
         // Short click to view diagram

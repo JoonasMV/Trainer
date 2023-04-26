@@ -11,6 +11,9 @@ import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.model.User;
+import com.example.trainer.util.Toaster;
+
+import java.util.concurrent.Future;
 //import android.widget.Toast;
 
 
@@ -40,13 +43,28 @@ public class LoginPage_activity extends AppCompatActivity {
             String username = nameInput.getText().toString();
             String password = passwordInput.getText().toString();
             User user = new User(username, password);
-
-            TrainerController controller = BaseController.getController();
-            controller.authenticateUser(user);
-
-            startActivity(new Intent(this, MainActivity.class));
+            authenticateOnBackground(user);
         });
     }
+
+    private void authenticateOnBackground(User user){
+        TrainerController controller = BaseController.getController();
+        new Thread(() -> {
+            Future<Boolean> result = controller.authenticateUserAsync(user);
+            try {
+                if(result.get()){
+                    runOnUiThread(() -> {
+                        startActivity(new Intent(this, MainActivity.class));
+                    });
+                } else {
+                    Toaster.toast(getBaseContext(), "Login failed");
+                }
+            } catch (Exception e) {
+                Toaster.toast(getApplicationContext(), "Authentication failed");
+            }
+        }).start();
+    }
+
     @Override
     public void onStop() {
         super.onStop();

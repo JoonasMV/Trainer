@@ -3,6 +3,7 @@ package com.example.trainer.model;
 import androidx.annotation.NonNull;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +22,12 @@ public class Workout implements Serializable {
 
     private boolean preset;
 
-    private int userId;
+    /**
+     * If the workout is shared or not
+     */
+    private boolean shared;
+
+    private String userId;
 
     public Workout (String name, Date workoutStarted, Date workoutEnded) {
         this.name = name;
@@ -51,11 +57,12 @@ public class Workout implements Serializable {
     }
 
     public Workout(Workout workout){
-        this.name = workout.getName();
-        this.workoutStarted = workout.getWorkoutStarted();
-        this.workoutEnded = workout.getWorkoutEnded();
-        this.preset = workout.preset();
-        this.exercises = workout.getExercises();
+        this.name = workout.name;
+        this.workoutStarted = workout.workoutStarted;
+        this.workoutEnded = workout.workoutEnded;
+        this.preset = workout.preset;
+        this.exercises = workout.exercises;
+        this.shared = workout.shared;
     }
 
     public void ended(){
@@ -102,6 +109,14 @@ public class Workout implements Serializable {
         this.preset = preset;
     }
 
+    public boolean isShared() {
+        return shared;
+    }
+
+    public void setShared(boolean shared) {
+        this.shared = shared;
+    }
+
     public List<Exercise> getExercises() {
         return exercises;
     }
@@ -114,31 +129,27 @@ public class Workout implements Serializable {
         exercises.add(exercise);
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     public String getDuration(){
+
         Date start = this.getWorkoutStarted();
         Date end = this.getWorkoutEnded();
+
         long durationInMs = end.getTime() - start.getTime();
         Duration duration = Duration.ofMillis(durationInMs);
+
 
         long hours = duration.toHours();
         long minutes = duration.toMinutes() - (hours * 60);
         long seconds = duration.getSeconds() - (duration.toMinutes() * 60);
-        if(hours > 0){
-            return String.format("%d:%d:%d", hours, minutes, seconds);
-        }
-        return String.format("00:%d:%d", minutes, seconds);
+        String h = String.format("%d", hours);
+        String m = String.format("%d", minutes);;
+        String s = String.format("%d", seconds);;
+        if(hours < 10) {h = "0"+h;}
+        if (minutes < 10) {m = "0"+m;}
+        if (seconds < 10) {s = "0"+s; }
+        return h+":"+m+":"+s;
+
     }
-
-
-
 
     @NonNull
     @Override

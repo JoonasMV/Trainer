@@ -50,6 +50,14 @@ android {
     testOptions {
         unitTests {
             includeAndroidResources = true
+            all {
+                testLogging {
+                    jacoco {
+                        includeNoLocationClasses = true
+                        excludes = ['jdk.internal.*']
+                    }
+                }
+            }
         }
     }
 }

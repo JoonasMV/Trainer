@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">?attr/colorSecondaryVariant</item>
+        <item name="android:textSize">200sp</item>
+    </style>
+
+    <style name="itemTextStyle" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textSize">20sp</item>
+    </style>
+</resources>

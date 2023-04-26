@@ -19,10 +19,7 @@ import static org.robolectric.Shadows.shadowOf;
 import static org.mockito.Mockito.*;
 
 import android.content.Intent;
-import android.util.Log;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 @RunWith(RobolectricTestRunner.class)
 public class MainActivityTest {
@@ -64,7 +61,7 @@ public class MainActivityTest {
             passwordInput.setText("yeet");
             activity.findViewById(R.id.signUpButton).performClick();
 
-            verify(mockController, times(1)).authenticateUser(isA(User.class));
+            verify(mockController, times(1)).authenticateUserAsync(isA(User.class));
             assertThat(shadowOf(activity).getNextStartedActivity().getComponent().getClassName()).isEqualTo(MainActivity.class.getName());
         }
     }
