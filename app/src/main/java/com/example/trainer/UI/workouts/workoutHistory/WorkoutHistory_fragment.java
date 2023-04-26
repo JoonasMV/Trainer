@@ -22,6 +22,9 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+/**
+ * Fragment for displaying the workout history of the user
+ */
 public class WorkoutHistory_fragment extends Fragment {
 
 
@@ -58,20 +61,29 @@ public class WorkoutHistory_fragment extends Fragment {
         workoutHistory.setAdapter(adapter);
     }
 
+    /**
+     * Fetches the workouts from the database and updates the adapter
+     * @param adapter the adapter to update
+     */
     private void handleWorkoutFetching(WorkoutHistoryAdapter adapter){
         progressBar.setProgress(0);
         new Thread(() -> {
-            Future<List<Workout>> result = BaseController.getController().getNonPresetWorkoutsAsync();
-            try {
-                List<Workout> workouts = result.get();
-                getActivity().runOnUiThread(() -> {
-                    adapter.update(workouts);
-                    progressBar.setVisibility(View.GONE);
-                });
-            } catch (InterruptedException | ExecutionException e) {
-                Toaster.toast(getContext(), "Failed to load workouts");
-            }
+            List<Workout> workouts = BaseController.getController().getNonPresetWorkouts();
+            getActivity().runOnUiThread(UIRunnable(adapter, workouts));
         }).start();
 
+    }
+
+    /**
+     * Creates a runnable that updates the adapter and hides the progress bar
+     * @param adapter the adapter to update
+     * @param workouts the workouts to update the adapter with
+     * @return the runnable
+     */
+    private Runnable UIRunnable(UpdatableAdapter adapter, List<Workout> workouts){
+        return () -> {
+            adapter.update(workouts);
+            progressBar.setVisibility(View.GONE);
+        };
     }
 }

@@ -25,6 +25,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 
+/**
+ * Fragment for displaying the preset workouts of the user
+ */
 public class PresetWorkouts_fragment extends Fragment {
 
     private TrainerController workoutManager;
@@ -100,19 +103,22 @@ public class PresetWorkouts_fragment extends Fragment {
 
     }
 
+    /**
+     * Fetches the workouts on the background and updates the adapter
+     * @param adapter the adapter to update
+     */
     private void handleWorkoutFetching(PresetWorkoutsAdapter adapter){
         progressBar.setProgress(0);
         new Thread(() -> {
-            Future<List<Workout>> result = BaseController.getController().getPresetWorkoutsAsync();
-            try {
-                List<Workout> workouts = result.get();
-                getActivity().runOnUiThread(() -> {
-                    adapter.update(workouts);
-                    progressBar.setVisibility(View.GONE);
-                });
-            } catch (InterruptedException | ExecutionException e) {
-                Toaster.toast(getContext(), "Failed to load workouts");
-            }
+            List<Workout> workouts = workoutManager.getPresetWorkouts();
+            getActivity().runOnUiThread(UIRunnable(adapter, workouts));
         }).start();
+    }
+
+    private Runnable UIRunnable(PresetWorkoutsAdapter adapter, List<Workout> workouts) {
+        return () -> {
+            adapter.update(workouts);
+            progressBar.setVisibility(View.GONE);
+        };
     }
 }

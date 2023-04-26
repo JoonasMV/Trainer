@@ -13,22 +13,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
 import com.example.trainer.UI.exercises.CreateExercise_fragment;
-import com.example.trainer.UI.workouts.presetWorkouts.PresetWorkoutsAdapter;
 import com.example.trainer.controllers.BaseController;
-import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.model.ExerciseType;
-import com.example.trainer.model.Workout;
 import com.example.trainer.util.Toaster;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+/**
+ * Represents a list of exercises the user has created, in the model these exercises are referred with the term ExerciseType
+ */
 public class ExerciseList_fragment extends Fragment {
     RecyclerView exerciseList;
 
+    /*
+     * Progress bar to show the user that the exercises are being fetched from the database
+     */
     private ProgressBar progressBar;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,21 +61,35 @@ public class ExerciseList_fragment extends Fragment {
         requireView().findViewById(R.id.addExercise).setOnClickListener(v -> goToNewExerciseFragment());
     }
 
+    /**
+     * Fetches the exercises from the database and updates the adapter.
+     * This method is non blocking.
+     * @param adapter the adapter to update
+     */
     private void handleExerciseTypeFetching(ExerciseListAdapter adapter){
         progressBar.setProgress(0);
         new Thread(() -> {
-            Future<List<ExerciseType>> result = BaseController.getController().getExerciseTypesAsync();
-            try {
-                List<ExerciseType> types = result.get();
-                getActivity().runOnUiThread(() -> {
-                    adapter.update(types);
-                    progressBar.setVisibility(View.GONE);
-                });
-            } catch (InterruptedException | ExecutionException e) {
-                Toaster.toast(getContext(), "Failed to load workouts");
-            }
+            List<ExerciseType> types = BaseController.getController().getExerciseTypes();
+            getActivity().runOnUiThread(UIRunnable(adapter, types));
         }).start();
     }
+
+    /**
+     * Creates a runnable that updates the adapter and hides the progress bar
+     * @param adapter the adapter to update
+     * @param types the list of exercises to update the adapter with
+     * @return the runnable
+     */
+    private Runnable UIRunnable(ExerciseListAdapter adapter, List<ExerciseType> types){
+        return () -> {
+            adapter.update(types);
+            progressBar.setVisibility(View.GONE);
+        };
+    }
+
+    /**
+     * Navigates to the fragment where the user can create a new exercise
+     */
     private void goToNewExerciseFragment() {
         getParentFragmentManager().beginTransaction()
                 .replace(R.id.mainContainer, CreateExercise_fragment.class, null)
