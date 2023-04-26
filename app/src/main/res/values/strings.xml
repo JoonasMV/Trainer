@@ -47,4 +47,6 @@
     <string name="share">Share</string>
     <string name="showWorkout">Show</string>
     <string name="arrowBtnText">Show exercise\'s reps and weight</string>
+    <string name="user_search_title">Users</string>
+    <string name="search_for_users">Search for users</string>
 </resources>

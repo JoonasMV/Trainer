@@ -44,12 +44,11 @@ public class User_seach_fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
-        TrainerController controller = BaseController.getController();
-        List<User> userList = controller.findAllUsers();
+        TrainerController api = BaseController.getController();
 
         // Creation of username list recyclerView
         RecyclerView listOfUsers = view.findViewById(R.id.userNameList);
-        UserSearchAdapter adapter = new UserSearchAdapter(userList);
+        UserSearchAdapter adapter = new UserSearchAdapter(api.getUsernames());
         listOfUsers.setAdapter(adapter);
         listOfUsers.setLayoutManager(new LinearLayoutManager(getContext()));
 

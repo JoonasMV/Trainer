@@ -15,9 +15,9 @@ import java.util.List;
 
 public class UserSearchAdapter extends RecyclerView.Adapter<UserSearchAdapter.ViewHolder> {
 
-    private List<User> listOfUsers;
+    private List<String> listOfUsers;
 
-    public UserSearchAdapter(List<User> listOfUsers) {
+    public UserSearchAdapter(List<String> listOfUsers) {
         this.listOfUsers = listOfUsers;
     }
 
@@ -42,7 +42,7 @@ public class UserSearchAdapter extends RecyclerView.Adapter<UserSearchAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull UserSearchAdapter.ViewHolder holder, int position) {
-        holder.username.setText(listOfUsers.get(position).getUsername());
+        holder.username.setText(listOfUsers.get(position));
     }
 
     @Override

@@ -5,7 +5,6 @@ import android.content.Context;
 import com.example.trainer.api.API;
 import com.example.trainer.api.TrainerAPIWrapper;
 import com.example.trainer.controllers.services.ExerciseTypeService;
-import com.example.trainer.controllers.services.UserSearchService;
 import com.example.trainer.controllers.services.UserService;
 import com.example.trainer.controllers.services.WorkoutService;
 import com.example.trainer.model.ExerciseType;
@@ -23,7 +22,6 @@ public class WorkoutController extends BaseController {
     private final WorkoutService workoutService;
     private final ExerciseTypeService exerciseTypeService;
     private final UserService userService;
-    private final UserSearchService userSearchService;
     private static WorkoutController instance;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
@@ -32,14 +30,12 @@ public class WorkoutController extends BaseController {
         this.workoutService = new WorkoutService(api);
         this.exerciseTypeService = new ExerciseTypeService(api);
         this.userService = new UserService(api);
-        this.userSearchService = new UserSearchService(api);
     }
 
     // DO NOT USE, ONLY FOR TESTING
     public WorkoutController(API api){
         this.workoutService = new WorkoutService(api);
         this.exerciseTypeService = new ExerciseTypeService(api);
-        this.userSearchService = new UserSearchService(api);
         this.userService = new UserService(api);
     }
 
@@ -83,9 +79,6 @@ public class WorkoutController extends BaseController {
     public User findUser() {
         return userService.getUser();
     }
-
-    @Override
-    public List<User> findAllUsers() { return userSearchService.getAllUsers(); }
 
     @Override
     public List<Workout> getPresetWorkouts() {

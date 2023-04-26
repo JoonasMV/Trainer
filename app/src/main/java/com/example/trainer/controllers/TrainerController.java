@@ -49,8 +49,6 @@ public interface TrainerController {
 
     User findUser();
 
-    List<User> findAllUsers();
-
     List<Workout> getPresetWorkouts();
 
     List<Workout> getNonPresetWorkouts();
