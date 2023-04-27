@@ -12,8 +12,15 @@ import androidx.fragment.app.Fragment;
 
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
+import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.model.User;
 import com.example.trainer.ui.users.userSearch.User_search_fragment;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class HomeScreen_fragment extends Fragment {
 
@@ -36,14 +43,20 @@ public class HomeScreen_fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         TextView userGreetText = requireView().findViewById(R.id.userGreetText);
-        User user = BaseController.getController().findUser();
+        TextView quoteOfTheDay = view.findViewById(R.id.quoteOfTheDay);
+
+        TrainerController controller = BaseController.getController();
+        User user = controller.findUser();
+        List<String> quotes = controller.getQuotes();
+        int quoteIndex = new Random().nextInt(quotes.size());
 
         if(user == null){
             startActivity(new Intent(this.getContext(), LoginPage_activity.class));
             return;
         }
         userGreetText.setText(String.format("Welcome back %s", user.getUsername()));
-
+        //TODO: remove comments after quotes have been added
+        //quoteOfTheDay.setText(quotes.get(quoteIndex));
     }
 
 
