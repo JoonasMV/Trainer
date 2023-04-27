@@ -1,5 +1,6 @@
-package com.example.trainer.UI.users.userSearch;
+package com.example.trainer.ui.users.userSearch;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,13 +56,14 @@ public class UserSearchAdapter extends UpdatableAdapter<List<String>, UserSearch
 
     @Override
     public void onBindViewHolder(@NonNull UserSearchAdapter.ViewHolder holder, int position) {
-        holder.username.setText(listOfUsers.get(position));
+        String name = listOfUsers.get(position);
+        holder.username.setText(name);
 
         holder.username.setOnClickListener(v -> {
             ((MainActivity) v.getContext()).getSupportFragmentManager()
                     .beginTransaction()
                     .addToBackStack(null)
-                    .replace(R.id.mainContainer, UserProfile_fragment.newInstance(listOfUsers.get(position)))
+                    .replace(R.id.mainContainer, UserProfile_fragment.newInstance(name))
                     .commit();
         });
     }

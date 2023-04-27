@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
+import com.example.trainer.controllers.BaseController;
 import com.example.trainer.model.Workout;
 
 import java.util.List;
@@ -85,6 +86,8 @@ public class UserProfileAdapter extends UpdatableAdapter<List<Workout>, UserProf
                         break;
                     case R.id.save:
                         //TODO: to be seen
+                        BaseController.getController().saveWorkout(workout);
+
                         break;
                 }
                 return true;

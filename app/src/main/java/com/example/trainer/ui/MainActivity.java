@@ -2,6 +2,9 @@ package com.example.trainer.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -13,7 +16,7 @@ import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.controllers.WorkoutController;
 import com.example.trainer.ui.workouts.workoutHistory.WorkoutHistory_fragment;
-import com.example.trainer.UI.workouts.presetWorkouts.PresetWorkouts_fragment;
+import com.example.trainer.ui.workouts.presetWorkouts.PresetWorkouts_fragment;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;

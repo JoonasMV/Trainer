@@ -1,4 +1,4 @@
-package com.example.trainer.UI.users.userSearch;
+package com.example.trainer.ui.users.userSearch;
 
 import android.os.Bundle;
 
@@ -15,7 +15,7 @@ import android.widget.EditText;
 
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
-import com.example.trainer.ui.users.userSearch.UsernameTextWatcher;
+import com.example.trainer.ui.users.userSearch.UserSearchAdapter;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -65,8 +65,7 @@ public class User_search_fragment extends Fragment {
                         .filter(username -> username.contains(filter))
                         .collect(Collectors.toList());
 
-                adapter.setListOfUsers(filteredUsers);
-                adapter.notifyDataSetChanged();
+                adapter.update(filteredUsers);
             }
         });
     }

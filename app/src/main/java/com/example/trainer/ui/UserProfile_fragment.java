@@ -23,6 +23,7 @@ import com.example.trainer.util.Toaster;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -35,6 +36,8 @@ public class UserProfile_fragment extends Fragment {
 
     private String username;
 
+    private final static String USERNAME_KEY = "username";
+
 
     public UserProfile_fragment() {
         // Required empty public constructor
@@ -45,7 +48,7 @@ public class UserProfile_fragment extends Fragment {
         UserProfile_fragment fragment = new UserProfile_fragment();
 
         Bundle args = new Bundle();
-        args.putString(null, username);
+        args.putString(USERNAME_KEY, username);
         fragment.setArguments(args);
 
         return fragment;
@@ -72,8 +75,9 @@ public class UserProfile_fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        userName.setText(getArguments().getString(null));
+        String username = getArguments().getString(USERNAME_KEY);
+        Objects.requireNonNull(username);
+        userName.setText(username);
 
         List<Workout> list = new ArrayList<>();
         //placeholders
@@ -89,15 +93,15 @@ public class UserProfile_fragment extends Fragment {
 
 
         UserProfileAdapter adapter = new UserProfileAdapter(list, getContext());
-        handleWorkoutFetching(adapter);
+        handleWorkoutFetching(adapter, username);
 
         workoutList.setLayoutManager(new LinearLayoutManager(getContext()));
         workoutList.setAdapter(adapter);
     }
 
-    private void handleWorkoutFetching(UserProfileAdapter adapter){
+    private void handleWorkoutFetching(UserProfileAdapter adapter, String username){
         new Thread(() -> {
-            Future<List<Workout>> result = BaseController.getController().getSharedWorkoutsAsync("mikko");
+            Future<List<Workout>> result = BaseController.getController().getSharedWorkoutsAsync(username);
             try {
                 List<Workout> workouts = result.get();
                 FragmentActivity activity = getActivity();

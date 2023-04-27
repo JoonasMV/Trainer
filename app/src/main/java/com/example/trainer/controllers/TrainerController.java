@@ -26,9 +26,15 @@ public interface TrainerController {
     void cancelWorkout(Context context);
 
     /**
-     * Saves the workout on background
+     * Saves the workout managed by the controller on background
      */
     void saveWorkout();
+
+    /**
+     * Saves a workout given as param on background
+     * @param workout workout to be saved
+     */
+    void saveWorkout(Workout workout);
 
     /**
      * Change the name of the current workout

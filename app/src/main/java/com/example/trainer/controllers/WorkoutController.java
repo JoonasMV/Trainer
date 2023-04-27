@@ -90,6 +90,14 @@ public class WorkoutController extends BaseController {
      * {@inheritDoc}
      */
     @Override
+    public void saveWorkout(Workout workout) {
+        executor.submit(() -> workoutService.save(workout));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public List<ExerciseType> getExerciseTypes() {
         return exerciseTypeService.getAll();
     }
