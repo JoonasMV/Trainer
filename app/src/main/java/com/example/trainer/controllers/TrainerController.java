@@ -193,6 +193,12 @@ public interface TrainerController {
      */
     Future<List<ExerciseType>> getExerciseTypesAsync();
 
+    /**
+     * Gets a list of quotes from the server
+     * @return list of quotes
+     */
+    List<String> getQuotes();
+
     void makeShared(Workout workout);
 
     Future<List<Workout>> getSharedWorkoutsAsync(String username);

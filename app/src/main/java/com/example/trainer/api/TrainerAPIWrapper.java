@@ -25,7 +25,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 // TODO TESTS FOR ALL METHODS
-public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTypeOperations, WorkoutOperations {
+public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTypeOperations,
+        WorkoutOperations, QuoteOperations {
 
     private final OkHttpClient client;
     private final TokenManager tokenManager;
@@ -300,6 +301,29 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
     }
 
 
+    /**
+     * Gets a list of motivational quotes from the server
+     * @return list of motivational quotes
+     */
+    //TODO: fix URL if needed
+    @Override
+    public List<String> getQuotes() {
+        String token = tokenManager.getToken();
+        Request req = new Request.Builder()
+                .url(APIEndpoints.USER_URL + "/quote")
+                .header("Authorization", "Bearer " + token)
+                .build();
+
+        Type type = new TypeToken<List<String>>() {
+        }.getType();
+        try (Response res = client.newCall(req).execute()) {
+            return gson.fromJson(res.body().string(), type);
+        } catch (IOException e) {
+            Log.d("API", "Error while getting quotes: " + e.getMessage());
+            stopSession();
+            return new ArrayList<>();
+        }
+    }
 
     private void stopSession() {
         tokenManager.deleteToken();

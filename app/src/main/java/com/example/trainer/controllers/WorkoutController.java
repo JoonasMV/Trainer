@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.trainer.api.API;
 import com.example.trainer.api.TrainerAPIWrapper;
 import com.example.trainer.controllers.services.ExerciseTypeService;
+import com.example.trainer.controllers.services.QuoteService;
 import com.example.trainer.controllers.services.UserService;
 import com.example.trainer.controllers.services.WorkoutService;
 import com.example.trainer.model.ExerciseType;
@@ -35,6 +36,12 @@ public class WorkoutController extends BaseController {
      * Service for handling user related functionality
      */
     private final UserService userService;
+
+    /**
+     * Service for handling quote related functionality
+     */
+    private final QuoteService quoteService;
+
     private static WorkoutController instance;
     /**
      * Executor for running tasks in the background
@@ -46,6 +53,7 @@ public class WorkoutController extends BaseController {
         this.workoutService = new WorkoutService(api);
         this.exerciseTypeService = new ExerciseTypeService(api);
         this.userService = new UserService(api);
+        this.quoteService = new QuoteService(api);
     }
 
     // DO NOT USE, ONLY FOR TESTING
@@ -53,6 +61,7 @@ public class WorkoutController extends BaseController {
         this.workoutService = new WorkoutService(api);
         this.exerciseTypeService = new ExerciseTypeService(api);
         this.userService = new UserService(api);
+        this.quoteService = new QuoteService(api);
     }
 
     /**
@@ -247,6 +256,11 @@ public class WorkoutController extends BaseController {
     @Override
     public Future<List<ExerciseType>> getExerciseTypesAsync() {
         return executor.submit(exerciseTypeService::getAll);
+    }
+
+    @Override
+    public List<String> getQuotes() {
+        return quoteService.getQuotes();
     }
 
     @Override
