@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -308,9 +309,10 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
     //TODO: fix URL if needed
     @Override
     public List<String> getQuotes() {
+        String systemLanguage = Locale.getDefault().getLanguage();
         String token = tokenManager.getToken();
         Request req = new Request.Builder()
-                .url(APIEndpoints.USER_URL + "/quote")
+                .url(APIEndpoints.USER_URL + "/quote" + "/" + systemLanguage)
                 .header("Authorization", "Bearer " + token)
                 .build();
 
