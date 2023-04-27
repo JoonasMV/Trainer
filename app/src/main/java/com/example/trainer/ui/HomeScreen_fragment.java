@@ -44,13 +44,6 @@ public class HomeScreen_fragment extends Fragment {
         }
         userGreetText.setText(String.format("Welcome back %s", user.getUsername()));
 
-        view.findViewById(R.id.usersBtn).setOnClickListener(v -> {
-            getParentFragmentManager()
-                    .beginTransaction()
-                    .addToBackStack(null)
-                    .replace(R.id.mainContainer, new User_search_fragment())
-                    .commit();
-        });
     }
 
 

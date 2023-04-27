@@ -36,4 +36,8 @@ public class UserService {
     public List<String> getUsernames() {
         return api.getUsernames();
     }
+
+    public void logOut() {
+        api.logOut();
+    }
 }

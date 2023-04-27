@@ -43,7 +43,13 @@
     <string name="registerInstead">Registrarse en su lugar</string>
     <string name="showChart">Mostrar Gráfico</string>
     <string name="login_button_text">Iniciar sesión</string>
-    <string name="share">compartir</string>
-    <string name="showWorkout">mostrar</string>
+    <string name="share">Compartir</string>
+    <string name="showWorkout">Mostrar</string>
     <string name="arrowBtnText">Mostrar las repeticiones y el peso del ejercicio</string>
+    <string name="alreadyShared">\"%s ya está compartido\"</string>
+    <string name="nowShared">\"¡%s ahora está compartido!\"</string>
+    <string name="user_search_title">Usuarios</string>
+    <string name="search_for_users">Buscar usuarios</string>
+    <string name="log_out">Cerrar sesión</string>
+    <string name="search_users">Buscar usuarios</string>
 </resources>

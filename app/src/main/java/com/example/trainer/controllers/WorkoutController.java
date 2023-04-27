@@ -151,6 +151,11 @@ public class WorkoutController extends BaseController {
     }
 
     @Override
+    public void logOut() {
+        userService.logOut();
+    }
+
+    @Override
     public Future<List<Workout>> getNonPresetWorkoutsAsync() {
         return executor.submit(workoutService::getNonPresetWorkouts);
     }

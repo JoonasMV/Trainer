@@ -46,4 +46,10 @@
     <string name="share">կիսվել</string>
     <string name="showWorkout">բացահայտել</string>
     <string name="arrowBtnText">" Ցույց տալ վարժությունների կրկնողությունները և քաշը"</string>
+    <string name="alreadyShared">\"%s արդեն բաժիններով է բաշխված:\"</string>
+    <string name="nowShared">\"%s  հիմա բաժիններով է բաշխված:\"</string>
+    <string name="user_search_title">օգտատիրոջներ</string>
+    <string name="search_for_users">օգտատիրոջների որոնում</string>
+    <string name="log_out">դուրել հաշիվը</string>
+    <string name="search_users">օգտատիրոջների որոնում</string>
 </resources>

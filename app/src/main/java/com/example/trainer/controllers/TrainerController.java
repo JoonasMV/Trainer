@@ -196,4 +196,6 @@ public interface TrainerController {
     void makeShared(Workout workout);
 
     Future<List<Workout>> getSharedWorkoutsAsync(String username);
+
+    void logOut();
 }

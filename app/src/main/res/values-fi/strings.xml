@@ -46,4 +46,10 @@
     <string name="share">Jaa</string>
     <string name="showWorkout">Näytä tiedot</string>
     <string name="arrowBtnText">Näytä liikkeen toistot ja painot</string>
+    <string name="alreadyShared">\"%s on jo jaettu\"</string>
+    <string name="nowShared">\"%s on nyt jaettu\"</string>
+    <string name="user_search_title">Käyttäjät</string>
+    <string name="search_for_users">Etsi käyttäjiä</string>
+    <string name="log_out">Kirjaudu ulos</string>
+    <string name="search_users">Etsi käyttäjiä</string>
 </resources>

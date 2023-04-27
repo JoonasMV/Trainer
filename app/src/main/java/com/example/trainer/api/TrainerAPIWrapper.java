@@ -142,6 +142,11 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
     }
 
     @Override
+    public void logOut() {
+        stopSession();
+    }
+
+    @Override
     public Workout saveWorkout(Workout workout) {
         RequestBody reqBody = RequestBody.create(gson.toJson(workout), JSON);
         String token = tokenManager.getToken();

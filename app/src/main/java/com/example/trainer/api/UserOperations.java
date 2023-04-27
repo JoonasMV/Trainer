@@ -16,4 +16,6 @@ public interface UserOperations {
     boolean sessionValid();
 
     List<String> getUsernames();
+
+    void logOut();
 }

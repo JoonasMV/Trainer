@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -15,12 +18,18 @@ import com.example.trainer.ui.exercises.exerciseList.ExerciseList_fragment;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.controllers.WorkoutController;
+import com.example.trainer.ui.users.userSearch.User_search_fragment;
 import com.example.trainer.ui.workouts.workoutHistory.WorkoutHistory_fragment;
 import com.example.trainer.ui.workouts.presetWorkouts.PresetWorkouts_fragment;
+import com.example.trainer.ui.workouts.workoutStats.WorkoutStats_fragment;
+import com.example.trainer.util.Toaster;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private TrainerController controller;
+
+    private PopupMenu ppMenu;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +37,11 @@ public class MainActivity extends AppCompatActivity {
         WorkoutController.initController(this);
         controller = BaseController.getController();
         setContentView(R.layout.main_activity);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.toolbar);
+        View v =getSupportActionBar().getCustomView();
+
 
         if(controller.sessionValid()){
             controller.refreshSession();
@@ -38,6 +52,30 @@ public class MainActivity extends AppCompatActivity {
             createFragmentManager();
         }
 
+        ImageView threeDots = v.findViewById(R.id.moreImage);
+
+
+        threeDots.setOnClickListener(view -> {
+            ppMenu = new PopupMenu(v.getContext(), threeDots );
+            ppMenu.getMenuInflater().inflate(R.menu.toolbar_popup_menu, ppMenu.getMenu());
+            ppMenu.setOnMenuItemClickListener(menuItem -> {
+                switch (menuItem.getItemId()) {
+                    case R.id.logOut:
+                        controller.logOut();
+                        startActivity(new Intent(getApplicationContext(), LoginPage_activity.class));
+                        break;
+                    case R.id.otherUsers:
+                        fragmentManager
+                                .beginTransaction()
+                                .addToBackStack(null)
+                                .replace(R.id.mainContainer, new User_search_fragment())
+                                .commit();
+                        break;
+                }
+                return true;
+            });
+            ppMenu.show();
+        });
         findViewById(R.id.exercisesBtn).setOnClickListener(view -> fragmentHandler(new ExerciseList_fragment()));
         findViewById(R.id.homeBtn).setOnClickListener(view -> fragmentHandler(new HomeScreen_fragment()));
         findViewById(R.id.workoutsBtn).setOnClickListener(view -> fragmentHandler(new PresetWorkouts_fragment()));
