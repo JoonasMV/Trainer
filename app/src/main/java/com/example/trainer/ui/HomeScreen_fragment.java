@@ -9,11 +9,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.model.User;
+import com.example.trainer.ui.users.userSearch.UserSearchAdapter;
 import com.example.trainer.ui.users.userSearch.User_search_fragment;
 
 import org.w3c.dom.Text;
@@ -24,10 +26,12 @@ import java.util.Random;
 
 public class HomeScreen_fragment extends Fragment {
 
+    private List<String> quotes;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        handleQuoteFetching();
     }
 
     @Override
@@ -47,8 +51,6 @@ public class HomeScreen_fragment extends Fragment {
 
         TrainerController controller = BaseController.getController();
         User user = controller.findUser();
-        List<String> quotes = controller.getQuotes();
-        int quoteIndex = new Random().nextInt(quotes.size());
 
         if(user == null){
             startActivity(new Intent(this.getContext(), LoginPage_activity.class));
@@ -56,8 +58,19 @@ public class HomeScreen_fragment extends Fragment {
         }
         userGreetText.setText(String.format("Welcome back %s", user.getUsername()));
         //TODO: remove comments after quotes have been added
-        //quoteOfTheDay.setText(quotes.get(quoteIndex));
+        if (quotes != null) {
+            int quoteIndex = new Random().nextInt(quotes.size());
+            quoteOfTheDay.setText(quotes.get(quoteIndex));
+        }
     }
 
+    /**
+     * Fetches the quotes from the database in the background
+     */
+    private void handleQuoteFetching(){
+        new Thread(() -> {
+            quotes = BaseController.getController().getQuotes();
+        }).start();
 
+    }
 }

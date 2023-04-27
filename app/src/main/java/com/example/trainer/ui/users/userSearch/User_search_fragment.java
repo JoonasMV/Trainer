@@ -15,7 +15,6 @@ import android.widget.EditText;
 
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
-import com.example.trainer.ui.users.userSearch.UserSearchAdapter;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,7 +50,7 @@ public class User_search_fragment extends Fragment {
         // Creation of username list recyclerView
         RecyclerView listOfUsers = view.findViewById(R.id.userNameList);
         UserSearchAdapter adapter = new UserSearchAdapter();
-        handleWorkoutFetching(adapter);
+        handleUserFetching(adapter);
         listOfUsers.setAdapter(adapter);
         listOfUsers.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -74,7 +73,7 @@ public class User_search_fragment extends Fragment {
      * Fetches the usernames from the database and updates the adapter
      * @param adapter the adapter to update
      */
-    private void handleWorkoutFetching(UserSearchAdapter adapter){
+    private void handleUserFetching(UserSearchAdapter adapter){
         new Thread(() -> {
             usernames = BaseController.getController().getUsernames();
             FragmentActivity activity = getActivity();
