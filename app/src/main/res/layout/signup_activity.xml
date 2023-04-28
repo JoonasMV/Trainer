@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.LoginPage_activity">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:cardBackgroundColor="?attr/colorPrimaryVariant"
         app:cardCornerRadius="10dp"
+        app:strokeColor="?attr/colorPrimary"
+        app:strokeWidth="10dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline24"
         app:layout_constraintEnd_toStartOf="@+id/guideline26"
         app:layout_constraintStart_toStartOf="@+id/guideline25"
@@ -98,7 +100,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
