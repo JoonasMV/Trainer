@@ -11,29 +11,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/userSearchTitle"
-            style="@style/title"
-            android:layout_width="0dp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/user_search_title"
+            app:cardBackgroundColor="?attr/colorPrimaryVariant"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/textView5"
-            />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/userSearchTitle"
+                style="@style/title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/user_search_title" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/textView5"
             style="@style/basic_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="@string/search_for_users"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userSearchTitle"
-            app:layout_constraintBottom_toTopOf="@id/editTextTextPersonName"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/cardView5" />
+
 
         <EditText
             android:id="@+id/editTextTextPersonName"

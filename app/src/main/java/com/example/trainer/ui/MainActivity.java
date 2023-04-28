@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         threeDots.setOnClickListener(view -> {
-            ppMenu = new PopupMenu(v.getContext(), threeDots );
+            ppMenu = new PopupMenu(view.getContext(), threeDots );
             ppMenu.getMenuInflater().inflate(R.menu.toolbar_popup_menu, ppMenu.getMenu());
             ppMenu.setOnMenuItemClickListener(menuItem -> {
                 switch (menuItem.getItemId()) {

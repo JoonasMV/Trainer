@@ -16,17 +16,23 @@
         app:layout_constraintStart_toStartOf="@+id/workoutHistoryRV"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/workoutHistoryTitle"
-        style="@style/title"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/workoutHistory_title"
-        app:layout_constraintBottom_toTopOf="@+id/workoutHistoryRV"
+        app:cardBackgroundColor="?attr/colorPrimaryVariant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/workoutHistoryTitle"
+            style="@style/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/workoutHistory_title" />
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/workoutHistoryRV"
@@ -39,5 +45,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/workoutHistoryTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView5" />
 </androidx.constraintlayout.widget.ConstraintLayout>

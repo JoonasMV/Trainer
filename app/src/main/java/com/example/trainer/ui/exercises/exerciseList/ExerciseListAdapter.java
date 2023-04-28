@@ -31,7 +31,6 @@ public class ExerciseListAdapter extends UpdatableAdapter<List<ExerciseType>, Ex
     public ExerciseListAdapter() {
         this.exerciseTypes = new ArrayList<>();
         Log.d("types", Integer.toString(exerciseTypes.size()));
-
     }
 
     @Override
@@ -77,7 +76,6 @@ public class ExerciseListAdapter extends UpdatableAdapter<List<ExerciseType>, Ex
 
         });
 
-        // long click to open menu
         holder.threeDots.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NonConstantResourceId")
             @Override
