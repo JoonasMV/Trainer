@@ -25,6 +25,8 @@ import com.example.trainer.ui.workouts.workoutStats.WorkoutStats_fragment;
 import com.example.trainer.util.Toaster;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static String quote;
     private FragmentManager fragmentManager;
     private TrainerController controller;
 
