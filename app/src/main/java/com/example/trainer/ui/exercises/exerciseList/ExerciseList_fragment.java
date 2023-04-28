@@ -25,7 +25,7 @@ import java.util.List;
 public class ExerciseList_fragment extends Fragment {
     RecyclerView exerciseList;
 
-    /*
+    /**
      * Progress bar to show the user that the exercises are being fetched from the database
      */
     private ProgressBar progressBar;

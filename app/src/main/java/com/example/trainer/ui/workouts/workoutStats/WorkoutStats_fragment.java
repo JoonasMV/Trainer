@@ -25,7 +25,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ * Fragment to show the chosen workout's information, like the date, the duration and exercises
+ */
 public class WorkoutStats_fragment extends Fragment {
 
     private final TrainerController workoutManager;

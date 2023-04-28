@@ -24,6 +24,10 @@ import com.example.trainer.ui.workouts.presetWorkouts.PresetWorkouts_fragment;
 import com.example.trainer.ui.workouts.workoutStats.WorkoutStats_fragment;
 import com.example.trainer.util.Toaster;
 
+/**
+ * Trainer App's main activity
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     public static String quote;
@@ -95,6 +99,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Handles the changing of fragments inside the main activity's fragment container
+     * @param fragment  the fragment that is changed to the mainContainer
+     */
     private void fragmentHandler(Fragment fragment) {
         Fragment currentFragment = fragmentManager.findFragmentById(R.id.mainContainer);
 

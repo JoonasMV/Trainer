@@ -24,6 +24,9 @@ import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+/**
+ * Trainer app's home screen, opens when the user has logged in
+ */
 public class HomeScreen_fragment extends Fragment {
 
     private String quote;

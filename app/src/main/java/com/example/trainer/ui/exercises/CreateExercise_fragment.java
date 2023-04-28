@@ -14,6 +14,9 @@ import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.model.ExerciseType;
 import com.example.trainer.util.Toaster;
 
+/**
+ * Fragment for creating a new exercise, in the model these exercises are referred with the term ExerciseType
+ */
 public class CreateExercise_fragment extends Fragment {
 
     private TrainerController workoutManager;

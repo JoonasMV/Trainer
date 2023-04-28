@@ -53,4 +53,7 @@
     <string name="log_out">դուրել հաշիվը</string>
     <string name="search_users">օգտատիրոջների որոնում</string>
     <string name="quoteOfTheDay">" օրվա քաղվածք"</string>
+    <string name="set">բնակարան</string>
+    <string name="menu">ճաշակերտ</string>
+    <string name="more">ավելի</string>
 </resources>

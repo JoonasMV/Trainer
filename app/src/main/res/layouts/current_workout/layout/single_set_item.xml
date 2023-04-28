@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:text="set"
+        android:text="@string/set"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="40dp"
         app:layout_constraintEnd_toStartOf="@+id/setRepField"

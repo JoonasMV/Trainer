@@ -18,7 +18,9 @@ import com.example.trainer.model.ExerciseType;
 
 import java.util.List;
 
-
+/**
+ * Fragment for selecting the exercise, in the model these exercises are referred with the term ExerciseType
+ */
 public class SelectExercise_fragment extends Fragment {
 
     private final TrainerController workoutManager = BaseController.getController();

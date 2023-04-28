@@ -20,6 +20,9 @@ import com.example.trainer.model.ExerciseSet;
 
 import java.util.List;
 
+/**
+ * Adapter for the exercises shown in WorkoutStats_fragment and UserWorkoutStats_fragment
+ */
 public class WorkoutStatsExerciseAdapter extends RecyclerView.Adapter<WorkoutStatsExerciseAdapter.ViewHolder> {
 
     private final List<Exercise> exercises;
@@ -84,6 +87,10 @@ public class WorkoutStatsExerciseAdapter extends RecyclerView.Adapter<WorkoutSta
         });
     }
 
+    /**
+     * Hides and shows the exercises reps and weights when called
+     * @param holder    holder holds the items that are shown and hidden
+     */
     private void showSets(ViewHolder holder){
         if(holder.isPressed){
             holder.setRecyclerView.setVisibility(View.GONE);
