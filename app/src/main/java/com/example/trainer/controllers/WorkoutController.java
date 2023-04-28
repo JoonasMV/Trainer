@@ -105,6 +105,9 @@ public class WorkoutController extends BaseController {
 
     @Override
     public void saveSharedWorkout(Workout workout) {
+        //ehkä tän voisi toteuttaa niin kuin toi makePreset()? se löytyy tästä luokasta, mutta kutsuu
+        //workoutserviceä
+
         Workout copy = new Workout(workout);
         //copy.setPreset(true);
         //copy.setShared(false);
