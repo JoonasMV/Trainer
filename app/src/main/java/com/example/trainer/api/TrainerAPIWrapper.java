@@ -303,27 +303,25 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
 
 
     /**
-     * Gets a list of motivational quotes from the server
-     * @return list of motivational quotes
+     * gets motivational quote from database based on system language
+     * @return a motivational
      */
-    //TODO: fix URL if needed
     @Override
-    public List<String> getQuotes() {
+    public String getQuotes() {
         String systemLanguage = Locale.getDefault().getLanguage();
-        String token = tokenManager.getToken();
         Request req = new Request.Builder()
-                .url(APIEndpoints.USER_URL + "/quote" + "/" + systemLanguage)
-                .header("Authorization", "Bearer " + token)
+                .url(APIEndpoints.BASE_URL + "/api/quotes/" + systemLanguage)
+                .get()
                 .build();
 
-        Type type = new TypeToken<List<String>>() {
-        }.getType();
+
         try (Response res = client.newCall(req).execute()) {
-            return gson.fromJson(res.body().string(), type);
+            String s = res.body().string();
+            return s.substring(10, (s.length() - 2));
         } catch (IOException e) {
             Log.d("API", "Error while getting quotes: " + e.getMessage());
             stopSession();
-            return new ArrayList<>();
+            return "";
         }
     }
 

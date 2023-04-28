@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,18 +16,20 @@ import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
 import com.example.trainer.model.User;
-import com.example.trainer.ui.users.userSearch.UserSearchAdapter;
-import com.example.trainer.ui.users.userSearch.User_search_fragment;
+import com.example.trainer.model.Workout;
+import com.example.trainer.util.Toaster;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 public class HomeScreen_fragment extends Fragment {
 
-    private List<String> quotes;
+    private String quote;
+
+    private TextView quoteOfTheDay;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,13 +44,16 @@ public class HomeScreen_fragment extends Fragment {
             container.removeAllViews();
         }
 
+
         return inflater.inflate(R.layout.home_fragment, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+
         TextView userGreetText = requireView().findViewById(R.id.userGreetText);
-        TextView quoteOfTheDay = view.findViewById(R.id.quoteOfTheDay);
+        quoteOfTheDay = view.findViewById(R.id.quoteOfTheDay);
+
 
         TrainerController controller = BaseController.getController();
         User user = controller.findUser();
@@ -58,19 +64,33 @@ public class HomeScreen_fragment extends Fragment {
         }
         userGreetText.setText(String.format("Welcome back %s", user.getUsername()));
         //TODO: remove comments after quotes have been added
-        if (quotes != null) {
-            int quoteIndex = new Random().nextInt(quotes.size());
-            quoteOfTheDay.setText(quotes.get(quoteIndex));
+    }
+
+    public void updateQuote(String dailyQuote){
+        if(quoteOfTheDay != null){
+            quoteOfTheDay.setText(dailyQuote);
         }
     }
 
     /**
      * Fetches the quotes from the database in the background
      */
+
     private void handleQuoteFetching(){
         new Thread(() -> {
-            quotes = BaseController.getController().getQuotes();
-        }).start();
 
+            Future<String> result = BaseController.getController().getQuotes();
+            try {
+                String dailyQuote = result.get();
+                FragmentActivity activity = getActivity();
+                if (activity == null) return;
+                activity.runOnUiThread(() -> {
+                    updateQuote(dailyQuote);
+                });
+            } catch (InterruptedException | ExecutionException e) {
+                Toast.makeText(getContext(), "Failed to load quote", Toast.LENGTH_SHORT).show();
+            }
+        }).start();
     }
+
 }

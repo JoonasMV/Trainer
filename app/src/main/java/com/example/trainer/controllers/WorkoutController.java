@@ -259,8 +259,8 @@ public class WorkoutController extends BaseController {
     }
 
     @Override
-    public List<String> getQuotes() {
-        return quoteService.getQuotes();
+    public Future<String> getQuotes() {
+        return executor.submit(quoteService::getQuotes);
     }
 
     @Override

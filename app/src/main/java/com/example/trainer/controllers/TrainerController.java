@@ -197,7 +197,7 @@ public interface TrainerController {
      * Gets a list of quotes from the server
      * @return list of quotes
      */
-    List<String> getQuotes();
+    Future<String> getQuotes();
 
     void makeShared(Workout workout);
 

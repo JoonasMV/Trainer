@@ -12,7 +12,7 @@ public class QuoteService {
         this.api = api;
     }
 
-    public List<String> getQuotes() {
+    public String getQuotes() {
         return api.getQuotes();
     }
 }
