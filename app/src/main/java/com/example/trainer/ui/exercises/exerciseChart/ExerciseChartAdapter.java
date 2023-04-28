@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Adapter for the exercise type data that is shown in the ResyclerView of ExerciseChart_fragment
+ */
 public class ExerciseChartAdapter extends RecyclerView.Adapter<ExerciseChartAdapter.ViewHolder> {
 
     private ArrayList<Workout> localDataSet;
@@ -27,8 +30,6 @@ public class ExerciseChartAdapter extends RecyclerView.Adapter<ExerciseChartAdap
 
         public ViewHolder(View view) {
             super(view);
-            // Define click listener for the ViewHolder's View
-
             date = (TextView) view.findViewById(R.id.date);
             weight = (TextView)  view.findViewById(R.id.weight);
         }
@@ -47,7 +48,7 @@ public class ExerciseChartAdapter extends RecyclerView.Adapter<ExerciseChartAdap
         localDataSet = new ArrayList<>(dataSet);
     }
 
-    // Create new views (invoked by the layout manager)
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
@@ -57,7 +58,7 @@ public class ExerciseChartAdapter extends RecyclerView.Adapter<ExerciseChartAdap
         return new ViewHolder(view);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 

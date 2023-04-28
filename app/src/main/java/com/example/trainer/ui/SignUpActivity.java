@@ -14,6 +14,10 @@ import com.example.trainer.model.User;
 
 import java.util.concurrent.Future;
 
+/**
+ * Activity for signing up
+ */
+
 public class SignUpActivity extends AppCompatActivity {
 
     EditText nameInput;
@@ -39,6 +43,10 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Registers the given user in the background
+     * @param user  the given user to register
+     */
     private void registerUserOnBackground(User user){
         TrainerController controller = BaseController.getController();
         new Thread(() -> {

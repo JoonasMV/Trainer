@@ -22,6 +22,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Fragment to show the other user's chosen workout's information, like the date, the duration and exercises
+ */
 public class UserWorkoutStats_fragment extends Fragment {
 
     private TextView workoutName;

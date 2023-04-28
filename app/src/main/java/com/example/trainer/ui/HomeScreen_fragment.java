@@ -24,6 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Trainer app's home screen, opens when the user has logged in
+ */
 public class HomeScreen_fragment extends Fragment {
 
     private List<String> quotes;

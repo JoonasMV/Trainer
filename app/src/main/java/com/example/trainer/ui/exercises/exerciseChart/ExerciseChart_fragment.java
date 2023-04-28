@@ -26,7 +26,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ * Shows the progress of the chosen exercise type
+ */
 public class ExerciseChart_fragment extends Fragment {
 
     TextView name;
@@ -54,6 +56,11 @@ public class ExerciseChart_fragment extends Fragment {
     }
     //placeholders
     //TODO: real values
+
+    /**
+     * Creates a List of entries for the chart
+     * @return  returns the created ArrayList of entries
+     */
     private List<Entry> dataValues1(){
         List<Entry> dataVals = new ArrayList<Entry>();
         dataVals.add(new Entry(0,20));
@@ -100,6 +107,10 @@ public class ExerciseChart_fragment extends Fragment {
         return v;
     }
 
+    /**
+     * Styles the given set of data for the chart
+     * @param set1  set of data to be styled
+     */
     private void chartStyling(LineDataSet set1){
         switch (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) {
             case Configuration.UI_MODE_NIGHT_YES:
@@ -122,8 +133,12 @@ public class ExerciseChart_fragment extends Fragment {
         set1.setDrawFilled(true);
         set1.setFormLineWidth(2f);
         set1.setFormSize(15.f);
-
     }
+
+    /**
+     * Styles the given axis of the chart
+     * @param axis  the axis that is styled
+     */
     private void axisStyling(AxisBase axis){
         axis.setTextSize(16f);
         axis.setAxisLineWidth(2f);

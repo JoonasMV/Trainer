@@ -23,6 +23,9 @@ import com.example.trainer.model.Workout;
 import java.time.Duration;
 import java.util.Date;
 
+/**
+ * Fragment for a new workout the user has started
+ */
 public class CurrentWorkout_fragment extends Fragment {
     private final TrainerController workoutManager = BaseController.getController();
     private TextView workoutNameText;
@@ -53,6 +56,10 @@ public class CurrentWorkout_fragment extends Fragment {
         return v;
     }
 
+    /**
+     * Listeners for the fragments clicks and text changes
+     * @param v the fragments View
+     */
     private void createListeners(View v){
         v.findViewById(R.id.cancelWorkoutBtn).setOnClickListener(view -> {
             workoutManager.cancelWorkout(getContext());
@@ -114,6 +121,10 @@ public class CurrentWorkout_fragment extends Fragment {
         }
     }
 
+    /**
+     * Method to populate the RecyclerView
+     * @param v
+     */
     private void initRecyclerView(View v) {
         RecyclerView listOfWorkouts = v.findViewById(R.id.listOfExercises);
         ExerciseAdapter exerciseAdapter = new ExerciseAdapter(getContext());
@@ -121,6 +132,10 @@ public class CurrentWorkout_fragment extends Fragment {
         listOfWorkouts.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
+    /**
+     * Method for changing the fragment inside the main activity
+     * @param fragment  the proceeding fragment
+     */
     private void changeFragment(Fragment fragment) {
         getParentFragmentManager().beginTransaction()
                 .replace(R.id.mainContainer, fragment.getClass(), null)

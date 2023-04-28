@@ -27,7 +27,9 @@ import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-
+/**
+ * Public profile for the app's users
+ */
 public class UserProfile_fragment extends Fragment {
 
     private TextView userName;
@@ -46,11 +48,9 @@ public class UserProfile_fragment extends Fragment {
 
     public static UserProfile_fragment newInstance(String username) {
         UserProfile_fragment fragment = new UserProfile_fragment();
-
         Bundle args = new Bundle();
         args.putString(USERNAME_KEY, username);
         fragment.setArguments(args);
-
         return fragment;
     }
 
@@ -80,17 +80,6 @@ public class UserProfile_fragment extends Fragment {
         userName.setText(username);
 
         List<Workout> list = new ArrayList<>();
-        //placeholders
-        //TODO: real values
-
-
-
-        /*
-        list.add(new Workout("workout", new Date(), new Date()));
-        list.add(new Workout("workout2", new Date(), new Date()));
-        list.add(new Workout("workout3", new Date(), new Date()));
-        */
-
 
         UserProfileAdapter adapter = new UserProfileAdapter(list, getContext());
         handleWorkoutFetching(adapter, username);
@@ -98,6 +87,12 @@ public class UserProfile_fragment extends Fragment {
         workoutList.setLayoutManager(new LinearLayoutManager(getContext()));
         workoutList.setAdapter(adapter);
     }
+
+    /**
+     * Fetches the user's shared workouts
+     * @param adapter   the adapter the data is given to
+     * @param username  the user's username
+     */
 
     private void handleWorkoutFetching(UserProfileAdapter adapter, String username){
         new Thread(() -> {

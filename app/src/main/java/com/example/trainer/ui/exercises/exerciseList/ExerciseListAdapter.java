@@ -23,6 +23,11 @@ import com.example.trainer.ui.MainActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents one exercise the user has created,
+ * in the model these exercises are referred with the term ExerciseType
+ */
+
 public class ExerciseListAdapter extends UpdatableAdapter<List<ExerciseType>, ExerciseListAdapter.ViewHolder> {
 
     private List<ExerciseType> exerciseTypes;
@@ -77,7 +82,6 @@ public class ExerciseListAdapter extends UpdatableAdapter<List<ExerciseType>, Ex
 
         });
 
-        // long click to open menu
         holder.threeDots.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NonConstantResourceId")
             @Override
@@ -110,6 +114,10 @@ public class ExerciseListAdapter extends UpdatableAdapter<List<ExerciseType>, Ex
         return exerciseTypes.size();
     }
 
+    /**
+     * Deletes deleted exercise type from the list
+     * @param position  position of the deleted exercise type
+     */
     private void deleteExerciseType(int position) {
         BaseController.getController().deleteExerciseType(exerciseTypes.get(position).getId());
         exerciseTypes.remove(position);

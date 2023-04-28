@@ -15,6 +15,9 @@ import com.example.trainer.model.ExerciseSet;
 
 import java.util.List;
 
+/**
+ * Adapter for the sets inside WorkoutStatsExerciseAdapter
+ */
 public class WorkoutStatsSetAdapter extends RecyclerView.Adapter<WorkoutStatsSetAdapter.ViewHolder> {
 
     private final List<ExerciseSet> sets;

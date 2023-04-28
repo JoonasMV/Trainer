@@ -19,12 +19,14 @@ import com.example.trainer.model.Workout;
 
 import java.util.List;
 
+/**
+ * Adapter for the user's shared workouts
+ */
 public class UserProfileAdapter extends UpdatableAdapter<List<Workout>, UserProfileAdapter.ViewHolder> {
 
     private List<Workout> workouts;
 
     private Context parentContext;
-
 
     private PopupMenu ppMenu;
 
@@ -85,9 +87,7 @@ public class UserProfileAdapter extends UpdatableAdapter<List<Workout>, UserProf
                         showWorkout(view, workout);
                         break;
                     case R.id.save:
-                        //TODO: to be seen
                         BaseController.getController().saveWorkout(workout);
-
                         break;
                 }
                 return true;
@@ -98,7 +98,11 @@ public class UserProfileAdapter extends UpdatableAdapter<List<Workout>, UserProf
 
         }
 
-
+    /**
+     * Opens the chosen workout's information
+      * @param view the view
+     * @param workout   chosen workout
+     */
     private void showWorkout(View view, Workout workout) {
         Bundle args = new Bundle();
         args.putSerializable(null, workout);

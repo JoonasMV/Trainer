@@ -15,7 +15,9 @@ import com.example.trainer.model.User;
 import java.util.concurrent.Future;
 //import android.widget.Toast;
 
-
+/**
+    Activity for logging in the app
+ */
 public class LoginPage_activity extends AppCompatActivity {
     EditText nameInput;
     EditText passwordInput;
@@ -46,6 +48,10 @@ public class LoginPage_activity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Authenticates the user in the background, if the user is found, opens the MainActivity
+     * @param user  the user that is trying to log in
+     */
     private void authenticateOnBackground(User user){
         TrainerController controller = BaseController.getController();
         new Thread(() -> {
