@@ -52,4 +52,7 @@
     <string name="search_for_users">Etsi käyttäjiä</string>
     <string name="log_out">Kirjaudu ulos</string>
     <string name="search_users">Etsi käyttäjiä</string>
+    <string name="set">setti</string>
+    <string name="menu">valikko</string>
+    <string name="more">lisää</string>
 </resources>

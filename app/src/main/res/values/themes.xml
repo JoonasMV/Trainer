@@ -4,7 +4,7 @@
         <!-- Top bar and borders -->
         <item name="colorPrimary">@color/menu_items_light</item>
         <item name="android:statusBarColor">@color/menu_items_light</item>
-
+        <item name="backgroundColor">@color/background_light</item>
         <item name="colorSecondary">@color/menu_items_light</item>
 
         <item name="colorSecondaryVariant">@color/color2_light</item>
@@ -19,6 +19,7 @@
         <item name="colorTertiary">@color/red</item>
 
 
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
         <item name="android:itemTextAppearance">@style/itemTextStyle</item>
     </style>
         <!-- Other colors -->

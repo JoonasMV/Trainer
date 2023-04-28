@@ -52,4 +52,7 @@
     <string name="search_for_users">Buscar usuarios</string>
     <string name="log_out">Cerrar sesión</string>
     <string name="search_users">Buscar usuarios</string>
+    <string name="set">set</string>
+    <string name="menu">menú</string>
+    <string name="more">más</string>
 </resources>
