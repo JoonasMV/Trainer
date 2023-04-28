@@ -87,7 +87,7 @@ public class UserProfileAdapter extends UpdatableAdapter<List<Workout>, UserProf
                         showWorkout(view, workout);
                         break;
                     case R.id.save:
-                        BaseController.getController().saveWorkout(workout);
+                        BaseController.getController().saveSharedWorkout(workout);
                         break;
                 }
                 return true;

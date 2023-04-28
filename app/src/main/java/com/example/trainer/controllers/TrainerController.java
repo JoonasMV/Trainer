@@ -36,6 +36,8 @@ public interface TrainerController {
      */
     void saveWorkout(Workout workout);
 
+    void saveSharedWorkout(Workout workout);
+
     /**
      * Change the name of the current workout
      * @param name new name of the workout

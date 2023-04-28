@@ -103,6 +103,19 @@ public class WorkoutController extends BaseController {
         executor.submit(() -> workoutService.save(workout));
     }
 
+    @Override
+    public void saveSharedWorkout(Workout workout) {
+        Workout copy = new Workout(workout);
+        //copy.setPreset(true);
+        //copy.setShared(false);
+        System.out.println(copy.equals(workout));
+        workout.getExercises().get(0).getSets().get(0).setWeight(1000);
+        System.out.println(workout.getExercises().get(0));
+        System.out.println(copy.getExercises().get(0));
+        System.out.println(copy.equals(workout));
+        //executor.submit(() -> workoutService.save(copy));
+    }
+
     /**
      * {@inheritDoc}
      */
