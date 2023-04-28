@@ -11,6 +11,8 @@ Experience the future of fitness tracking with Trainer. Download our app now and
 
 Trainer is an android app created using Android Studio.
 
+Backend is running on [Trainer-API](https://github.com/ollivarila/Trainer-API)
+
 ## Team
 Jenni H <br> 
 Mikko T <br>
