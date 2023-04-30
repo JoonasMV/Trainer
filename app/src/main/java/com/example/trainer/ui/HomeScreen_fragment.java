@@ -80,7 +80,6 @@ public class HomeScreen_fragment extends Fragment {
     public void updateQuote(String dailyQuote){
         if(quoteOfTheDay != null){
             quoteOfTheDay.setText(dailyQuote);
-            MainActivity.quote = dailyQuote;
         }
     }
 
