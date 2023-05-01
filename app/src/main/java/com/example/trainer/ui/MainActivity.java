@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         progressBtn.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                showTooltip(getString(R.string.progress));
+                showTooltip(getString(R.string.history));
                 return true;
             }
         });
