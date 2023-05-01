@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.trainer.R;
@@ -35,6 +36,8 @@ public class UserProfile_fragment extends Fragment {
     private TextView userName;
 
     private RecyclerView workoutList;
+
+    private ProgressBar bar;
 
     private String username;
 
@@ -69,8 +72,10 @@ public class UserProfile_fragment extends Fragment {
         View view = inflater.inflate(R.layout.user_profile_fragment, container, false);
         userName = view.findViewById(R.id.userName);
         workoutList = view.findViewById(R.id.userWorkouts);
+        bar = view.findViewById(R.id.profileProgressBar);
         return view;
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -82,10 +87,10 @@ public class UserProfile_fragment extends Fragment {
         List<Workout> list = new ArrayList<>();
 
         UserProfileAdapter adapter = new UserProfileAdapter(list, getContext());
-        handleWorkoutFetching(adapter, username);
 
         workoutList.setLayoutManager(new LinearLayoutManager(getContext()));
         workoutList.setAdapter(adapter);
+        handleWorkoutFetching(adapter, username);
     }
 
     /**
@@ -95,6 +100,7 @@ public class UserProfile_fragment extends Fragment {
      */
 
     private void handleWorkoutFetching(UserProfileAdapter adapter, String username){
+        bar.setProgress(0);
         new Thread(() -> {
             Future<List<Workout>> result = BaseController.getController().getSharedWorkoutsAsync(username);
             try {
@@ -103,6 +109,8 @@ public class UserProfile_fragment extends Fragment {
                 if (activity == null) return;
                 activity.runOnUiThread(() -> {
                     adapter.update(workouts);
+                    bar.setVisibility(View.GONE);
+
                 });
             } catch (InterruptedException | ExecutionException e) {
                 Toaster.toast(getContext(), "Failed to load workouts");
