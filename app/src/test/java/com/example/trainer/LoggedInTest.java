@@ -68,5 +68,4 @@ public class LoggedInTest {
             assertThat(progressBtn.getText().toString()).isEqualTo("History");
         }
     }
-
 }

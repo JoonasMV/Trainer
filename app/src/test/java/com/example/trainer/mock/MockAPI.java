@@ -43,6 +43,11 @@ public class MockAPI extends API {
     }
 
     @Override
+    public void logOut() {
+
+    }
+
+    @Override
     public List<ExerciseType> getAllExerciseTypes() {
         List<ExerciseType> list = new ArrayList<>();
         list.add(new ExerciseType("test"));
@@ -81,7 +86,22 @@ public class MockAPI extends API {
         recentParam = id;
     }
 
+    @Override
+    public void updateWorkout(Workout workout) {
+
+    }
+
+    @Override
+    public List<Workout> getSharedWorkouts(String username) {
+        return null;
+    }
+
     public Object getRecentParam(){
         return this.recentParam;
+    }
+
+    @Override
+    public String getQuotes() {
+        return null;
     }
 }
