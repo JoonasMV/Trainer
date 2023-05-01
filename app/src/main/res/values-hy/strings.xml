@@ -24,7 +24,7 @@
     <string name="delete">Ջնջել</string>
     <string name="cancelWorkout">Աշխատանքը չեղյալ թարմացված չէ</string>
     <string name="endWorkout">Աշխատանքը ավարտվել է</string>
-    <string name="welcomeBack">Վերադարձիր շուտով</string>
+    <string name="welcomeBack">Վերադարձիր շուտով %s</string>
     <string name="drawingAltText">մարմնաբարձր անձի ձեռքը, որը պարունակում է ծխախոտի կամ հացի ամենաքաշ միջոցները</string>
     <string name="name">Անուն</string>
     <string name="newWorkout">Նոր աշխատանք</string>
