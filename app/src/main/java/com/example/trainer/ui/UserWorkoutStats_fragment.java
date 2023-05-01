@@ -14,9 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
+import com.example.trainer.controllers.BaseController;
 import com.example.trainer.ui.workouts.workoutStats.WorkoutStatsExerciseAdapter;
 import com.example.trainer.model.Exercise;
 import com.example.trainer.model.Workout;
+import com.example.trainer.util.Toaster;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -90,8 +92,9 @@ public class UserWorkoutStats_fragment extends Fragment {
         exercises.setLayoutManager(new LinearLayoutManager(getContext()));
         exercises.setAdapter(adapter);
 
-        //save.setOnClickListener(v -> {
-            //TODO: to be continued
-        //});
+        save.setOnClickListener(v -> {
+            BaseController.getController().saveWorkout(workout);
+            Toaster.toast(getContext(), String.format(getString(R.string.nowPreset), workout.getName()));
+        });
     }
 }

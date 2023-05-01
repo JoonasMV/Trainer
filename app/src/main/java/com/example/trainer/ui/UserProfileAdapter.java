@@ -15,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
+import com.example.trainer.model.Exercise;
 import com.example.trainer.model.Workout;
+import com.example.trainer.util.Toaster;
 
 import java.util.List;
 
@@ -88,6 +90,7 @@ public class UserProfileAdapter extends UpdatableAdapter<List<Workout>, UserProf
                         break;
                     case R.id.save:
                         BaseController.getController().saveWorkout(workout);
+                        Toaster.toast(parentContext, String.format(parentContext.getString(R.string.nowPreset), workout.getName()));
                         break;
                 }
                 return true;
