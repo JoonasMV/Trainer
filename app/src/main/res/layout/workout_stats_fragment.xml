@@ -37,6 +37,7 @@
             android:id="@+id/workoutTime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
             android:text="TextView"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -48,13 +49,14 @@
 
         <TextView
             android:id="@+id/wDuration"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="8dp"
+            android:textAlignment="viewEnd"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/guideline21"
+            app:layout_constraintStart_toEndOf="@+id/durationText"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_conversion_absoluteHeight="24dp"
             tools:layout_conversion_absoluteWidth="206dp" />
@@ -64,11 +66,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5"
+            app:layout_constraintGuide_percent="0.35"
             tools:layout_conversion_absoluteHeight="0dp"
-            tools:layout_conversion_absoluteWidth="0dp"
-            tools:layout_editor_absoluteX="206dp"
-            tools:layout_editor_absoluteY="66dp" />
+            tools:layout_conversion_absoluteWidth="0dp" />
+
+        <TextView
+            android:id="@+id/durationText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/duration"
+            android:textAlignment="viewEnd"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/wDuration"
+            app:layout_constraintStart_toEndOf="@+id/guideline21"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -76,6 +88,7 @@
         android:id="@+id/exerciseRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginHorizontal="8dp"
         app:layout_constraintBottom_toTopOf="@+id/makePresetBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

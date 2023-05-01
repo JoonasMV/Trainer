@@ -57,4 +57,5 @@
     <string name="set">set</string>
     <string name="menu">menu</string>
     <string name="more">more</string>
+    <string name="duration">duration:</string>
 </resources>
