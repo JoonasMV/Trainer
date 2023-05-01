@@ -54,7 +54,8 @@
     <string name="log_out">Log Out</string>
     <string name="search_users">Search Users</string>
     <string name="quoteOfTheDay">quote of the day</string>
-    <string name="set">Set</string>
-    <string name="menu">Menu</string>
-    <string name="more">More</string>
+    <string name="set">set</string>
+    <string name="menu">menu</string>
+    <string name="more">more</string>
+    <string name="duration">duration:</string>
 </resources>

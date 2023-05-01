@@ -56,4 +56,5 @@
     <string name="set">setti</string>
     <string name="menu">Valikko</string>
     <string name="more">Lisää</string>
+    <string name="duration">kesto:</string>
 </resources>

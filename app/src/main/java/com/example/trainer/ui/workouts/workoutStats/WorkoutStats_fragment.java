@@ -108,8 +108,14 @@ public class WorkoutStats_fragment extends Fragment {
             }
         });
 
+
         share.setOnClickListener(v -> {
-            //TODO: to be seen
+            if(workout.isShared()){
+                Toaster.toast(getContext(), String.format(getContext().getString(R.string.alreadyShared), workout.getName()));
+            } else {
+                workoutManager.makeShared(workout);
+                Toaster.toast(getContext(), String.format(getContext().getString(R.string.nowShared), workout.getName()));
+            }
         });
 
     }

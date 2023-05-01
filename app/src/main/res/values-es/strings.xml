@@ -55,5 +55,6 @@
     <string name="quoteOfTheDay">Cita del día</string>
     <string name="set">set</string>
     <string name="menu">Menú</string>
-    <string name="more">Más</string>
+    <string name="more">más</string>
+    <string name="duration">duración:</string>
 </resources>
