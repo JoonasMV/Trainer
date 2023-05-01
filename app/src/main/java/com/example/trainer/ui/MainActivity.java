@@ -2,18 +2,24 @@ package com.example.trainer.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.trainer.R;
+import com.example.trainer.model.Workout;
 import com.example.trainer.ui.exercises.exerciseList.ExerciseList_fragment;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
@@ -24,6 +30,11 @@ import com.example.trainer.ui.workouts.presetWorkouts.PresetWorkouts_fragment;
 import com.example.trainer.ui.workouts.workoutStats.WorkoutStats_fragment;
 import com.example.trainer.util.Toaster;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+
 /**
  * Trainer App's main activity
  */
@@ -32,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
     private FragmentManager fragmentManager;
     private TrainerController controller;
+
+    private TextView longPress;
 
     private PopupMenu ppMenu;
 
@@ -46,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.toolbar);
         View v =getSupportActionBar().getCustomView();
+        longPress = findViewById(R.id.menuButtonLongPress);
 
 
         if(controller.sessionValid()){
@@ -81,10 +95,73 @@ public class MainActivity extends AppCompatActivity {
             });
             ppMenu.show();
         });
-        findViewById(R.id.exercisesBtn).setOnClickListener(view -> fragmentHandler(new ExerciseList_fragment()));
-        findViewById(R.id.homeBtn).setOnClickListener(view -> fragmentHandler(new HomeScreen_fragment()));
-        findViewById(R.id.workoutsBtn).setOnClickListener(view -> fragmentHandler(new PresetWorkouts_fragment()));
-        findViewById(R.id.progressBtn).setOnClickListener(view -> fragmentHandler(new WorkoutHistory_fragment()));
+
+        String[] menuButtonStrings = new String[4];
+        menuButtonStrings[0] = getString(R.string.exercises);
+        menuButtonStrings[1] = getString(R.string.home);
+        menuButtonStrings[2] = getString(R.string.workouts);
+        menuButtonStrings[3] = getString(R.string.history);
+
+        for(int i = 0; i < menuButtonStrings.length; i++){
+            if(menuButtonStrings[i].length() > 9){
+                menuButtonStrings[i] = menuButtonStrings[i].substring(0, 5) + "...";
+            }
+        }
+
+
+        //exercisebutton
+        Button exerciseBtn = findViewById(R.id.exercisesBtn);
+        exerciseBtn.setText(menuButtonStrings[0]);
+        exerciseBtn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                showTooltip(getString(R.string.exercises));
+                return true;
+            }
+        });
+
+        exerciseBtn.setOnClickListener(view -> fragmentHandler(new ExerciseList_fragment()));
+
+
+        //homebutton
+        Button homeBtn = findViewById(R.id.homeBtn);
+        homeBtn.setText(menuButtonStrings[1]);
+        homeBtn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                showTooltip(getString(R.string.home));
+                return true;
+            }
+        });
+        homeBtn.setOnClickListener(view -> fragmentHandler(new HomeScreen_fragment()));
+
+
+        //workoutsbutton
+        Button workoutsBtn = findViewById(R.id.workoutsBtn);
+        workoutsBtn.setText(menuButtonStrings[2]);
+        workoutsBtn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                showTooltip(getString(R.string.workouts));
+                return true;
+            }
+        });
+        workoutsBtn.setOnClickListener(view -> fragmentHandler(new PresetWorkouts_fragment()));
+
+
+        //progressbutton
+        Button progressBtn = findViewById(R.id.progressBtn);
+        progressBtn.setText(menuButtonStrings[3]);
+        progressBtn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                showTooltip(getString(R.string.progress));
+                return true;
+            }
+        });
+        progressBtn.setOnClickListener(view -> fragmentHandler(new WorkoutHistory_fragment()));
+
+
         BaseController.getController().readFromPref(getApplicationContext());
     }
 
@@ -131,5 +208,10 @@ public class MainActivity extends AppCompatActivity {
     public void onStop() {
         super.onStop();
         BaseController.getController().saveToPref(getApplicationContext());
+    }
+
+
+    public void showTooltip(String stringToShow){
+        Toaster.longToast(this, stringToShow);
     }
 }

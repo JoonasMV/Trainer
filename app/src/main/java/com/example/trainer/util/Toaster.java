@@ -12,4 +12,9 @@ public class Toaster {
 
     }
 
+    public static void longToast(Context context, String text){
+        Toast toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
+        toast.show();
+    }
+
 }
