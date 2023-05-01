@@ -53,7 +53,7 @@ public class MainActivityTest {
     }
 
     @Test
-    public void loginWorks() {
+    public void loginWorks() throws InterruptedException {
         TrainerController mockController = mock(WorkoutController.class);
         when(mockController.authenticateUserAsync(any())).thenReturn(new Future<Boolean>() {
             @Override
@@ -92,6 +92,7 @@ public class MainActivityTest {
             nameInput.setText("test");
             passwordInput.setText("yeet");
             activity.findViewById(R.id.signUpButton).performClick();
+            Thread.sleep(100);
             verify(mockController, times(1)).authenticateUserAsync(isA(User.class));
         }
     }
