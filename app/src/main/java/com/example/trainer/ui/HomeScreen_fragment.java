@@ -1,5 +1,6 @@
 package com.example.trainer.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.example.trainer.R;
 import com.example.trainer.controllers.BaseController;
 import com.example.trainer.controllers.TrainerController;
+import com.example.trainer.controllers.services.QuoteService;
 import com.example.trainer.model.User;
 import com.example.trainer.model.Workout;
 import com.example.trainer.util.Toaster;
@@ -53,6 +55,7 @@ public class HomeScreen_fragment extends Fragment {
         return inflater.inflate(R.layout.home_fragment, container, false);
     }
 
+    @SuppressLint("StringFormatInvalid")
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
@@ -67,7 +70,7 @@ public class HomeScreen_fragment extends Fragment {
             startActivity(new Intent(this.getContext(), LoginPage_activity.class));
             return;
         }
-        userGreetText.setText(String.format("Welcome back %s", user.getUsername()));
+        userGreetText.setText(String.format(getContext().getString(R.string.welcomeBack), user.getUsername()));
 
         if(quote != null){
             quoteOfTheDay.setText(quote);
@@ -97,7 +100,7 @@ public class HomeScreen_fragment extends Fragment {
                     updateQuote(dailyQuote);
                 });
             } catch (InterruptedException | ExecutionException e) {
-                Toast.makeText(getContext(), "Failed to load quote", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.failQuote), Toast.LENGTH_SHORT).show();
             }
         }).start();
     }

@@ -73,7 +73,7 @@ public class PresetWorkouts_fragment extends Fragment {
 
     private void startNewWorkout() {
         if (!workoutManager.workoutActive()) {
-            workoutManager.startWorkout("New Workout");
+            workoutManager.startWorkout(getString(R.string.newWorkout));
             getParentFragmentManager()
                     .beginTransaction()
                     .replace(R.id.mainContainer, new SelectExercise_fragment())

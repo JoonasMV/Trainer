@@ -113,7 +113,7 @@ public class UserProfile_fragment extends Fragment {
 
                 });
             } catch (InterruptedException | ExecutionException e) {
-                Toaster.toast(getContext(), "Failed to load workouts");
+                Toaster.toast(getContext(), getString(R.string.failWorkout));
             }
         }).start();
     }

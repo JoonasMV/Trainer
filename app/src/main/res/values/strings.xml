@@ -58,4 +58,8 @@
     <string name="menu">menu</string>
     <string name="more">more</string>
     <string name="duration">duration:</string>
+    <string name="failQuote">Failed to load quote</string>
+    <string name="failWorkout">Failed to load workouts</string>
+    <string name="nameNotEmpty">Give name that\'s not empty</string>
+
 </resources>
