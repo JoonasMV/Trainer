@@ -37,10 +37,8 @@ public class HomeScreen_fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(MainActivity.quote == null){
+        if(quote == null){
             handleQuoteFetching();
-        }else {
-            quote = MainActivity.quote;
         }
     }
 
@@ -70,7 +68,6 @@ public class HomeScreen_fragment extends Fragment {
             return;
         }
         userGreetText.setText(String.format("Welcome back %s", user.getUsername()));
-        //TODO: remove comments after quotes have been added
 
         if(quote != null){
             quoteOfTheDay.setText(quote);
@@ -81,6 +78,7 @@ public class HomeScreen_fragment extends Fragment {
         if(quoteOfTheDay != null){
             quoteOfTheDay.setText(dailyQuote);
         }
+        quote = dailyQuote;
     }
 
     /**

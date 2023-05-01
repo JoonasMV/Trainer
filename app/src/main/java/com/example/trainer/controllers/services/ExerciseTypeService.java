@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * handles exercisetype fetching from api
+ */
 public class ExerciseTypeService {
 
     private List<ExerciseType> exerciseTypes = new ArrayList<>();

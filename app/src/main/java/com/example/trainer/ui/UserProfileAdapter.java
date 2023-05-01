@@ -55,7 +55,8 @@ public class UserProfileAdapter extends UpdatableAdapter<List<Workout>, UserProf
     @Override
     public void update(List<Workout> data) {
         this.workouts = data;
-        notifyDataSetChanged();
+        this.notifyDataSetChanged();
+
     }
 
     @NonNull
