@@ -4,8 +4,8 @@
     <string name="addExerciseButton">Lisää liike</string>
     <string name="hello_blank_fragment">Hei blank fragment</string>
     <string name="workout_name_field">Treenin nimi</string>
-    <string name="back">takaisin</string>
-    <string name="save">tallenna</string>
+    <string name="back">Takaisin</string>
+    <string name="save">Tallenna</string>
     <string name="progress">Kehitys</string>
     <string name="workouts">Treeni</string>
     <string name="history">Historia</string>
@@ -30,7 +30,7 @@
     <string name="newWorkout">Uusi Treeni</string>
     <string name="reps">Toistot</string>
     <string name="weight">Paino</string>
-    <string name="addSet">lisää setti</string>
+    <string name="addSet">Lisää setti</string>
     <string name="exerciseToast">Liike on jo olemassa</string>
     <string name="presetRemoved">Treenipohja poistettu</string>
     <string name="alreadyPreset">%s on jo treenipohja</string>
@@ -52,8 +52,8 @@
     <string name="search_for_users">Etsi käyttäjiä</string>
     <string name="log_out">Kirjaudu ulos</string>
     <string name="search_users">Etsi käyttäjiä</string>
-    <string name="quoteOfTheDay">päivän lause</string>
+    <string name="quoteOfTheDay">Päivän lause</string>
     <string name="set">setti</string>
-    <string name="menu">valikko</string>
-    <string name="more">lisää</string>
+    <string name="menu">Valikko</string>
+    <string name="more">Lisää</string>
 </resources>

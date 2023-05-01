@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Trainer</string>
-    <string name="addExerciseButton">agregar ejercicio</string>
+    <string name="addExerciseButton">Agregar ejercicio</string>
     <string name="hello_blank_fragment">Hola blank fragment</string>
-    <string name="workout_name_field">nombre del entrenamiento</string>
-    <string name="back">regresar</string>
-    <string name="save">guardar</string>
-    <string name="progress">progreso</string>
+    <string name="workout_name_field">Nombre del entrenamiento</string>
+    <string name="back">Regresar</string>
+    <string name="save">Guardar</string>
+    <string name="progress">Progreso</string>
     <string name="workouts">entrenamiento</string>
     <string name="history">Historia</string>
     <string name="home">Inicio</string>
@@ -16,8 +16,8 @@
     <string name="workoutHistory_title">Historial de entrenamiento</string>
     <string name="makePreset">Guardar como preestablecido</string>
     <string name="addWorkoutName">Nombre de guardado</string>
-    <string name="workoutName">entrenamiento</string>
-    <string name="delete">eliminar</string>
+    <string name="workoutName">Entrenamiento</string>
+    <string name="delete">Rliminar</string>
     <string name="saveExercise">Guardar Ejercicio</string>
     <string name="exerciseName">Nombre del Ejercicio</string>
     <string name="presetText">Preajustes</string>
@@ -25,11 +25,11 @@
     <string name="endWorkout">Terminar Entrenamiento</string>
     <string name="welcomeBack">¡Bienvenido de nuevo %s!</string>
     <string name="drawingAltText">Mano muscular sosteniendo una pesa</string>
-    <string name="name">nombre</string>
+    <string name="name">Nombre</string>
     <string name="newWorkout">Nuevo Entrenamiento</string>
     <string name="reps">Repeticiones</string>
     <string name="weight">Peso</string>
-    <string name="addSet">agregar serie</string>
+    <string name="addSet">Agregar serie</string>
     <string name="exerciseToast">Ese tipo de ejercicio ya ha sido agregado</string>
     <string name="presetRemoved">Preajuste eliminado</string>
     <string name="alreadyPreset">%s ya es un preajuste</string>
@@ -52,8 +52,8 @@
     <string name="search_for_users">Buscar usuarios</string>
     <string name="log_out">Cerrar sesión</string>
     <string name="search_users">Buscar usuarios</string>
-    <string name="quoteOfTheDay">cita del día</string>
+    <string name="quoteOfTheDay">Cita del día</string>
     <string name="set">set</string>
-    <string name="menu">menú</string>
-    <string name="more">más</string>
+    <string name="menu">Menú</string>
+    <string name="more">Más</string>
 </resources>
