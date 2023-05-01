@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private TrainerController controller;
 
-    private TextView longPress;
 
     private PopupMenu ppMenu;
 
@@ -59,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.toolbar);
         View v =getSupportActionBar().getCustomView();
-        longPress = findViewById(R.id.menuButtonLongPress);
 
 
         if(controller.sessionValid()){
