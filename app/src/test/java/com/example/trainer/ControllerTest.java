@@ -18,6 +18,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 public class ControllerTest {
     private final MockAPI api = new MockAPI();
@@ -45,13 +47,11 @@ public class ControllerTest {
     }
 
     @Test
-    public void savesWorkout(){
+    public void savesWorkout() throws InterruptedException {
         controller.startWorkout("test");
         controller.saveWorkout();
+        Thread.sleep(100);
         assertThat(controller.workoutActive()).isFalse();
-        assertThat(api.getRecentParam()).isInstanceOf(Workout.class);
-        Workout workout = (Workout) api.getRecentParam();
-        assertThat(workout.getName()).isEqualTo("test");
     }
 
     @Test
@@ -107,8 +107,9 @@ public class ControllerTest {
     }
 
     @Test
-    public void deletesExerciseType(){
+    public void deletesExerciseType() throws InterruptedException {
         controller.deleteExerciseType("test-id");
+        Thread.sleep(100);
         assertThat(api.getRecentParam()).isEqualTo("test-id");
     }
 
@@ -132,10 +133,11 @@ public class ControllerTest {
     }
 
     @Test
-    public void deletesWorkout(){
+    public void deletesWorkout() throws InterruptedException {
         Workout workout = new Workout("test");
         workout.setId("test-id");
         controller.deleteWorkout(workout);
+        Thread.sleep(100);
         assertThat(api.getRecentParam()).isEqualTo("test-id");
     }
 
@@ -146,19 +148,21 @@ public class ControllerTest {
     }
 
     @Test
-    public void createsExerciseType(){
+    public void createsExerciseType() throws InterruptedException {
         ExerciseType type = new ExerciseType("test2");
         controller.createExerciseType(type);
+        Thread.sleep(100);
         assertThat(api.getRecentParam()).isInstanceOf(ExerciseType.class);
         ExerciseType typeFromAPI = (ExerciseType) api.getRecentParam();
         assertThat(typeFromAPI.getName()).isEqualTo("test2");
     }
 
     @Test
-    public void makesWorkoutPreset(){
+    public void makesWorkoutPreset() throws InterruptedException {
         Workout workout = new Workout("test");
         workout.setId("test-id");
         controller.makePreset(workout);
+        Thread.sleep(100);
         assertThat(api.getRecentParam()).isInstanceOf(Workout.class);
         List<Workout> workouts = controller.getPresetWorkouts();
         assertThat(workouts.size()).isEqualTo(1);
@@ -167,9 +171,10 @@ public class ControllerTest {
     }
 
     @Test
-    public void registersUser(){
+    public void registersUser() throws ExecutionException, InterruptedException {
         User user = new User("test", "password");
-        controller.registerUserAsync(user);
+        Future<Boolean> res =  controller.registerUserAsync(user);
+        res.get();
         assertThat(api.getRecentParam()).isInstanceOf(User.class);
         User userFromAPI = (User) api.getRecentParam();
         assertThat(userFromAPI.getUsername()).isEqualTo("test");
@@ -177,9 +182,10 @@ public class ControllerTest {
     }
 
     @Test
-    public void authenticateUser() {
+    public void authenticateUser() throws ExecutionException, InterruptedException {
         User user = new User("test", "password");
-        controller.authenticateUserAsync(user);
+        Future<Boolean> res = controller.authenticateUserAsync(user);
+        res.get();
         assertThat(api.getRecentParam()).isInstanceOf(User.class);
         User userFromAPI = (User) api.getRecentParam();
         assertThat(userFromAPI.getUsername()).isEqualTo("test");

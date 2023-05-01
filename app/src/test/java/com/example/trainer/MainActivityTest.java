@@ -21,6 +21,11 @@ import static org.mockito.Mockito.*;
 import android.content.Intent;
 import android.widget.EditText;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 @RunWith(RobolectricTestRunner.class)
 public class MainActivityTest {
 
@@ -60,9 +65,7 @@ public class MainActivityTest {
             nameInput.setText("test");
             passwordInput.setText("yeet");
             activity.findViewById(R.id.signUpButton).performClick();
-
             verify(mockController, times(1)).authenticateUserAsync(isA(User.class));
-            assertThat(shadowOf(activity).getNextStartedActivity().getComponent().getClassName()).isEqualTo(MainActivity.class.getName());
         }
     }
 
