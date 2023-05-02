@@ -25,18 +25,37 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-// TODO TESTS FOR ALL METHODS
+/**
+ * Wrapper class for all of the API operations. To use methods that require authentication,
+ * you must authenticate user first by calling {@link #authenticateUser(User)}. This class also manages the token.
+ */
 public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTypeOperations,
         WorkoutOperations, QuoteOperations {
 
+    /**
+     * OkHttpClient used for making requests
+     */
     private final OkHttpClient client;
+
+    /**
+     * TokenManager used for managing the token
+     */
     private final TokenManager tokenManager;
 
+    /**
+     * MediaType used for JSON
+     */
     private final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
 
+    /**
+     * Used for parsing JSON
+     */
     private final Gson gson;
 
+    /**
+     * UserManager used for managing the user
+     */
     private final UserManager userManager;
 
     public TrainerAPIWrapper(Context context) {
@@ -54,6 +73,10 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
     }
 
 
+    /**
+     * {@inheritDoc}
+     * <br>Username must be unique.
+     */
     @Override
     public boolean registerUser(User user) {
         RequestBody reqBody = RequestBody.create(gson.toJson(user), JSON);
@@ -75,6 +98,9 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean authenticateUser(User user) {
         RequestBody reqBody = RequestBody.create(gson.toJson(user), JSON);
@@ -96,6 +122,9 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void refreshToken() {
         RequestBody body = RequestBody.create("", JSON);
@@ -114,16 +143,25 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User getUser() {
         return userManager.getUser();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean sessionValid() {
         return tokenManager.getToken() != null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<String> getUsernames() {
         String token = tokenManager.getToken();
@@ -143,11 +181,18 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void logOut() {
         stopSession();
     }
 
+    /**
+     * {@inheritDoc}
+     * <br>This method requires authentication.
+     */
     @Override
     public Workout saveWorkout(Workout workout) {
         RequestBody reqBody = RequestBody.create(gson.toJson(workout), JSON);
@@ -168,6 +213,10 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <br>This method requires authentication.
+     */
     @Override
     public List<Workout> getSharedWorkouts(String username) {
 
@@ -186,7 +235,10 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
             }
     }
 
-
+    /**
+     * {@inheritDoc}
+     * <br>This method requires authentication.
+     */
     @Override
     public List<Workout> getWorkouts() {
         String token = tokenManager.getToken();
@@ -206,6 +258,10 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <br>This method requires authentication.
+     */
     @SuppressWarnings("EmptyTryBlock")
     @Override
     public void deleteWorkout(String id) {
@@ -223,6 +279,10 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <br>This method requires authentication.
+     */
     @Override
     public List<ExerciseType> getAllExerciseTypes() {
         String token = tokenManager.getToken();
@@ -242,8 +302,10 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
         }
     }
 
-
-
+    /**
+     * {@inheritDoc}
+     * <br>This method requires authentication.
+     */
     @Override
     public void deleteExerciseType(String id) {
         String token = tokenManager.getToken();
@@ -261,6 +323,10 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <br>This method requires authentication.
+     */
     @Override
     public ExerciseType saveExerciseType(ExerciseType exerciseType) {
         RequestBody reqBody = RequestBody.create(gson.toJson(exerciseType), JSON);
@@ -281,6 +347,10 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <br>This method requires authentication.
+     */
     @Override
     public void updateWorkout(Workout workout) {
 
@@ -325,6 +395,10 @@ public class TrainerAPIWrapper extends API implements UserOperations, ExerciseTy
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <br>This method requires authentication.
+     */
     private void stopSession() {
         tokenManager.deleteToken();
         userManager.logout();
