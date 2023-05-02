@@ -10,6 +10,10 @@ import com.example.trainer.model.Workout;
 import java.util.List;
 import java.util.concurrent.Future;
 
+/**
+ * Interface for the controller that manages all of the business logic in the app.
+ * When using this controller you need to make sure which methods can be called from the UI tread.
+ */
 @SuppressWarnings("unused")
 public interface TrainerController {
 
@@ -199,9 +203,20 @@ public interface TrainerController {
      */
     Future<String> getQuotes();
 
+    /**
+     * Updates a workout as shared
+     * @param workout workout to be saved
+     */
     void makeShared(Workout workout);
 
+    /**
+     * Gets all workouts that are shared. This method is asynchronous.
+     * @return list of shared workouts
+     */
     Future<List<Workout>> getSharedWorkoutsAsync(String username);
 
+    /**
+     * Logs out the current user. This method is synchronous but can be called from UI thread.
+     */
     void logOut();
 }

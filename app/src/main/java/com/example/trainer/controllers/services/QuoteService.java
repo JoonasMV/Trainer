@@ -5,7 +5,7 @@ import com.example.trainer.api.QuoteOperations;
 import java.util.List;
 
 /**
- * handles quote fetching from api
+ * Handles quote fetching from api. Quote is cached in memory once it has been fetched.
  */
 public class QuoteService {
 
@@ -18,13 +18,12 @@ public class QuoteService {
     }
 
     /**
-     * gets quote from api if quote is not yet fetched
+     * Gets quote from api if quote is not yet fetched
      * @return String guote
      */
     public String getQuotes() {
         if(quote == null){
             quote = api.getQuotes();
-            return quote;
         }
         return quote;
     }

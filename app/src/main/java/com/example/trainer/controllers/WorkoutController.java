@@ -258,11 +258,17 @@ public class WorkoutController extends BaseController {
         return executor.submit(exerciseTypeService::getAll);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Future<String> getQuotes() {
         return executor.submit(quoteService::getQuotes);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void makeShared(Workout workout){
         executor.submit(() -> workoutService.makeShared(workout));

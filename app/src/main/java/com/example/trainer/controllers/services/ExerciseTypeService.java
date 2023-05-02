@@ -11,10 +11,13 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * handles exercisetype fetching from api
+ * Handles exercise type caching and fetching from api. All methods except fetchOnBackground are synchronous.
  */
 public class ExerciseTypeService {
 
+    /**
+     * List of exercise types.
+     */
     private List<ExerciseType> exerciseTypes = new ArrayList<>();
     private final ExerciseTypeOperations api;
 
@@ -22,13 +25,21 @@ public class ExerciseTypeService {
         this.api = api;
     }
 
+    /**
+     * Gets all exercise types. If exercise types are not cached, fetches them from api.
+     * @return List of exercise types.
+     */
     public List<ExerciseType> getAll() {
         if(exerciseTypes.isEmpty()){
             exerciseTypes = api.getAllExerciseTypes();
         }
-        return  exerciseTypes;
+        return exerciseTypes;
     }
 
+    /**
+     * Deletes exercise type with given id.
+     * @param id Id of exercise type to delete.
+     */
     public void deleteExerciseType(String id) {
         api.deleteExerciseType(id);
         filterOutId(id);
@@ -41,6 +52,11 @@ public class ExerciseTypeService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Checks if exercise type with given name exists.
+     * @param name Name of exercise type to check.
+     * @return True if exercise type with given name exists, false otherwise.
+     */
     public boolean exerciseTypeExists(String name) {
         if(exerciseTypes.isEmpty()){
             exerciseTypes = api.getAllExerciseTypes();
@@ -52,6 +68,10 @@ public class ExerciseTypeService {
         return found.isPresent();
     }
 
+    /**
+     * Creates new exercise type. The exercise type is saved if the api call is successful.
+     * @param exerciseType Exercise type to create.
+     */
     public void createExerciseType(ExerciseType exerciseType){
         if(exerciseTypes == null){
             exerciseTypes = api.getAllExerciseTypes();
@@ -62,6 +82,9 @@ public class ExerciseTypeService {
         }
     }
 
+    /**
+     * Fetches exercise types from api on background.
+     */
     public void fetchOnBackground(){
         Runnable runnable = () -> {
             Log.d("ExerciseTypeService", "Fetching on background...");
