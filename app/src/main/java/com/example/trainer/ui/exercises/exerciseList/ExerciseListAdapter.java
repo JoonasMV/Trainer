@@ -111,6 +111,7 @@ public class ExerciseListAdapter extends UpdatableAdapter<List<ExerciseType>, Ex
 
     @Override
     public int getItemCount() {
+        if(exerciseTypes == null) return 0;
         return exerciseTypes.size();
     }
 
