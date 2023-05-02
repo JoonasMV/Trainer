@@ -7,6 +7,9 @@ import android.content.SharedPreferences.Editor;
 import com.example.trainer.model.Workout;
 import com.google.gson.Gson;
 
+/**
+ * Utility class for serializing and deserializing active workout to/from sharedPreferences
+ */
 public class WorkoutSerializer {
 
     private final static String key = "workout_key";
@@ -40,6 +43,11 @@ public class WorkoutSerializer {
     }
 
 
+    /**
+     * Saves workout to sharedPreferences
+     * @param workout Workout to be serialized and written
+     * @param context Context of app
+     */
     public static void writeWorkoutToPref(Workout workout, Context context){
         if(context == null){
             return;
@@ -54,6 +62,10 @@ public class WorkoutSerializer {
         return gson.toJson(workout);
     }
 
+    /**
+     * Clears sharedPreferences
+     * @param context Context of app
+     */
     public static void clearPrefs(Context context){
         if (context == null) {
             return;
