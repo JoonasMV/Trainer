@@ -42,7 +42,7 @@ public class ExerciseChart_fragment extends Fragment {
     LineChart mpLineChart;
     ExerciseType exerciseType;
 
-    int[] minMax = new int[2];
+    int[] minMax = new int[] {1, 5};
 
     List<Workout> workouts;
 
