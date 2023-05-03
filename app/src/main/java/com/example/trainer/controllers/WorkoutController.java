@@ -103,6 +103,11 @@ public class WorkoutController extends BaseController {
         executor.submit(() -> workoutService.save(workout));
     }
 
+    @Override
+    public List<Workout> getAllWorkouts(){
+        return workoutService.getAllWorkouts();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -159,11 +164,17 @@ public class WorkoutController extends BaseController {
         return executor.submit(() -> workoutService.getSharedWorkouts(username));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void logOut() {
         userService.logOut();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Future<List<Workout>> getNonPresetWorkoutsAsync() {
         return executor.submit(workoutService::getNonPresetWorkouts);

@@ -60,4 +60,5 @@
     <string name="failQuote">Päivän sanonnan lataaminen epäonnistui</string>
     <string name="failWorkout">Treenien lataaminen epäonnistui</string>
     <string name="nameNotEmpty">Nimi ei voi olla tyhjä</string>
+    <string name="volume">Voluumi (paino * toistot)</string>
 </resources>

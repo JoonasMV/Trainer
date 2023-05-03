@@ -60,4 +60,5 @@
     <string name="failQuote">No se pudo cargar la cotización</string>
     <string name="failWorkout">No se pudieron cargar los entrenamientos</string>
     <string name="nameNotEmpty">Da un nombre que no esté vacío</string>
+    <string name="volume">el volumen (la carga * repeticiones)</string>
 </resources>

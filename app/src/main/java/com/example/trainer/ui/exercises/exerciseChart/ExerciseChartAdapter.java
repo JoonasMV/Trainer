@@ -67,11 +67,15 @@ public class ExerciseChartAdapter extends RecyclerView.Adapter<ExerciseChartAdap
         Workout workout = localDataSet.get(position);
         Date time = workout.getWorkoutStarted();
         SimpleDateFormat DateFormat = new SimpleDateFormat("dd.MM.yyyy");
-        String str = DateFormat.format(time);
+
+        String strName = Integer.toString(position + 1);
+        String strDate = DateFormat.format(time);
+
+        strName += ". " + workout.getName();
 
 
-        viewHolder.getDate().setText(str);
-        viewHolder.getWeight().setText(workout.getName());
+        viewHolder.getWeight().setText(strDate);
+        viewHolder.getDate().setText(strName);
     }
 
     // Return the size of your dataset (invoked by the layout manager)

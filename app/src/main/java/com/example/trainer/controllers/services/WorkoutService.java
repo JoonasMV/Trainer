@@ -45,6 +45,21 @@ public class WorkoutService {
         return filterPresets();
     }
 
+    /**
+     * gets all workouts for the user
+     * @return list of all workouts
+     */
+    public List<Workout> getAllWorkouts() {
+        if(workouts.isEmpty()){
+            workouts = api.getWorkouts();
+        }
+        return workouts;
+    }
+
+    /**
+     * filters list of workouts by bool preset field
+     * @return list containing only preset workouts
+     */
     private List<Workout> filterPresets(){
         if(workouts.isEmpty()){
             return workouts;
@@ -76,6 +91,10 @@ public class WorkoutService {
         return api.getSharedWorkouts(username);
     }
 
+    /**
+     * filters list of workouts by bool preset field
+     * @return list of workouts not containing any presets
+     */
     private List<Workout> filterNonPresets(){
         if(workouts.isEmpty()){
             return workouts;
@@ -96,6 +115,10 @@ public class WorkoutService {
         removeFromList(workout.getId());
     }
 
+    /**
+     * removes workout from list based on id
+     * @param id
+     */
     private void removeFromList(String id){
        this.workouts = workouts
                .stream()

@@ -219,4 +219,10 @@ public interface TrainerController {
      * Logs out the current user. This method is synchronous but can be called from UI thread.
      */
     void logOut();
+
+    /**
+     * gets all workouts for user
+     * @return list of workouts
+     */
+    List<Workout> getAllWorkouts();
 }

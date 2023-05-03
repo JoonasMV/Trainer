@@ -60,4 +60,5 @@
     <string name="failQuote">Չհաջողվեց բեռնել գործողությունը</string>
     <string name="failWorkout">Չհաջողվեց բեռնել մարմնական դասընթացները</string>
     <string name="nameNotEmpty">Տվյալները լրացված չեն։ Անուն տալիս դատարկ չլինի</string>
+    <string name="volume">ծավալը (քաշը * կրկնողներ)</string>
 </resources>
