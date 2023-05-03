@@ -14,10 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
-import com.example.trainer.controllers.BaseController;
-import com.example.trainer.model.Exercise;
-import com.example.trainer.model.Workout;
-import com.example.trainer.util.Toaster;
+import com.example.trainer.diagram.api.controllers.BaseController;
+import com.example.trainer.diagram.api.model.Workout;
+import com.example.trainer.diagram.api.util.Toaster;
 
 import java.util.List;
 

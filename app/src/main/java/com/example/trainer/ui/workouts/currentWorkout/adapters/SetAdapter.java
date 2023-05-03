@@ -13,8 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
-import com.example.trainer.model.Exercise;
-import com.example.trainer.model.ExerciseSet;
+import com.example.trainer.diagram.api.model.Exercise;
+import com.example.trainer.diagram.api.model.ExerciseSet;
 
 import java.text.DecimalFormat;
 

@@ -14,15 +14,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.trainer.R;
-import com.example.trainer.controllers.BaseController;
-import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.controllers.services.QuoteService;
-import com.example.trainer.model.User;
-import com.example.trainer.model.Workout;
-import com.example.trainer.util.Toaster;
+import com.example.trainer.diagram.api.controllers.BaseController;
+import com.example.trainer.diagram.api.controllers.TrainerController;
+import com.example.trainer.diagram.api.model.User;
 
-import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 

@@ -1,6 +1,6 @@
-package com.example.trainer.api;
+package com.example.trainer.diagram.api;
 
-import com.example.trainer.model.Workout;
+import com.example.trainer.diagram.api.model.Workout;
 
 import java.util.List;
 

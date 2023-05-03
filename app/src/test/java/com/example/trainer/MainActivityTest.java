@@ -2,10 +2,10 @@ package com.example.trainer;
 
 import com.example.trainer.ui.LoginPage_activity;
 import com.example.trainer.ui.MainActivity;
-import com.example.trainer.controllers.BaseController;
-import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.controllers.WorkoutController;
-import com.example.trainer.model.User;
+import com.example.trainer.diagram.api.controllers.BaseController;
+import com.example.trainer.diagram.api.controllers.TrainerController;
+import com.example.trainer.diagram.api.controllers.WorkoutController;
+import com.example.trainer.diagram.api.model.User;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +22,6 @@ import android.content.Intent;
 import android.widget.EditText;
 
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;

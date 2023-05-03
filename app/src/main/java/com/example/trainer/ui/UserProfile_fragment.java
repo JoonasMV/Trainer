@@ -17,10 +17,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.trainer.R;
-import com.example.trainer.controllers.BaseController;
-import com.example.trainer.model.User;
-import com.example.trainer.model.Workout;
-import com.example.trainer.util.Toaster;
+import com.example.trainer.diagram.api.controllers.BaseController;
+import com.example.trainer.diagram.api.model.Workout;
+import com.example.trainer.diagram.api.util.Toaster;
 
 import java.util.ArrayList;
 import java.util.List;

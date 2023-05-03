@@ -1,7 +1,7 @@
-package com.example.trainer.controllers.services;
+package com.example.trainer.diagram.api.controllers.services;
 
-import com.example.trainer.api.UserOperations;
-import com.example.trainer.model.User;
+import com.example.trainer.diagram.api.UserOperations;
+import com.example.trainer.diagram.api.model.User;
 
 import java.util.List;
 

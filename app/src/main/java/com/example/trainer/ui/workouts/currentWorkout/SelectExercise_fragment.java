@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
 import com.example.trainer.ui.workouts.currentWorkout.adapters.SelectExerciseAdapter;
-import com.example.trainer.controllers.BaseController;
-import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.model.ExerciseType;
+import com.example.trainer.diagram.api.controllers.BaseController;
+import com.example.trainer.diagram.api.controllers.TrainerController;
+import com.example.trainer.diagram.api.model.ExerciseType;
 
 import java.util.List;
 

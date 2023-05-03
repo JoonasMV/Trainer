@@ -1,11 +1,11 @@
-package com.example.trainer.controllers;
+package com.example.trainer.diagram.api.controllers;
 
 import android.content.Context;
 
-import com.example.trainer.model.Exercise;
-import com.example.trainer.model.ExerciseSet;
-import com.example.trainer.model.Workout;
-import com.example.trainer.util.WorkoutSerializer;
+import com.example.trainer.diagram.api.model.Exercise;
+import com.example.trainer.diagram.api.model.ExerciseSet;
+import com.example.trainer.diagram.api.model.Workout;
+import com.example.trainer.diagram.api.util.WorkoutSerializer;
 
 import java.util.ArrayList;
 import java.util.Date;

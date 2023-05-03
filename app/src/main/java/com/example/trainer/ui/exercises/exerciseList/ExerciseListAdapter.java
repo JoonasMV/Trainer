@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainer.R;
 import com.example.trainer.ui.UpdatableAdapter;
 import com.example.trainer.ui.exercises.exerciseChart.ExerciseChart_fragment;
-import com.example.trainer.controllers.BaseController;
-import com.example.trainer.model.ExerciseType;
+import com.example.trainer.diagram.api.controllers.BaseController;
+import com.example.trainer.diagram.api.model.ExerciseType;
 import com.example.trainer.ui.MainActivity;
 
 import java.util.ArrayList;

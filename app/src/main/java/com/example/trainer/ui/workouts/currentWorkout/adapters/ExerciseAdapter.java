@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
-import com.example.trainer.controllers.BaseController;
-import com.example.trainer.controllers.TrainerController;
+import com.example.trainer.diagram.api.controllers.BaseController;
+import com.example.trainer.diagram.api.controllers.TrainerController;
 
 public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHolder> {
 

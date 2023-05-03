@@ -1,4 +1,4 @@
-package com.example.trainer.model;
+package com.example.trainer.diagram.api.model;
 
 import androidx.annotation.NonNull;
 

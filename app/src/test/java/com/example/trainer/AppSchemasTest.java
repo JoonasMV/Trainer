@@ -4,11 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import com.example.trainer.model.Exercise;
-import com.example.trainer.model.ExerciseSet;
-import com.example.trainer.model.ExerciseType;
-import com.example.trainer.model.User;
-import com.example.trainer.model.Workout;
+import com.example.trainer.diagram.api.model.Exercise;
+import com.example.trainer.diagram.api.model.ExerciseSet;
+import com.example.trainer.diagram.api.model.ExerciseType;
+import com.example.trainer.diagram.api.model.User;
+import com.example.trainer.diagram.api.model.Workout;
 
 import org.junit.Before;
 import org.junit.Test;

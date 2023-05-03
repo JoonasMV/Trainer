@@ -1,8 +1,8 @@
-package com.example.trainer.util;
+package com.example.trainer.diagram.api.util;
 
 import android.content.Context;
 
-import com.example.trainer.model.User;
+import com.example.trainer.diagram.api.model.User;
 import com.google.gson.Gson;
 
 /**

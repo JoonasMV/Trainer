@@ -14,11 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
-import com.example.trainer.controllers.BaseController;
+import com.example.trainer.diagram.api.controllers.BaseController;
 import com.example.trainer.ui.workouts.workoutStats.WorkoutStatsExerciseAdapter;
-import com.example.trainer.model.Exercise;
-import com.example.trainer.model.Workout;
-import com.example.trainer.util.Toaster;
+import com.example.trainer.diagram.api.model.Exercise;
+import com.example.trainer.diagram.api.model.Workout;
+import com.example.trainer.diagram.api.util.Toaster;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

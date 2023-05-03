@@ -8,9 +8,9 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.trainer.R;
-import com.example.trainer.controllers.BaseController;
-import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.model.User;
+import com.example.trainer.diagram.api.controllers.BaseController;
+import com.example.trainer.diagram.api.controllers.TrainerController;
+import com.example.trainer.diagram.api.model.User;
 
 import java.util.concurrent.Future;
 //import android.widget.Toast;

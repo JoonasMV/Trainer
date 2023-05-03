@@ -13,9 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
-import com.example.trainer.ui.UpdatableAdapter;
-import com.example.trainer.controllers.BaseController;
-import com.example.trainer.model.Workout;
+import com.example.trainer.diagram.api.controllers.BaseController;
+import com.example.trainer.diagram.api.model.Workout;
 
 import java.util.List;
 

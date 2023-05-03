@@ -16,9 +16,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.trainer.ui.MainActivity;
-import com.example.trainer.controllers.BaseController;
-import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.model.User;
+import com.example.trainer.diagram.api.controllers.BaseController;
+import com.example.trainer.diagram.api.controllers.TrainerController;
+import com.example.trainer.diagram.api.model.User;
 
 @RunWith(RobolectricTestRunner.class)
 public class LoggedInTest {

@@ -1,4 +1,4 @@
-package com.example.trainer.api;
+package com.example.trainer.diagram.api;
 
 /**
  * Abstract class that is used to combine all operations. Can also be used for mocking.

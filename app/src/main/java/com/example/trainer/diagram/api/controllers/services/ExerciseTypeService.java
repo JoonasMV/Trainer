@@ -1,9 +1,9 @@
-package com.example.trainer.controllers.services;
+package com.example.trainer.diagram.api.controllers.services;
 
 import android.util.Log;
 
-import com.example.trainer.api.ExerciseTypeOperations;
-import com.example.trainer.model.ExerciseType;
+import com.example.trainer.diagram.api.ExerciseTypeOperations;
+import com.example.trainer.diagram.api.model.ExerciseType;
 
 import java.util.ArrayList;
 import java.util.List;

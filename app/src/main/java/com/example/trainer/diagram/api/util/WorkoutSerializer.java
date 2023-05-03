@@ -1,10 +1,10 @@
-package com.example.trainer.util;
+package com.example.trainer.diagram.api.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-import com.example.trainer.model.Workout;
+import com.example.trainer.diagram.api.model.Workout;
 import com.google.gson.Gson;
 
 /**

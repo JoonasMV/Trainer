@@ -1,4 +1,4 @@
-package com.example.trainer.api.responses;
+package com.example.trainer.diagram.api.responses;
 
 /**
  * Represents a response that contains a JWT

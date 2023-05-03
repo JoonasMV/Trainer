@@ -9,10 +9,10 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.trainer.R;
-import com.example.trainer.controllers.BaseController;
-import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.model.ExerciseType;
-import com.example.trainer.util.Toaster;
+import com.example.trainer.diagram.api.controllers.BaseController;
+import com.example.trainer.diagram.api.controllers.TrainerController;
+import com.example.trainer.diagram.api.model.ExerciseType;
+import com.example.trainer.diagram.api.util.Toaster;
 
 /**
  * Fragment for creating a new exercise, in the model these exercises are referred with the term ExerciseType

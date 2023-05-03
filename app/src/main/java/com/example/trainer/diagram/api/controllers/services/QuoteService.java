@@ -1,8 +1,6 @@
-package com.example.trainer.controllers.services;
+package com.example.trainer.diagram.api.controllers.services;
 
-import com.example.trainer.api.QuoteOperations;
-
-import java.util.List;
+import com.example.trainer.diagram.api.QuoteOperations;
 
 /**
  * Handles quote fetching from api. Quote is cached in memory once it has been fetched.

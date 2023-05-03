@@ -1,4 +1,4 @@
-package com.example.trainer.util;
+package com.example.trainer.diagram.api.util;
 
 import android.content.Context;
 import android.widget.Toast;

@@ -8,7 +8,7 @@ import android.content.Context;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.example.trainer.util.TokenManager;
+import com.example.trainer.diagram.api.util.TokenManager;
 
 import org.junit.Before;
 import org.junit.Test;

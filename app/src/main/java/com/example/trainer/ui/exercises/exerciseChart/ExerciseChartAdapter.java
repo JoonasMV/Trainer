@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainer.R;
-import com.example.trainer.model.Workout;
+import com.example.trainer.diagram.api.model.Workout;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

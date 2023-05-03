@@ -1,9 +1,9 @@
 package com.example.trainer.mock;
 
-import com.example.trainer.api.API;
-import com.example.trainer.model.ExerciseType;
-import com.example.trainer.model.User;
-import com.example.trainer.model.Workout;
+import com.example.trainer.diagram.api.API;
+import com.example.trainer.diagram.api.model.ExerciseType;
+import com.example.trainer.diagram.api.model.User;
+import com.example.trainer.diagram.api.model.Workout;
 
 import java.util.ArrayList;
 import java.util.List;

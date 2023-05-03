@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.trainer.R;
-import com.example.trainer.controllers.BaseController;
+import com.example.trainer.diagram.api.controllers.BaseController;
 
 import java.util.List;
 import java.util.stream.Collectors;

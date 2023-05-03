@@ -1,11 +1,11 @@
-package com.example.trainer.controllers;
+package com.example.trainer.diagram.api.controllers;
 
 import android.content.Context;
 
-import com.example.trainer.model.Exercise;
-import com.example.trainer.model.ExerciseType;
-import com.example.trainer.model.User;
-import com.example.trainer.model.Workout;
+import com.example.trainer.diagram.api.model.Exercise;
+import com.example.trainer.diagram.api.model.ExerciseType;
+import com.example.trainer.diagram.api.model.User;
+import com.example.trainer.diagram.api.model.Workout;
 
 import java.util.List;
 import java.util.concurrent.Future;

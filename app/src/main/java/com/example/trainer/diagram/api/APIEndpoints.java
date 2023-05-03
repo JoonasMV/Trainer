@@ -1,4 +1,4 @@
-package com.example.trainer.api;
+package com.example.trainer.diagram.api;
 
 public final class APIEndpoints {
 

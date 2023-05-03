@@ -1,14 +1,14 @@
-package com.example.trainer.api;
+package com.example.trainer.diagram.api;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.example.trainer.api.responses.Token;
-import com.example.trainer.model.ExerciseType;
-import com.example.trainer.model.User;
-import com.example.trainer.model.Workout;
-import com.example.trainer.util.TokenManager;
-import com.example.trainer.util.UserManager;
+import com.example.trainer.diagram.api.responses.Token;
+import com.example.trainer.diagram.api.model.ExerciseType;
+import com.example.trainer.diagram.api.model.User;
+import com.example.trainer.diagram.api.model.Workout;
+import com.example.trainer.diagram.api.util.TokenManager;
+import com.example.trainer.diagram.api.util.UserManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

@@ -2,38 +2,25 @@ package com.example.trainer.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.trainer.R;
-import com.example.trainer.model.Workout;
 import com.example.trainer.ui.exercises.exerciseList.ExerciseList_fragment;
-import com.example.trainer.controllers.BaseController;
-import com.example.trainer.controllers.TrainerController;
-import com.example.trainer.controllers.WorkoutController;
+import com.example.trainer.diagram.api.controllers.BaseController;
+import com.example.trainer.diagram.api.controllers.TrainerController;
+import com.example.trainer.diagram.api.controllers.WorkoutController;
 import com.example.trainer.ui.users.userSearch.User_search_fragment;
 import com.example.trainer.ui.workouts.workoutHistory.WorkoutHistory_fragment;
 import com.example.trainer.ui.workouts.presetWorkouts.PresetWorkouts_fragment;
-import com.example.trainer.ui.workouts.workoutStats.WorkoutStats_fragment;
-import com.example.trainer.util.Toaster;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import com.example.trainer.diagram.api.util.Toaster;
 
 /**
  * Trainer App's main activity

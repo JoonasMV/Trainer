@@ -5,8 +5,8 @@ import android.content.Context;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.example.trainer.model.User;
-import com.example.trainer.util.UserManager;
+import com.example.trainer.diagram.api.model.User;
+import com.example.trainer.diagram.api.util.UserManager;
 
 import org.junit.Before;
 import org.junit.Test;
