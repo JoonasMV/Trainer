@@ -52,6 +52,10 @@ public class UserProfileAdapter extends UpdatableAdapter<List<Workout>, UserProf
         }
     }
 
+    /**
+     * Updates workout dataset
+     * @param data List of workouts which get updated in the fragment
+     */
     @Override
     public void update(List<Workout> data) {
         this.workouts = data;

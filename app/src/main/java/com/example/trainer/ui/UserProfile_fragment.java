@@ -49,6 +49,11 @@ public class UserProfile_fragment extends Fragment {
     }
 
 
+    /**
+     *
+     * @param username username which gets shown on home page
+     * @return returns fragment with args
+     */
     public static UserProfile_fragment newInstance(String username) {
         UserProfile_fragment fragment = new UserProfile_fragment();
         Bundle args = new Bundle();
