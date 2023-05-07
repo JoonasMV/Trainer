@@ -20,6 +20,6 @@ Olli V <br>
 Joonas V
 
 ## Installation
-Download the latest stable version from [this](https://users.metropolia.fi/~joonasmv/Trainer/debug/) page and install it on your android device<br>
+Download the latest stable version from [this](https://users.metropolia.fi/~jennivh/Trainer/) page and install it on your android device<br>
 
 [Custom .apk install tutorial](https://www.groovypost.com/howto/install-apk-files-on-android/)
